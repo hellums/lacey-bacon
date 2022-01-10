@@ -101,6 +101,20 @@ celerybeat.pid
 # SageMath parsed files
 *.sage.py
 
+# Cookiecutter data science hierarchy folder and file structure
+data/
+models/
+notebooks/
+references/
+reports/
+src/
+visualization/
+
+# Docs folder and files
+docs/
+
+# Models
+
 # Environments
 .env
 .venv
