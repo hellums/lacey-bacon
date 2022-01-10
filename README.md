@@ -17,4 +17,3 @@ Given the time limitations, this project is not meant to be an all-inclusive or 
 - Matplotlib 
 - Jupyter Notebook
 - HTML, Javascript, CSS (high level, "big picture")
-"#   " 
