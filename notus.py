@@ -72,6 +72,6 @@ def main():
         else:
             pass
 
-# Allow to be used as function or program
+# Allow file to be used as function or program
 if __name__=='__main__':
     main()
