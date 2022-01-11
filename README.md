@@ -17,5 +17,6 @@ Given the time limitations, this project is not meant to be an all-inclusive or 
 - Matplotlib 
 - Jupyter Notebook
 - Anaconda
-- Cookiecutter (high level)
+- Docker (introductory)
+- Cookiecutter (introductory)
 - HTML, Javascript, CSS (high level, "big picture")
