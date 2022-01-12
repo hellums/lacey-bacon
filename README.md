@@ -9,7 +9,7 @@ Given the time and resource limitations, this project is not meant to be an all-
 
 ### PROJECT PAGES
 - [Kanban](https://github.com/hellums/Not-United-States/projects)
-- [Wiki]()
+- [Wiki](https://github.com/hellums/Not-United-States/wiki)
 
 ### TECHNOLOGIES INVOLVED
 - GitHub
