@@ -1,5 +1,5 @@
 # OVERVIEW
-This repo contains files and related project data for a 12-week introductory course (Jan-Apr 2022) on Python programming and data analysis/science in a group learning environment. However, all programming and data analysis is individual, and shared/coordinated with instructors and mentors as necessary.
+This repo contains files and related project data for a 12-week introductory bootcamp course (Jan-Apr 2022) on Python programming and data analysis/science in a group learning environment. However, all programming and data analysis is individual, and shared/coordinated with instructors and mentors as necessary.
 
 # METHODOLOGY
 The last two years have been very tumultuous for the "United" States, whose citizens are more divided than ever. 
