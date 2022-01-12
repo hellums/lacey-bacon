@@ -8,7 +8,7 @@ The last two years have been very tumultuous for the "United" States, whose citi
 Given the time and resource limitations, this project is not meant to be an all-inclusive or representative study of the topic itself, but merely to provide a working environment to support the proogramming and data science portions of the course. It could also be used as a source of information to support additional avenues of research in this subject area.
 
 ### PROJECT PAGES
-- [Kanban](https://github.com/hellums/Not-United-States/projects)
+- [Kanban](https://github.com/hellums/Not-United-States/projects/1)
 - [Wiki](https://github.com/hellums/Not-United-States/wiki)
 
 ### TECHNOLOGIES INVOLVED
