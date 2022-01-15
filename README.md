@@ -1,15 +1,25 @@
-# OVERVIEW
+# PROJECT OVERVIEW
 This repo contains files and related project data for a 12-week introductory bootcamp course (Jan-Apr 2022) on Python programming and data analysis/science in a group learning environment. However, all programming and data analysis is individual, and shared/coordinated with instructors and mentors as necessary.
 
-# GOALS
+# PROJECT GOALS
 This repo and project will have several purposes:
 - Satisfy the 4+ minimum requirements of the bootcamp assignment in the syllabus
 - Satisfy as many optional requirements as possible
 
-# PACKAGES INVOLVED
+### PROJECT SCOPE
+Given the time and resource limitations, this project is not meant to be an all-inclusive or representative study of the topic itself, but merely to provide a working environment to support the proogramming and data science portions of the course. 
+
+It could also be used as a source of information to support additional avenues of research in this subject area.
+
+### PROJECT PAGES
+- [Kanban](https://github.com/hellums/Hallmark-Rom-Com/projects/1)
+- [Wiki](https://github.com/hellums/Hallmark-Rom-Com/wiki)
 
 # SPECIAL INSTRUCTIONS
 Run "python lacey.py" from the command line in the project folder, using a Python 3 interpreter.
+
+# PACKAGES INVOLVED
+See requirements.txt file in project folder.
 
 # FULL SET OF POSSIBLE FEATURES
 - Implement a “master loop” console application where the user can repeatedly enter commands/perform actions, including choosing to exit the program.
@@ -27,22 +37,25 @@ Run "python lacey.py" from the command line in the project folder, using a Pytho
 - Visualize data in a graph, chart, or other visual representation of data.
 - Other features can be added to this list with mentor or staff permission, but we want to see you stretch your skills, so you’ll want to pick something challenging.
 - STRETCH FEATURE LIST:
-  -- These count too! But they will require going outside of the base curriculum to learn about and may be more challenging.
-  -- Implement a “scraper” that can be fed a type of file or URL and pull information off of it. For example, a web scraper that lets you provide any website URL and it will find certain keywords on the page.
-  -- Implement optical character recognition (OCR) that you can upload PDFs to and it will generate the text.
-  -- Use pandas, matplotlib, and/or numpy to perform a data analysis project. Ingest 2 or more pieces of data, analyze that data in some manner, and display a new result to a graph, chart, or other display.
+  - These count too! But they will require going outside of the base curriculum to learn about and may be more challenging.
+  - Implement a “scraper” that can be fed a type of file or URL and pull information off of it. For example, a web scraper that lets you provide any website URL and it will find certain keywords on the page.
+  - Implement optical character recognition (OCR) that you can upload PDFs to and it will generate the text.
+  - Use pandas, matplotlib, and/or numpy to perform a data analysis project. Ingest 2 or more pieces of data, analyze that data in some manner, and display a new result to a graph, chart, or other display.
 
+# FEATURES PLANNED AT PROJECT OUTSET
+- Implement a “master loop” console application where the user can repeatedly enter commands/perform actions, including choosing to exit the program.
+- Create a class, then create at least one object of that class and populate it with data. The value of at least one object must be used somewhere in your code.
+- Create a dictionary or list, populate it with several values, retrieve at least one value, and use it in your program.
+- Read data from an external file, such as text, JSON, CSV, etc and use that data in your application.
+- Create and call at least 3 functions or methods, at least one of which must return a value that is used somewhere else in your code.
+- Connect to an external/3rd party API and read data into your app
+- Calculate and display data based on an external factor (ex: get the current date, and display how many days remaining until some event).
+- Visualize data in a graph, chart, or other visual representation of data.
+- (Stretch list) Implement a “scraper” that can be fed a type of file or URL and pull information off of it. For example, a web scraper that lets you provide any website URL and it will find certain keywords on the page.
+  - Use pandas, matplotlib, and/or numpy to perform a data analysis project. Ingest 2 or more pieces of data, analyze that data in some manner, and display a new result to a graph, chart, or other display.
 
-
-
-### PROJECT SCOPE
-Given the time and resource limitations, this project is not meant to be an all-inclusive or representative study of the topic itself, but merely to provide a working environment to support the proogramming and data science portions of the course. 
-
-It could also be used as a source of information to support additional avenues of research in this subject area.
-
-### PROJECT PAGES
-- [Kanban](https://github.com/hellums/Hallmark-Rom-Com/projects/1)
-- [Wiki](https://github.com/hellums/Hallmark-Rom-Com/wiki)
+# FEATURES IMPLEMENTED
+- Implement a “master loop” console application where the user can repeatedly enter commands/perform actions, including choosing to exit the program.
 
 ### TECHNOLOGIES INVOLVED
 - GitHub
@@ -56,6 +69,7 @@ It could also be used as a source of information to support additional avenues o
 - Matplotlib 
 - Docker (introductory)
 - Cookiecutter (introductory)
+- IMDB (data source)
 - HTML, Javascript, CSS (high level, "big picture")
 - Sling-loaded coconuts, twine, and two African swallows
 - A scale, a duck, and "very small rocks" (the kind that float on water)
