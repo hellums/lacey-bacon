@@ -1,6 +1,10 @@
 # PROJECT OVERVIEW
 This repo contains files and related project data for a 12-week introductory bootcamp course (Jan-Apr 2022) on Python programming and data analysis/science in a group learning environment. However, all programming and data analysis is individual, and shared/coordinated with instructors and mentors as necessary.
 
+### PROJECT PAGES
+- [Kanban](https://github.com/hellums/Hallmark-Rom-Com/projects/1)
+- [Wiki](https://github.com/hellums/Hallmark-Rom-Com/wiki)
+
 # PROJECT GOALS
 This repo and project will have several purposes:
 - Satisfy the 4+ minimum requirements of the bootcamp assignment in the syllabus
@@ -9,12 +13,7 @@ This repo and project will have several purposes:
 ### PROJECT SCOPE
 Given the time and resource limitations, this project is not meant to be an all-inclusive or representative study of the topic itself, but merely to provide a working environment to support the proogramming and data science portions of the course. 
 
-It could also be used as a source of information to support additional avenues of research in this subject area.
-
-### PROJECT PAGES
-- [Kanban](https://github.com/hellums/Hallmark-Rom-Com/projects/1)
-- [Wiki](https://github.com/hellums/Hallmark-Rom-Com/wiki)
-
+It could also be used as a source of information to support additional avenues of research in this subject area. 
 # SPECIAL INSTRUCTIONS
 Run "python lacey.py" from the command line in the project folder, using a Python 3 interpreter.
 
