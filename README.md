@@ -1,5 +1,5 @@
 # PROJECT OVERVIEW
-This repo contains files and related project data for a 12-week introductory bootcamp course (Jan-Apr 2022) on Python programming and data analysis/science in a group learning environment. However, all programming and data analysis is individual, and shared/coordinated with instructors and mentors as necessary.
+This repo is a work in progress (not complete). It contains files and related project data for a 12-week introductory bootcamp course (Jan-Apr 2022) on Python programming and data analysis/science in a group learning environment. However, all programming and data analysis is individual, and shared/coordinated with instructors and mentors as necessary.
 
 ### PROJECT PAGES
 - [Kanban](https://github.com/hellums/Hallmark-Rom-Com/projects/1)
