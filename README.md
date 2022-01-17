@@ -69,7 +69,8 @@ See requirements.txt file in project folder.
 - Docker (introductory)
 - Cookiecutter (introductory)
 - IMDB (data source)
-- HTML, Javascript, CSS (high level, "big picture")
+- Pluralsight (LMS)
+- HTML, Javascript, CSS (high level, "big picture" courses on Pluralsight)
 - Sling-loaded coconuts, twine, and two African swallows
 - A scale, a duck, and "very small rocks" (the kind that float on water)
 - And more, TBD
