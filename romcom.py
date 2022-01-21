@@ -1,7 +1,6 @@
 # Import os module for system calls to cls and clear (screen)
 import os  # for system calls to clear screen
 import csv  # to import TSV files for movie and actor lists
-import my_classes  # for access to imdb movie, actor, class, rating objects
 
 # Create classes, movie data courtesy of imdb.com (interface download)
 class Movie:  # Curated list of romantic comedies, mysteries, and dramas, primarily Hallmark originals
@@ -38,7 +37,16 @@ class Rating:  # Curated list, rating details on "Hallmark" movies in list
     self.movieId = movieId
     self.movieRating = movieRating
     self.movieVotes = movieVotes
-    
+
+# Define function to clear screen in multiple os formats    
+def clrscr():
+    # Check if Operating System is Mac and Linux or Windows
+    if os.name == 'posix':
+      _ = os.system('clear')
+    else:
+        # Else Operating System is Windows (os.name = nt)
+      _ = os.system('cls')
+
 # Load records from each file as class instances to each list
 def load_data():  
 
@@ -117,15 +125,6 @@ def option9():  # for debug only, to be removed later
             count = count + 1
         average = total/count
         print("average rating:", format(average, '.1f') )
-            
-
-def clrscr():
-    # Check if Operating System is Mac and Linux or Windows
-    if os.name == 'posix':
-      _ = os.system('clear')
-    else:
-        # Else Operating System is Windows (os.name = nt)
-      _ = os.system('cls')
 
 # Define main function to print menu and get user choice
 def main():
@@ -139,6 +138,7 @@ def main():
     # Loop through main menu until user opts to exit
     while(True):
 
+        # Print instructions and menu
         print('\nPlease enter a number between 1 and 4.\n')
         print_menu()
 
