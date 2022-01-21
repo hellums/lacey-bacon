@@ -1,6 +1,6 @@
 Raw Data (courtesy of imdb.com)
-[IMDB non-commercial licensing](https://help.imdb.com/article/imdb/general-information/can-i-use-imdb-data-in-my-software)
-[IMDB dataset details](https://www.imdb.com/interfaces/)
+IMDB non-commercial licensing - https://help.imdb.com/article/imdb/general-information/can-i-use-imdb-data-in-my-software
+IMDB dataset details - https://www.imdb.com/interfaces/
 
 Curated Data from source files (tab-delimited, based on a curated IMDB watchlist)
 >ls -al *imdb*
