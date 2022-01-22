@@ -46,7 +46,7 @@ conn.close()
 # Validate that all tables were created in the movie database
 try:
   sqliteConnection = sqlite3.connect('movie.db')
-  print('Connected to SQLite test.db')
+  print('Connected to SQLite movie.db')
   sql_query = ('''SELECT name FROM sqlite_master  
 WHERE type='table';''')
   cursor=sqliteConnection.cursor()
