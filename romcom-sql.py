@@ -63,6 +63,6 @@ finally:
     print('the SQLite3 connection is closed')
 
 # Validation output:
-  # Connected to SQLite test.db
+  # Connected to SQLite movie.db
   # [('movie',), ('actor',), ('role',), ('rating',)]
   # the SQLite3 connection is closed
