@@ -15,7 +15,7 @@ Given the time and resource limitations, this project is not meant to be an all-
 
 It could also be used as a source of information to support additional avenues of research in this subject area. 
 # SPECIAL INSTRUCTIONS
-Run "python lacey.py" from the command line in the project folder, using a Python 3 interpreter.
+Run "python romcom.py" from the command line in the project folder, using a Python 3 interpreter.
 
 # PACKAGES INVOLVED
 See requirements.txt file in project folder.
