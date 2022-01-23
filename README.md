@@ -62,6 +62,7 @@ See requirements.txt file in project folder.
 - Slack
 - Visual Studio Code
 - Python
+- SQLite3 
 - Anaconda
 - Jupyter Notebook
 - Numpy
@@ -72,5 +73,5 @@ See requirements.txt file in project folder.
 - Pluralsight (LMS)
 - HTML, Javascript, CSS (high level, "big picture" courses on Pluralsight)
 - Sling-loaded coconuts, twine, and two African swallows
-- A scale, a duck, and "very small rocks" (the kind that float on water)
+- A scale, a duck, a witch, and "very small rocks" (that float on water)
 - And more, TBD
