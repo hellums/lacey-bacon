@@ -53,7 +53,7 @@ def load_data():
 
   global movie_list # title-basics-imdb.tsv
   movie_list = []  
-  with open('data/title-basics-imdb.tsv', 'r', encoding='utf8') as f:
+  with open('src/data/title-basics-imdb.tsv', 'r', encoding='utf8') as f:
     data = csv.reader(f, delimiter='\t') #read tsv text file with csv
     for row in data:
       new_movie = Movie(row[0], row[1], row[2], row[3])
@@ -61,7 +61,7 @@ def load_data():
 
   global rating_list  # title-ratings-imdb.tsv 
   rating_list = []  
-  with open('data/title-ratings-imdb.tsv', 'r', encoding='utf8') as f:
+  with open('src/data/title-ratings-imdb.tsv', 'r', encoding='utf8') as f:
     data = csv.reader(f, delimiter='\t') #read tsv text file with csv
     for row in data:
       new_rating = Rating(row[0], row[1], row[2])
@@ -69,7 +69,7 @@ def load_data():
 
   global actor_list  # name-basics-imdb.tsv
   actor_list = []
-  with open('data/name-basics-imdb.tsv', 'r', encoding='utf8') as f:
+  with open('src/data/name-basics-imdb.tsv', 'r', encoding='utf8') as f:
     data = csv.reader(f, delimiter='\t') #read tsv text file with csv
     for row in data:
       new_actor = Actor(row[0], row[1], row[2], row[3])
@@ -77,7 +77,7 @@ def load_data():
 
   global role_list  # title-actors-imdb.tsv
   role_list = []
-  with open('data/title-actors-imdb.tsv', 'r', encoding='utf8') as f:
+  with open('src/data/title-actors-imdb.tsv', 'r', encoding='utf8') as f:
     data = csv.reader(f, delimiter='\t') #read tsv text file with csv
     for row in data:
       new_role = Rating(row[0], row[1], row[2])
