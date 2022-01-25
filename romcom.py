@@ -85,7 +85,9 @@ def load_data():
 
 # Define function to print a main menu to loop through
 def print_menu():
-
+    '''
+    prints a main menu for user to input a choice for program flow
+    '''
     # Create dictionary for user menu and item selections
     menu_options = {
         1: 'Option 1',
@@ -125,6 +127,7 @@ def option9():  # for debug only, to be removed later
             total = total + float(line.movieRating)
             count = count + 1
         average = total/count
+        help(print_menu)
         print("average rating:", format(average, '.1f') )
 
 # Define main function to print menu and get user choice
