@@ -4,7 +4,8 @@ import os  # for system calls to clear screen
 import csv  # to import TSV files for movie and actor lists
 
 # Create classes, movie data courtesy of imdb.com (interface download)
-class Movie:  # Curated list of romantic comedies, mysteries, and dramas, primarily Hallmark originals
+class Movie:  
+  """create Movie class"""
   
   def __init__(self, movieId, movieTitle="", movieRating=None, movieGenres="", movieRuntime=None, movieType="", movieYear=None, movieDirector="", movieActors=""):      
     self.Id = movieId
@@ -18,6 +19,7 @@ class Movie:  # Curated list of romantic comedies, mysteries, and dramas, primar
     self.Actors = movieActors
 
 class Actor:  # Curated list, details of "Hallmark" leading actor and actress
+  """create Actor class"""
   
   def __init__(self, actorId, actorName="", actorBorn=None, actorDied=None):      
     self.Id = actorId
@@ -26,6 +28,7 @@ class Actor:  # Curated list, details of "Hallmark" leading actor and actress
     self.Died = actorDied
 
 class Role:  # Curated list. all leading actors and actresses starring in Hallmark movie list
+  """create Role class"""
   
   def __init__(self, movieId, actorId, actorRole):      
     self.movieId = movieId
@@ -33,23 +36,24 @@ class Role:  # Curated list. all leading actors and actresses starring in Hallma
     self.actorRole = actorRole
 
 class Rating:  # Curated list, rating details on "Hallmark" movies in list
+  """create Rating class"""
   
   def __init__(self, movieId, movieRating, movieVotes):      
     self.movieId = movieId
     self.movieRating = movieRating
     self.movieVotes = movieVotes
 
-# Define function to clear screen in multiple os formats    
 def clrscr():
-    # Check if Operating System is Mac and Linux or Windows
-    if os.name == 'posix':
-      _ = os.system('clear')
-    else:
-        # Else Operating System is Windows (os.name = nt)
-      _ = os.system('cls')
+  """clears screen in Mac, Linux, or Windows"""
+  # Check if Operating System is Mac and Linux or Windows
+  if os.name == 'posix':
+    _ = os.system('clear')
+  else:
+      # Else Operating System is Windows (os.name = nt)
+    _ = os.system('cls')
 
-# Load records from each file as class instances to each list
 def load_movies(movie_list):  
+  """takes in an empty list, loads records from file, returns a list of Movie class ojects"""
   with open('src/data/title-basics-imdb.tsv', 'r', encoding='utf8') as f:
     data = csv.reader(f, delimiter='\t') #read tsv text file with csv
     for row in data:
@@ -58,6 +62,7 @@ def load_movies(movie_list):
   return(movie_list)
 
 def load_ratings(rating_list):  
+  """takes in an empty list, loads records from file, returns a list of Rating class ojects"""
   with open('src/data/title-ratings-imdb.tsv', 'r', encoding='utf8') as f:
     data = csv.reader(f, delimiter='\t') #read tsv text file with csv
     for row in data:
@@ -66,6 +71,7 @@ def load_ratings(rating_list):
     return(rating_list)
 
 def load_actors(actor_list):  
+  """takes in an empty list, loads records from file, returns a list of Actor class ojects"""
   with open('src/data/name-basics-imdb.tsv', 'r', encoding='utf8') as f:
     data = csv.reader(f, delimiter='\t') #read tsv text file with csv
     for row in data:
@@ -74,18 +80,18 @@ def load_actors(actor_list):
     return(actor_list)
 
 def load_roles(role_list):  
+  """takes in an empty list, loads records from file, returns a list of Role class ojects"""
   with open('src/data/title-actors-imdb.tsv', 'r', encoding='utf8') as f:
-    data = csv.reader(f, delimiter='\t') #read tsv text file with csv
+    data = csv.reader(f, delimiter='\t')  # read tsv text file with csv
     for row in data:
       new_role = Role(row[0], row[1], row[2])
-      role_list.append(new_role) #add the data from the text file to the list
+      role_list.append(new_role)  # add the data from the text file to the list
   return(role_list)
 
 # Define function to print a main menu to loop through
 def print_menu():
-    '''
-    prints a main menu for user to input a choice for program flow
-    '''
+    """prints a main menu for user to input a choice for program flow"""
+
     # Create dictionary for user menu and item selections
     menu_options = {
         1: 'Option 1',
@@ -100,33 +106,35 @@ def print_menu():
 
 # Define functions launched when chosen from main menu by user
 def option1():
-     print('\'Option 1\' selected.')
+  print('\'Option 1\' selected.')
 
 def option2():
-     print('\'Option 2\' selected')
+  print('\'Option 2\' selected')
 
 def option3():
-     print('\'Option 3\' selected.')
+  print('\'Option 3\' selected.')
 
 def option9(actor_list, movie_list, role_list, rating_list):  # for debug only, to be removed later
-    # Validate records loaded from file and addressable
-        #print ( actor_list[0].Id, actor_list[1].Id, type(actor_list), "\n" )
-        print ( "# actors: ", len(actor_list))
-        print ( "# movies: ", len(movie_list))
-        print ( "# ratings: ", len(rating_list))
-        print ( "# roles: ", len(role_list))
-        #print ( role_list.__sizeof__() )
-        #print ( dir(Actor) )
-        #next(item for item in movie_list if item["Id"] == "tt10921042", None)
-        total = 0.0
-        count = 0
-        average = 0.0
-        for line in rating_list:
-            total = total + float(line.movieRating)
-            count = count + 1
-        average = total/count
-        print("average rating:", format(average, '.1f') )
-        #help(print_menu)
+  """validate records loaded from file and addressable"""
+  print ( "# actors: ", len(actor_list))
+  print ( "# movies: ", len(movie_list))
+  print ( "# ratings: ", len(rating_list))
+  print ( "# roles: ", len(role_list))
+  total = 0.0
+  count = 0
+  average = 0.0
+  for line in rating_list:
+      total = total + float(line.movieRating)
+      count = count + 1
+  average = total/count
+  print("average rating:", format(average, '.1f') )
+  #a few preliminary experimentation of functional commands
+    #print ( actor_list[0].Id, actor_list[1].Id, type(actor_list), "\n" )
+    #print ( role_list.__sizeof__() )
+    #print ( dir(Actor) )
+    #next(item for item in movie_list if item["Id"] == "tt10921042", None)
+    #help(print_menu)
+  
         
 # Define main function to print menu and get user choice
 def main():
@@ -135,6 +143,7 @@ def main():
     clrscr()
 
     # Load data from files into list of class objects
+
     movie_list = []  # curated list of Hallmark romcom movies
     load_movies(movie_list)
 
