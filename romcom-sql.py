@@ -54,7 +54,7 @@ WHERE type='table';''')
   cursor.execute(sql_query)
   print(cursor.fetchall())
 
-  # Method 2 - Query sqlite_schema. Issue: doesn't work on Mac?
+  # Method 2 - Query sqlite_schema. Didn't work on Mac initially (odd)
   sql_query = ('''
   SELECT name FROM sqlite_schema
     WHERE type='table'
