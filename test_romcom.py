@@ -13,7 +13,7 @@ class TestFileInput(unittest.TestCase):
     def test_movies_first(self):
         testlist=[]
         actual = romcom.load_movies(testlist)
-        expected = 'tt225670300'  # imdb ID number of first movie stored in database
+        expected = 'tt2256703'  # imdb ID number of first movie stored in database
         self.assertEqual(actual[0].Id, expected)
 
     def test_movies_total(self):
