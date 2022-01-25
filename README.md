@@ -20,8 +20,8 @@ python3 romcom.py
 
 TO UNIT TEST (ON MAC):
 
-python3 -m unittest test_romcom
-(or python3 -m unittest discover)
+python3 -m unittest test_romcom -v
+(or python3 -m unittest discover -v)
 
 ON WINDOWS:
 
