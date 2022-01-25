@@ -49,39 +49,37 @@ def clrscr():
       _ = os.system('cls')
 
 # Load records from each file as class instances to each list
-def load_data():  
-
-  global movie_list # title-basics-imdb.tsv
-  movie_list = []  
+def load_movies(movie_list):  
   with open('src/data/title-basics-imdb.tsv', 'r', encoding='utf8') as f:
     data = csv.reader(f, delimiter='\t') #read tsv text file with csv
     for row in data:
       new_movie = Movie(row[0], row[1], row[2], row[3])
       movie_list.append(new_movie) #add the data from the text file to the list
+  return(movie_list)
 
-  global rating_list  # title-ratings-imdb.tsv 
-  rating_list = []  
+def load_ratings(rating_list):  
   with open('src/data/title-ratings-imdb.tsv', 'r', encoding='utf8') as f:
     data = csv.reader(f, delimiter='\t') #read tsv text file with csv
     for row in data:
       new_rating = Rating(row[0], row[1], row[2])
       rating_list.append(new_rating) #add the data from the text file to the list
+    return(rating_list)
 
-  global actor_list  # name-basics-imdb.tsv
-  actor_list = []
+def load_actors(actor_list):  
   with open('src/data/name-basics-imdb.tsv', 'r', encoding='utf8') as f:
     data = csv.reader(f, delimiter='\t') #read tsv text file with csv
     for row in data:
       new_actor = Actor(row[0], row[1], row[2], row[3])
       actor_list.append(new_actor) #add the data from the text file to the list
+    return(actor_list)
 
-  global role_list  # title-actors-imdb.tsv
-  role_list = []
+def load_roles(role_list):  
   with open('src/data/title-actors-imdb.tsv', 'r', encoding='utf8') as f:
     data = csv.reader(f, delimiter='\t') #read tsv text file with csv
     for row in data:
-      new_role = Rating(row[0], row[1], row[2])
+      new_role = Role(row[0], row[1], row[2])
       role_list.append(new_role) #add the data from the text file to the list
+  return(role_list)
 
 # Define function to print a main menu to loop through
 def print_menu():
@@ -110,9 +108,9 @@ def option2():
 def option3():
      print('\'Option 3\' selected.')
 
-def option9():  # for debug only, to be removed later
+def option9(actor_list, movie_list, role_list, rating_list):  # for debug only, to be removed later
     # Validate records loaded from file and addressable
-        print ( actor_list[0].Id, actor_list[1].Id, type(actor_list), "\n" )
+        #print ( actor_list[0].Id, actor_list[1].Id, type(actor_list), "\n" )
         print ( "# actors: ", len(actor_list))
         print ( "# movies: ", len(movie_list))
         print ( "# ratings: ", len(rating_list))
@@ -127,9 +125,9 @@ def option9():  # for debug only, to be removed later
             total = total + float(line.movieRating)
             count = count + 1
         average = total/count
-        help(print_menu)
         print("average rating:", format(average, '.1f') )
-
+        #help(print_menu)
+        
 # Define main function to print menu and get user choice
 def main():
 
@@ -137,7 +135,17 @@ def main():
     clrscr()
 
     # Load data from files into list of class objects
-    load_data()
+    movie_list = []
+    load_movies(movie_list)
+
+    actor_list = []
+    load_actors(actor_list)
+    
+    role_list = []
+    load_roles(role_list)
+    
+    rating_list = []
+    load_ratings(rating_list)
 
     # Loop through main menu until user opts to exit
     while(True):
@@ -165,7 +173,7 @@ def main():
             option3()
         elif option == 9:  # for debug only, to be removed later
             clrscr()
-            option9()
+            option9(actor_list, movie_list, role_list, rating_list)
         elif option == 4:
             clrscr()
             print('\'Option 4\' selected, our work is done here.')
