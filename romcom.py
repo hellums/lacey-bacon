@@ -135,16 +135,16 @@ def main():
     clrscr()
 
     # Load data from files into list of class objects
-    movie_list = []
+    movie_list = []  # curated list of Hallmark romcom movies
     load_movies(movie_list)
 
-    actor_list = []
+    actor_list = []  # curated list of actor/actresses in Hallmark romcoms
     load_actors(actor_list)
     
-    role_list = []
+    role_list = []  # list of actor/actresses that played in each movie
     load_roles(role_list)
     
-    rating_list = []
+    rating_list = []  # list of ratings for each movie, and total votes
     load_ratings(rating_list)
 
     # Loop through main menu until user opts to exit
