@@ -15,7 +15,7 @@ class Movie:  # Curated list of romantic comedies, mysteries, and dramas, primar
     self.Type = movieType       
     self.Year = movieYear 
     self.Director = movieDirector
-    self.Actors = movieActors     
+    self.Actors = movieActors
 
 class Actor:  # Curated list, details of "Hallmark" leading actor and actress
   
