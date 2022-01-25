@@ -66,7 +66,7 @@ Category 2: Utilize External Data:
 
 Category 3: Data Display
 - Visualize data in a graph, chart, or other visual representation of data.
-
+git
 Category 4: Best Practices
 - The program should utilize a virtual environment and document library dependencies in a requirements.txt file.
 - Create 3 or more unit tests for your application.

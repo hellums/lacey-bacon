@@ -21,17 +21,21 @@ def test_roles():
 def test_ratings():
     test_list = []
     romcom.load_ratings(test_list)
+#   assert type(test_list) == "class 'list'"
+#   assertIsInstance(test_list, list, 'ratings list not returned from load_ratings')
+#   assert type(test_list[0]) == "class 'romcom.Rating'"
+#   assertIsInstance(test_list[0], romcom.Rating, 'list of Rating class objets not returned from load_ratings')
     assert '1996' in test_list[0].movieVotes
     assert int(test_list[0].movieVotes) == 1996, "in load_ratings, first rating in movie should have 1996 votes"
 
-def main():
+def test_filesLoaded():
     test_actors()
     test_movies()    
     test_roles()
     test_ratings()    
     # should add a known count of records in each file, as additional test
-    print('All tests passed') # files loaded properly into list of class objects
+    print('\n*** All tests passed in filesLoaded! ***\n') # files loaded properly into list of class objects
 
 # Allow file to be used as function or program
 if __name__=='__main__':
-    main()
+    test_filesLoaded()
