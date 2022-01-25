@@ -115,11 +115,7 @@ def option3():
   print('\'Option 3\' selected.')
 
 def option9(actor_list, movie_list, role_list, rating_list):  # for debug only, to be removed later
-  """validate records loaded from file and addressable"""
-  print ( "# actors: ", len(actor_list))
-  print ( "# movies: ", len(movie_list))
-  print ( "# ratings: ", len(rating_list))
-  print ( "# roles: ", len(role_list))
+  """(for testing purposes only) validate records loaded from file and addressable"""
   total = 0.0
   count = 0
   average = 0.0
@@ -127,14 +123,11 @@ def option9(actor_list, movie_list, role_list, rating_list):  # for debug only, 
       total = total + float(line.movieRating)
       count = count + 1
   average = total/count
-  print("average rating:", format(average, '.1f') )
-  #a few preliminary experimentation of functional commands
-    #print ( actor_list[0].Id, actor_list[1].Id, type(actor_list), "\n" )
-    #print ( role_list.__sizeof__() )
-    #print ( dir(Actor) )
-    #next(item for item in movie_list if item["Id"] == "tt10921042", None)
-    #help(print_menu)
-  
+  print ( "actor records: \t", len(actor_list))
+  print ( "movie records: \t", len(movie_list))
+  print ( "role records: \t", len(role_list))
+  print ( "rating records: ", len(rating_list))
+  print("average rating: ", format(average, '.1f') )  
         
 # Define main function to print menu and get user choice
 def main():
