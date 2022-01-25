@@ -69,6 +69,7 @@ Category 3: Data Display
 
 Category 4: Best Practices
 - The program should utilize a virtual environment and document library dependencies in a requirements.txt file.
+- Create 3 or more unit tests for your application.
 
 Stretch list:
 
