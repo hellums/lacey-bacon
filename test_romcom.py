@@ -1,10 +1,9 @@
+# test_romcom.py
 import unittest 
 import romcom
 
 class TestMovieType(unittest.TestCase):
-    '''
-    Provides set of test cases for unittest to run against romcom app functions and methods
-    '''
+    '''Provides set of test cases for unittest to run against romcom app functions and methods'''
     
     def test_movies_loaded(self):
         testlist=[]
