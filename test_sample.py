@@ -24,11 +24,14 @@ def test_ratings():
     assert '1996' in test_list[0].movieVotes
     assert int(test_list[0].movieVotes) == 1996, "in load_ratings, first rating in movie should have 1996 votes"
 
-# Allow file to be used as function or program
-if __name__=='__main__':
+def main():
     test_actors()
     test_movies()    
     test_roles()
     test_ratings()    
     # should add a known count of records in each file, as additional test
     print('All tests passed') # files loaded properly into list of class objects
+
+# Allow file to be used as function or program
+if __name__=='__main__':
+    main()
