@@ -62,15 +62,15 @@ See requirements.txt file in project folder.
 - Slack
 - Visual Studio Code
 - Python
+- Docker
 - SQLite3 
 - Anaconda
 - Jupyter Notebook
 - Numpy
 - Matplotlib 
-- Docker (introductory)
 - Cookiecutter (introductory)
 - IMDB (data source)
-- Pluralsight (LMS)
+- Pluralsight (LMS for bootcamp courses)
 - HTML, Javascript, CSS (high level, "big picture" courses on Pluralsight)
 - Sling-loaded coconuts, twine, and two African swallows
 - A scale, a duck, a witch, and "very small rocks" (that float on water)

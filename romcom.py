@@ -149,7 +149,7 @@ def main():
         # Get user's menu choice and verify entry of number, not other char or string
         option = ''
         try:
-            option = int(input('\nEnter your choice (1-4): '))
+            option = int(input('\nEnter your choice (1-4) and RETURN: '))
         except:
             print('\nNumbers only, please...')
 
