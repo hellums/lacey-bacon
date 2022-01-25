@@ -131,6 +131,7 @@ def option9(actor_list, movie_list, role_list, rating_list):  # for debug only, 
         
 # Define main function to print menu and get user choice
 def main():
+    """command-line menu of functions that process a curated IMDB list of Hallmark original movies (romcom, mystery, drama, western)"""
 
     # Clear the screen
     clrscr()
