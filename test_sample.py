@@ -27,11 +27,8 @@ def test_ratings():
 # Allow file to be used as function or program
 if __name__=='__main__':
     test_actors()
-    
-    test_movies()
-    
+    test_movies()    
     test_roles()
-    
-    test_ratings()
-    
-    print('All tests passed')
+    test_ratings()    
+    # should add a known count of records in each file, as additional test
+    print('All tests passed') # files loaded properly into list of class objects
