@@ -70,10 +70,7 @@ Category 4: Best Practices
 - IMDB (data source)
 - Pluralsight (LMS for bootcamp courses)
 - HTML, Javascript, CSS (high level, "big picture" courses on Pluralsight)
-- African swallow
-  - coconuts (sling-loaded)
-  - twine
-- Two-tray scale
-  - witch
-  - duck
-  - "very small rocks" (that float on water)
+- Transportation
+  - African swallow, coconuts (sling-loaded), twine
+- Legal
+  - "Balanced" scale, witch, duck, very small rocks (floating type)
