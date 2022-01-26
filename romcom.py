@@ -1,4 +1,5 @@
 # romcom.py
+""" Provides a menu screen where user can select various IMDB movie functions"""
 
 # Import os module for system calls to cls and clear (screen)
 import os  # for system calls to clear screen
@@ -13,7 +14,7 @@ rating_list = []  # list of ratings for each movie, and total votes
 
 # Create classes, movie data courtesy of imdb.com (interface download)
 class Movie:  
-  """create Movie class"""
+  """Creates Movie class for IMDB Hallmark/romcom movie records"""
   
   def __init__(self, movieId, movieTitle="", movieRating=None, movieGenres="", movieRuntime=None, movieType="", movieYear=None, movieDirector="", movieActors=""):      
     self.Id = movieId
@@ -27,7 +28,7 @@ class Movie:
     self.Actors = movieActors
 
 class Actor:  # Curated list, details of "Hallmark" leading actor and actress
-  """create Actor class"""
+  """ Creates Actor class: Id, Name, Born, Died"""
   
   def __init__(self, actorId, actorName="", actorBorn=None, actorDied=None):      
     self.Id = actorId
@@ -36,7 +37,7 @@ class Actor:  # Curated list, details of "Hallmark" leading actor and actress
     self.Died = actorDied
 
 class Role:  # Curated list. all leading actors and actresses starring in Hallmark movie list
-  """create Role class"""
+  """ Creates Role class: movieId, actorId, actorRole"""
   
   def __init__(self, movieId, actorId, actorRole):      
     self.movieId = movieId
@@ -44,7 +45,7 @@ class Role:  # Curated list. all leading actors and actresses starring in Hallma
     self.actorRole = actorRole
 
 class Rating:  # Curated list, rating details on "Hallmark" movies in list
-  """create Rating class"""
+  """ Creates Rating class: movieId, movieRating, movieVotes"""
   
   def __init__(self, movieId, movieRating, movieVotes):      
     self.movieId = movieId
@@ -52,7 +53,7 @@ class Rating:  # Curated list, rating details on "Hallmark" movies in list
     self.movieVotes = movieVotes
 
 def clrscr():
-  """clears screen in Mac, Linux, or Windows"""
+  """ Clears screen in Mac, Linux, or Windows"""
   # Check if Operating System is Mac and Linux or Windows
   if os.name == 'posix':
     _ = os.system('clear')
@@ -61,7 +62,7 @@ def clrscr():
     _ = os.system('cls')
 
 def load_movies(movie_list):  
-  """takes in an empty list, loads records from file, returns a list of Movie class ojects"""
+  """ Takes in an empty list, loads records from file, returns a list of Movie class ojects"""
   with open('src/data/title-basics-imdb.tsv', 'r', encoding='utf8') as f:
     data = csv.reader(f, delimiter='\t') #read tsv text file with csv
     for row in data:
@@ -70,7 +71,7 @@ def load_movies(movie_list):
   return(movie_list)
 
 def load_ratings(rating_list):  
-  """takes in an empty list, loads records from file, returns a list of Rating class ojects"""
+  """ Takes in an empty list, loads records from file, returns a list of Rating class ojects"""
   with open('src/data/title-ratings-imdb.tsv', 'r', encoding='utf8') as f:
     data = csv.reader(f, delimiter='\t') #read tsv text file with csv
     for row in data:
@@ -79,7 +80,7 @@ def load_ratings(rating_list):
     return(rating_list)
 
 def load_actors(actor_list):  
-  """takes in an empty list, loads records from file, returns a list of Actor class ojects"""
+  """ Takes in an empty list, loads records from file, returns a list of Actor class ojects"""
   with open('src/data/name-basics-imdb.tsv', 'r', encoding='utf8') as f:
     data = csv.reader(f, delimiter='\t') #read tsv text file with csv
     for row in data:
@@ -88,7 +89,7 @@ def load_actors(actor_list):
     return(actor_list)
 
 def load_roles(role_list):  
-  """takes in an empty list, loads records from file, returns a list of Role class ojects"""
+  """ Takes in an empty list, loads records from file, returns a list of Role class ojects"""
   with open('src/data/title-actors-imdb.tsv', 'r', encoding='utf8') as f:
     data = csv.reader(f, delimiter='\t')  # read tsv text file with csv
     for row in data:
@@ -98,7 +99,7 @@ def load_roles(role_list):
 
 # Define function to print a main menu to loop through
 def print_menu():
-    """prints a main menu for user to input a choice for program flow"""
+    """ Prints a main menu for user to input a choice for program flow"""
 
     # Create dictionary for user menu and item selections
     menu_options = {
@@ -113,17 +114,19 @@ def print_menu():
         print (key, '--', menu_options[key] )
 
 def getContenderMovies():
- 
+  """ Returns a list of movie ID numbers for a selected actor's ID """ 
+
   global contender
   contenderMovies = [index for index, item in enumerate(role_list) if item.actorId == contender]
-  print(contenderMovies)
+  return(contenderMovies)
 
 # Define functions launched when chosen from main menu by user
 def option1():
  
   global contender
   print('\'Option 1\' selected.')
-  getContenderMovies()
+  contenderMovies = getContenderMovies()
+  print(contenderMovies)
 
 def option2():
  
@@ -134,7 +137,7 @@ def option3():
   print('\'Option 3\' selected.')
 
 def option9():  # for debug only, to be removed later
-  """(for testing purposes only) validate records loaded from file and addressable"""
+  """ (for testing purposes only) Validate records loaded from file and addressable"""
   
   global actor_list
   global role_list
@@ -153,11 +156,11 @@ def option9():  # for debug only, to be removed later
   print ( "movie records: \t", len(movie_list))
   print ( "role records: \t", len(role_list))
   print ( "rating records: ", len(rating_list))
-  print("average rating: ", format(average, '.1f') )  
+  print ("average rating: ", format(average, '.1f') )  
 
 # Define main function to print menu and get user choice
 def main():
-    """command-line menu of functions that process a curated IMDB list of Hallmark original movies (romcom, mystery, drama, western)"""
+    """ Command-line menu of functions that process a curated IMDB list of Hallmark original movies (romcom, mystery, drama, western)"""
     
     global contender
     global actor_list
