@@ -1,7 +1,15 @@
 # romcom.py
+
 # Import os module for system calls to cls and clear (screen)
 import os  # for system calls to clear screen
 import csv  # to import TSV files for movie and actor lists
+
+# Define global variables
+contender = ""    # Id number of actor/actress in question
+role_list = []    # list of actor/actresses that played in each movie
+actor_list = []   # curated list of actor/actresses in Hallmark romcoms
+movie_list = []   # curated list of Hallmark romcom movies
+rating_list = []  # list of ratings for each movie, and total votes
 
 # Create classes, movie data courtesy of imdb.com (interface download)
 class Movie:  
@@ -104,18 +112,35 @@ def print_menu():
     for key in menu_options.keys():
         print (key, '--', menu_options[key] )
 
+def getContenderMovies():
+ 
+  global contender
+  contenderMovies = [index for index, item in enumerate(role_list) if item.actorId == contender]
+  print(contenderMovies)
+
 # Define functions launched when chosen from main menu by user
 def option1():
+ 
+  global contender
   print('\'Option 1\' selected.')
+  getContenderMovies()
 
 def option2():
+ 
   print('\'Option 2\' selected')
 
 def option3():
+ 
   print('\'Option 3\' selected.')
 
-def option9(actor_list, movie_list, role_list, rating_list):  # for debug only, to be removed later
+def option9():  # for debug only, to be removed later
   """(for testing purposes only) validate records loaded from file and addressable"""
+  
+  global actor_list
+  global role_list
+  global movie_list
+  global rating_list  
+  
   total = 0.0
   count = 0
   average = 0.0
@@ -123,33 +148,32 @@ def option9(actor_list, movie_list, role_list, rating_list):  # for debug only, 
       total = total + float(line.movieRating)
       count = count + 1
   average = total/count
+
   print ( "actor records: \t", len(actor_list))
   print ( "movie records: \t", len(movie_list))
   print ( "role records: \t", len(role_list))
   print ( "rating records: ", len(rating_list))
   print("average rating: ", format(average, '.1f') )  
-        
+
 # Define main function to print menu and get user choice
 def main():
     """command-line menu of functions that process a curated IMDB list of Hallmark original movies (romcom, mystery, drama, western)"""
+    
+    global contender
+    global actor_list
+    global role_list
+    global movie_list
+    global rating_list
 
     # Clear the screen
     clrscr()
 
     # Load data from files into list of class objects
-
-    movie_list = []  # curated list of Hallmark romcom movies
     load_movies(movie_list)
-
-    actor_list = []  # curated list of actor/actresses in Hallmark romcoms
     load_actors(actor_list)
-    
-    role_list = []  # list of actor/actresses that played in each movie
     load_roles(role_list)
-    
-    rating_list = []  # list of ratings for each movie, and total votes
     load_ratings(rating_list)
-
+    
     # Loop through main menu until user opts to exit
     while(True):
 
@@ -167,6 +191,7 @@ def main():
         # Launch whichever function the user selected from the main menu
         if option == 1:
             clrscr()
+            contender = 'nm0000327'  # Lacey Chabert's actorId
             option1()
         elif option == 2:
             clrscr()
@@ -176,11 +201,11 @@ def main():
             option3()
         elif option == 9:  # for debug only, to be removed later
             clrscr()
-            option9(actor_list, movie_list, role_list, rating_list)
+            option9()
         elif option == 4:
             clrscr()
             print('\'Option 4\' selected, our work is done here.')
-            print('\nDon\'t have a good day... Have a great day!\n')
+            print("\nDon\'t have a good day... Have a great day!\n")
             exit()
         else:
             pass
