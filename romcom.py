@@ -113,20 +113,31 @@ def print_menu():
     for key in menu_options.keys():
         print (key, '--', menu_options[key] )
 
-def getContenderMovies():
+def getContenderMovieIds(contenderMoviesIndex):
+  """ Returns a list of movie IDs selected actor has starred in"""
+
+  global role_list
+  contenderMovieIds = []
+  for item in contenderMoviesIndex:
+    contenderMovieIds.append(role_list[item].movieId)
+  return(contenderMovieIds)
+
+def getContenderMoviesIndex():
   """ Returns a list of movie ID numbers for a selected actor's ID """ 
 
   global contender
-  contenderMovies = [index for index, item in enumerate(role_list) if item.actorId == contender]
-  return(contenderMovies)
+  contenderMoviesIndex = [index for index, item in enumerate(role_list) if item.actorId == contender]
+  return(contenderMoviesIndex)
 
 # Define functions launched when chosen from main menu by user
 def option1():
  
   global contender
   print('\'Option 1\' selected.')
-  contenderMovies = getContenderMovies()
-  print(contenderMovies)
+  contenderMoviesIndex = getContenderMoviesIndex()
+  print(contenderMoviesIndex)
+  contenderMovieIds = getContenderMovieIds(contenderMoviesIndex)
+  print(contenderMovieIds)
 
 def option2():
  
