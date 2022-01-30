@@ -1,7 +1,10 @@
-#init:
-#	pip install -f requirements.txt
+# Linux/Mac-specific, not sure I'll use this, jury is still out whether project needs/benefits
 
-#test:
-#	py.test test_sample.py
+init:
+	pip install -f requirements.txt
 
-#.PHONY:	init test
+run:
+	python3 romcom.py
+
+test:
+	python3 test_romcom.py
