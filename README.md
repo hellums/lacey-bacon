@@ -1,16 +1,16 @@
-# PROJECT OVERVIEW
+# INITIATIVE OVERVIEW
 This repo is a work in progress (not complete). It contains files and related project data for a 12-week introductory bootcamp course (Jan-Apr 2022) on Python programming and data analysis/science in a group learning environment. However, all programming and data analysis is individual, and shared/coordinated with instructors and mentors as necessary.
 
-### PROJECT PAGES
+### INITIATIVE PAGES
 - [Kanban](https://github.com/hellums/hallmarkish/projects/1)
 - [Wiki](https://github.com/hellums/hallmarkish/wiki)
 
-# PROJECT GOALS
+# INITIATIVE GOALS
 This repo and project will have several purposes:
 - Satisfy the 4+ minimum requirements of the bootcamp assignment in the syllabus
 - Satisfy as many optional requirements as possible
 
-### PROJECT SCOPE
+### INITIATIVE SCOPE
 Given the time and resource limitations, this project is not meant to be an all-inclusive or full programming approach to the _"6 Degrees of Kevin Bacon"_ topic itself (using BFS or Breadth-First Search algorithms, for example). It merely provides a working environment to support the proogramming and data science portions of the course, using a subset of movies specific to Hallmark original movies, romantic comedies, mysteries, and dramas.
 
 # SPECIAL INSTRUCTIONS
@@ -30,7 +30,7 @@ use whichever command launches python 3 (for example, py3 romcom.py, py3 -m unit
 # PACKAGES INVOLVED
 See requirements.txt file in project folder.
 
-# FEATURES PLANNED AT PROJECT OUTSET (CHECK = SUBSTANTIALLY COMPLETE)
+# FEATURES PLANNED AT INITIATIVE OUTSET (CHECK = SUBSTANTIALLY COMPLETE)
 
 - [x] Implement a “master loop” console application where the user can repeatedly enter commands/perform actions, including choosing to exit the program.
 - [x] Create a class, then create at least one object of that class and populate it with data. The value of at least one object must be used somewhere in your code.
