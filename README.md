@@ -64,6 +64,7 @@ Category 4: Best Practices
 - SQLite3 
 - Anaconda
 - Jupyter Notebook
+- Pandas
 - Numpy
 - Matplotlib 
 - Cookiecutter (introductory)
