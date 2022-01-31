@@ -30,7 +30,7 @@ use whichever command launches python 3 (for example, py3 romcom.py, py3 -m unit
 # PACKAGES INVOLVED
 See requirements.txt file in project folder.
 
-# FEATURES PLANNED AT PROJECT OUTSET (STRIKETHROUGH = COMPLETED)
+# FEATURES PLANNED AT PROJECT OUTSET (CHECK = SUBSTANTIALLY COMPLETE)
 
 - [x] Implement a “master loop” console application where the user can repeatedly enter commands/perform actions, including choosing to exit the program.
 - [x] Create a class, then create at least one object of that class and populate it with data. The value of at least one object must be used somewhere in your code.
