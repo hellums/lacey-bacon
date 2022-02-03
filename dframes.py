@@ -1,7 +1,6 @@
 from pickletools import read_stringnl_noescape
 import pandas as pd
 import re
-import imdb
 
 header_fields = ['movieId', 'actorId', 'roleId']
 roles = pd.read_csv('data/title-actors-imdb.tsv', sep='\t', header=None, names=header_fields)
