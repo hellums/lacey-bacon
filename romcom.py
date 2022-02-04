@@ -103,12 +103,18 @@ def print_menu():
 
     # Create dictionary for user menu and item selections
     menu_options = {
+        #1: 'Leaderboard - ("Hallmark" TV RomComDram Hall of Fame)',
+        #2: 'Person - See what movies a select person starred in',
+        #3: 'Movie - See who starred in a select movie',
+        #4: 'Costar - See which movie two select people starred in',
+        #5: 'Contender - Propose a new contender as "champion"',
+        #6: 'See more About this project',
         1: 'Leaderboard - ("Hallmark" TV RomComDram Hall of Fame)',
-        2: 'Person - See what movies a select person starred in',
-        3: 'Movie - See who starred in a select movie',
-        4: 'Costar - See which movie two select people starred in',
+        2: 'Filmography - See what movies a select person starred in',
+        3: 'Cast - See who starred in a select movie',
+        4: 'Costars - See any movie(s) two select people starred in',
         5: 'Contender - Propose a new contender as "champion"',
-        6: 'See more About this project',
+        6: 'About - See more about this project',
         7: 'Exit',
 }
 
