@@ -103,15 +103,18 @@ def print_menu():
 
     # Create dictionary for user menu and item selections
     menu_options = {
-        1: 'Option 1',
-        2: 'Option 2',
-        3: 'Option 3',
-        4: 'Exit',
+        1: 'Leaderboard - ("Hallmark" TV RomComDram Hall of Fame)',
+        2: 'Person - See what movies a select person starred in',
+        3: 'Movie - See who starred in a select movie',
+        4: 'Costar - See which movie two select people starred in',
+        5: 'Contender - Propose a new contender as "champion"',
+        6: 'See more About this project',
+        7: 'Exit',
 }
 
     # Loop for main menu until user selects to exit program
     for key in menu_options.keys():
-        print (key, '--', menu_options[key] )
+        print (str(key) + '. ', menu_options[key] )
 
 def getContenderMovieIds(contenderMoviesIndex):
   """ Returns a list of movie IDs selected actor has starred in"""
@@ -130,24 +133,8 @@ def getContenderMoviesIndex():
   return(contenderMoviesIndex)
 
 # Define functions launched when chosen from main menu by user
-def option1():
- 
-  global contender
-  print('\'Option 1\' selected.')
-  contenderMoviesIndex = getContenderMoviesIndex()
-  print(contenderMoviesIndex)
-  contenderMovieIds = getContenderMovieIds(contenderMoviesIndex)
-  print(contenderMovieIds)
 
-def option2():
- 
-  print('\'Option 2\' selected')
-
-def option3():
- 
-  print('\'Option 3\' selected.')
-
-def option9():  # for debug only, to be removed later
+def option0(option):  # for debug only, to be removed later
   """ (for testing purposes only) Validate records loaded from file and addressable"""
   
   global actor_list
@@ -167,7 +154,45 @@ def option9():  # for debug only, to be removed later
   print ( "movie records: \t", len(movie_list))
   print ( "role records: \t", len(role_list))
   print ( "rating records: ", len(rating_list))
-  print ("average rating: ", format(average, '.1f') )  
+  print ( "average rating: ", format(average, '.1f') )  
+
+def notImplementedYet(option):
+
+  separator = '\n******************************************************\n'
+  print(separator)
+  print("'Option", str(option) + "' selected. This section not implemented yet.")
+  print(separator)
+
+def option1(option):
+  notImplementedYet(option)
+  
+def option2(option):
+ 
+   notImplementedYet(option)
+
+def option3(option):
+ 
+  notImplementedYet(option)
+
+def option4(option):
+ 
+  notImplementedYet(option)
+
+def option5(option):
+  global contender
+  notImplementedYet(option)
+  contenderMoviesIndex = getContenderMoviesIndex()
+  print("...But here's some info on one actress\n", contenderMoviesIndex)
+  contenderMovieIds = getContenderMovieIds(contenderMoviesIndex)
+  print(contenderMovieIds) 
+
+def option6(option):
+ 
+  notImplementedYet(option)
+
+def option7(option):
+ 
+  notImplementedYet(option)
 
 # Define main function to print menu and get user choice
 def main():
@@ -192,33 +217,42 @@ def main():
     while(True):
 
         # Print instructions and menu
-        print('\nPlease enter a number between 1 and 4.\n')
+        print('\nPlease enter a number between 1 and 7.\n')
         print_menu()
 
         # Get user's menu choice and verify entry of number, not other char or string
         option = ''
         try:
-            option = int(input('\nEnter your choice (1-4) and RETURN: '))
+            option = int(input('\nEnter your choice (1-7) and the ENTER/RETURN key: '))
         except:
             print('\nNumbers only, please...')
 
         # Launch whichever function the user selected from the main menu
-        if option == 1:
+        if option == 0:  # for debug only, to be removed later
             clrscr()
-            contender = 'nm0000327'  # Lacey Chabert's actorId
-            option1()
+            option0(option)
+        elif option == 1:
+            clrscr()
+            option1(option)
         elif option == 2:
             clrscr()
-            option2()
+            option2(option)
         elif option == 3:
             clrscr()
-            option3()
-        elif option == 9:  # for debug only, to be removed later
-            clrscr()
-            option9()
+            option3(option)
         elif option == 4:
             clrscr()
-            print('\'Option 4\' selected, our work is done here.')
+            option4(option)
+        elif option == 5:
+            clrscr()
+            contender = 'nm0000327'  # Lacey Chabert's actorId
+            option5(option)
+        elif option == 6:
+            clrscr()
+            option6(option)
+        elif option == 7:
+            clrscr()
+            print('\'Option 7\' selected, our work is done here.')
             print("\nDon\'t have a good day... Have a great day!\n")
             exit()
         else:
