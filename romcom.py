@@ -136,6 +136,12 @@ def getContenderMoviesIndex():
 def option0(option):  # for debug only, to be removed later
   """ (for testing purposes only) Validate records loaded from file and addressable"""
   
+  global contender
+  contenderMoviesIndex = getContenderMoviesIndex()
+  print("contenderMovieIndex", contenderMoviesIndex)
+  contenderMovieIds = getContenderMovieIds(contenderMoviesIndex)
+  print('contenderMovieIds\n', contenderMovieIds) 
+
   global actor_list
   global role_list
   global movie_list
@@ -178,12 +184,8 @@ def option4(option):
   notImplementedYet(option)
 
 def option5(option):
-  global contender
+
   notImplementedYet(option)
-  contenderMoviesIndex = getContenderMoviesIndex()
-  print("...But here's some info on one actress\n", contenderMoviesIndex)
-  contenderMovieIds = getContenderMovieIds(contenderMoviesIndex)
-  print(contenderMovieIds) 
 
 def option6(option):
  
@@ -225,6 +227,7 @@ def main():
         # Launch whichever function the user selected from the main menu
         if option == 0:  # for debug only, to be removed later
             clrscr()
+            contender = 'nm0000327'  # Lacey Chabert's actorId
             option0(option)
         elif option == 1:
             clrscr()
@@ -240,7 +243,6 @@ def main():
             option4(option)
         elif option == 5:
             clrscr()
-            contender = 'nm0000327'  # Lacey Chabert's actorId
             option5(option)
         elif option == 6:
             clrscr()
