@@ -11,7 +11,7 @@ This repo and project will have several purposes:
 - Satisfy as many optional requirements as possible
 
 ### INITIATIVE SCOPE
-Given the time and resource limitations, this project is not meant to be an all-inclusive or full programming approach to the _"6 Degrees of Kevin Bacon"_ topic itself (using BFS or Breadth-First Search algorithms, for example). It merely provides a working environment to support the proogramming and data science portions of the course, using a subset of movies specific to Hallmark original movies, romantic comedies, mysteries, and dramas.
+Given the time and resource limitations, this project is not meant to be an all-inclusive or full programming approach to the _"6 Degrees of Kevin Bacon"_ topic itself (using BFS or Breadth-First Search algorithms, for example). It merely provides a working environment to support the programming and data science portions of the course, using a subset of movies specific to Hallmark original movies, romantic comedies, mysteries, and dramas.
 
 # SPECIAL INSTRUCTIONS
 TO RUN (ON MAC):
@@ -34,7 +34,7 @@ See requirements.txt file in project folder.
 
 - [x] Implement a “master loop” console application where the user can repeatedly enter commands/perform actions, including choosing to exit the program.
 - [x] Create a class, then create at least one object of that class and populate it with data. The value of at least one object must be used somewhere in your code.
-- [ ] Create a dictionary or list, populate it with several values, retrieve at least one value, and use it in your program.
+- [X] Create a dictionary or list, populate it with several values, retrieve at least one value, and use it in your program.
 - [x] Create and call at least 3 functions or methods, at least one of which must return a value that is used somewhere else in your code.
 
 Category 2: Utilize External Data:
@@ -42,7 +42,7 @@ Category 2: Utilize External Data:
 - [x] Connect to a database and read data using SQL.
 
 Category 3: Data Display
-- [ ] Visualize data in a graph, chart, or other visual representation of data.
+- [X] Visualize data in a graph, chart, or other visual representation of data.
 
 Category 4: Best Practices
 - [ ] The program should utilize a virtual environment and document library dependencies in a requirements.txt file.
@@ -51,7 +51,7 @@ Category 4: Best Practices
 "Stretch" list:
 
 - [ ] Use pandas, matplotlib, and/or numpy to perform a data analysis project. Ingest 2 or more pieces of data, analyze that data in some manner, and display a new result to a graph, chart, or other display.
-- [ ] Use a Jupyter notebook to document your data analysis.
+- [X] Use a Jupyter notebook to document your data analysis.
 
 ### TECHNOLOGIES LEVERAGED
 - GitHub
@@ -67,6 +67,7 @@ Category 4: Best Practices
 - Pandas
 - Numpy
 - Matplotlib 
+- Networkx (node/vector, centrality)
 - Cookiecutter (introductory)
 - IMDB (data source)
 - Pluralsight (LMS for bootcamp courses)
