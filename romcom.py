@@ -103,13 +103,12 @@ def print_menu():
 
     # Create dictionary for user menu and item selections
     menu_options = {
-        1: 'Leaderboard - ("Hallmark" TV RomComDram Hall of Fame)',
-        2: 'Filmography - See what movies a select person starred in',
-        3: 'Cast - See who starred in a select movie',
-        4: 'Costars - See any movie(s) two select people starred in',
-        5: 'Contender - Propose a new contender as "champion"',
-        6: 'About - See more about this project',
-        7: 'Exit',
+        1: 'Filmography - See what movies a select person starred in',
+        2: 'Cast - See who starred in a select movie',
+        3: 'Costars - See any movie(s) two select people starred in',
+        4: 'Leaderboard - ("Hallmark" TV RomComDram Hall of Fame)',
+        5: 'About - See more about this project',
+        6: 'Exit',
 }
 
     # Loop for main menu until user selects to exit program
@@ -190,10 +189,6 @@ def option6(option):
  
   notImplementedYet(option)
 
-def option7(option):
- 
-  notImplementedYet(option)
-
 # Define main function to print menu and get user choice
 def main():
     """ Command-line menu of functions that process a curated IMDB list of Hallmark original movies (romcom, mystery, drama, western)"""
@@ -217,13 +212,13 @@ def main():
     while(True):
 
         # Print instructions and menu
-        print('\nPlease enter a number between 1 and 7.\n')
+        print('\nPlease enter a number between 1 and 6.\n')
         print_menu()
 
         # Get user's menu choice and verify entry of number, not other char or string
         option = ''
         try:
-            option = int(input('\nEnter your choice (1-7) and the ENTER/RETURN key: '))
+            option = int(input('\nEnter your choice (1-6) and the ENTER/RETURN key: '))
         except:
             print('\nNumbers only, please...')
 
@@ -249,10 +244,7 @@ def main():
             option5(option)
         elif option == 6:
             clrscr()
-            option6(option)
-        elif option == 7:
-            clrscr()
-            print('\'Option 7\' selected, our work is done here.')
+            print('\'Option 6\' selected, our work is done here.')
             print("\nDon\'t have a good day... Have a great day!\n")
             exit()
         else:
