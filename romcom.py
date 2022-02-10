@@ -133,7 +133,7 @@ def getContenderMoviesIndex():
 
 # Define functions launched when chosen from main menu by user
 
-def option0(option):  # for debug only, to be removed later
+def option0(option):  # for debug only, to be replaced later with 'easter egg'
   """ (for testing purposes only) Validate records loaded from file and addressable"""
   
   global contender
