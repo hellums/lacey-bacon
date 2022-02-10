@@ -11,7 +11,7 @@ This repo and project will have several purposes:
 - Satisfy as many optional requirements as possible
 
 ### INITIATIVE SCOPE
-Given the time and resource limitations, this project is not meant to be an all-inclusive or full programming approach to the _"6 Degrees of Kevin Bacon"_ topic itself (using BFS or Breadth-First Search algorithms, for example). It merely provides a working environment to support the programming and data science portions of the course, using a subset of movies specific to Hallmark original movies, romantic comedies, mysteries, and dramas.
+Is Lacey Chabert indeed the "Center of the (Hallmark) Universe," as Kevin Bacon reputably is to Hollywood? Given the time and resource limitations, this project is not meant to be an all-inclusive or full programming approach to the _"6 Degrees of Kevin Bacon"_ topic itself (using BFS or Breadth-First Search algorithms, for example). It merely provides a working environment to support the programming and data science portions of the course, using a subset of movies specific to Hallmark original movies, romantic comedies, mysteries, and dramas.
 
 # SPECIAL INSTRUCTIONS
 TO RUN (ON MAC):
@@ -72,7 +72,5 @@ Category 4: Best Practices
 - IMDB (data source)
 - Pluralsight (LMS for bootcamp courses)
 - HTML, Javascript, CSS (high level, "big picture" courses on Pluralsight)
-- Transportation
-  - African swallow, coconuts (sling-loaded), twine
-- Legal
-  - "Balanced" scale, witch, duck, very small rocks (floating type)
+- African swallow, coconuts (sling-loaded), twine
+- "Balanced" scale, witch, duck, very small rocks (floating type)
