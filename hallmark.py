@@ -1,43 +1,50 @@
 # **Import modules to handle downloading, compressed files, regular expressions, and dataframes.**
 
+import os  # for system calls to clear screen
+import csv  # to import TSV files for movie and actor lists
+import unittest 
 import requests #needs install
 import gzip
 import re
 import pandas as pd #needs install
-import unittest 
 import matplotlib.pyplot as plt #needs install
 import networkx as nx #needs install
+
+# Define global variables
+contender = ""  # early prototyping, probably won't keep
+watchlist, actor_list, role_list, movie_list, rating_list = [] # for processing Hallmark_imdb-related data
+nm_name, nm_tt, nm_nm = {} # for actor/actress name lookup, filmography, and costar data
+tt_title, tt_nm = {} # for movie title lookup, cast/crew data
+imdb_graph, degree_ity, between_ity, close_ity = [] # for NX graph, centrality, shortest_path data
 
 def main():
 #    """ Command-line menu of functions that process a curated IMDB list of Hallmark original movies (romcom, mystery, drama, western)"""
     
-    global contender  # early prototyping, probably won't keep
-    global watchlist, actor_list, role_list, movie_list, rating_list  # for processing imdb-related data
-    global nm_name nm_tt nm_nm  # for actor/actress name lookup, filmography, and costar data
-    global tt_title tt_nm  # for movie title lookup, cast/crew data
-    global G degree_ity between_ity close_ity  # for NX graph, centrality, shortest_path data
-
     # Clear the screen
     clrscr()
 
     #download_uncompress_imdb_files()  # get imdb source files from web
     print('\nAll files downloaded and uncompressed!')
     load_dataframes_lists()  # load local files into data structures
+    imdb_graph = graph_database()
+    imdb_sp = shortest_path(imdb_graph)
+    imdb_separation = degree_separation(imdb_graph)
     print('')
 
 def download_uncompress_imdb_files():
     print('\nThis process could take a few minutes, depending on Internet speed...')
+    
+    remote_url ='https://raw.githubusercontent.com/hellums/hallmarkish/root/watchlist.txt'  
+    local_file = 'watchlist.txt'  # export of imdb watchlist
+    download_file(remote_url, local_file)
+
     remote_url ='https://datasets.imdbws.com/title.ratings.tsv.gz'
     local_file = 'movie_ratings.tsv.gz'  # ratings and number votes, for some movies (not all)
     download_file(remote_url, local_file)
     uncompress_file(local_file, 'movie_ratings.tsv')
 
-    remote_url ='https://raw.githubusercontent.com/hellums/hallmarkish/root/watchlist.txt'  
-    local_file = 'watchlist.txt' # export of imdb watchlist
-    download_file(remote_url, local_file)
-
     remote_url ='https://datasets.imdbws.com/title.basics.tsv.gz'  
-    local_file = 'movie_info.tsv.gz' # detail and metadata about all imdb movies (pare down!)
+    local_file = 'movie_info.tsv.gz'  # detail and metadata about all imdb movies (pare down!)
     download_file(remote_url, local_file)
     uncompress_file(local_file, 'movie_info.tsv')
 
@@ -56,7 +63,7 @@ def download_uncompress_imdb_files():
     download_file(remote_url, local_file)
     uncompress_file(local_file, 'movie_crew.tsv')
 
-    return None
+    return None  # results of download_uncompress_imdb_files
 
 def download_file(remote, local):
     print('\nDownloading', local)
@@ -78,22 +85,17 @@ def load_dataframes_lists():
     watchlist = load_watchlist()
     assert len(watchlist) > 1100
     assert 'tt15943556' in watchlist
-
     actor_list = load_actor_list()
-
     role_list = load_role_list()
-
     movie_list = load_movie_list()
-
     rating_list = load_rating_list()
-
     return None
 
 def load_watchlist():
     local_file = 'watchlist.txt'
     header_field = ['tconst']
     watchlist_info = pd.read_csv(local_file, names=header_field)
-    return watchlist_info['tconst'].tolist() # refactor this to load direct to list, don't need a df
+    return watchlist_info['tconst'].tolist() # refactor this to load direct to list, don't need a df?
 
 def load_actor_list():
     local_file = 'cast_crew_info.tsv'
@@ -239,30 +241,15 @@ def stuff():  # just some rapid prototyping and experimentation, some will be mo
     path = nx.single_source_shortest_path(G1, 'Lacey Chabert')
     path['Autumn Reeser']
 
-    sp=nx.all_pairs_shortest_path(G1)
-    chabert_num = sp['Lacey Chabert']['Luke Macfarlane']
-    chabert_num
-
-    chabert_numbers = sp['Lacey Chabert'] 
-    chabert_numbers
-    len(chabert_numbers)
+def shortest_path(graph): # add this to menu item that needs it
+    return nx.all_pairs_shortest_path(graph)
+    #chabert_num = sp['Lacey Chabert']['Luke Macfarlane']
+    #chabert_numbers = sp['Lacey Chabert'] 
+    #len(chabert_numbers)
 
     centrality = nx.betweenness_centrality(G2)
     [(x, centrality[x]) for x in sorted(centrality, key=centrality.get, reverse=True)[:20]]
     centrality
-
-    G2.number_of_nodes()
-    G2.number_of_edges()
-    G2.adj['nm0825555']
-    G2.nodes()
-    G2.edges()
-
-    tt_Dict
-    for titleID, title in tt_Dict.items():
-        print (titleID, title)
-    tt_Dict.head()
-    print(tt_Dict.values())
-    print(tt_Dict.items())
 
     L1 = list(tt_Dict.values())
     for i in L1:
@@ -277,7 +264,8 @@ def stuff():  # just some rapid prototyping and experimentation, some will be mo
     df1.loc[df1['nconst'].isin(['nm0000327', 'nm0000001'])]
     df1.loc[(df1['birthYear'] == '1982') & (df1['deathYear'] > '2015')]
 
-    G10 = nx.Graph()
+    """
+    G10 = nx.Graph()  # discard, early prototype approach, people and movies all as nodes, not as effective
     names = {}
     node_color = []
     for n, star in enumerate(movie_cast_crew.nconst.unique()):
@@ -296,48 +284,43 @@ def stuff():  # just some rapid prototyping and experimentation, some will be mo
         movie = movie_cast_crew['tconst'][row]
         m_name = names[movie]
         G10.add_edge(s_name, m_name)
-
-    tt_Dict['tt13831504']
-    tt_Dict
-    nm_Dict['nm4003706']
-    Name_nm_Dict['Erin Krakow']
-    tt_nm_Dict['tt13831504']
-    tt_nm_Dict
-    nm_Dict
-
-    m = nx.Graph()
-    edge_attribute_dict = {}
-    for name_ID, titles in nm_tt_Dict.items():
-        m.add_node(name_ID)
-        for title in titles:
-            for name_ID2, titles2 in nm_tt_Dict.items():
-                if (title in titles2) and (titles2 != titles):
-                    m.add_edge(name_ID, name_ID2)
+    """
+def graph_database(nm_tt):
+    G = nx.Graph()
+    edge_attribute_dict = {}  # store weight of movie edges between costaring actors
+    for name_ID, titles in nm_tt.items():
+        G.add_node(name_ID)  # create a node for each movie title in the database
+        for title in titles:  # for every one of those movies...
+            for name_ID2, titles2 in nm_tt.items():  # and for each costar...
+                if (title in titles2) and (titles2 != titles):  # if they aren't already matched
+                    G.add_edge(name_ID, name_ID2)  # add an edge
                     name_ID_tuple = tuple(sorted((name_ID, name_ID2)))
-                    if name_ID_tuple not in edge_attribute_dict:
-                        edge_attribute_dict[name_ID_tuple] = 1
+                    if name_ID_tuple not in edge_attribute_dict:  # if they weren't already tagged as costars 
+                        edge_attribute_dict[name_ID_tuple] = 1  # this is the first movie they were both in
                     else:
-                        edge_attribute_dict[name_ID_tuple] += 1
-    len(m.edges())
-    for k,v in edge_attribute_dict.items():
+                        edge_attribute_dict[name_ID_tuple] += 1  # increase the weight of their connection
+    for k,v in edge_attribute_dict.items():  # load and format the costar weights
         edge_attribute_dict[k] = {'weight':v}
-    edge_attribute_dict
-    nx.set_edge_attributes(m, edge_attribute_dict)
+    nx.set_edge_attributes(G, edge_attribute_dict)  # add the weighting factor to the graph edges
+    return(G) 
 
-    centrality = nx.betweenness_centrality(m)
-    [(nm_Dict[x], centrality[x]) for x in sorted(centrality, key=centrality.get, reverse=True)[:30]]
+def degree_separation(G):  # calculate all three for now
 
-    between_ity = nx.betweenness_centrality(m)
-    [(nm_Dict[x], between_ity[x]) for x in sorted(between_ity, key=between_ity.get, reverse=True)[:30]]
-
-    degree_ity = nx.degree(m)
-    [(nm_Dict[x], degree_ity[x]) for x in sorted(degree_ity, key=degree_ity.get, reverse=True)[:30]]
-
-    pos = nx.spring_layout(m,k=1,iterations=20)
-    max_c = max(centrality.values())
-    color_map = {x[0]:x[1]/max_c for x in centrality.items()}
-    nx.draw(m, pos, node_color=list(color_map.values()), cmap=plt.cm.Blues)
-    plt.show()
+    between_ity = nx.betweenness_centrality(G)
+    result_b = [(x, between_ity[x]) for x in sorted(between_ity, key=between_ity.get, reverse=True)]
+    close_ity = nx.closeness_centrality(G)
+    result_c = [(nm_Dict[x], close_ity[x]) for x in sorted(close_ity, key=close_ity.get, reverse=True)]
+    degree_ity = nx.degree(G)
+    result_d = [(nm_Dict[x], degree_ity[x]) for x in sorted(degree_ity, key=degree_ity.get, reverse=True)]
+    return(result_b)  # but only return most accurate for this dataset    
+    #between_ity["Autumn Reeser"]
+    #degree_ity['Tyler Hynes']
+    #[(nm_Dict[x], centrality[x]) for x in sorted(centrality, key=centrality.get, reverse=True)[:20]]
+    #pos = nx.spring_layout(G,k=1,iterations=20)
+    #max_c = max(centrality.values())
+    #color_map = {x[0]:x[1]/max_c for x in centrality.items()}
+    #nx.draw(G, pos, node_color=list(color_map.values()), cmap=plt.cm.Blues)
+    #plt.show()
 
 # Allow file to be used as function or program
 if __name__=='__main__':
