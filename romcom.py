@@ -14,10 +14,10 @@ import networkx as nx #needs install
 
 # Define global variables
 contender = 'nm0000327'  # Lacy Chabert ID for early prototyping, probably won't keep
-watchlist, movie_list, actor_list, role_list, rating_list = [] # for processing Hallmark_imdb-related data
-nm_name, nm_tt, nm_nm = {} # for actor/actress name lookup, filmography, and costar data
-tt_title, tt_nm = {} # for movie title lookup, cast/crew data
-imdb_graph, degree_ity, between_ity, close_ity = [] # for NX graph, centrality, shortest_path data
+watchlist, movie_list, actor_list, role_list, rating_list = [], [], [], [], [] # for processing Hallmark_imdb-related data
+nm_name, nm_tt, nm_nm = {}, {}, {} # for actor/actress name lookup, filmography, and costar data
+tt_title, tt_nm = {}, {} # for movie title lookup, cast/crew data
+imdb_graph, degree_ity, between_ity, close_ity = [], [], [], [] # for NX graph, centrality, shortest_path data
 
 # Define main function to print menu and get user choice
 def main():
@@ -26,16 +26,6 @@ def main():
     # Clear the screen
     clrscr()
 
-    # Load data from files into list of class objects
-    #download_uncompress_imdb_files()  # get imdb source files from web
-    print('\nAll files downloaded and uncompressed!')
-    load_dataframes_lists()  # load local files into data structures
-    export_dataframes()  # write datasets to local json and csv files
-    imdb_graph = graph_database()
-    imdb_sp = shortest_path(imdb_graph)
-    imdb_separation = degree_separation(imdb_graph)
-    print('')
-    
     # Loop through main menu until user opts to exit
     while(True):
 
@@ -110,55 +100,32 @@ def option1(option):
   notImplementedYet(option)  # driver, eventually replaced by validated features
   
 def option2(option):
- 
   notImplementedYet(option)  # driver, eventually replaced by validated features
 
 def option3(option):
- 
   notImplementedYet(option)  # driver, eventually replaced by validated features
 
 def option4(option):
- 
   notImplementedYet(option)  # driver, eventually replaced by validated features
 
 def option5(option):
-
   notImplementedYet(option)  # driver, eventually replaced by validated features
 
-def option6(option):
- 
+def option6(option): 
   notImplementedYet(option)  # driver, eventually replaced by validated features
 
 def option0(option):  # for debug only, to be replaced later with 'easter egg'
-  """ (for testing purposes only) Validate records loaded from file and addressable"""
-  
-  global contender, movie_list, actor_list, role_list, rating_list
-
-  contenderMoviesIndex = getContenderMoviesIndex()
-  print("\ncontenderMovieIndex", contenderMoviesIndex)
-  contenderMovieIds = getContenderMovieIds(contenderMoviesIndex)
-  print('\ncontenderMovieIds\n', contenderMovieIds) 
-  
-  total = 0.0
-  count = 0
-  average = 0.0
-  for line in rating_list:
-      total = total + float(line.movieRating)
-      count = count + 1
-  average = total/count
-
-  print ( "\nactor records: \t", len(actor_list))
-  print ( "movie records: \t", len(movie_list))
-  print ( "role records: \t", len(role_list))
-  print ( "rating records: ", len(rating_list))
-  print ( "average rating: ", format(average, '.1f') )  
-
-  # some exploration of functional commands
-  print ( '\n'+actor_list[0].Id, actor_list[1].Id, type(actor_list), "\n" )
-  print ( role_list.__sizeof__(), '\n' )
-  print ( dir(Actor) )
-  #next(item for item in movie_list if item["Id"] == "tt10921042", None)
-  #help(print_menu)
+    option = option  # space holder, unknown what parameter will be passed yet, or how used
+    # Load data from files into list of class objects
+    #download_uncompress_imdb_files()  # get imdb source files from web
+    print('\nAll files downloaded and uncompressed!')
+    load_dataframes_lists()  # load local files into data structures
+    export_dataframes()  # write datasets to local json and csv files
+    imdb_graph = graph_database()
+    imdb_sp = shortest_path(imdb_graph)
+    imdb_separation = degree_separation(imdb_graph)
+    print('')
+    return None
 
 def getContenderMovieIds(contenderMoviesIndex):
   """ Returns a list of movie IDs selected actor has starred in"""
@@ -253,13 +220,13 @@ def uncompress_file(compressed, uncompressed):
     return None
 
 def load_dataframes_lists():
-    global watchlist = load_watchlist()
+    watchlist = load_watchlist()
     assert len(watchlist) > 1100
     assert 'tt15943556' in watchlist
-    global actor_list = load_actor_list()
-    global role_list = load_role_list()
-    global movie_list = load_movie_list()
-    global rating_list = load_rating_list()
+    actor_list = load_actor_list()
+    role_list = load_role_list()
+    movie_list = load_movie_list()
+    rating_list = load_rating_list()
     return None
 
 def load_watchlist():
@@ -366,6 +333,38 @@ def degree_separation(G):  # calculate all three for now
 
 def shortest_path(graph): # add this to menu item that needs it
     return nx.all_pairs_shortest_path(graph)
+
+""" stashing early rapid prototyping code for hidden menu item
+def option0(option):
+
+  global contender, movie_list, actor_list, role_list, rating_list
+
+  contenderMoviesIndex = getContenderMoviesIndex()
+  print("\ncontenderMovieIndex", contenderMoviesIndex)
+  contenderMovieIds = getContenderMovieIds(contenderMoviesIndex)
+  print('\ncontenderMovieIds\n', contenderMovieIds) 
+  
+  total = 0.0
+  count = 0
+  average = 0.0
+  for line in rating_list:
+      total = total + float(line.movieRating)
+      count = count + 1
+  average = total/count
+
+  print ( "\nactor records: \t", len(actor_list))
+  print ( "movie records: \t", len(movie_list))
+  print ( "role records: \t", len(role_list))
+  print ( "rating records: ", len(rating_list))
+  print ( "average rating: ", format(average, '.1f') )  
+
+  # some exploration of functional commands
+  print ( '\n'+actor_list[0].Id, actor_list[1].Id, type(actor_list), "\n" )
+  print ( role_list.__sizeof__(), '\n' )
+  print ( dir(Actor) )
+  #next(item for item in movie_list if item["Id"] == "tt10921042", None)
+  #help(print_menu)
+"""
 
 """ stashing the classes for now, proceeding with py primitives and pandas 
 # Create classes, movie data courtesy of imdb.com (interface download)
