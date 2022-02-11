@@ -11,12 +11,11 @@ import networkx as nx #needs install
 def main():
 #    """ Command-line menu of functions that process a curated IMDB list of Hallmark original movies (romcom, mystery, drama, western)"""
     
-    global contender
-    global actor_list
-    global role_list
-    global movie_list
-    global rating_list
-    global watchlist
+    global contender  # early prototyping, probably won't keep
+    global watchlist, actor_list, role_list, movie_list, rating_list  # for processing imdb-related data
+    global nm_name nm_tt nm_nm  # for actor/actress name lookup, filmography, and costar data
+    global tt_title tt_nm  # for movie title lookup, cast/crew data
+    global G degree_ity between_ity close_ity  # for NX graph, centrality, shortest_path data
 
     # Clear the screen
     clrscr()
