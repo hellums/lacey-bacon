@@ -25,7 +25,7 @@ def main():
     clrscr()
 
     # Load data from files into list of class objects
-    download_uncompress_imdb_files()
+    #download_uncompress_imdb_files()
     print('\nAll files downloaded and uncompressed!')
     load_dataframes_lists()
     #watchlist = load_watchlist()  # moved to load_dataframes
@@ -40,7 +40,6 @@ def download_uncompress_imdb_files():
     download_file(remote_url, local_file)
     uncompress_file(local_file, 'movie_ratings.tsv')
 
-    """
     remote_url ='https://raw.githubusercontent.com/hellums/hallmarkish/root/watchlist.txt'  
     local_file = 'watchlist.txt' # export of imdb watchlist
     download_file(remote_url, local_file)
@@ -64,7 +63,6 @@ def download_uncompress_imdb_files():
     local_file = 'movie_crew.tsv.gz'  # list of director and writers for all movies
     download_file(remote_url, local_file)
     uncompress_file(local_file, 'movie_crew.tsv')
-    """
 
     return None
 
