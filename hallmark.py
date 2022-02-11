@@ -129,7 +129,7 @@ def load_rating_list():
     movie_ratings = pd.read_csv(local_file, sep='\t')
     return[movie_ratings[movie_ratings['tconst'].isin(watchlist) == True]  # drop ratings not associated w/Hallmark 
 
-def stuff():
+def stuff():  # just some rapid prototyping and experimentation, some will be moved to functions
 
     local_file = 'movie_crew.tsv'  # may not need separate director/writer associations, but better have than not
     movie_crew = pd.read_csv(local_file, sep='\t')
@@ -208,33 +208,6 @@ def stuff():
 
     # # **Graph network plot and determine centrality** 
     titles = watchlist
-    G1 = nx.Graph()
-    names = {}
-    node_color = []
-    for n, star in enumerate(movie_cast_crew.nconst.unique()):
-        name = nm_Dict[star]
-        names[star] = name
-        G1.add_node(name, {'type':'Star', 'color':'green'})
-        #G1.add_node(name)
-        #node_color.append('cyan')
-    for n, movie in enumerate(movie_cast_crew.tconst.unique()):
-        name = tt_Dict[movie]
-        names[movie] = name
-        G1.add_node(name, {'type': 'Movie', 'color':'blue'})    
-        #G1.add_node(name)
-        #node_color.append('magenta')
-    for row in movie_cast_crew.index:
-        star = movie_cast_crew['nconst'][row]
-        s_name = names[star]
-        movie = movie_cast_crew['tconst'][row]
-        m_name = names[movie]
-        G1.add_edge(s_name, m_name)
-    color_map = [n[1]['color'] for n in G1.nodes(data=True)]
-    labels = {n:n for n in G1.nodes()}
-    plt.title('Six Degrees of Lacey Chabert')
-    nx.draw_networkx(G1, node_color=color_map, alpha=0.5, labels=labels, with_labels=True)
-
-    print(nx.betweenness_centrality(G1)['Lacey Chabert'])
 
     between_ity = nx.betweenness_centrality(G1)
     [(x, between_ity[x]) for x in sorted(between_ity, key=between_ity.get, reverse=True)[:20]]
@@ -248,6 +221,7 @@ def stuff():
 
     close_ity = nx.closeness_centrality(G1)  # not useful without removing titles from list
     [(x, close_ity[x]) for x in sorted(close_ity, key=close_ity.get, reverse=True)[:40]]
+
     nx.is_connected(G1)
 
     G1.neighbors('Lacey Chabert')
@@ -274,30 +248,6 @@ def stuff():
     chabert_numbers
     len(chabert_numbers)
 
-    G2 = nx.Graph()
-    names = {}
-    node_color = []
-    for n, star in enumerate(junk.nconst.unique()):
-        name = star
-        names[star] = name
-        #node_color.append('cyan')
-        G2.add_node(name, {'type':'star', 'color':'blue'})
-    for n, movie in enumerate(junk.tconst.unique()):
-        name = movie
-        names[movie] = name
-        #node_color.append('magenta')
-        G2.add_node(name, {'type': 'movie', 'color':'green'})
-    for row in junk.index:
-        star = junk['nconst'][row]
-        s_name = names[star]
-        movie = junk['tconst'][row]
-        m_name = names[movie]
-        G2.add_edge(s_name, m_name)    
-    color_map = [n[1]['color'] for n in G2.nodes(data=True)]
-    labels = {n:n for n in G2.nodes()}
-    plt.title('Six Degrees of Lacey Chabert')
-    nx.draw_networkx(G2, node_color=color_map, alpha=0.5, labels=labels, with_labels=True)
-
     centrality = nx.betweenness_centrality(G2)
     [(x, centrality[x]) for x in sorted(centrality, key=centrality.get, reverse=True)[:20]]
     centrality
@@ -307,29 +257,6 @@ def stuff():
     G2.adj['nm0825555']
     G2.nodes()
     G2.edges()
-
-    G5 = nx.Graph()
-    names = {}
-    node_color = []
-    for n, star in enumerate(movie_cast_crew.nconst.unique()):
-        name = star
-        names[star] = name
-        G1.add_node(name, {'type':'Star', 'color':'green'})
-    for n, movie in enumerate(movie_cast_crew.tconst.unique()):
-        name = movie
-        names[movie] = name
-        G1.add_node(name, {'type': 'Movie', 'color':'blue'})    
-    for row in movie_cast_crew.index:
-        star = movie_cast_crew['nconst'][row]
-        s_name = names[star]
-        movie = movie_cast_crew['tconst'][row]
-        m_name = names[movie]
-        G1.add_edge(s_name, m_name)
-    nx.draw_spring(G1.to_directed(), node_size=0)
-    color_map = [n[1]['color'] for n in G2.nodes(data=True)]
-    labels = {n:n for n in G2.nodes()}
-    plt.title('Six Degrees of Lacey Chabert')
-    nx.draw_networkx(G2, node_color=color_map, alpha=0.5, labels=labels, with_labels=True)
 
     tt_Dict
     for titleID, title in tt_Dict.items():
@@ -345,28 +272,6 @@ def stuff():
     df3.head()
     print(df3.head())
     tt_Dict['tt0217066']
-
-    G1 = nx.Graph()
-    names = {}
-    node_color = []
-    for n, star in enumerate(movie_cast_crew.nconst.unique()):
-        name = nm_Dict[star]
-        names[star] = name
-        G1.add_node(name, {'type':'Star', 'color':'green'})
-        #G1.add_node(name)
-        #node_color.append('cyan')
-    for n, movie in enumerate(movie_cast_crew.tconst.unique()):
-        name = tt_Dict[movie]
-        names[movie] = name
-        G1.add_node(name, {'type': 'Movie', 'color':'blue'})    
-        #G1.add_node(name)
-        #node_color.append('magenta')
-    for row in movie_cast_crew.index:
-        star = movie_cast_crew['nconst'][row]
-        s_name = names[star]
-        movie = movie_cast_crew['tconst'][row]
-        m_name = names[movie]
-        G1.add_edge(s_name, m_name)
 
     print(df1['primaryName'].where(df1['nconst'] == lacey).dropna())
     df1.loc[df1['nconst'] == lacey]
