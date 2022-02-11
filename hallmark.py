@@ -81,7 +81,6 @@ def uncompress_file(compressed, uncompressed):
     return None
 
 def load_dataframes_lists():
-
     watchlist = load_watchlist()
     assert len(watchlist) > 1100
     assert 'tt15943556' in watchlist
@@ -130,7 +129,87 @@ def load_rating_list():
     movie_ratings = pd.read_csv(local_file, sep='\t')
     return[movie_ratings[movie_ratings['tconst'].isin(watchlist) == True]  # drop ratings not associated w/Hallmark 
 
-def stuff():  # just some rapid prototyping and experimentation, some will be moved to functions
+def shortest_path(graph): # add this to menu item that needs it
+    return nx.all_pairs_shortest_path(graph)
+    #chabert_num = sp['Lacey Chabert']['Luke Macfarlane']
+    #chabert_numbers = sp['Lacey Chabert'] 
+    #len(chabert_numbers)
+
+    centrality = nx.betweenness_centrality(G2)
+    [(x, centrality[x]) for x in sorted(centrality, key=centrality.get, reverse=True)[:20]]
+    centrality
+
+    L1 = list(tt_Dict.values())
+    for i in L1:
+        print (i)
+    tt_Dict['tt1335977']
+    df3.head()
+    print(df3.head())
+    tt_Dict['tt0217066']
+
+    print(df1['primaryName'].where(df1['nconst'] == lacey).dropna())
+    df1.loc[df1['nconst'] == lacey]
+    df1.loc[df1['nconst'].isin(['nm0000327', 'nm0000001'])]
+    df1.loc[(df1['birthYear'] == '1982') & (df1['deathYear'] > '2015')]
+
+def graph_database(nm_tt):
+    G = nx.Graph()
+    edge_attribute_dict = {}  # store weight of movie edges between costaring actors
+    for name_ID, titles in nm_tt.items():
+        G.add_node(name_ID)  # create a node for each movie title in the database
+        for title in titles:  # for every one of those movies...
+            for name_ID2, titles2 in nm_tt.items():  # and for each costar...
+                if (title in titles2) and (titles2 != titles):  # if they aren't already matched
+                    G.add_edge(name_ID, name_ID2)  # add an edge
+                    name_ID_tuple = tuple(sorted((name_ID, name_ID2)))
+                    if name_ID_tuple not in edge_attribute_dict:  # if they weren't already tagged as costars 
+                        edge_attribute_dict[name_ID_tuple] = 1  # this is the first movie they were both in
+                    else:
+                        edge_attribute_dict[name_ID_tuple] += 1  # increase the weight of their connection
+    for k,v in edge_attribute_dict.items():  # load and format the costar weights
+        edge_attribute_dict[k] = {'weight':v}
+    nx.set_edge_attributes(G, edge_attribute_dict)  # add the weighting factor to the graph edges
+    return(G) 
+"""
+    G10 = nx.Graph()  # discard, early prototype approach, people and movies all as nodes, not as effective
+    names = {}
+    node_color = []
+    for n, star in enumerate(movie_cast_crew.nconst.unique()):
+        name = nm_Dict[star]
+        names[star] = name
+        G10.add_node(name, {'type':'Star', 'color':'green'})
+        #G1.add_node(name)
+        #node_color.append('cyan')
+    for n, movie in enumerate(movie_cast_crew.tconst.unique()):
+        name = tt_Dict[movie]
+        names[movie] = name
+        G10.add_node(name, {'type': 'Movie', 'color':'blue'})    
+    for row in movie_cast_crew.index:
+        star = movie_cast_crew['nconst'][row]
+        s_name = names[star]
+        movie = movie_cast_crew['tconst'][row]
+        m_name = names[movie]
+        G10.add_edge(s_name, m_name)
+    """
+
+def degree_separation(G):  # calculate all three for now
+    between_ity = nx.betweenness_centrality(G)
+    result_b = [(x, between_ity[x]) for x in sorted(between_ity, key=between_ity.get, reverse=True)]
+    close_ity = nx.closeness_centrality(G)
+    result_c = [(nm_Dict[x], close_ity[x]) for x in sorted(close_ity, key=close_ity.get, reverse=True)]
+    degree_ity = nx.degree(G)
+    result_d = [(nm_Dict[x], degree_ity[x]) for x in sorted(degree_ity, key=degree_ity.get, reverse=True)]
+    return(result_b)  # but only return most accurate for this dataset    
+    #between_ity["Autumn Reeser"]
+    #degree_ity['Tyler Hynes']
+    #[(nm_Dict[x], centrality[x]) for x in sorted(centrality, key=centrality.get, reverse=True)[:20]]
+    #pos = nx.spring_layout(G,k=1,iterations=20)
+    #max_c = max(centrality.values())
+    #color_map = {x[0]:x[1]/max_c for x in centrality.items()}
+    #nx.draw(G, pos, node_color=list(color_map.values()), cmap=plt.cm.Blues)
+    #plt.show()
+
+def stuff():  # stashing some rapid prototyping and experimentation, some will be moved to functions
 
     local_file = 'movie_crew.tsv'  # may not need separate director/writer associations, but better have than not
     movie_crew = pd.read_csv(local_file, sep='\t')
@@ -145,7 +224,6 @@ def stuff():  # just some rapid prototyping and experimentation, some will be mo
     movie_info['runtimeMinutes'] = movie_info['runtimeMinutes'].astype(int)  # convert runtime to an int for proper processing
     movie_info['numVotes'] = movie_info['numVotes'].astype(int)  # convert column to an int for proper processing
     del movie_ratings # don't need it anymore, after outer join merge with movies
-
 
     # # **Validate import and data structures**
     get_ipython().magic('matplotlib inline')
@@ -240,87 +318,6 @@ def stuff():  # just some rapid prototyping and experimentation, some will be mo
 
     path = nx.single_source_shortest_path(G1, 'Lacey Chabert')
     path['Autumn Reeser']
-
-def shortest_path(graph): # add this to menu item that needs it
-    return nx.all_pairs_shortest_path(graph)
-    #chabert_num = sp['Lacey Chabert']['Luke Macfarlane']
-    #chabert_numbers = sp['Lacey Chabert'] 
-    #len(chabert_numbers)
-
-    centrality = nx.betweenness_centrality(G2)
-    [(x, centrality[x]) for x in sorted(centrality, key=centrality.get, reverse=True)[:20]]
-    centrality
-
-    L1 = list(tt_Dict.values())
-    for i in L1:
-        print (i)
-    tt_Dict['tt1335977']
-    df3.head()
-    print(df3.head())
-    tt_Dict['tt0217066']
-
-    print(df1['primaryName'].where(df1['nconst'] == lacey).dropna())
-    df1.loc[df1['nconst'] == lacey]
-    df1.loc[df1['nconst'].isin(['nm0000327', 'nm0000001'])]
-    df1.loc[(df1['birthYear'] == '1982') & (df1['deathYear'] > '2015')]
-
-    """
-    G10 = nx.Graph()  # discard, early prototype approach, people and movies all as nodes, not as effective
-    names = {}
-    node_color = []
-    for n, star in enumerate(movie_cast_crew.nconst.unique()):
-        name = nm_Dict[star]
-        names[star] = name
-        G10.add_node(name, {'type':'Star', 'color':'green'})
-        #G1.add_node(name)
-        #node_color.append('cyan')
-    for n, movie in enumerate(movie_cast_crew.tconst.unique()):
-        name = tt_Dict[movie]
-        names[movie] = name
-        G10.add_node(name, {'type': 'Movie', 'color':'blue'})    
-    for row in movie_cast_crew.index:
-        star = movie_cast_crew['nconst'][row]
-        s_name = names[star]
-        movie = movie_cast_crew['tconst'][row]
-        m_name = names[movie]
-        G10.add_edge(s_name, m_name)
-    """
-def graph_database(nm_tt):
-    G = nx.Graph()
-    edge_attribute_dict = {}  # store weight of movie edges between costaring actors
-    for name_ID, titles in nm_tt.items():
-        G.add_node(name_ID)  # create a node for each movie title in the database
-        for title in titles:  # for every one of those movies...
-            for name_ID2, titles2 in nm_tt.items():  # and for each costar...
-                if (title in titles2) and (titles2 != titles):  # if they aren't already matched
-                    G.add_edge(name_ID, name_ID2)  # add an edge
-                    name_ID_tuple = tuple(sorted((name_ID, name_ID2)))
-                    if name_ID_tuple not in edge_attribute_dict:  # if they weren't already tagged as costars 
-                        edge_attribute_dict[name_ID_tuple] = 1  # this is the first movie they were both in
-                    else:
-                        edge_attribute_dict[name_ID_tuple] += 1  # increase the weight of their connection
-    for k,v in edge_attribute_dict.items():  # load and format the costar weights
-        edge_attribute_dict[k] = {'weight':v}
-    nx.set_edge_attributes(G, edge_attribute_dict)  # add the weighting factor to the graph edges
-    return(G) 
-
-def degree_separation(G):  # calculate all three for now
-
-    between_ity = nx.betweenness_centrality(G)
-    result_b = [(x, between_ity[x]) for x in sorted(between_ity, key=between_ity.get, reverse=True)]
-    close_ity = nx.closeness_centrality(G)
-    result_c = [(nm_Dict[x], close_ity[x]) for x in sorted(close_ity, key=close_ity.get, reverse=True)]
-    degree_ity = nx.degree(G)
-    result_d = [(nm_Dict[x], degree_ity[x]) for x in sorted(degree_ity, key=degree_ity.get, reverse=True)]
-    return(result_b)  # but only return most accurate for this dataset    
-    #between_ity["Autumn Reeser"]
-    #degree_ity['Tyler Hynes']
-    #[(nm_Dict[x], centrality[x]) for x in sorted(centrality, key=centrality.get, reverse=True)[:20]]
-    #pos = nx.spring_layout(G,k=1,iterations=20)
-    #max_c = max(centrality.values())
-    #color_map = {x[0]:x[1]/max_c for x in centrality.items()}
-    #nx.draw(G, pos, node_color=list(color_map.values()), cmap=plt.cm.Blues)
-    #plt.show()
 
 # Allow file to be used as function or program
 if __name__=='__main__':
