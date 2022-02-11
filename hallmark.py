@@ -8,9 +8,6 @@ import unittest
 import matplotlib.pyplot as plt #needs install
 import networkx as nx #needs install
 
-# **Download watchlist from github, compressed datasets from imdb**
-
-# Define main function to print menu and get user choice
 def main():
 #    """ Command-line menu of functions that process a curated IMDB list of Hallmark original movies (romcom, mystery, drama, western)"""
     
@@ -21,16 +18,12 @@ def main():
     global rating_list
     global watchlist
 
-    # Clear the screen0
+    # Clear the screen
     clrscr()
 
-    # Load data from files into list of class objects
-    #download_uncompress_imdb_files()
+    #download_uncompress_imdb_files()  # get imdb source files from web
     print('\nAll files downloaded and uncompressed!')
-    load_dataframes_lists()
-    #watchlist = load_watchlist()  # moved to load_dataframes
-    assert len(watchlist) > 1100
-    assert 'tt15943556' in watchlist
+    load_dataframes_lists()  # load local files into data structures
     print('')
 
 def download_uncompress_imdb_files():
@@ -82,11 +75,19 @@ def uncompress_file(compressed, uncompressed):
     return None
 
 def load_dataframes_lists():
+
     watchlist = load_watchlist()
+    assert len(watchlist) > 1100
+    assert 'tt15943556' in watchlist
+
     actor_list = load_actor_list()
+
     role_list = load_role_list()
+
     movie_list = load_movie_list()
+
     rating_list = load_rating_list()
+
     return None
 
 def load_watchlist():
