@@ -18,6 +18,7 @@ watchlist, movie_list, actor_list, role_list, rating_list = [], [], [], [], [] #
 nm_name, nm_tt, nm_nm = {}, {}, {} # for actor/actress name lookup, filmography, and costar data
 tt_title, tt_nm = {}, {} # for movie title lookup, cast/crew data
 imdb_graph, degree_ity, between_ity, close_ity = [], [], [], [] # for NX graph, centrality, shortest_path data
+movie_info, movie_cast_crew, cast_crew_info, movie_crew = [], [], [], []
 
 # Define main function to print menu and get user choice
 def main():
@@ -175,8 +176,7 @@ def load_dataframes_lists():
     assert 'tt15943556' in watchlist
     actor_list = load_actor_list()
     role_list = load_role_list()
-    movie_list = load_movie_list()
-    rating_list = load_rating_list()
+    movie_list = load_movie_list()  # also performs load_rating_list, prior to merge
     return None
 
 def load_watchlist():
@@ -255,9 +255,9 @@ def degree_separation(G):  # calculate all three for now
     between_ity = nx.betweenness_centrality(G)
     result_b = [(x, between_ity[x]) for x in sorted(between_ity, key=between_ity.get, reverse=True)]
     close_ity = nx.closeness_centrality(G)
-    result_c = [(nm_Dict[x], close_ity[x]) for x in sorted(close_ity, key=close_ity.get, reverse=True)]
+    result_c = [(nm_name[x], close_ity[x]) for x in sorted(close_ity, key=close_ity.get, reverse=True)]
     degree_ity = nx.degree(G)
-    result_d = [(nm_Dict[x], degree_ity[x]) for x in sorted(degree_ity, key=degree_ity.get, reverse=True)]
+    result_d = [(nm_name[x], degree_ity[x]) for x in sorted(degree_ity, key=degree_ity.get, reverse=True)]
     return(result_b)  # but only return most accurate for this dataset    
 
 def shortest_path(graph): # add this to menu item that needs it
