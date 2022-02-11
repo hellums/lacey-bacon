@@ -14,7 +14,7 @@ import networkx as nx #needs install
 
 # Define global variables
 contender = 'nm0000327'  # Lacy Chabert ID for early prototyping, probably won't keep
-watchlist, movie_list, actor_list, role_list, rating_list = [], [], [], [], [] # for processing Hallmark_imdb-related data
+watchlist, movie_list, actor_list, role_list, rating_list = [], [], [], [], [] # for processing Hallmark/imdb data
 nm_name, nm_tt, nm_nm = {}, {}, {} # for actor/actress name lookup, filmography, and costar data
 tt_title, tt_nm = {}, {} # for movie title lookup, cast/crew data
 imdb_graph, degree_ity, between_ity, close_ity = [], [], [], [] # for NX graph, centrality, shortest_path data
@@ -126,56 +126,6 @@ def option0(option):  # for debug only, to be replaced later with 'easter egg'
     imdb_separation = degree_separation(imdb_graph)
     print('')
     return None
-
-def getContenderMovieIds(contenderMoviesIndex):
-  """ Returns a list of movie IDs selected actor has starred in"""
-  global role_list
-  contenderMovieIds = []
-  for item in contenderMoviesIndex:
-    contenderMovieIds.append(role_list[item].movieId)
-  return(contenderMovieIds)
-
-def getContenderMoviesIndex():
-  """ Returns a list of movie ID numbers for a selected actor's ID """ 
-  global contender
-  contenderMoviesIndex = [index for index, item in enumerate(role_list) if item.actorId == contender]
-  return(contenderMoviesIndex)
-
-def load_movies(movie_list):  
-  """ Takes in an empty list, loads records from file, returns a list of Movie class ojects"""
-  with open('src/data/title-basics-imdb.tsv', 'r', encoding='utf8') as f:
-    data = csv.reader(f, delimiter='\t') #read tsv text file with csv
-    for row in data:
-      new_movie = Movie(row[0], row[1], row[2], row[3])
-      movie_list.append(new_movie) #add the data from the text file to the list
-  return(movie_list)
-
-def load_ratings(rating_list):  
-  """ Takes in an empty list, loads records from file, returns a list of Rating class ojects"""
-  with open('src/data/title-ratings-imdb.tsv', 'r', encoding='utf8') as f:
-    data = csv.reader(f, delimiter='\t') #read tsv text file with csv
-    for row in data:
-      new_rating = Rating(row[0], row[1], row[2])
-      rating_list.append(new_rating) #add the data from the text file to the list
-    return(rating_list)
-
-def load_actors(actor_list):  
-  """ Takes in an empty list, loads records from file, returns a list of Actor class ojects"""
-  with open('src/data/name-basics-imdb.tsv', 'r', encoding='utf8') as f:
-    data = csv.reader(f, delimiter='\t') #read tsv text file with csv
-    for row in data:
-      new_actor = Actor(row[0], row[1], row[2], row[3])
-      actor_list.append(new_actor) #add the data from the text file to the list
-    return(actor_list)
-
-def load_roles(role_list):  
-  """ Takes in an empty list, loads records from file, returns a list of Role class ojects"""
-  with open('src/data/title-actors-imdb.tsv', 'r', encoding='utf8') as f:
-    data = csv.reader(f, delimiter='\t')  # read tsv text file with csv
-    for row in data:
-      new_role = Role(row[0], row[1], row[2])
-      role_list.append(new_role)  # add the data from the text file to the list
-  return(role_list)
 
 def download_uncompress_imdb_files():    
     print('\nThis process could take a few minutes, depending on Internet speed...')
@@ -300,7 +250,21 @@ def graph_database(nm_tt):
         edge_attribute_dict[k] = {'weight':v}
     nx.set_edge_attributes(G, edge_attribute_dict)  # add the weighting factor to the graph edges
     return(G) 
+
+def degree_separation(G):  # calculate all three for now
+    between_ity = nx.betweenness_centrality(G)
+    result_b = [(x, between_ity[x]) for x in sorted(between_ity, key=between_ity.get, reverse=True)]
+    close_ity = nx.closeness_centrality(G)
+    result_c = [(nm_Dict[x], close_ity[x]) for x in sorted(close_ity, key=close_ity.get, reverse=True)]
+    degree_ity = nx.degree(G)
+    result_d = [(nm_Dict[x], degree_ity[x]) for x in sorted(degree_ity, key=degree_ity.get, reverse=True)]
+    return(result_b)  # but only return most accurate for this dataset    
+
+def shortest_path(graph): # add this to menu item that needs it
+    return nx.all_pairs_shortest_path(graph)
+
 """  # discard, early prototype approach, people and movies all as nodes, not as effective
+def graph_database(nm_tt):
     G10 = nx.Graph()  
     names = {}
     node_color = []
@@ -321,18 +285,6 @@ def graph_database(nm_tt):
         m_name = names[movie]
         G10.add_edge(s_name, m_name)
 """
-
-def degree_separation(G):  # calculate all three for now
-    between_ity = nx.betweenness_centrality(G)
-    result_b = [(x, between_ity[x]) for x in sorted(between_ity, key=between_ity.get, reverse=True)]
-    close_ity = nx.closeness_centrality(G)
-    result_c = [(nm_Dict[x], close_ity[x]) for x in sorted(close_ity, key=close_ity.get, reverse=True)]
-    degree_ity = nx.degree(G)
-    result_d = [(nm_Dict[x], degree_ity[x]) for x in sorted(degree_ity, key=degree_ity.get, reverse=True)]
-    return(result_b)  # but only return most accurate for this dataset    
-
-def shortest_path(graph): # add this to menu item that needs it
-    return nx.all_pairs_shortest_path(graph)
 
 """ stashing early rapid prototyping code for hidden menu item
 def option0(option):
@@ -364,6 +316,52 @@ def option0(option):
   print ( dir(Actor) )
   #next(item for item in movie_list if item["Id"] == "tt10921042", None)
   #help(print_menu)
+"""
+
+""" stashing functions related to early prototyping with classes
+def getContenderMovieIds(contenderMoviesIndex):
+  global role_list
+  contenderMovieIds = []
+  for item in contenderMoviesIndex:
+    contenderMovieIds.append(role_list[item].movieId)
+  return(contenderMovieIds)
+
+def getContenderMoviesIndex():
+  global contender
+  contenderMoviesIndex = [index for index, item in enumerate(role_list) if item.actorId == contender]
+  return(contenderMoviesIndex)
+
+def load_movies(movie_list):  
+  with open('src/data/title-basics-imdb.tsv', 'r', encoding='utf8') as f:
+    data = csv.reader(f, delimiter='\t') #read tsv text file with csv
+    for row in data:
+      new_movie = Movie(row[0], row[1], row[2], row[3])
+      movie_list.append(new_movie) #add the data from the text file to the list
+  return(movie_list)
+
+def load_ratings(rating_list):  
+  with open('src/data/title-ratings-imdb.tsv', 'r', encoding='utf8') as f:
+    data = csv.reader(f, delimiter='\t') #read tsv text file with csv
+    for row in data:
+      new_rating = Rating(row[0], row[1], row[2])
+      rating_list.append(new_rating) #add the data from the text file to the list
+    return(rating_list)
+
+def load_actors(actor_list):  
+  with open('src/data/name-basics-imdb.tsv', 'r', encoding='utf8') as f:
+    data = csv.reader(f, delimiter='\t') #read tsv text file with csv
+    for row in data:
+      new_actor = Actor(row[0], row[1], row[2], row[3])
+      actor_list.append(new_actor) #add the data from the text file to the list
+    return(actor_list)
+
+def load_roles(role_list):  
+  with open('src/data/title-actors-imdb.tsv', 'r', encoding='utf8') as f:
+    data = csv.reader(f, delimiter='\t')  # read tsv text file with csv
+    for row in data:
+      new_role = Role(row[0], row[1], row[2])
+      role_list.append(new_role)  # add the data from the text file to the list
+  return(role_list)
 """
 
 """ stashing the classes for now, proceeding with py primitives and pandas 
