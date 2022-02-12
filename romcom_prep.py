@@ -1,3 +1,6 @@
+# romcom_prep.py 2/11/22 9:11 PM
+""" Downloads imdb-related files and watchlist, uncompresses them as necessary"""
+
 import requests #needs install
 import gzip
 
