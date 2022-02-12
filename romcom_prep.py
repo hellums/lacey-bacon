@@ -1,5 +1,5 @@
-# romcom_prep.py 2/11/22 10:00 PM
-""" Downloads imdb-related files and watchlist, uncompresses them as necessary"""
+# romcom_prep.py 2/12/22 10:00 AM
+""" Downloads imdb-related files and watchlist, uncompresses and cleans/prunes them as necessary"""
 
 import requests #needs install
 import gzip
@@ -11,7 +11,7 @@ actorlist = []
 def main():
     #download_uncompress_imdb_files()  #shipit
     load_dataframes()  # load local files into data structures
-    export_dataframes()  # write datasets to local json and csv files
+    export_dataframes()  # write datasets to local json and csv files    
     
 def download_uncompress_imdb_files():
     print('\nThis process could take a few minutes, depending on Internet speed...')
@@ -120,8 +120,6 @@ def export_dataframes():
     movie_cast_crew.to_csv('./movie_cast_crew.csv', sep='\t', index_label=None)
     cast_crew_info.to_json('./cast_crew_info.json', orient='table', index=False)
     cast_crew_info.to_csv('./cast_crew_info.csv', sep='\t', index_label=None)
-    #movie_crew.to_json('./movie_crew.json', orient='table', index=False)  # not sure this will be used
-    #movie_crew.to_csv('./movie_crew.csv', sep='\t', index_label=None)  # not sure this will be used
 
 # Allow file to be used as function or program
 if __name__=='__main__':
