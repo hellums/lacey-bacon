@@ -1,4 +1,4 @@
-# romcom.py 2/11/22 12:20 PM
+# romcom.py 2/12/22 12:35 PM
 """ Provides a menu screen where user can select various IMDB movie functions"""
 
 # Import os module for system calls to cls and clear (screen)
@@ -15,9 +15,14 @@ from tabulate import tabulate
 global contender
 contender = 'nm0000327'  # Lacy Chabert ID for early prototyping, probably won't keep
 #movie_list, actor_list, role_list, rating_list = [], [], [], [] # for processing Hallmark/imdb data
-#nm_name, nm_tt, nm_nm = {}, {}, {} # for actor/actress name lookup, filmography, and costar data
-tt_title, tt_nm = {}, {} # for movie title lookup, cast/crew data
+nm_name, name_nm = {}, {} # actor ID and name lookup (1:1)
+tt_title, title_tt = {}, {} # movie ID and name lookup (1:1)
+tt_nm, nm_tt = {}, {}  # lookups for movie cast (1:M) and actor filmography (1:M)
 #imdb_graph, degree_ity, between_ity, close_ity = [], [], [], [] # for NX graph, centrality, shortest_path data
+df, cast_crew_info, movie_info, movie_cast_crew = pd.DataFrame(), pd.DataFrame(), pd.DataFrame(), pd.DataFrame()
+G = nx.Graph()
+imdb_sp = nx.Graph()
+lacey_bacon = []
 
 # Define main function to print menu and get user choice
 def main():
@@ -116,86 +121,44 @@ def option6(option):
 
 def option0(option):  # for debug only, to be replaced later with 'easter egg'
     option = option  # space holder, unknown what parameter will be passed yet, or how used
-    # Load data from files into list of class objects
-    print('\nAll files downloaded and uncompressed!')
-    #imdb_graph = graph_database()
-    #imdb_sp = shortest_path(imdb_graph)
+    load_data()
+    imdb_graph = graph_database()
+    lacey_bacon = degree_separation()
+    #print(lacey_bacon['nm0000327']) 
+    imdb_sp = shortest_path()
+    #print(tabulate(imdb_sp))
+    print(imdb_sp['Lacey Chabert']['Luke Macfarlane'])
+    #chabert_numbers = imdb_sp['Lacey Chabert']
+    #print(chabert_numbers,)
+    #print(len(chabert_numbers),)
     #imdb_separation = degree_separation(imdb_graph)
     print('')
     return None
 
-def load_dataframes_lists():
-    global watchlist
-    watchlist = load_watchlist()
-    assert len(watchlist) > 1100
-    assert 'tt15943556' in watchlist
-    movie_list = load_movie_list()  # also performs load_rating_list, prior to merge
-    assert len(movie_list) > 1000
-    assert len(movie_list) < 1500
-    #actor_list = load_actor_list()
-    #print (actor_list[:5])
-    #role_list = load_role_list()
+def load_data():  # read data from tab-delimited files to data structures for module
+    global cast_crew_info, movie_info, movie_cast_crew
+    global nm_name, name_nm, tt_title, title_tt, nm_tt, tt_nm
+    
+    movie_info = pd.read_csv('movie_info.csv', sep='\t', index_col=None) 
+    df = movie_info
+    tt_title = dict(zip(df.tconst, df.primaryTitle))  # lookup title by movie ID
+    title_tt = dict(zip(df.primaryTitle, df.tconst))  # lookup ID by movie title
+
+    cast_crew_info = pd.read_csv('cast_crew_info.csv', sep='\t', index_col=None)
+    df = cast_crew_info 
+    nm_name = dict(zip(df.nconst, df.primaryName))  # lookup name by cast ID
+    name_nm = dict(zip(df.primaryName, df.nconst))  # lookup ID by cast name
+
+    movie_cast_crew = pd.read_csv('movie_cast_crew.csv', sep='\t', index_col=None)
+    df = movie_cast_crew.groupby('nconst')['tconst'].apply(list).reset_index(name="movieList")
+    nm_tt = dict(zip(df.nconst, df.movieList))  # lookup movie IDs by actor ID (coded filmography)
+    df = movie_cast_crew.groupby('tconst')['nconst'].apply(list).reset_index(name="actorList")
+    tt_nm = dict(zip(df.tconst, df.actorList))  # lookup actor IDs by movie ID (coded cast list)
+
     return None
 
-def load_watchlist():
-    local_file = 'watchlist.txt'
-    header_field = ['tconst']
-    watchlist_info = pd.read_csv(local_file, names=header_field)
-    return watchlist_info['tconst'].tolist() # refactor this to load direct to list, don't need a df?
-
-def load_actor_list():
-    local_file = 'cast_crew_info.tsv'
-    cast_crew_info = pd.read_csv(local_file, sep='\t', usecols=[0, 1, 2, 3]) # refactor to pare based on actor list
-    actorlist = cast_crew_info['nconst'].tolist()
-    #actorlist = list(set(actorlist))
-    return cast_crew_info[cast_crew_info['tconst'].isin(watchlist) == True].values.tolist()  # drop people not in Hallmark movies
-    cast_crew_info = cast_crew_info[cast_crew_info['nconst'].isin(watchlist) == True]  # drop people not in Hallmark movies
-    return cast_crew_info.values.tolist()
-
-def load_role_list():
-    local_file = 'movie_cast_crew.tsv'
-    movie_cast_crew = pd.read_csv(local_file, sep='\t', usecols=[0, 2, 3])
-    movie_cast_crew = movie_cast_crew[movie_cast_crew['tconst'].isin(watchlist) == True]  # drop movies not on/by Hallmark
-    unwantedValues = ['writer', 'producer', 'director', 'composer', 'cinematographer', 
-                    'editor', 'production_designer', 'self']  # should only leave actor, actress categories
-    movie_cast_crew = movie_cast_crew[movie_cast_crew['category'].isin(unwantedValues) == False] # keep actor, actress rows
-    movielist = movie_cast_crew['tconst'].tolist()
-    return list(set(movielist))
-
-def load_movie_list():  # load movies and ratings, merge and clean resulting dataset
-    global watchlist, movie_info
-    local_file = 'movie_info.tsv'
-    movie_info = pd.read_csv(local_file, sep='\t', usecols=[0, 1, 2, 5, 7, 8], 
-        dtype={'startYear': str, 'runtimeMinutes': str})  # converting genre string to a list
-    movie_info = movie_info[movie_info['tconst'].isin(watchlist) == True]  # drop movies not on/by Hallmark    
-    movie_info['runtimeMinutes'] = movie_info['runtimeMinutes'].replace(to_replace=r"\N", value='80')  # fix imdb format error
-    local_file = 'movie_ratings.tsv'  # only need this temporarily to add ratings and voters to movie_info df
-    movie_ratings = pd.read_csv(local_file, sep='\t')
-    movie_ratings = movie_ratings[movie_ratings['tconst'].isin(watchlist) == True]
-    movie_info = pd.merge(movie_info,
-                        movie_ratings[['tconst', 'averageRating', 'numVotes']],
-                        on='tconst', how='outer')  # adds the ratings and votes columns to the movie_info df
-    movie_info = movie_info[:len(watchlist)]  # get rid of the NaN records from the merge, maybe refactor so not needed
-    movie_info = movie_info.fillna(value={'averageRating':6.9,'numVotes':699})  # clean up <20 NaN values from csv import
-    movie_info['runtimeMinutes'] = movie_info['runtimeMinutes'].astype(int)  # convert runtime to an int for proper processing
-    movie_info['numVotes'] = movie_info['numVotes'].astype(int)  # convert column to an int for proper processing
-    
-    #del movie_ratings # don't need it anymore, after outer join merge with movies
-    return movie_info.values.tolist()
-    #return [set(movie_info)]
-
-def export_dataframes():
-    movie_info.to_json('./movie_info.json', orient='table')
-    movie_info.to_csv('./movie_info.csv', sep='\t', index_label=None)
-    #movie_cast_crew.to_json('./movie_cast_crew.json', orient='records')
-    #movie_cast_crew.to_csv('./movie_cast_crew.csv', sep='\t', orient='records')
-    #cast_crew_info.to_json('./cast_crew_info.json', orient='records')
-    #cast_crew_info.to_csv('./cast_crew_info.csv', sep='\t', orient='records')
-    #movie_crew.to_json('./movie_crew.json', orient='records')
-    #movie_crew.to_csv('./movie_crew.csv', sep='\t', orient='records')
-
-def graph_database(nm_tt):
-    G = nx.Graph()
+def graph_database():
+    global G
     edge_attribute_dict = {}  # store weight of movie edges between costaring actors
     for name_ID, titles in nm_tt.items():
         G.add_node(name_ID)  # create a node for each movie title in the database
@@ -213,18 +176,39 @@ def graph_database(nm_tt):
     nx.set_edge_attributes(G, edge_attribute_dict)  # add the weighting factor to the graph edges
     return(G) 
 
-def degree_separation(G):  # calculate all three for now
+def degree_separation():  # calculate all three for now
+    global G
     between_ity = nx.betweenness_centrality(G)
-    result_b = [(x, between_ity[x]) for x in sorted(between_ity, key=between_ity.get, reverse=True)]
+    result_b = [(nm_name[x], between_ity[x]) for x in sorted(between_ity, key=between_ity.get, reverse=True)]
     close_ity = nx.closeness_centrality(G)
     result_c = [(nm_name[x], close_ity[x]) for x in sorted(close_ity, key=close_ity.get, reverse=True)]
     degree_ity = nx.degree(G)
-    result_d = [(nm_name[x], degree_ity[x]) for x in sorted(degree_ity, key=degree_ity.get, reverse=True)]
+    result_d = degree_ity
     return(result_b)  # but only return most accurate for this dataset    
 
-def shortest_path(graph): # add this to menu item that needs it
-    return nx.all_pairs_shortest_path(graph)
+def shortest_path(): # add this to menu item that needs it
+    global G, imdb_sp
+    imdb_sp = nx.all_pairs_shortest_path(G)
+    return imdb_sp
 
+def stash():
+    movie_info_headers=["IMDB #", "Category", "Title", "Year", "Runtime", "Genres", "Rating", "Votes"]
+    cast_crew_info_headers=["IMDB #", "Name", "Yr Birth", "Yr Death"]
+    movie_cast_crew_headers=["Movie IMDB #", "Actor IMDB #", "Role"]
+    print(tabulate(movie_info[5:10], headers=movie_info_headers, showindex=False, numalign='center'), '\n')
+    print(tabulate(movie_cast_crew[5:10], headers=movie_cast_crew_headers, showindex=False, stralign='center'), '\n')
+    print(tabulate(cast_crew_info[5:10], headers=cast_crew_info_headers, showindex=False, numalign='center'), '\n')
+    #assert len(watchlist) > 1100
+    #assert 'tt15943556' in watchlist
+    #actor_list = load_actor_list()
+    #print (actor_list[:5])
+    #role_list = load_role_list()
+    #actorlist = cast_crew_info['nconst'].tolist()
+    #actorlist = list(set(actorlist))
+    #return cast_crew_info[cast_crew_info['tconst'].isin(watchlist) == True].values.tolist()  # drop people not in Hallmark movies
+    #movielist = movie_cast_crew['tconst'].tolist()
+    return None
+    
 # Allow file to be used as function or program
 if __name__=='__main__':
     main()
