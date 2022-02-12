@@ -111,7 +111,6 @@ def load_actor_list():
     local_file = 'cast_crew_info.tsv'
     cast_crew_info = pd.read_csv(local_file, sep='\t', usecols=[0, 1, 2, 3]) # refactor to pare based on actor list
     cast_crew_info = cast_crew_info[cast_crew_info['nconst'].isin(actorlist) == True]  # drop people not in Hallmark movies
-    print(cast_crew_info[:10])
     return cast_crew_info.values.tolist()
 
 def export_dataframes():
