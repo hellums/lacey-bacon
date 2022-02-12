@@ -11,6 +11,8 @@ import re
 import pandas as pd #needs install
 import matplotlib.pyplot as plt #needs install
 import networkx as nx #needs install
+from pprint import pprint
+from tabulate import tabulate 
 
 # Define global variables
 contender = 'nm0000327'  # Lacy Chabert ID for early prototyping, probably won't keep
@@ -121,16 +123,16 @@ def option0(option):  # for debug only, to be replaced later with 'easter egg'
     #download_uncompress_imdb_files()  # get imdb source files from web
     print('\nAll files downloaded and uncompressed!')
     load_dataframes_lists()  # load local files into data structures
-    export_dataframes()  # write datasets to local json and csv files
-    imdb_graph = graph_database()
-    imdb_sp = shortest_path(imdb_graph)
-    imdb_separation = degree_separation(imdb_graph)
+    #export_dataframes()  # write datasets to local json and csv files
+    #imdb_graph = graph_database()
+    #imdb_sp = shortest_path(imdb_graph)
+    #imdb_separation = degree_separation(imdb_graph)
     print('')
     return None
 
 def download_uncompress_imdb_files():    
     print('\nThis process could take a few minutes, depending on Internet speed...')
-    remote_url ='https://raw.githubusercontent.com/hellums/hallmarkish/root/watchlist.txt'  
+    remote_url ='https://raw.githubusercontent.com/hellums/lacey-bacon/root/watchlist.txt'  
     local_file = 'watchlist.txt'  # export of imdb watchlist
     download_file(remote_url, local_file)
     remote_url ='https://datasets.imdbws.com/title.ratings.tsv.gz'
@@ -171,12 +173,16 @@ def uncompress_file(compressed, uncompressed):
     return None
 
 def load_dataframes_lists():
+    global watchlist
     watchlist = load_watchlist()
     assert len(watchlist) > 1100
     assert 'tt15943556' in watchlist
-    actor_list = load_actor_list()
-    role_list = load_role_list()
     movie_list = load_movie_list()  # also performs load_rating_list, prior to merge
+    assert len(movie_list) > 1000
+    assert len(movie_list) < 1500
+    #actor_list = load_actor_list()
+    #print (actor_list[:5])
+    #role_list = load_role_list()
     return None
 
 def load_watchlist():
@@ -189,9 +195,10 @@ def load_actor_list():
     local_file = 'cast_crew_info.tsv'
     cast_crew_info = pd.read_csv(local_file, sep='\t', usecols=[0, 1, 2, 3]) # refactor to pare based on actor list
     actorlist = cast_crew_info['nconst'].tolist()
-    actorlist = list(set(actorlist))
-    cast_crew_info = cast_crew_info[cast_crew_info['nconst'].isin(actorlist) == True]  # drop people not in Hallmark movies
-    return cast_crew_info.tolist()
+    #actorlist = list(set(actorlist))
+    return cast_crew_info[cast_crew_info['tconst'].isin(watchlist) == True].values.tolist()  # drop people not in Hallmark movies
+    cast_crew_info = cast_crew_info[cast_crew_info['nconst'].isin(watchlist) == True]  # drop people not in Hallmark movies
+    return cast_crew_info.values.tolist()
 
 def load_role_list():
     local_file = 'movie_cast_crew.tsv'
@@ -204,14 +211,15 @@ def load_role_list():
     return list(set(movielist))
 
 def load_movie_list():  # load movies and ratings, merge and clean resulting dataset
+    global watchlist
     local_file = 'movie_info.tsv'
     movie_info = pd.read_csv(local_file, sep='\t', usecols=[0, 1, 2, 5, 7, 8], 
-        dtype={'startYear': str, 'runtimeMinutes': str}, 
-        converters={'genres': lambda x: re.split(',+', x)})  # converting genre string to a list
-    movie_info = movie_info[movie_info['tconst'].isin(watchlist) == True]  # drop movies not on/by Hallmark
+        dtype={'startYear': str, 'runtimeMinutes': str})  # converting genre string to a list
+    movie_info = movie_info[movie_info['tconst'].isin(watchlist) == True]  # drop movies not on/by Hallmark    
     movie_info['runtimeMinutes'] = movie_info['runtimeMinutes'].replace(to_replace=r"\N", value='80')  # fix imdb format error
     local_file = 'movie_ratings.tsv'  # only need this temporarily to add ratings and voters to movie_info df
     movie_ratings = pd.read_csv(local_file, sep='\t')
+    movie_ratings = movie_ratings[movie_ratings['tconst'].isin(watchlist) == True]
     movie_info = pd.merge(movie_info,
                         movie_ratings[['tconst', 'averageRating', 'numVotes']],
                         on='tconst', how='outer')  # adds the ratings and votes columns to the movie_info df
@@ -219,8 +227,9 @@ def load_movie_list():  # load movies and ratings, merge and clean resulting dat
     movie_info = movie_info.fillna(value={'averageRating':6.9,'numVotes':699})  # clean up <20 NaN values from csv import
     movie_info['runtimeMinutes'] = movie_info['runtimeMinutes'].astype(int)  # convert runtime to an int for proper processing
     movie_info['numVotes'] = movie_info['numVotes'].astype(int)  # convert column to an int for proper processing
-    del movie_ratings # don't need it anymore, after outer join merge with movies
-    return [set(movie_info)]
+    #del movie_ratings # don't need it anymore, after outer join merge with movies
+    return movie_info.values.tolist()
+    #return [set(movie_info)]
 
 def export_dataframes():
     movie_info.to_json('./movie_info.json', orient='records')
@@ -262,6 +271,10 @@ def degree_separation(G):  # calculate all three for now
 
 def shortest_path(graph): # add this to menu item that needs it
     return nx.all_pairs_shortest_path(graph)
+
+# Allow file to be used as function or program
+if __name__=='__main__':
+    main()
 
 """  # discard, early prototype approach, people and movies all as nodes, not as effective
 def graph_database(nm_tt):
@@ -397,7 +410,3 @@ class Rating:  # Curated list, rating details on "Hallmark" movies in list
     self.movieRating = movieRating
     self.movieVotes = movieVotes
 """
-
-# Allow file to be used as function or program
-if __name__=='__main__':
-    main()
