@@ -16,6 +16,7 @@ Is Lacey Chabert indeed the "Center of the (Hallmark) Universe," as Kevin Bacon 
 # SPECIAL INSTRUCTIONS
 TO RUN (ON MAC):
 
+python3 romcom_prep.py (downloads and cleans data)
 python3 romcom.py
 
 TO UNIT TEST (ON MAC):
