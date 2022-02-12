@@ -118,8 +118,6 @@ def option0(option):  # for debug only, to be replaced later with 'easter egg'
     option = option  # space holder, unknown what parameter will be passed yet, or how used
     # Load data from files into list of class objects
     print('\nAll files downloaded and uncompressed!')
-    load_dataframes_lists()  # load local files into data structures
-    export_dataframes()  # write datasets to local json and csv files
     #imdb_graph = graph_database()
     #imdb_sp = shortest_path(imdb_graph)
     #imdb_separation = degree_separation(imdb_graph)
