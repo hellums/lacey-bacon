@@ -1,10 +1,15 @@
-# romcom_prep.py 2/11/22 9:11 PM
+# romcom_prep.py 2/11/22 10:00 PM
 """ Downloads imdb-related files and watchlist, uncompresses them as necessary"""
 
 import requests #needs install
 import gzip
 
 def main():
+    download_uncompress_imdb_files()
+    load_dataframes()
+    export_dataframes()
+
+def download_uncompress_imdb_files():
     print('\nThis process could take a few minutes, depending on Internet speed...')
     remote_url ='https://raw.githubusercontent.com/hellums/lacey-bacon/root/watchlist.txt'  
     local_file = 'watchlist.txt'  # export of imdb watchlist
@@ -45,6 +50,76 @@ def uncompress_file(compressed, uncompressed):
     with open(uncompressed, 'wb') as f:
         f.write(data)
     return None
+
+def load_dataframes():
+    global watchlist
+    watchlist = load_watchlist()
+    assert len(watchlist) > 1100
+    assert 'tt15943556' in watchlist
+    movie_list = load_movie_list()  # also performs load_rating_list, prior to merge
+    assert len(movie_list) > 1000
+    assert len(movie_list) < 1500
+    #actor_list = load_actor_list()
+    #print (actor_list[:5])
+    #role_list = load_role_list()
+    return None
+
+def load_watchlist():
+    local_file = 'watchlist.txt'
+    header_field = ['tconst']
+    watchlist_info = pd.read_csv(local_file, names=header_field)
+    return watchlist_info['tconst'].tolist() # refactor this to load direct to list, don't need a df?
+
+def load_actor_list():
+    local_file = 'cast_crew_info.tsv'
+    cast_crew_info = pd.read_csv(local_file, sep='\t', usecols=[0, 1, 2, 3]) # refactor to pare based on actor list
+    actorlist = cast_crew_info['nconst'].tolist()
+    #actorlist = list(set(actorlist))
+    return cast_crew_info[cast_crew_info['tconst'].isin(watchlist) == True].values.tolist()  # drop people not in Hallmark movies
+    cast_crew_info = cast_crew_info[cast_crew_info['nconst'].isin(watchlist) == True]  # drop people not in Hallmark movies
+    return cast_crew_info.values.tolist()
+
+def load_role_list():
+    local_file = 'movie_cast_crew.tsv'
+    movie_cast_crew = pd.read_csv(local_file, sep='\t', usecols=[0, 2, 3])
+    movie_cast_crew = movie_cast_crew[movie_cast_crew['tconst'].isin(watchlist) == True]  # drop movies not on/by Hallmark
+    unwantedValues = ['writer', 'producer', 'director', 'composer', 'cinematographer', 
+                    'editor', 'production_designer', 'self']  # should only leave actor, actress categories
+    movie_cast_crew = movie_cast_crew[movie_cast_crew['category'].isin(unwantedValues) == False] # keep actor, actress rows
+    movielist = movie_cast_crew['tconst'].tolist()
+    return list(set(movielist))
+
+def load_movie_list():  # load movies and ratings, merge and clean resulting dataset
+    global watchlist, movie_info
+    local_file = 'movie_info.tsv'
+    movie_info = pd.read_csv(local_file, sep='\t', usecols=[0, 1, 2, 5, 7, 8], 
+        dtype={'startYear': str, 'runtimeMinutes': str})  # converting genre string to a list
+    movie_info = movie_info[movie_info['tconst'].isin(watchlist) == True]  # drop movies not on/by Hallmark    
+    movie_info['runtimeMinutes'] = movie_info['runtimeMinutes'].replace(to_replace=r"\N", value='80')  # fix imdb format error
+    local_file = 'movie_ratings.tsv'  # only need this temporarily to add ratings and voters to movie_info df
+    movie_ratings = pd.read_csv(local_file, sep='\t')
+    movie_ratings = movie_ratings[movie_ratings['tconst'].isin(watchlist) == True]
+    movie_info = pd.merge(movie_info,
+                        movie_ratings[['tconst', 'averageRating', 'numVotes']],
+                        on='tconst', how='outer')  # adds the ratings and votes columns to the movie_info df
+    movie_info = movie_info[:len(watchlist)]  # get rid of the NaN records from the merge, maybe refactor so not needed
+    movie_info = movie_info.fillna(value={'averageRating':6.9,'numVotes':699})  # clean up <20 NaN values from csv import
+    movie_info['runtimeMinutes'] = movie_info['runtimeMinutes'].astype(int)  # convert runtime to an int for proper processing
+    movie_info['numVotes'] = movie_info['numVotes'].astype(int)  # convert column to an int for proper processing
+    
+    #del movie_ratings # don't need it anymore, after outer join merge with movies
+    return movie_info.values.tolist()
+    #return [set(movie_info)]
+
+def export_dataframes():
+    movie_info.to_json('./movie_info.json', orient='table')
+    movie_info.to_csv('./movie_info.csv', sep='\t', index_label=None)
+    #movie_cast_crew.to_json('./movie_cast_crew.json', orient='records')
+    #movie_cast_crew.to_csv('./movie_cast_crew.csv', sep='\t', orient='records')
+    #cast_crew_info.to_json('./cast_crew_info.json', orient='records')
+    #cast_crew_info.to_csv('./cast_crew_info.csv', sep='\t', orient='records')
+    #movie_crew.to_json('./movie_crew.json', orient='records')
+    #movie_crew.to_csv('./movie_crew.csv', sep='\t', orient='records')
 
 # Allow file to be used as function or program
 if __name__=='__main__':
