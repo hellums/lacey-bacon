@@ -1,4 +1,4 @@
-# romcom_prep.py 2/12/22 10:09 AM
+# romcom_prep.py 2/12/22 12:21 AM
 """ Downloads imdb-related files and watchlist, uncompresses and cleans/prunes them as necessary"""
 
 import requests #needs install
@@ -115,11 +115,11 @@ def load_actor_list():
 
 def export_dataframes():
     movie_info.to_json('./movie_info.json', orient='table', index=False)
-    movie_info.to_csv('./movie_info.csv', sep='\t', index_label=None)
+    movie_info.to_csv('./movie_info.csv', sep='\t', index=False)
     movie_cast_crew.to_json('./movie_cast_crew.json', orient='table', index=False)
-    movie_cast_crew.to_csv('./movie_cast_crew.csv', sep='\t', index_label=None)
+    movie_cast_crew.to_csv('./movie_cast_crew.csv', sep='\t', index=False)
     cast_crew_info.to_json('./cast_crew_info.json', orient='table', index=False)
-    cast_crew_info.to_csv('./cast_crew_info.csv', sep='\t', index_label=None)
+    cast_crew_info.to_csv('./cast_crew_info.csv', sep='\t', index=False)
 
 # Allow file to be used as function or program
 if __name__=='__main__':
