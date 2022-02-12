@@ -121,8 +121,8 @@ def export_dataframes():
     movie_cast_crew.to_csv('./movie_cast_crew.csv', sep='\t', index_label=None)
     cast_crew_info.to_json('./cast_crew_info.json', orient='table', index=False)
     cast_crew_info.to_csv('./cast_crew_info.csv', sep='\t', index_label=None)
-    movie_crew.to_json('./movie_crew.json', orient='table', index=False)
-    movie_crew.to_csv('./movie_crew.csv', sep='\t', index_label=None)
+    #movie_crew.to_json('./movie_crew.json', orient='table', index=False)  # not sure this will be used
+    #movie_crew.to_csv('./movie_crew.csv', sep='\t', index_label=None)  # not sure this will be used
 
 # Allow file to be used as function or program
 if __name__=='__main__':
