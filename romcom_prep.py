@@ -3,9 +3,11 @@
 
 import requests #needs install
 import gzip
+import csv  # to import TSV files for movie and actor lists
+import pandas as pd #needs install
 
 def main():
-    download_uncompress_imdb_files()
+    #download_uncompress_imdb_files()  #shipit
     load_dataframes()
     export_dataframes()
 
@@ -36,14 +38,14 @@ def download_uncompress_imdb_files():
     uncompress_file(local_file, 'movie_crew.tsv')
     return None  # results of download_uncompress_imdb_files
 
-def download_file(remote, local):
+def download_file(remote, local):  #shipit
     print('\nDownloading', local)
     data = requests.get(remote)
     with open(local, 'wb') as file:
         file.write(data.content)
     return None
 
-def uncompress_file(compressed, uncompressed):
+def uncompress_file(compressed, uncompressed):  #shipit
     print('\nUncompressing', uncompressed)
     with gzip.open(compressed, 'rb') as f:
         data = f.read()
@@ -64,30 +66,11 @@ def load_dataframes():
     #role_list = load_role_list()
     return None
 
-def load_watchlist():
+def load_watchlist():  # shipit
     local_file = 'watchlist.txt'
     header_field = ['tconst']
     watchlist_info = pd.read_csv(local_file, names=header_field)
     return watchlist_info['tconst'].tolist() # refactor this to load direct to list, don't need a df?
-
-def load_actor_list():
-    local_file = 'cast_crew_info.tsv'
-    cast_crew_info = pd.read_csv(local_file, sep='\t', usecols=[0, 1, 2, 3]) # refactor to pare based on actor list
-    actorlist = cast_crew_info['nconst'].tolist()
-    #actorlist = list(set(actorlist))
-    return cast_crew_info[cast_crew_info['tconst'].isin(watchlist) == True].values.tolist()  # drop people not in Hallmark movies
-    cast_crew_info = cast_crew_info[cast_crew_info['nconst'].isin(watchlist) == True]  # drop people not in Hallmark movies
-    return cast_crew_info.values.tolist()
-
-def load_role_list():
-    local_file = 'movie_cast_crew.tsv'
-    movie_cast_crew = pd.read_csv(local_file, sep='\t', usecols=[0, 2, 3])
-    movie_cast_crew = movie_cast_crew[movie_cast_crew['tconst'].isin(watchlist) == True]  # drop movies not on/by Hallmark
-    unwantedValues = ['writer', 'producer', 'director', 'composer', 'cinematographer', 
-                    'editor', 'production_designer', 'self']  # should only leave actor, actress categories
-    movie_cast_crew = movie_cast_crew[movie_cast_crew['category'].isin(unwantedValues) == False] # keep actor, actress rows
-    movielist = movie_cast_crew['tconst'].tolist()
-    return list(set(movielist))
 
 def load_movie_list():  # load movies and ratings, merge and clean resulting dataset
     global watchlist, movie_info
@@ -111,8 +94,27 @@ def load_movie_list():  # load movies and ratings, merge and clean resulting dat
     return movie_info.values.tolist()
     #return [set(movie_info)]
 
+def load_actor_list():
+    local_file = 'cast_crew_info.tsv'
+    cast_crew_info = pd.read_csv(local_file, sep='\t', usecols=[0, 1, 2, 3]) # refactor to pare based on actor list
+    actorlist = cast_crew_info['nconst'].tolist()
+    #actorlist = list(set(actorlist))
+    return cast_crew_info[cast_crew_info['tconst'].isin(watchlist) == True].values.tolist()  # drop people not in Hallmark movies
+    cast_crew_info = cast_crew_info[cast_crew_info['nconst'].isin(watchlist) == True]  # drop people not in Hallmark movies
+    return cast_crew_info.values.tolist()
+
+def load_role_list():
+    local_file = 'movie_cast_crew.tsv'
+    movie_cast_crew = pd.read_csv(local_file, sep='\t', usecols=[0, 2, 3])
+    movie_cast_crew = movie_cast_crew[movie_cast_crew['tconst'].isin(watchlist) == True]  # drop movies not on/by Hallmark
+    unwantedValues = ['writer', 'producer', 'director', 'composer', 'cinematographer', 
+                    'editor', 'production_designer', 'self']  # should only leave actor, actress categories
+    movie_cast_crew = movie_cast_crew[movie_cast_crew['category'].isin(unwantedValues) == False] # keep actor, actress rows
+    movielist = movie_cast_crew['tconst'].tolist()
+    return list(set(movielist))
+
 def export_dataframes():
-    movie_info.to_json('./movie_info.json', orient='table')
+    movie_info.to_json('./movie_info.json', orient='table', index=False)
     movie_info.to_csv('./movie_info.csv', sep='\t', index_label=None)
     #movie_cast_crew.to_json('./movie_cast_crew.json', orient='records')
     #movie_cast_crew.to_csv('./movie_cast_crew.csv', sep='\t', orient='records')

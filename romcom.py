@@ -5,8 +5,6 @@
 import os  # for system calls to clear screen
 import csv  # to import TSV files for movie and actor lists
 import unittest 
-import requests #needs install
-import gzip
 import re
 import pandas as pd #needs install
 import matplotlib.pyplot as plt #needs install
@@ -18,7 +16,7 @@ global contender
 contender = 'nm0000327'  # Lacy Chabert ID for early prototyping, probably won't keep
 #movie_list, actor_list, role_list, rating_list = [], [], [], [] # for processing Hallmark/imdb data
 #nm_name, nm_tt, nm_nm = {}, {}, {} # for actor/actress name lookup, filmography, and costar data
-#tt_title, tt_nm = {}, {} # for movie title lookup, cast/crew data
+tt_title, tt_nm = {}, {} # for movie title lookup, cast/crew data
 #imdb_graph, degree_ity, between_ity, close_ity = [], [], [], [] # for NX graph, centrality, shortest_path data
 
 # Define main function to print menu and get user choice
@@ -119,7 +117,6 @@ def option6(option):
 def option0(option):  # for debug only, to be replaced later with 'easter egg'
     option = option  # space holder, unknown what parameter will be passed yet, or how used
     # Load data from files into list of class objects
-    download_uncompress_imdb_files()  # get imdb source files from web
     print('\nAll files downloaded and uncompressed!')
     load_dataframes_lists()  # load local files into data structures
     export_dataframes()  # write datasets to local json and csv files
@@ -190,8 +187,8 @@ def load_movie_list():  # load movies and ratings, merge and clean resulting dat
     #return [set(movie_info)]
 
 def export_dataframes():
-    movie_info.to_json('./movie_info.json', orient='records')
-    movie_info.to_csv('./movie_info.csv', sep='\t')
+    movie_info.to_json('./movie_info.json', orient='table')
+    movie_info.to_csv('./movie_info.csv', sep='\t', index_label=None)
     #movie_cast_crew.to_json('./movie_cast_crew.json', orient='records')
     #movie_cast_crew.to_csv('./movie_cast_crew.csv', sep='\t', orient='records')
     #cast_crew_info.to_json('./cast_crew_info.json', orient='records')
