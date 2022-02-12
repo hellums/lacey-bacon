@@ -6,11 +6,13 @@ import gzip
 import csv  # to import TSV files for movie and actor lists
 import pandas as pd #needs install
 
+actorlist = []
+
 def main():
     #download_uncompress_imdb_files()  #shipit
-    load_dataframes()
-    export_dataframes()
-
+    load_dataframes()  # load local files into data structures
+    export_dataframes()  # write datasets to local json and csv files
+    
 def download_uncompress_imdb_files():
     print('\nThis process could take a few minutes, depending on Internet speed...')
     remote_url ='https://raw.githubusercontent.com/hellums/lacey-bacon/root/watchlist.txt'  
@@ -61,9 +63,8 @@ def load_dataframes():
     movie_list = load_movie_list()  # also performs load_rating_list, prior to merge
     assert len(movie_list) > 1000
     assert len(movie_list) < 1500
-    #actor_list = load_actor_list()
-    #print (actor_list[:5])
-    #role_list = load_role_list()
+    role_list = load_role_list()
+    actor_list = load_actor_list()
     return None
 
 def load_watchlist():  # shipit
@@ -92,36 +93,36 @@ def load_movie_list():  # load movies and ratings, merge and clean resulting dat
     
     #del movie_ratings # don't need it anymore, after outer join merge with movies
     return movie_info.values.tolist()
-    #return [set(movie_info)]
-
-def load_actor_list():
-    local_file = 'cast_crew_info.tsv'
-    cast_crew_info = pd.read_csv(local_file, sep='\t', usecols=[0, 1, 2, 3]) # refactor to pare based on actor list
-    actorlist = cast_crew_info['nconst'].tolist()
-    #actorlist = list(set(actorlist))
-    return cast_crew_info[cast_crew_info['tconst'].isin(watchlist) == True].values.tolist()  # drop people not in Hallmark movies
-    cast_crew_info = cast_crew_info[cast_crew_info['nconst'].isin(watchlist) == True]  # drop people not in Hallmark movies
-    return cast_crew_info.values.tolist()
 
 def load_role_list():
+    global actorlist 
     local_file = 'movie_cast_crew.tsv'
     movie_cast_crew = pd.read_csv(local_file, sep='\t', usecols=[0, 2, 3])
     movie_cast_crew = movie_cast_crew[movie_cast_crew['tconst'].isin(watchlist) == True]  # drop movies not on/by Hallmark
     unwantedValues = ['writer', 'producer', 'director', 'composer', 'cinematographer', 
                     'editor', 'production_designer', 'self']  # should only leave actor, actress categories
     movie_cast_crew = movie_cast_crew[movie_cast_crew['category'].isin(unwantedValues) == False] # keep actor, actress rows
+    actorlist = list(set(movie_cast_crew['nconst'].tolist()))
     movielist = movie_cast_crew['tconst'].tolist()
     return list(set(movielist))
+
+def load_actor_list():
+    global cast_crew_info, actorlist
+    local_file = 'cast_crew_info.tsv'
+    cast_crew_info = pd.read_csv(local_file, sep='\t', usecols=[0, 1, 2, 3]) # refactor to pare based on actor list
+    cast_crew_info = cast_crew_info[cast_crew_info['nconst'].isin(actorlist) == True]  # drop people not in Hallmark movies
+    print(cast_crew_info[:10])
+    return cast_crew_info.values.tolist()
 
 def export_dataframes():
     movie_info.to_json('./movie_info.json', orient='table', index=False)
     movie_info.to_csv('./movie_info.csv', sep='\t', index_label=None)
-    #movie_cast_crew.to_json('./movie_cast_crew.json', orient='records')
-    #movie_cast_crew.to_csv('./movie_cast_crew.csv', sep='\t', orient='records')
-    #cast_crew_info.to_json('./cast_crew_info.json', orient='records')
-    #cast_crew_info.to_csv('./cast_crew_info.csv', sep='\t', orient='records')
-    #movie_crew.to_json('./movie_crew.json', orient='records')
-    #movie_crew.to_csv('./movie_crew.csv', sep='\t', orient='records')
+    movie_cast_crew.to_json('./movie_cast_crew.json', orient='table', index=False)
+    movie_cast_crew.to_csv('./movie_cast_crew.csv', sep='\t', index_label=None)
+    cast_crew_info.to_json('./cast_crew_info.json', orient='table', index=False)
+    cast_crew_info.to_csv('./cast_crew_info.csv', sep='\t', index_label=None)
+    movie_crew.to_json('./movie_crew.json', orient='table', index=False)
+    movie_crew.to_csv('./movie_crew.csv', sep='\t', index_label=None)
 
 # Allow file to be used as function or program
 if __name__=='__main__':
