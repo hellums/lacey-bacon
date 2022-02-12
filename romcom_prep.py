@@ -95,7 +95,7 @@ def load_movie_list():  # load movies and ratings, merge and clean resulting dat
     return movie_info.values.tolist()
 
 def load_role_list():
-    global actorlist 
+    global actorlist, movie_cast_crew
     local_file = 'movie_cast_crew.tsv'
     movie_cast_crew = pd.read_csv(local_file, sep='\t', usecols=[0, 2, 3])
     movie_cast_crew = movie_cast_crew[movie_cast_crew['tconst'].isin(watchlist) == True]  # drop movies not on/by Hallmark
