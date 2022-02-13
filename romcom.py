@@ -65,8 +65,8 @@ def main():
             clrscr()
             option5(option)
         elif option == 6:
-            clrscr()
-            print('\'Option 6\' selected, our work is done here.')
+            #clrscr()
+            print('\n\'Option 6\' selected, our work is done here.')
             print("\nDon\'t have a good day... Have a great day!\n")
             exit()
         else:
@@ -101,24 +101,25 @@ def print_menu():  # builds a basic menu screen for user to select program featu
 
 # Define functions launched when chosen from main menu by user
 
-def option1(option):  
+def option1(option):  # filmography for a person
+    option = option
     notImplementedYet(option)  # driver, eventually replaced by validated features
   
-def option2(option):
+def option2(option):  # a movie's top actors and actresses
     notImplementedYet(option)  # driver, eventually replaced by validated features
 
-def option3(option):
+def option3(option):  # movies where two specific people acted in
     notImplementedYet(option)  # driver, eventually replaced by validated features
 
-def option4(option):
+def option4(option):  # leaderboard
     leader_board_headers=["Hall of Famer", "Hallmark-o-Meter"]
-    print(tabulate(leader_board[:20], headers=leader_board_headers, showindex=False, numalign='center'), '\n')
+    print(tabulate(leader_board[:10], headers=leader_board_headers, showindex=False, numalign='center'))
     return None
 
-def option5(option):
+def option5(option):  # about section
     notImplementedYet(option)  # driver, eventually replaced by validated features
 
-def option6(option): 
+def option6(option):  # exit the program
     notImplementedYet(option)  # driver, eventually replaced by validated features
 
 def option0(option):  # for debug only, to be replaced later with 'easter egg'
