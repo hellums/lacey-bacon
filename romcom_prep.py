@@ -1,4 +1,4 @@
-# romcom_prep.py 2/13/22 12:39 PM
+# romcom_prep.py 2/13/22 2:15 PM
 """ Downloads imdb-related files and watchlist, uncompresses and cleans/prunes them as necessary"""
 
 import requests #needs install
@@ -172,41 +172,21 @@ def graph_all_as_nodes():  # useful for text-based presentation of actor degrees
         G1.add_edge(s_name, m_name)
     sp = nx.all_pairs_shortest_path(G1)  # store the sp dictionary for use in main module
     sp1 = dict(sp)
-    chabert_num = sp1['Lacey Chabert']['Luke Macfarlane']
-    print(chabert_num)
-        #print('\n\n\n\n\n\n\n\n\n', G['nm0000327'])
-        #print('\ncurrent: ', G1['nm0000327']['nm0018271'])
-        #my_sp = dict(nx.all_pairs_shortest_path(G1))
-        #my_list = list(my_sp)
-        #print(p in my_list)
-        #print(my_sp['nm0000327']['nm0000327'])
-        #for pairs in my_sp:
-        #  print(pairs)
-        #print(my_sp['nm1674903'])
-        #print(type(my_sp))
-        #chabert = my_sp['nm0000327']['nm1674903']
-        #print(type(chabert))
-        #print('\nHello World \n')
-        #print(chabert)
-        #return my_sp
+    return None
 
 def export_dataframes():
-    #movie_info.to_json('./movie_info.json', orient='table', index=False)
-    #movie_info.to_csv('./movie_info.csv', sep='\t', index=False)
-    #movie_cast_crew.to_json('./movie_cast_crew.json', orient='table', index=False)
-    #movie_cast_crew.to_csv('./movie_cast_crew.csv', sep='\t', index=False)
-    #cast_crew_info.to_json('./cast_crew_info.json', orient='table', index=False)
-    #cast_crew_info.to_csv('./cast_crew_info.csv', sep='\t', index=False)
-    #leader_board.to_json('./leader_board.json', orient='table', index=False)
-    #leader_board.to_csv('./leader_board.csv', sep='\t', index=False)
-    with open('./shortest_path.json', 'w') as convert_file:
-      convert_file.write(json.dumps(sp1))
-    pickle.dump( open("./shortest_path.pkl", "wb"), sp1 )
-    #with open('./shortest_path.json', 'wb') as fp:
-     #   pickle.dump(sp, fp)
-    #sp_file = open("shortest_path.pkl","wb")
-    #pickle.dump(sp1,sp_file)
-    #sp_file.close()
+    movie_info.to_json('./movie_info.json', orient='table', index=False)
+    movie_info.to_csv('./movie_info.csv', sep='\t', index=False)
+    movie_cast_crew.to_json('./movie_cast_crew.json', orient='table', index=False)
+    movie_cast_crew.to_csv('./movie_cast_crew.csv', sep='\t', index=False)
+    cast_crew_info.to_json('./cast_crew_info.json', orient='table', index=False)
+    cast_crew_info.to_csv('./cast_crew_info.csv', sep='\t', index=False)
+    leader_board.to_json('./leader_board.json', orient='table', index=False)
+    leader_board.to_csv('./leader_board.csv', sep='\t', index=False)
+    with open('./shortest_path.json', 'w') as fp:
+        fp.write(json.dumps(sp1))
+    with open('./shortest_path.pkl', 'wb') as fp:
+        pickle.dump(sp1, fp)
 
 # Allow file to be used as function or program
 if __name__=='__main__':
