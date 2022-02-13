@@ -7,6 +7,7 @@ import csv  # to import TSV files for movie and actor lists
 import unittest 
 import re
 import pandas as pd #needs install
+import pickle
 import matplotlib.pyplot as plt #needs install
 import networkx as nx #needs install
 from tabulate import tabulate 
@@ -149,7 +150,7 @@ def option0(option):  # for debug only, to be replaced later with 'easter egg'
     return None
 
 def load_data():  # read data from tab-delimited files to data structures
-    global cast_crew_info, movie_info, movie_cast_crew, leader_board
+    global cast_crew_info, movie_info, movie_cast_crew, leader_board, sp
     global nm_name, name_nm, tt_title, title_tt, nm_tt, tt_nm
     
     movie_info = pd.read_csv('movie_info.csv', sep='\t', index_col=None, \
@@ -172,6 +173,7 @@ def load_data():  # read data from tab-delimited files to data structures
     tt_nm = dict(zip(df.tconst, df.actorList))  # lookup actor IDs by movie ID 
 
     leader_board = pd.read_csv('leader_board.csv', sep='\t', index_col=None)
+    sp = pickle.load(open("shortest_path.pkl", "rb"))
 
     return None
 
