@@ -148,6 +148,39 @@ def graph_database():
     leader_board = pd.DataFrame(imdb_separation, columns=('Hall of Famer', 'Hallmark-o-Meter'))
     return None
 
+def graph_all_as_nodes():  # useful for text-based presentation of actor degrees of separation
+    G1 = nx.Graph()  
+    names = {}
+    for n, star in enumerate(movie_cast_crew.nconst.unique()):
+        name = nm_Dict[star]
+        names[star] = name
+        G1.add_node(name)
+    for n, movie in enumerate(movie_cast_crew.tconst.unique()):
+        name = tt_Dict[movie]
+        names[movie] = name
+        G1.add_node(name)    
+    for row in movie_cast_crew.index:
+        star = movie_cast_crew['nconst'][row]
+        s_name = names[star]
+        movie = movie_cast_crew['tconst'][row]
+        m_name = names[movie]
+        G1.add_edge(s_name, m_name)
+        #print('\n\n\n\n\n\n\n\n\n', G['nm0000327'])
+        #print('\ncurrent: ', G1['nm0000327']['nm0018271'])
+        my_sp = dict(nx.all_pairs_shortest_path(G1))
+        my_list = list(my_sp)
+        #print(p in my_list)
+        #print(my_sp['nm0000327']['nm0000327'])
+        #for pairs in my_sp:
+        #  print(pairs)
+        #print(my_sp['nm1674903'])
+        #print(type(my_sp))
+        #chabert = my_sp['nm0000327']['nm1674903']
+        #print(type(chabert))
+        #print('\nHello World \n')
+        #print(chabert)
+        #return my_sp
+
 def export_dataframes():
     movie_info.to_json('./movie_info.json', orient='table', index=False)
     movie_info.to_csv('./movie_info.csv', sep='\t', index=False)
