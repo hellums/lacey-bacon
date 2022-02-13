@@ -1,4 +1,4 @@
-# romcom_prep.py 2/12/22 9:06 PM
+# romcom_prep.py 2/13/22 12:39 PM
 """ Downloads imdb-related files and watchlist, uncompresses and cleans/prunes them as necessary"""
 
 import requests #needs install
@@ -6,6 +6,8 @@ import gzip
 import csv  # to import TSV files for movie and actor lists
 import pandas as pd #needs install
 import networkx as nx #needs install
+import pickle
+import json
 
 actorlist = []
 
@@ -13,6 +15,7 @@ def main():
     #download_uncompress_imdb_files()  #shipit
     load_dataframes()  # load local files into data structures
     graph_database()  # create a netwokx graph for analysis of centrality
+    graph_all_as_nodes()
     export_dataframes()  # write datasets to local json and csv files
     
 def download_uncompress_imdb_files():
@@ -123,7 +126,7 @@ def load_actor_list():
     return cast_crew_info.values.tolist()
 
 def graph_database():
-    global G, leader_board, imdb_separation
+    global G, sp, leader_board, imdb_separation
     G = nx.Graph()
     edge_attribute_dict = {}  # store weight of movie edges between costaring actors
 
@@ -145,18 +148,20 @@ def graph_database():
     between_ity = nx.betweenness_centrality(G)  # calculate the candidates for "center of the Hallmark universe"
     imdb_separation = [[nm_name[x], format(between_ity[x]*1000+40, ".2f")] for x in sorted(between_ity,
                      key=between_ity.get, reverse=True)]  # normalized this as an "out of 100" model, can change
+
     leader_board = pd.DataFrame(imdb_separation, columns=('Hall of Famer', 'Hallmark-o-Meter'))
     return None
 
 def graph_all_as_nodes():  # useful for text-based presentation of actor degrees of separation
-    G1 = nx.Graph()  
+    global sp1
+    G1 = nx.Graph()
     names = {}
     for n, star in enumerate(movie_cast_crew.nconst.unique()):
-        name = nm_Dict[star]
+        name = nm_name[star]
         names[star] = name
         G1.add_node(name)
     for n, movie in enumerate(movie_cast_crew.tconst.unique()):
-        name = tt_Dict[movie]
+        name = tt_title[movie]
         names[movie] = name
         G1.add_node(name)    
     for row in movie_cast_crew.index:
@@ -165,10 +170,14 @@ def graph_all_as_nodes():  # useful for text-based presentation of actor degrees
         movie = movie_cast_crew['tconst'][row]
         m_name = names[movie]
         G1.add_edge(s_name, m_name)
+    sp = nx.all_pairs_shortest_path(G1)  # store the sp dictionary for use in main module
+    sp1 = dict(sp)
+    chabert_num = sp1['Lacey Chabert']['Luke Macfarlane']
+    print(chabert_num)
         #print('\n\n\n\n\n\n\n\n\n', G['nm0000327'])
         #print('\ncurrent: ', G1['nm0000327']['nm0018271'])
-        my_sp = dict(nx.all_pairs_shortest_path(G1))
-        my_list = list(my_sp)
+        #my_sp = dict(nx.all_pairs_shortest_path(G1))
+        #my_list = list(my_sp)
         #print(p in my_list)
         #print(my_sp['nm0000327']['nm0000327'])
         #for pairs in my_sp:
@@ -190,6 +199,15 @@ def export_dataframes():
     cast_crew_info.to_csv('./cast_crew_info.csv', sep='\t', index=False)
     leader_board.to_json('./leader_board.json', orient='table', index=False)
     leader_board.to_csv('./leader_board.csv', sep='\t', index=False)
+    with open('shortest_path.json', 'w') as convert_file:
+      convert_file.write(json.dumps(sp1))
+    
+    #with open('./shortest_path.json', 'wb') as fp:
+     #   pickle.dump(sp, fp)
+    #sp_file = open("shortest_path.pkl","wb")
+    #pickle.dump(sp1,sp_file)
+    #sp_file.close()
+    #pickle.dump( open("./shortest_path.pkl", "wb") )
 
 # Allow file to be used as function or program
 if __name__=='__main__':
