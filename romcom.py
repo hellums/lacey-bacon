@@ -1,4 +1,4 @@
-# romcom.py 2/12/22 9:05 PM
+# romcom.py 2/12/22 11:44 PM
 """ Provides a menu screen where user can select various IMDB movie functions"""
 
 # Import os module for system calls to cls and clear (screen)
@@ -94,7 +94,7 @@ def print_menu():  # builds a basic menu screen for user to select program featu
         4: 'Leaderboard - ("Hallmark" TV RomComDram Hall of Fame)',
         5: 'About - See more about this project',
         6: 'Exit',
-}
+    }
     # Loop for main menu until user selects to exit program
     for key in menu_options.keys():
         print (str(key) + '. ', menu_options[key] )
@@ -106,14 +106,15 @@ def option1(option):  # filmography for a person
     notImplementedYet(option)  # driver, eventually replaced by validated features
   
 def option2(option):  # a movie's top actors and actresses
-    notImplementedYet(option)  # driver, eventually replaced by validated features
+    movie_info_headers=["IMDB #","Category ","Title  ","Year","Runtime","Genres   ","Rating","Votes"]  # note: bug in tab api
+    tab_print(movie_info.head(10), movie_info_headers)  # print in a nice tabular format
 
 def option3(option):  # movies where two specific people acted in
     notImplementedYet(option)  # driver, eventually replaced by validated features
 
 def option4(option):  # leaderboard
     leader_board_headers=["Hall of Famer", "Hallmark-o-Meter"]
-    print(tabulate(leader_board[:10], headers=leader_board_headers, showindex=False, numalign='center'))
+    print(tabulate(leader_board[:10], headers=leader_board_headers, showindex=False), numalign='center')
     return None
 
 def option5(option):  # about section
@@ -141,7 +142,9 @@ def load_data():  # read data from tab-delimited files to data structures for mo
     global cast_crew_info, movie_info, movie_cast_crew, leader_board
     global nm_name, name_nm, tt_title, title_tt, nm_tt, tt_nm
     
-    movie_info = pd.read_csv('movie_info.csv', sep='\t', index_col=None) 
+    movie_info = pd.read_csv('movie_info.csv', sep='\t', index_col=None, \
+                        dtype={'startYear': str, 'runtimeMinutes': str}, \
+                        converters={'movieGenres': lambda x: re.split(',+', x)})  # convert genres to a list
     df = movie_info
     tt_title = dict(zip(df.tconst, df.primaryTitle))  # lookup title by movie ID
     title_tt = dict(zip(df.primaryTitle, df.tconst))  # lookup ID by movie title
@@ -160,6 +163,9 @@ def load_data():  # read data from tab-delimited files to data structures for mo
     leader_board = pd.read_csv('leader_board.csv', sep='\t', index_col=None)
 
     return None
+
+def tab_print(df, header_name):  # "pretty" print for a dataframe slice
+    print('\n', tabulate(df, headers=header_name, showindex=False, numalign='center', tablefmt="rst"))
 
 # Allow file to be used as function or program
 if __name__=='__main__':
@@ -186,7 +192,7 @@ def shortest_path(): # add this to menu item that needs it, strongly consider us
     return my_sp
 
 def stash():  # some code to be used in different menu options above
-    movie_info_headers=["IMDB #", "Category", "Title", "Year", "Runtime", "Genres", "Rating", "Votes"]
+    
     cast_crew_info_headers=["IMDB #", "Name", "Yr Birth", "Yr Death"]
     movie_cast_crew_headers=["Movie IMDB #", "Actor IMDB #", "Role"]
     print(tabulate(movie_info[5:10], headers=movie_info_headers, showindex=False, numalign='center'), '\n')
