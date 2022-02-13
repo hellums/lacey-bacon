@@ -12,18 +12,18 @@ import networkx as nx #needs install
 from tabulate import tabulate 
 
 # Define global variables
-contender = 'nm0000327'  # Lacy Chabert ID for early prototyping, probably won't keep
-#movie_list, actor_list, role_list, rating_list = [], [], [], [] # for processing Hallmark/imdb data
+contender = 'nm0000327'  # Lacy Chabert ID for testing, probably won't keep
+#movie_list, actor_list, role_list, rating_list = [], [], [], [] 
 nm_name, name_nm = {}, {} # actor ID and name lookup (1:1)
 tt_title, title_tt = {}, {} # movie ID and name lookup (1:1)
-tt_nm, nm_tt = {}, {}  # lookups for movie cast (1:M) and actor filmography (1:M)
-#imdb_graph, degree_ity, between_ity, close_ity = [], [], [], [] # for NX graph, centrality, shortest_path data
-df, cast_crew_info, movie_info, movie_cast_crew = pd.DataFrame(), pd.DataFrame(), pd.DataFrame(), pd.DataFrame()
+tt_nm, nm_tt = {}, {}  # lookups for movie cast (1:M) and filmography (1:M)
+cast_crew_info, movie_info = pd.DataFrame(), pd.DataFrame()
+df, movie_cast_crew = pd.DataFrame(), pd.DataFrame()
 imdb_sp = {}
 
 # Define main function to print menu and get user choice
 def main():
-    """ Command-line menu of functions that process a curated IMDB list of Hallmark original movies (romcom, mystery, drama, western)"""
+    """ Command-line menu of functions Hallmark original movies """
     
     # Clear the screen
     clrscr()
@@ -38,10 +38,10 @@ def main():
         print('\nPlease enter a number between 1 and 6.\n')
         print_menu()
 
-        # Get user's menu choice and verify entry of number, not other char or string
+        # Get user's menu choice and verify entry data type
         option = ''
         try:
-            option = int(input('\nEnter your choice (1-6) and the ENTER/RETURN key: '))
+            option = int(input('\nEnter your choice (1-6) and ENTER/RETURN: '))
         except:
             print('\nNumbers only, please...')
 
@@ -83,10 +83,10 @@ def clrscr():  # clears screen in Mac, Linux, or Windows
 def notImplementedYet(option):  # stub for drivers and testing
     separator = '\n******************************************************\n'
     print(separator)
-    print("'Option", str(option) + "' selected. This section not implemented yet.")
+    print("'Option", str(option) + "' selected. Section not implemented yet.")
     print(separator)
 
-def print_menu():  # builds a basic menu screen for user to select program feature sets
+def print_menu():  # basic menu screen for user to select program feature sets
     menu_options = {  # dictionary of menu options
         1: 'Filmography - See what movies a select person starred in',
         2: 'Cast - See who starred in a select movie',
@@ -113,14 +113,14 @@ def option1(option):  # filmography for a person
     total_titles = len(actor_titles)
     print('\nLacey Chabert: ', total_titles, 'Hallmark movies')
     tab_print(df, '')
-    #notImplementedYet(option)  # driver, eventually replaced by validated features
+    #notImplementedYet(option)  # driver, eventually replaced by feature
   
 def option2(option):  # a movie's top actors and actresses
     movie_info_headers=["IMDB #","Category ","Title  ","Year","Runtime","Genres   ","Rating","Votes"]  # note: bug in tab api
-    tab_print(movie_info.head(10), movie_info_headers)  # print in a nice tabular format
-
+    tab_print(movie_info.head(10), movie_info_headers)  # "pretty" print result
+    
 def option3(option):  # movies where two specific people acted in
-    notImplementedYet(option)  # driver, eventually replaced by validated features
+    notImplementedYet(option)  # driver, eventually replaced by feature
 
 def option4(option):  # leaderboard
     leader_board_headers=["Hall of Famer", "Hallmark-o-Meter"]
@@ -128,13 +128,13 @@ def option4(option):  # leaderboard
     return None
 
 def option5(option):  # about section
-    notImplementedYet(option)  # driver, eventually replaced by validated features
+    notImplementedYet(option)  # driver, eventually replaced by feature
 
 def option6(option):  # exit the program
-    notImplementedYet(option)  # driver, eventually replaced by validated features
+    notImplementedYet(option)  # driver, eventually replaced by feature
 
 def option0(option):  # for debug only, to be replaced later with 'easter egg'
-    option = option  # space holder, unknown what parameter will be passed yet, or how used
+    option = option  # space holder
     imdb_sp = shortest_path()
     #print('imdb_sp is a:',type(imdb_sp))
     #print('\npath to Erin Krakow', imdb_sp['nm4003706'])
@@ -148,27 +148,28 @@ def option0(option):  # for debug only, to be replaced later with 'easter egg'
     print('')
     return None
 
-def load_data():  # read data from tab-delimited files to data structures for module
+def load_data():  # read data from tab-delimited files to data structures
     global cast_crew_info, movie_info, movie_cast_crew, leader_board
     global nm_name, name_nm, tt_title, title_tt, nm_tt, tt_nm
     
     movie_info = pd.read_csv('movie_info.csv', sep='\t', index_col=None, \
-                        dtype={'startYear': str, 'runtimeMinutes': str}, \
-                        converters={'movieGenres': lambda x: re.split(',+', x)})  # convert genres to a list
+                  dtype={'startYear': str, 'runtimeMinutes': str}, \
+                  converters={'movieGenres': lambda x: re.split(',+', x)})  
     df = movie_info
-    tt_title = dict(zip(df.tconst, df.primaryTitle))  # lookup title by movie ID
-    title_tt = dict(zip(df.primaryTitle, df.tconst))  # lookup ID by movie title
+    tt_title = dict(zip(df.tconst, df.primaryTitle))  # match title by movie ID
+    title_tt = dict(zip(df.primaryTitle, df.tconst))  # match ID by movie title
 
     cast_crew_info = pd.read_csv('cast_crew_info.csv', sep='\t', index_col=None)
     df = cast_crew_info 
     nm_name = dict(zip(df.nconst, df.primaryName))  # lookup name by cast ID
     name_nm = dict(zip(df.primaryName, df.nconst))  # lookup ID by cast name
 
-    movie_cast_crew = pd.read_csv('movie_cast_crew.csv', sep='\t', index_col=None)
+    movie_cast_crew = pd.read_csv('movie_cast_crew.csv', sep='\t', \
+      index_col=None)
     df = movie_cast_crew.groupby('nconst')['tconst'].apply(list).reset_index(name="movieList")
-    nm_tt = dict(zip(df.nconst, df.movieList))  # lookup movie IDs by actor ID (coded filmography)
+    nm_tt = dict(zip(df.nconst, df.movieList))  # lookup movie IDs by actor ID
     df = movie_cast_crew.groupby('tconst')['nconst'].apply(list).reset_index(name="actorList")
-    tt_nm = dict(zip(df.tconst, df.actorList))  # lookup actor IDs by movie ID (coded cast list)
+    tt_nm = dict(zip(df.tconst, df.actorList))  # lookup actor IDs by movie ID 
 
     leader_board = pd.read_csv('leader_board.csv', sep='\t', index_col=None)
 
@@ -184,7 +185,7 @@ if __name__=='__main__':
 
 # everything below call to main() is stash and scratch working space
 
-def shortest_path(): # add this to menu item that needs it, strongly consider using early Graph w/movie nodes
+def shortest_path(): # add portions of this to menu item
     global G
     #print('\n\n\n\n\n\n\n\n\n', G['nm0000327'])
     print('\ncurrent: ', G['nm0000327']['nm0018271'])
