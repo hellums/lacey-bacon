@@ -73,18 +73,18 @@ def main():
             pass
 
 def clrscr():  # clears screen in Mac, Linux, or Windows
-  # Check if Operating System is Mac and Linux or Windows
-  if os.name == 'posix':
-    _ = os.system('clear')
-  else:
-      # Else Operating System is Windows (os.name = nt)
-    _ = os.system('cls')
+    # Check if Operating System is Mac and Linux or Windows
+    if os.name == 'posix':
+        _ = os.system('clear')
+    else:
+          # Else Operating System is Windows (os.name = nt)
+        _ = os.system('cls')
 
 def notImplementedYet(option):  # stub for drivers and testing
-  separator = '\n******************************************************\n'
-  print(separator)
-  print("'Option", str(option) + "' selected. This section not implemented yet.")
-  print(separator)
+    separator = '\n******************************************************\n'
+    print(separator)
+    print("'Option", str(option) + "' selected. This section not implemented yet.")
+    print(separator)
 
 def print_menu():  # builds a basic menu screen for user to select program feature sets
     menu_options = {  # dictionary of menu options
@@ -102,24 +102,24 @@ def print_menu():  # builds a basic menu screen for user to select program featu
 # Define functions launched when chosen from main menu by user
 
 def option1(option):  
-  notImplementedYet(option)  # driver, eventually replaced by validated features
+    notImplementedYet(option)  # driver, eventually replaced by validated features
   
 def option2(option):
-  notImplementedYet(option)  # driver, eventually replaced by validated features
+    notImplementedYet(option)  # driver, eventually replaced by validated features
 
 def option3(option):
-  notImplementedYet(option)  # driver, eventually replaced by validated features
+    notImplementedYet(option)  # driver, eventually replaced by validated features
 
 def option4(option):
-  leader_board_headers=["Hall of Famer", "Hallmark-o-Meter"]
-  print(tabulate(leader_board[:20], headers=leader_board_headers, showindex=False, numalign='center'), '\n')
-  return None
+    leader_board_headers=["Hall of Famer", "Hallmark-o-Meter"]
+    print(tabulate(leader_board[:20], headers=leader_board_headers, showindex=False, numalign='center'), '\n')
+    return None
 
 def option5(option):
-  notImplementedYet(option)  # driver, eventually replaced by validated features
+    notImplementedYet(option)  # driver, eventually replaced by validated features
 
 def option6(option): 
-  notImplementedYet(option)  # driver, eventually replaced by validated features
+    notImplementedYet(option)  # driver, eventually replaced by validated features
 
 def option0(option):  # for debug only, to be replaced later with 'easter egg'
     option = option  # space holder, unknown what parameter will be passed yet, or how used
@@ -227,21 +227,21 @@ def graph_database(nm_tt):
 
 """ stashing early rapid prototyping code for hidden menu item
 def option0(option):
-  total = 0.0
-  count = 0
-  average = 0.0
-  for line in rating_list:
-      total = total + float(line.movieRating)
-      count = count + 1
-  average = total/count
-  print ( "average rating: ", format(average, '.1f') )  
+    total = 0.0
+    count = 0
+    average = 0.0
+    for line in rating_list:
+        total = total + float(line.movieRating)
+        count = count + 1
+    average = total/count
+    print ( "average rating: ", format(average, '.1f') )  
 
-  # some exploration of functional commands
-  print ( '\n'+actor_list[0].Id, actor_list[1].Id, type(actor_list), "\n" )
-  print ( role_list.__sizeof__(), '\n' )
-  print ( dir(Actor) )
-  #next(item for item in movie_list if item["Id"] == "tt10921042", None)
-  #help(print_menu)
+    # some exploration of functional commands
+    print ( '\n'+actor_list[0].Id, actor_list[1].Id, type(actor_list), "\n" )
+    print ( role_list.__sizeof__(), '\n' )
+    print ( dir(Actor) )
+    #next(item for item in movie_list if item["Id"] == "tt10921042", None)
+    #help(print_menu)
 """
 
 """ # stash, moved this processing to romcom_prep, will just read in leader_board now
