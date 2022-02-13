@@ -136,8 +136,9 @@ def option3(option):  # movies where two specific people acted in
 
 def option4(option):  # leaderboard
     option = option
-    leader_board_headers=["Hall of Famer", "Hallmark-o-Meter"]
+    leader_board_headers=["Hall of Famer", "Hallmark-o-Meter\u2081"]
     tab_print(leader_board[:10], leader_board_headers)
+    print('\n1. The leaderboard is calculated using graph analysis and centrality.')
     return None
 
 def option5(option):  # about section
