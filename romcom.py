@@ -12,7 +12,6 @@ import networkx as nx #needs install
 from tabulate import tabulate 
 
 # Define global variables
-global contender
 contender = 'nm0000327'  # Lacy Chabert ID for early prototyping, probably won't keep
 #movie_list, actor_list, role_list, rating_list = [], [], [], [] # for processing Hallmark/imdb data
 nm_name, name_nm = {}, {} # actor ID and name lookup (1:1)
@@ -20,9 +19,7 @@ tt_title, title_tt = {}, {} # movie ID and name lookup (1:1)
 tt_nm, nm_tt = {}, {}  # lookups for movie cast (1:M) and actor filmography (1:M)
 #imdb_graph, degree_ity, between_ity, close_ity = [], [], [], [] # for NX graph, centrality, shortest_path data
 df, cast_crew_info, movie_info, movie_cast_crew = pd.DataFrame(), pd.DataFrame(), pd.DataFrame(), pd.DataFrame()
-G = nx.Graph()
-imdb_sp = nx.Graph()
-lacey_bacon = []
+imdb_sp = {}
 
 # Define main function to print menu and get user choice
 def main():
@@ -30,6 +27,9 @@ def main():
     
     # Clear the screen
     clrscr()
+
+    # Load the data structures
+    load_data()
 
     # Loop through main menu until user opts to exit
     while(True):
@@ -111,7 +111,16 @@ def option3(option):
   notImplementedYet(option)  # driver, eventually replaced by validated features
 
 def option4(option):
-  notImplementedYet(option)  # driver, eventually replaced by validated features
+  #notImplementedYet(option)  # driver, eventually replaced by validated features
+  #graph_database()
+  #imdb_graph = graph_database()
+  #imdb_separation = degree_separation()
+  #print(leaders for leaders in imdb_separation)
+  leader_board_headers=["Hall of Famer", "Hallmark-o-Meter"]
+  print(tabulate(leader_board[:20], headers=leader_board_headers, showindex=False, numalign='center'), '\n')
+  #df = pd.DataFrame(imdb_separation, columns=('Hall of Famer', 'Hallmark-o-Meter'))
+  #print(df.head())
+  return None
 
 def option5(option):
   notImplementedYet(option)  # driver, eventually replaced by validated features
@@ -121,13 +130,13 @@ def option6(option):
 
 def option0(option):  # for debug only, to be replaced later with 'easter egg'
     option = option  # space holder, unknown what parameter will be passed yet, or how used
-    load_data()
-    imdb_graph = graph_database()
-    lacey_bacon = degree_separation()
     #print(lacey_bacon['nm0000327']) 
     imdb_sp = shortest_path()
+    #print('imdb_sp is a:',type(imdb_sp))
+    #print('\npath to Erin Krakow', imdb_sp['nm4003706'])
+    #print('\nconverted path', nm_name[x] for x in imdb_sp['nm4003706'])
     #print(tabulate(imdb_sp))
-    print(imdb_sp['Lacey Chabert']['Luke Macfarlane'])
+    #print([imdb_sp['Lacey Chabert']['Luke Macfarlane']])
     #chabert_numbers = imdb_sp['Lacey Chabert']
     #print(chabert_numbers,)
     #print(len(chabert_numbers),)
@@ -136,7 +145,7 @@ def option0(option):  # for debug only, to be replaced later with 'easter egg'
     return None
 
 def load_data():  # read data from tab-delimited files to data structures for module
-    global cast_crew_info, movie_info, movie_cast_crew
+    global cast_crew_info, movie_info, movie_cast_crew, leader_board
     global nm_name, name_nm, tt_title, title_tt, nm_tt, tt_nm
     
     movie_info = pd.read_csv('movie_info.csv', sep='\t', index_col=None) 
@@ -155,10 +164,14 @@ def load_data():  # read data from tab-delimited files to data structures for mo
     df = movie_cast_crew.groupby('tconst')['nconst'].apply(list).reset_index(name="actorList")
     tt_nm = dict(zip(df.tconst, df.actorList))  # lookup actor IDs by movie ID (coded cast list)
 
+    leader_board = pd.read_csv('leader_board.csv', sep='\t', index_col=None)
+
     return None
 
+""" # stash, moved this processing to romcom_prep, will just read in leader_board now
 def graph_database():
     global G
+    G = nx.Graph()
     edge_attribute_dict = {}  # store weight of movie edges between costaring actors
     for name_ID, titles in nm_tt.items():
         G.add_node(name_ID)  # create a node for each movie title in the database
@@ -179,17 +192,36 @@ def graph_database():
 def degree_separation():  # calculate all three for now
     global G
     between_ity = nx.betweenness_centrality(G)
-    result_b = [(nm_name[x], between_ity[x]) for x in sorted(between_ity, key=between_ity.get, reverse=True)]
+    #result_b = [(nm_name[x], between_ity[x]) for x in sorted(between_ity, key=between_ity.get, reverse=True)]
+    result_b = [[nm_name[x], int(between_ity[x]*1000+43)] for x in sorted(between_ity, key=between_ity.get, reverse=True)]
     close_ity = nx.closeness_centrality(G)
     result_c = [(nm_name[x], close_ity[x]) for x in sorted(close_ity, key=close_ity.get, reverse=True)]
+    #print(result_c)
+    #print(type(result_c))
     degree_ity = nx.degree(G)
     result_d = degree_ity
+    #print([(x, degree_ity[x]) for x in sorted(degree_ity, key=degree_ity.get, reverse=True)[:40]])
+    #print(result_b)
     return(result_b)  # but only return most accurate for this dataset    
+"""
 
 def shortest_path(): # add this to menu item that needs it
-    global G, imdb_sp
-    imdb_sp = nx.all_pairs_shortest_path(G)
-    return imdb_sp
+    global G
+    #print('\n\n\n\n\n\n\n\n\n', G['nm0000327'])
+    print('\ncurrent: ', G['nm0000327']['nm0018271'])
+    my_sp = dict(nx.all_pairs_shortest_path(G))
+    my_list = list(my_sp)
+    #print(p in my_list)
+    #print(my_sp['nm0000327']['nm0000327'])
+    #for pairs in my_sp:
+    #  print(pairs)
+    #print(my_sp['nm1674903'])
+    #print(type(my_sp))
+    #chabert = my_sp['nm0000327']['nm1674903']
+    #print(type(chabert))
+    #print('\nHello World \n')
+    #print(chabert)
+    return my_sp
 
 def stash():
     movie_info_headers=["IMDB #", "Category", "Title", "Year", "Runtime", "Genres", "Rating", "Votes"]
