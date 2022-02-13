@@ -1,4 +1,4 @@
-# romcom.py 2/12/22 11:53 PM
+# romcom.py 2/12/22 2:57 PM
 """ Provides a menu screen where user can select various IMDB movie functions"""
 
 # Import os module for system calls to cls and clear (screen)
@@ -8,6 +8,7 @@ import unittest
 import re
 import pandas as pd #needs install
 import pickle
+import json
 import matplotlib.pyplot as plt #needs install
 import networkx as nx #needs install
 from tabulate import tabulate 
@@ -117,13 +118,24 @@ def option1(option):  # filmography for a person
     #notImplementedYet(option)  # driver, eventually replaced by feature
   
 def option2(option):  # a movie's top actors and actresses
+    option = option
     movie_info_headers=["IMDB #","Category ","Title  ","Year","Runtime","Genres   ","Rating","Votes"]  # note: bug in tab api
     tab_print(movie_info.head(10), movie_info_headers)  # "pretty" print result
     
 def option3(option):  # movies where two specific people acted in
-    notImplementedYet(option)  # driver, eventually replaced by feature
+    option = option
+    actor1 = 'Lacey Chabert'
+    actor2 = 'Luke Macfarlane'
+    separation = (sp[actor1][actor2])
+    df = pd.DataFrame(separation)
+    distance = int(len(separation)/2)
+    header_string = (str(distance) + " Degrees Separation - " + str(actor1) + " and " + str(actor2))
+    separation_headers = [header_string]
+    tab_print(df, separation_headers)
+    return None
 
 def option4(option):  # leaderboard
+    option = option
     leader_board_headers=["Hall of Famer", "Hallmark-o-Meter"]
     tab_print(leader_board[:10], leader_board_headers)
     return None
@@ -136,7 +148,7 @@ def option6(option):  # exit the program
 
 def option0(option):  # for debug only, to be replaced later with 'easter egg'
     option = option  # space holder
-    imdb_sp = shortest_path()
+    #imdb_sp = shortest_path()
     #print('imdb_sp is a:',type(imdb_sp))
     #print('\npath to Erin Krakow', imdb_sp['nm4003706'])
     #print('\nconverted path', nm_name[x] for x in imdb_sp['nm4003706'])
@@ -146,11 +158,11 @@ def option0(option):  # for debug only, to be replaced later with 'easter egg'
     #print(chabert_numbers,)
     #print(len(chabert_numbers),)
     #imdb_separation = degree_separation(imdb_graph)
-    print('')
+    #print('')
     return None
 
 def load_data():  # read data from tab-delimited files to data structures
-    global cast_crew_info, movie_info, movie_cast_crew, leader_board, sp
+    global cast_crew_info, movie_info, movie_cast_crew, leader_board, sp 
     global nm_name, name_nm, tt_title, title_tt, nm_tt, tt_nm
     
     movie_info = pd.read_csv('movie_info.csv', sep='\t', index_col=None, \
@@ -173,8 +185,7 @@ def load_data():  # read data from tab-delimited files to data structures
     tt_nm = dict(zip(df.tconst, df.actorList))  # lookup actor IDs by movie ID 
 
     leader_board = pd.read_csv('leader_board.csv', sep='\t', index_col=None)
-    sp = pickle.load(open("shortest_path.pkl", "rb"))
-
+    sp = pickle.load(open("shortest_path.pkl", "rb"))  # shortest path for all, from NX graph
     return None
 
 def tab_print(df, header_name):  # "pretty" print for a dataframe slice
