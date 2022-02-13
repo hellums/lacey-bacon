@@ -119,9 +119,19 @@ def option1(option):  # filmography for a person
   
 def option2(option):  # a movie's top actors and actresses
     option = option
-    movie_info_headers=["IMDB #","Category ","Title  ","Year","Runtime","Genres   ","Rating","Votes"]  # note: bug in tab api
-    tab_print(movie_info.head(10), movie_info_headers)  # "pretty" print result
-    
+    #movie_info_headers=["IMDB #","Category ","Title  ","Year","Runtime","Genres   ","Rating","Votes"]  # note: bug in tab api
+    #tab_print(movie_info.head(10), movie_info_headers)  # "pretty" print result
+    movie='tt13831504'
+    movie_cast_codes = tt_nm[movie]  # create a list of movies from the dictionary lookup
+    movie_cast_names = []
+    for person in movie_cast_codes:
+        movie_cast_names.append(nm_name[person])
+    df = pd.DataFrame(movie_cast_names)
+    total_actors = len(movie_cast_names)
+    print(tt_title[movie], 'had', total_actors, 'main actors and actresses in it:')
+    #cast_headers = ""
+    tab_print(df, '')
+
 def option3(option):  # movies where two specific people acted in
     option = option
     actor1 = 'Lacey Chabert'
