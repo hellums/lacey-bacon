@@ -5,13 +5,15 @@ import requests #needs install
 import gzip
 import csv  # to import TSV files for movie and actor lists
 import pandas as pd #needs install
+import networkx as nx #needs install
 
 actorlist = []
 
 def main():
     #download_uncompress_imdb_files()  #shipit
     load_dataframes()  # load local files into data structures
-    export_dataframes()  # write datasets to local json and csv files    
+    graph_database()  # create a netwokx graph for analysis of centrality
+    export_dataframes()  # write datasets to local json and csv files
     
 def download_uncompress_imdb_files():
     print('\nThis process could take a few minutes, depending on Internet speed...')
@@ -74,7 +76,7 @@ def load_watchlist():  # shipit
     return watchlist_info['tconst'].tolist() # refactor this to load direct to list, don't need a df?
 
 def load_movie_list():  # load movies and ratings, merge and clean resulting dataset
-    global watchlist, movie_info
+    global watchlist, movie_info, tt_title, title_tt
     local_file = 'movie_info.tsv'
     movie_info = pd.read_csv(local_file, sep='\t', usecols=[0, 1, 2, 5, 7, 8], 
         dtype={'startYear': str, 'runtimeMinutes': str})  # converting genre string to a list
@@ -90,28 +92,59 @@ def load_movie_list():  # load movies and ratings, merge and clean resulting dat
     movie_info = movie_info.fillna(value={'averageRating':6.9,'numVotes':699})  # clean up <20 NaN values from csv import
     movie_info['runtimeMinutes'] = movie_info['runtimeMinutes'].astype(int)  # convert runtime to an int for proper processing
     movie_info['numVotes'] = movie_info['numVotes'].astype(int)  # convert column to an int for proper processing
-    
-    #del movie_ratings # don't need it anymore, after outer join merge with movies
+    tt_title = dict(zip(movie_info.tconst, movie_info.primaryTitle))  # lookup title by movie ID
+    title_tt = dict(zip(movie_info.primaryTitle, movie_info.tconst))  # lookup ID by movie title
     return movie_info.values.tolist()
 
 def load_role_list():
-    global actorlist, movie_cast_crew
+    global actorlist, movie_cast_crew, nm_tt, tt_nm
     local_file = 'movie_cast_crew.tsv'
     movie_cast_crew = pd.read_csv(local_file, sep='\t', usecols=[0, 2, 3])
     movie_cast_crew = movie_cast_crew[movie_cast_crew['tconst'].isin(watchlist) == True]  # drop movies not on/by Hallmark
     unwantedValues = ['writer', 'producer', 'director', 'composer', 'cinematographer', 
                     'editor', 'production_designer', 'self']  # should only leave actor, actress categories
     movie_cast_crew = movie_cast_crew[movie_cast_crew['category'].isin(unwantedValues) == False] # keep actor, actress rows
+    df = movie_cast_crew.groupby('nconst')['tconst'].apply(list).reset_index(name="movieList")
+    nm_tt = dict(zip(df.nconst, df.movieList))  # lookup movie IDs by actor ID (coded filmography)
+    df = movie_cast_crew.groupby('tconst')['nconst'].apply(list).reset_index(name="actorList")
+    tt_nm = dict(zip(df.tconst, df.actorList))  # lookup actor IDs by movie ID (coded cast list)
     actorlist = list(set(movie_cast_crew['nconst'].tolist()))
     movielist = movie_cast_crew['tconst'].tolist()
     return list(set(movielist))
 
 def load_actor_list():
-    global cast_crew_info, actorlist
+    global cast_crew_info, actorlist, nm_name, name_nm
     local_file = 'cast_crew_info.tsv'
     cast_crew_info = pd.read_csv(local_file, sep='\t', usecols=[0, 1, 2, 3]) # refactor to pare based on actor list
     cast_crew_info = cast_crew_info[cast_crew_info['nconst'].isin(actorlist) == True]  # drop people not in Hallmark movies
+    nm_name = dict(zip(cast_crew_info.nconst, cast_crew_info.primaryName))  # lookup name by cast ID
+    name_nm = dict(zip(cast_crew_info.primaryName, cast_crew_info.nconst))  # lookup ID by cast name
     return cast_crew_info.values.tolist()
+
+def graph_database():
+    global G, leader_board, imdb_separation
+    G = nx.Graph()
+    edge_attribute_dict = {}  # store weight of movie edges between costaring actors
+
+    for name_ID, titles in nm_tt.items():
+        G.add_node(name_ID)  # create a node for each movie title in the database
+        for title in titles:  # for every one of those movies...
+            for name_ID2, titles2 in nm_tt.items():  # and for each costar...
+                if (title in titles2) and (titles2 != titles):  # if they aren't already matched
+                    G.add_edge(name_ID, name_ID2)  # add an edge
+                    name_ID_tuple = tuple(sorted((name_ID, name_ID2)))
+                    if name_ID_tuple not in edge_attribute_dict:  # if they weren't already tagged as costars 
+                        edge_attribute_dict[name_ID_tuple] = 1  # this is the first movie they were both in
+                    else:
+                        edge_attribute_dict[name_ID_tuple] += 1  # increase the weight of their connection
+
+    for k,v in edge_attribute_dict.items():  # load and format the costar weights
+        edge_attribute_dict[k] = {'weight':v}
+    nx.set_edge_attributes(G, edge_attribute_dict)  # add the weighting factor to the graph edges
+    between_ity = nx.betweenness_centrality(G)  # calculate the candidates for "center of the Hallmark universe"
+    imdb_separation = [[nm_name[x], between_ity[x]] for x in sorted(between_ity, key=between_ity.get, reverse=True)]
+    leader_board = pd.DataFrame(imdb_separation, columns=('Hall of Famer', 'Hallmark-o-Meter'))
+    return None
 
 def export_dataframes():
     movie_info.to_json('./movie_info.json', orient='table', index=False)
@@ -120,7 +153,22 @@ def export_dataframes():
     movie_cast_crew.to_csv('./movie_cast_crew.csv', sep='\t', index=False)
     cast_crew_info.to_json('./cast_crew_info.json', orient='table', index=False)
     cast_crew_info.to_csv('./cast_crew_info.csv', sep='\t', index=False)
+    leader_board.to_json('./leader_board.json', orient='table', index=False)
+    leader_board.to_csv('./leader_board.csv', sep='\t', index=False)
 
 # Allow file to be used as function or program
 if __name__=='__main__':
     main()
+
+""" stash
+def degree_separation():  # calculate all three for now
+    global G
+    #between_ity = nx.betweenness_centrality(G)
+    #result_b = [(nm_name[x], between_ity[x]) for x in sorted(between_ity, key=between_ity.get, reverse=True)]
+    imdb_separation = [[nm_name[x], int(between_ity[x]*1000+43)] for x in sorted(between_ity, key=between_ity.get, reverse=True)]
+    df = pd.DataFrame(imdb_separation, columns=('Hall of Famer', 'Hallmark-o-Meter'))
+    #degree_ity = nx.degree(G)
+    #result_d = degree_ity
+    #result_d = [(nm_name[x], degree_ity[x]) for x in sorted(degree_ity, key=degree_ity.get, reverse=True)]
+    return None
+"""
