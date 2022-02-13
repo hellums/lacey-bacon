@@ -191,23 +191,22 @@ def graph_all_as_nodes():  # useful for text-based presentation of actor degrees
         #return my_sp
 
 def export_dataframes():
-    movie_info.to_json('./movie_info.json', orient='table', index=False)
-    movie_info.to_csv('./movie_info.csv', sep='\t', index=False)
-    movie_cast_crew.to_json('./movie_cast_crew.json', orient='table', index=False)
-    movie_cast_crew.to_csv('./movie_cast_crew.csv', sep='\t', index=False)
-    cast_crew_info.to_json('./cast_crew_info.json', orient='table', index=False)
-    cast_crew_info.to_csv('./cast_crew_info.csv', sep='\t', index=False)
-    leader_board.to_json('./leader_board.json', orient='table', index=False)
-    leader_board.to_csv('./leader_board.csv', sep='\t', index=False)
-    with open('shortest_path.json', 'w') as convert_file:
+    #movie_info.to_json('./movie_info.json', orient='table', index=False)
+    #movie_info.to_csv('./movie_info.csv', sep='\t', index=False)
+    #movie_cast_crew.to_json('./movie_cast_crew.json', orient='table', index=False)
+    #movie_cast_crew.to_csv('./movie_cast_crew.csv', sep='\t', index=False)
+    #cast_crew_info.to_json('./cast_crew_info.json', orient='table', index=False)
+    #cast_crew_info.to_csv('./cast_crew_info.csv', sep='\t', index=False)
+    #leader_board.to_json('./leader_board.json', orient='table', index=False)
+    #leader_board.to_csv('./leader_board.csv', sep='\t', index=False)
+    with open('./shortest_path.json', 'w') as convert_file:
       convert_file.write(json.dumps(sp1))
-    
+    pickle.dump( open("./shortest_path.pkl", "wb"), sp1 )
     #with open('./shortest_path.json', 'wb') as fp:
      #   pickle.dump(sp, fp)
     #sp_file = open("shortest_path.pkl","wb")
     #pickle.dump(sp1,sp_file)
     #sp_file.close()
-    #pickle.dump( open("./shortest_path.pkl", "wb") )
 
 # Allow file to be used as function or program
 if __name__=='__main__':
