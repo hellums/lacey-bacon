@@ -14,19 +14,15 @@ This repo and project will have several purposes:
 Is Lacey Chabert indeed the "Center of the (Hallmark) Universe," as Kevin Bacon reputably is to Hollywood? Given the time and resource limitations, this project is not meant to be an all-inclusive or full programming approach to the _"6 Degrees of Kevin Bacon"_ topic itself (using BFS or Breadth-First Search algorithms, for example). It merely provides a working environment to support the programming and data science portions of the course, using a subset of movies and actors specific to Hallmark original movies, romantic comedies, mysteries, and dramas.
 
 # SPECIAL INSTRUCTIONS
-TO RUN (ON MAC):
+TO RUN:
 
-python3 romcom_prep.py (downloads and cleans data)
-python3 romcom.py
+python3 romcom.py (Mac)
+py3 romcom.py (PC, or the command you normally use to launch the python 3 interpreter)
 
-TO UNIT TEST (ON MAC):
+TO PREP:
+This program will run standalone as described above. However, you may need to refresh the data based on changes to the underlying custom watchlist, or updates to source files on IMDB. The prep module below will take a few minutes to run, as it has to download, uncompress, clean, and reshape the tsv files to tab-delimited csv files used by the main program. Once it is complete, you can get rid of the original tgz files (and even the tsv files), which occupy several GB of space. Normally there should be no need to run prep.
 
-python3 -m unittest test_romcom -v
-(or python3 -m unittest discover -v)
-
-ON WINDOWS:
-
-use whichever command launches python 3 (for example, py3 romcom.py, py3 -m unittest test_romcom)
+python3 romcom_prep.py (downloads and cleans data, repackages as tab-delimited CSV for import to the main program)
 
 # PACKAGES INVOLVED
 See requirements.txt file in project folder.
@@ -75,3 +71,12 @@ Category 4: Best Practices
 - HTML, Javascript, CSS (high level, "big picture" courses on Pluralsight)
 - African swallow, coconuts (sling-loaded), twine
 - "Balanced" scale, witch, duck, very small rocks (floating type)
+
+TO UNIT TEST (ON MAC): (this section is out of date and will need to be refactored, as it was based on original class/OOP design.
+
+#python3 -m unittest test_romcom -v
+#(or python3 -m unittest discover -v)
+
+ON WINDOWS:
+
+#use whichever command launches python 3 (for example, py3 romcom.py, py3 -m unittest test_romcom)
