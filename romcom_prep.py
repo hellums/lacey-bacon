@@ -79,7 +79,8 @@ def load_movie_list():  # load movies and ratings, merge and clean resulting dat
     global watchlist, movie_info, tt_title, title_tt
     local_file = 'movie_info.tsv'
     movie_info = pd.read_csv(local_file, sep='\t', usecols=[0, 1, 2, 5, 7, 8], 
-        dtype={'startYear': str, 'runtimeMinutes': str})  # converting genre string to a list
+                        dtype={'startYear': str, 'runtimeMinutes': str}, \
+                        converters={'movieGenres': lambda x: re.split(',+', x)})  # convert genres to a list
     movie_info = movie_info[movie_info['tconst'].isin(watchlist) == True]  # drop movies not on/by Hallmark    
     movie_info['runtimeMinutes'] = movie_info['runtimeMinutes'].replace(to_replace=r"\N", value='80')  # fix imdb format error
     local_file = 'movie_ratings.tsv'  # only need this temporarily to add ratings and voters to movie_info df
