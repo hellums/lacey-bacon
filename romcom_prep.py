@@ -142,7 +142,8 @@ def graph_database():
         edge_attribute_dict[k] = {'weight':v}
     nx.set_edge_attributes(G, edge_attribute_dict)  # add the weighting factor to the graph edges
     between_ity = nx.betweenness_centrality(G)  # calculate the candidates for "center of the Hallmark universe"
-    imdb_separation = [[nm_name[x], between_ity[x]] for x in sorted(between_ity, key=between_ity.get, reverse=True)]
+    imdb_separation = [[nm_name[x], format(between_ity[x]*1000+40, ".2f")] for x in sorted(between_ity,
+                     key=between_ity.get, reverse=True)]  # normalized this as an "out of 100" model, can change
     leader_board = pd.DataFrame(imdb_separation, columns=('Hall of Famer', 'Hallmark-o-Meter'))
     return None
 
