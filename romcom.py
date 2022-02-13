@@ -1,4 +1,4 @@
-# romcom.py 2/12/22 3:15 PM
+# romcom.py 2/12/22 9:05 PM
 """ Provides a menu screen where user can select various IMDB movie functions"""
 
 # Import os module for system calls to cls and clear (screen)
@@ -111,15 +111,8 @@ def option3(option):
   notImplementedYet(option)  # driver, eventually replaced by validated features
 
 def option4(option):
-  #notImplementedYet(option)  # driver, eventually replaced by validated features
-  #graph_database()
-  #imdb_graph = graph_database()
-  #imdb_separation = degree_separation()
-  #print(leaders for leaders in imdb_separation)
   leader_board_headers=["Hall of Famer", "Hallmark-o-Meter"]
   print(tabulate(leader_board[:20], headers=leader_board_headers, showindex=False, numalign='center'), '\n')
-  #df = pd.DataFrame(imdb_separation, columns=('Hall of Famer', 'Hallmark-o-Meter'))
-  #print(df.head())
   return None
 
 def option5(option):
@@ -130,7 +123,6 @@ def option6(option):
 
 def option0(option):  # for debug only, to be replaced later with 'easter egg'
     option = option  # space holder, unknown what parameter will be passed yet, or how used
-    #print(lacey_bacon['nm0000327']) 
     imdb_sp = shortest_path()
     #print('imdb_sp is a:',type(imdb_sp))
     #print('\npath to Erin Krakow', imdb_sp['nm4003706'])
@@ -168,6 +160,90 @@ def load_data():  # read data from tab-delimited files to data structures for mo
 
     return None
 
+# Allow file to be used as function or program
+if __name__=='__main__':
+    main()
+
+# everything below call to main() is stash and scratch working space
+
+def shortest_path(): # add this to menu item that needs it, strongly consider using early Graph w/movie nodes
+    global G
+    #print('\n\n\n\n\n\n\n\n\n', G['nm0000327'])
+    print('\ncurrent: ', G['nm0000327']['nm0018271'])
+    my_sp = dict(nx.all_pairs_shortest_path(G))
+    my_list = list(my_sp)
+    #print(p in my_list)
+    #print(my_sp['nm0000327']['nm0000327'])
+    #for pairs in my_sp:
+    #  print(pairs)
+    #print(my_sp['nm1674903'])
+    #print(type(my_sp))
+    #chabert = my_sp['nm0000327']['nm1674903']
+    #print(type(chabert))
+    #print('\nHello World \n')
+    #print(chabert)
+    return my_sp
+
+def stash():  # some code to be used in different menu options above
+    movie_info_headers=["IMDB #", "Category", "Title", "Year", "Runtime", "Genres", "Rating", "Votes"]
+    cast_crew_info_headers=["IMDB #", "Name", "Yr Birth", "Yr Death"]
+    movie_cast_crew_headers=["Movie IMDB #", "Actor IMDB #", "Role"]
+    print(tabulate(movie_info[5:10], headers=movie_info_headers, showindex=False, numalign='center'), '\n')
+    print(tabulate(movie_cast_crew[5:10], headers=movie_cast_crew_headers, showindex=False, stralign='center'), '\n')
+    print(tabulate(cast_crew_info[5:10], headers=cast_crew_info_headers, showindex=False, numalign='center'), '\n')
+    #assert len(watchlist) > 1100
+    #assert 'tt15943556' in watchlist
+    #actor_list = load_actor_list()
+    #print (actor_list[:5])
+    #role_list = load_role_list()
+    #actorlist = cast_crew_info['nconst'].tolist()
+    #actorlist = list(set(actorlist))
+    #return cast_crew_info[cast_crew_info['tconst'].isin(watchlist) == True].values.tolist()  # drop people not in Hallmark movies
+    #movielist = movie_cast_crew['tconst'].tolist()
+    return None
+
+"""  # candidate for mapping separation between actors, early prototype that maps movies as nodes also
+def graph_database(nm_tt):
+    G10 = nx.Graph()  
+    names = {}
+    node_color = []
+    for n, star in enumerate(movie_cast_crew.nconst.unique()):
+        name = nm_Dict[star]
+        names[star] = name
+        G10.add_node(name, {'type':'Star', 'color':'green'})
+        #G1.add_node(name)
+        #node_color.append('cyan')
+    for n, movie in enumerate(movie_cast_crew.tconst.unique()):
+        name = tt_Dict[movie]
+        names[movie] = name
+        G10.add_node(name, {'type': 'Movie', 'color':'blue'})    
+    for row in movie_cast_crew.index:
+        star = movie_cast_crew['nconst'][row]
+        s_name = names[star]
+        movie = movie_cast_crew['tconst'][row]
+        m_name = names[movie]
+        G10.add_edge(s_name, m_name)
+"""
+
+""" stashing early rapid prototyping code for hidden menu item
+def option0(option):
+  total = 0.0
+  count = 0
+  average = 0.0
+  for line in rating_list:
+      total = total + float(line.movieRating)
+      count = count + 1
+  average = total/count
+  print ( "average rating: ", format(average, '.1f') )  
+
+  # some exploration of functional commands
+  print ( '\n'+actor_list[0].Id, actor_list[1].Id, type(actor_list), "\n" )
+  print ( role_list.__sizeof__(), '\n' )
+  print ( dir(Actor) )
+  #next(item for item in movie_list if item["Id"] == "tt10921042", None)
+  #help(print_menu)
+"""
+
 """ # stash, moved this processing to romcom_prep, will just read in leader_board now
 def graph_database():
     global G
@@ -203,179 +279,4 @@ def degree_separation():  # calculate all three for now
     #print([(x, degree_ity[x]) for x in sorted(degree_ity, key=degree_ity.get, reverse=True)[:40]])
     #print(result_b)
     return(result_b)  # but only return most accurate for this dataset    
-"""
-
-def shortest_path(): # add this to menu item that needs it
-    global G
-    #print('\n\n\n\n\n\n\n\n\n', G['nm0000327'])
-    print('\ncurrent: ', G['nm0000327']['nm0018271'])
-    my_sp = dict(nx.all_pairs_shortest_path(G))
-    my_list = list(my_sp)
-    #print(p in my_list)
-    #print(my_sp['nm0000327']['nm0000327'])
-    #for pairs in my_sp:
-    #  print(pairs)
-    #print(my_sp['nm1674903'])
-    #print(type(my_sp))
-    #chabert = my_sp['nm0000327']['nm1674903']
-    #print(type(chabert))
-    #print('\nHello World \n')
-    #print(chabert)
-    return my_sp
-
-def stash():
-    movie_info_headers=["IMDB #", "Category", "Title", "Year", "Runtime", "Genres", "Rating", "Votes"]
-    cast_crew_info_headers=["IMDB #", "Name", "Yr Birth", "Yr Death"]
-    movie_cast_crew_headers=["Movie IMDB #", "Actor IMDB #", "Role"]
-    print(tabulate(movie_info[5:10], headers=movie_info_headers, showindex=False, numalign='center'), '\n')
-    print(tabulate(movie_cast_crew[5:10], headers=movie_cast_crew_headers, showindex=False, stralign='center'), '\n')
-    print(tabulate(cast_crew_info[5:10], headers=cast_crew_info_headers, showindex=False, numalign='center'), '\n')
-    #assert len(watchlist) > 1100
-    #assert 'tt15943556' in watchlist
-    #actor_list = load_actor_list()
-    #print (actor_list[:5])
-    #role_list = load_role_list()
-    #actorlist = cast_crew_info['nconst'].tolist()
-    #actorlist = list(set(actorlist))
-    #return cast_crew_info[cast_crew_info['tconst'].isin(watchlist) == True].values.tolist()  # drop people not in Hallmark movies
-    #movielist = movie_cast_crew['tconst'].tolist()
-    return None
-    
-# Allow file to be used as function or program
-if __name__=='__main__':
-    main()
-
-"""  # discard, early prototype approach, people and movies all as nodes, not as effective
-def graph_database(nm_tt):
-    G10 = nx.Graph()  
-    names = {}
-    node_color = []
-    for n, star in enumerate(movie_cast_crew.nconst.unique()):
-        name = nm_Dict[star]
-        names[star] = name
-        G10.add_node(name, {'type':'Star', 'color':'green'})
-        #G1.add_node(name)
-        #node_color.append('cyan')
-    for n, movie in enumerate(movie_cast_crew.tconst.unique()):
-        name = tt_Dict[movie]
-        names[movie] = name
-        G10.add_node(name, {'type': 'Movie', 'color':'blue'})    
-    for row in movie_cast_crew.index:
-        star = movie_cast_crew['nconst'][row]
-        s_name = names[star]
-        movie = movie_cast_crew['tconst'][row]
-        m_name = names[movie]
-        G10.add_edge(s_name, m_name)
-"""
-
-""" stashing early rapid prototyping code for hidden menu item
-def option0(option):
-
-  global contender, movie_list, actor_list, role_list, rating_list
-
-  contenderMoviesIndex = getContenderMoviesIndex()
-  print("\ncontenderMovieIndex", contenderMoviesIndex)
-  contenderMovieIds = getContenderMovieIds(contenderMoviesIndex)
-  print('\ncontenderMovieIds\n', contenderMovieIds) 
-  
-  total = 0.0
-  count = 0
-  average = 0.0
-  for line in rating_list:
-      total = total + float(line.movieRating)
-      count = count + 1
-  average = total/count
-
-  print ( "\nactor records: \t", len(actor_list))
-  print ( "movie records: \t", len(movie_list))
-  print ( "role records: \t", len(role_list))
-  print ( "rating records: ", len(rating_list))
-  print ( "average rating: ", format(average, '.1f') )  
-
-  # some exploration of functional commands
-  print ( '\n'+actor_list[0].Id, actor_list[1].Id, type(actor_list), "\n" )
-  print ( role_list.__sizeof__(), '\n' )
-  print ( dir(Actor) )
-  #next(item for item in movie_list if item["Id"] == "tt10921042", None)
-  #help(print_menu)
-"""
-
-""" stashing functions related to early prototyping with classes
-def getContenderMovieIds(contenderMoviesIndex):
-  global role_list
-  contenderMovieIds = []
-  for item in contenderMoviesIndex:
-    contenderMovieIds.append(role_list[item].movieId)
-  return(contenderMovieIds)
-
-def getContenderMoviesIndex():
-  global contender
-  contenderMoviesIndex = [index for index, item in enumerate(role_list) if item.actorId == contender]
-  return(contenderMoviesIndex)
-
-def load_movies(movie_list):  
-  with open('src/data/title-basics-imdb.tsv', 'r', encoding='utf8') as f:
-    data = csv.reader(f, delimiter='\t') #read tsv text file with csv
-    for row in data:
-      new_movie = Movie(row[0], row[1], row[2], row[3])
-      movie_list.append(new_movie) #add the data from the text file to the list
-  return(movie_list)
-
-def load_ratings(rating_list):  
-  with open('src/data/title-ratings-imdb.tsv', 'r', encoding='utf8') as f:
-    data = csv.reader(f, delimiter='\t') #read tsv text file with csv
-    for row in data:
-      new_rating = Rating(row[0], row[1], row[2])
-      rating_list.append(new_rating) #add the data from the text file to the list
-    return(rating_list)
-
-def load_actors(actor_list):  
-  with open('src/data/name-basics-imdb.tsv', 'r', encoding='utf8') as f:
-    data = csv.reader(f, delimiter='\t') #read tsv text file with csv
-    for row in data:
-      new_actor = Actor(row[0], row[1], row[2], row[3])
-      actor_list.append(new_actor) #add the data from the text file to the list
-    return(actor_list)
-
-def load_roles(role_list):  
-  with open('src/data/title-actors-imdb.tsv', 'r', encoding='utf8') as f:
-    data = csv.reader(f, delimiter='\t')  # read tsv text file with csv
-    for row in data:
-      new_role = Role(row[0], row[1], row[2])
-      role_list.append(new_role)  # add the data from the text file to the list
-  return(role_list)
-"""
-
-""" stashing the classes for now, proceeding with py primitives and pandas 
-# Create classes, movie data courtesy of imdb.com (interface download)
-class Movie:  
-  def __init__(self, movieId, movieTitle="", movieRating=None, movieGenres="", movieRuntime=None, movieType="", movieYear=None, movieDirector="", movieActors=""):      
-    self.Id = movieId
-    self.Title = movieTitle
-    self.Rating = movieRating
-    self.Genres = movieGenres 
-    self.Runtime = movieRuntime
-    self.Type = movieType       
-    self.Year = movieYear 
-    self.Director = movieDirector
-    self.Actors = movieActors
-
-class Actor:  # Curated list, details of "Hallmark" leading actor and actress
-  def __init__(self, actorId, actorName="", actorBorn=None, actorDied=None):      
-    self.Id = actorId
-    self.Name = actorName
-    self.Born = actorBorn
-    self.Died = actorDied
-
-class Role:  # Curated list. all leading actors and actresses starring in Hallmark movie list
-  def __init__(self, movieId, actorId, actorRole):      
-    self.movieId = movieId
-    self.actorId = actorId
-    self.actorRole = actorRole
-
-class Rating:  # Curated list, rating details on "Hallmark" movies in list
-  def __init__(self, movieId, movieRating, movieVotes):      
-    self.movieId = movieId
-    self.movieRating = movieRating
-    self.movieVotes = movieVotes
 """

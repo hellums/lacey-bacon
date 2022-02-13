@@ -1,4 +1,4 @@
-# romcom_prep.py 2/12/22 12:21 AM
+# romcom_prep.py 2/12/22 9:06 PM
 """ Downloads imdb-related files and watchlist, uncompresses and cleans/prunes them as necessary"""
 
 import requests #needs install
@@ -160,6 +160,8 @@ def export_dataframes():
 if __name__=='__main__':
     main()
 
+# Everything below call to main() above is stash area and scratch work space
+
 """ stash
 def degree_separation():  # calculate all three for now
     global G
@@ -171,4 +173,84 @@ def degree_separation():  # calculate all three for now
     #result_d = degree_ity
     #result_d = [(nm_name[x], degree_ity[x]) for x in sorted(degree_ity, key=degree_ity.get, reverse=True)]
     return None
+"""
+
+""" stashing functions related to early prototyping with classes
+def getContenderMovieIds(contenderMoviesIndex):
+  global role_list
+  contenderMovieIds = []
+  for item in contenderMoviesIndex:
+    contenderMovieIds.append(role_list[item].movieId)
+  return(contenderMovieIds)
+
+def getContenderMoviesIndex():
+  global contender
+  contenderMoviesIndex = [index for index, item in enumerate(role_list) if item.actorId == contender]
+  return(contenderMoviesIndex)
+
+def load_movies(movie_list):  
+  with open('src/data/title-basics-imdb.tsv', 'r', encoding='utf8') as f:
+    data = csv.reader(f, delimiter='\t') #read tsv text file with csv
+    for row in data:
+      new_movie = Movie(row[0], row[1], row[2], row[3])
+      movie_list.append(new_movie) #add the data from the text file to the list
+  return(movie_list)
+
+def load_ratings(rating_list):  
+  with open('src/data/title-ratings-imdb.tsv', 'r', encoding='utf8') as f:
+    data = csv.reader(f, delimiter='\t') #read tsv text file with csv
+    for row in data:
+      new_rating = Rating(row[0], row[1], row[2])
+      rating_list.append(new_rating) #add the data from the text file to the list
+    return(rating_list)
+
+def load_actors(actor_list):  
+  with open('src/data/name-basics-imdb.tsv', 'r', encoding='utf8') as f:
+    data = csv.reader(f, delimiter='\t') #read tsv text file with csv
+    for row in data:
+      new_actor = Actor(row[0], row[1], row[2], row[3])
+      actor_list.append(new_actor) #add the data from the text file to the list
+    return(actor_list)
+
+def load_roles(role_list):  
+  with open('src/data/title-actors-imdb.tsv', 'r', encoding='utf8') as f:
+    data = csv.reader(f, delimiter='\t')  # read tsv text file with csv
+    for row in data:
+      new_role = Role(row[0], row[1], row[2])
+      role_list.append(new_role)  # add the data from the text file to the list
+  return(role_list)
+"""
+
+""" stashing the classes for now, proceeding with py primitives and pandas 
+# Create classes, movie data courtesy of imdb.com (interface download)
+class Movie:  
+  def __init__(self, movieId, movieTitle="", movieRating=None, movieGenres="", movieRuntime=None, movieType="", movieYear=None, movieDirector="", movieActors=""):      
+    self.Id = movieId
+    self.Title = movieTitle
+    self.Rating = movieRating
+    self.Genres = movieGenres 
+    self.Runtime = movieRuntime
+    self.Type = movieType       
+    self.Year = movieYear 
+    self.Director = movieDirector
+    self.Actors = movieActors
+
+class Actor:  # Curated list, details of "Hallmark" leading actor and actress
+  def __init__(self, actorId, actorName="", actorBorn=None, actorDied=None):      
+    self.Id = actorId
+    self.Name = actorName
+    self.Born = actorBorn
+    self.Died = actorDied
+
+class Role:  # Curated list. all leading actors and actresses starring in Hallmark movie list
+  def __init__(self, movieId, actorId, actorRole):      
+    self.movieId = movieId
+    self.actorId = actorId
+    self.actorRole = actorRole
+
+class Rating:  # Curated list, rating details on "Hallmark" movies in list
+  def __init__(self, movieId, movieRating, movieVotes):      
+    self.movieId = movieId
+    self.movieRating = movieRating
+    self.movieVotes = movieVotes
 """
