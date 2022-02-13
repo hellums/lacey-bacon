@@ -1,4 +1,4 @@
-# romcom.py 2/12/22 11:44 PM
+# romcom.py 2/12/22 11:53 PM
 """ Provides a menu screen where user can select various IMDB movie functions"""
 
 # Import os module for system calls to cls and clear (screen)
@@ -114,7 +114,7 @@ def option3(option):  # movies where two specific people acted in
 
 def option4(option):  # leaderboard
     leader_board_headers=["Hall of Famer", "Hallmark-o-Meter"]
-    print(tabulate(leader_board[:10], headers=leader_board_headers, showindex=False), numalign='center')
+    tab_print(leader_board[:10], leader_board_headers)
     return None
 
 def option5(option):  # about section
