@@ -103,7 +103,17 @@ def print_menu():  # builds a basic menu screen for user to select program featu
 
 def option1(option):  # filmography for a person
     option = option
-    notImplementedYet(option)  # driver, eventually replaced by validated features
+    actor_name = nm_name['nm0000327']
+    filmography_headers = actor_name + ' Movies'
+    actor_movies = nm_tt['nm0000327']
+    actor_titles = []
+    for k, v in enumerate(actor_movies):
+        actor_titles.append(tt_title[v])
+    df = pd.DataFrame(actor_titles)
+    total_titles = len(actor_titles)
+    print('\nLacey Chabert: ', total_titles, 'Hallmark movies')
+    tab_print(df, '')
+    #notImplementedYet(option)  # driver, eventually replaced by validated features
   
 def option2(option):  # a movie's top actors and actresses
     movie_info_headers=["IMDB #","Category ","Title  ","Year","Runtime","Genres   ","Rating","Votes"]  # note: bug in tab api
@@ -165,7 +175,8 @@ def load_data():  # read data from tab-delimited files to data structures for mo
     return None
 
 def tab_print(df, header_name):  # "pretty" print for a dataframe slice
-    print('\n', tabulate(df, headers=header_name, showindex=False, numalign='center', tablefmt="rst"))
+    print(tabulate(df, headers=header_name, showindex=False, numalign='center'))
+    return None
 
 # Allow file to be used as function or program
 if __name__=='__main__':
