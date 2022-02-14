@@ -1,4 +1,4 @@
-# romcom.py 2/12/22 7:16 PM
+# romcom.py 2/12/22 7:36 PM
 """ Provides a menu screen where user can select various IMDB movie functions"""
 
 # Import os module for system calls to cls and clear (screen)
@@ -222,6 +222,7 @@ if __name__=='__main__':
 
 # everything below call to main() is stash and scratch working space
 
+'''
 def shortest_path(): # add portions of this to menu item
     global G
     #print('\n\n\n\n\n\n\n\n\n', G['nm0000327'])
@@ -239,7 +240,9 @@ def shortest_path(): # add portions of this to menu item
     #print('\nHello World \n')
     #print(chabert)
     return my_sp
+'''
 
+'''
 def stash():  # some code to be used in different menu options above
     
     cast_crew_info_headers=["IMDB #", "Name", "Yr Birth", "Yr Death"]
@@ -257,6 +260,7 @@ def stash():  # some code to be used in different menu options above
     #return cast_crew_info[cast_crew_info['tconst'].isin(watchlist) == True].values.tolist()  # drop people not in Hallmark movies
     #movielist = movie_cast_crew['tconst'].tolist()
     return None
+'''
 
 """  # candidate for mapping separation between actors, early prototype that maps movies as nodes also
 def graph_database(nm_tt):
