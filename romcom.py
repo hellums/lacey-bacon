@@ -113,7 +113,7 @@ def option1(option):  # filmography for a person
         actor_titles.append(tt_title[v])
     df = pd.DataFrame(actor_titles)
     total_titles = len(actor_titles)
-    print('\nLacey Chabert: ', total_titles, 'Hallmark movies')
+    print('Lacey Chabert: ', total_titles, 'Hallmark movies')
     tab_print(df, '')
     #notImplementedYet(option)  # driver, eventually replaced by feature
   
@@ -148,7 +148,7 @@ def option4(option):  # leaderboard
     option = option
     leader_board_headers=["Hall of Famer", "Hallmark-o-Meter\u2081"]
     tab_print(leader_board[:10], leader_board_headers)
-    print('\n1. The leaderboard is calculated using graph analysis and centrality.')
+    print('\nNote 1. Calculated using graph analysis and centrality.')
     return None
 
 def option5(option):  # about section
