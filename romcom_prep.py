@@ -1,18 +1,18 @@
-# romcom_prep.py 2/13/22 2:15 PM
+# romcom_prep.py 2/13/22 7:36 PM
 """ Downloads imdb-related files and watchlist, uncompresses and cleans/prunes them as necessary"""
 
+import re
 import requests #needs install
 import gzip
+import re
 import csv  # to import TSV files for movie and actor lists
 import pandas as pd #needs install
 import networkx as nx #needs install
 import pickle
 import json
 
-actorlist = []
-
 def main():
-    #download_uncompress_imdb_files()  #shipit
+    download_uncompress_imdb_files()  #shipit
     load_dataframes()  # load local files into data structures
     graph_database()  # create a netwokx graph for analysis of centrality
     graph_all_as_nodes()
