@@ -17,6 +17,7 @@ Is Lacey Chabert indeed the "Center of the (Hallmark) Universe," as Kevin Bacon 
 TO RUN:
 
 python3 romcom.py (Mac)
+
 py3 romcom.py (PC, or the command you normally use to launch the python 3 interpreter)
 
 TO PREP:
@@ -59,17 +60,17 @@ Category 4: Best Practices
 - Unittest
 - Docker
 - SQLite3 
-- Anaconda
 - Jupyter Notebook
 - Pandas
 - Matplotlib 
 - Networkx (node/vector, centrality)
+- Pluralsight (LMS for bootcamp courses)
+- Anaconda (introductory)
 - Cookiecutter (introductory)
 - IMDB (data source)
-- Pluralsight (LMS for bootcamp courses)
 - HTML, Javascript, CSS (high level, "big picture" courses on Pluralsight)
-- African swallow, coconuts (sling-loaded), twine
-- "Balanced" scale, witch, duck, very small rocks (floating type)
+- 2 African swallows, 1 coconut (sling-loaded), twine
+- "Balanced" scale, 1 witch, 1 duck, very small rocks (floating type)
 
 TO UNIT TEST (ON MAC): (this section is out of date and will need to be refactored, as it was based on original class/OOP design.
 
