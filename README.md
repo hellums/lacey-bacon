@@ -62,7 +62,6 @@ Category 4: Best Practices
 - Anaconda
 - Jupyter Notebook
 - Pandas
-- Numpy
 - Matplotlib 
 - Networkx (node/vector, centrality)
 - Cookiecutter (introductory)
