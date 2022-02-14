@@ -145,7 +145,7 @@ def option5(option):  # about section
     option = option
     about_header = 'SIX DEGREES OF LACEY CHABERT\n' + '--------------------------------------------------------------------------------------'
     about = ['This initiative includes a GitHub repository, which includes more information',
-            'as well as a Wiki page and KanBan project schedule.',
+            'as well as a Wiki page and Kanban project schedule.',
             '\nLacey Chabert is widely regarded as the "queen" of Hallmark movies, having', 
             'starred in over 30 Hallmark original romantic comedies, dramas, and mysteries.', 
             'Six Degrees of Kevin Bacon is a meme that cast him as "center of the universe"',
