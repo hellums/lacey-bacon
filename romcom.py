@@ -1,4 +1,4 @@
-# romcom.py 2/12/22 2:57 PM
+# romcom.py 2/12/22 7:16 PM
 """ Provides a menu screen where user can select various IMDB movie functions"""
 
 # Import os module for system calls to cls and clear (screen)
@@ -152,30 +152,43 @@ def option4(option):  # leaderboard
     return None
 
 def option5(option):  # about section
-    notImplementedYet(option)  # driver, eventually replaced by feature
+    option = option
+    about_header = 'SIX DEGREES OF LACEY CHABERT\n' + '--------------------------------------------------------------------------------------'
+    about = ['This initiative includes a GitHub repository, which includes more information',
+            'as well as a Wiki page and KanBan project schedule.',
+            '\nLacey Chabert is widely regarded as the "queen" of Hallmark movies, having', 
+            'starred in over 30 Hallmark original romantic comedies, dramas, and mysteries.', 
+            'The Six Degrees of Kevin Bacon is a meme that casts him as the "center of the universe"',
+            'in Hollywood. Based on how many movies he\'s starred and costarred in with top',
+            'actors and actresses in Hollywood, analysts joked that nobody in Hollywood was',
+            'more than six degrees of separation from Kevin. And they backed it up with',
+            'research and analyis. Other studies have proven several people are more likely',
+            'candidates as the center of the Hollywood metaverse.',
+            '\nThis program performs similar analysis on Lacey Chabert within the world of',
+            'Hallmark movies. This initiative is associated with a Code Louisville bootcamp',
+            'on Python programming and data analysis. It uses a public dataset provided by',
+            'IMDB, and provides a command-line program that provides the capability to query',
+            'the database to learn more about an actor or actress or the movies they\'ve',
+            'costarred in. Any external analysis from Jupyter Notebook will also be displayed.']
+    print(about_header)
+    for lines in about:
+        print(lines)
+    return None
 
 def option6(option):  # exit the program
+    option = option
     notImplementedYet(option)  # driver, eventually replaced by feature
 
 def option0(option):  # for debug only, to be replaced later with 'easter egg'
     option = option  # space holder
-    #imdb_sp = shortest_path()
-    #print('imdb_sp is a:',type(imdb_sp))
-    #print('\npath to Erin Krakow', imdb_sp['nm4003706'])
-    #print('\nconverted path', nm_name[x] for x in imdb_sp['nm4003706'])
-    #print(tabulate(imdb_sp))
-    #print([imdb_sp['Lacey Chabert']['Luke Macfarlane']])
-    #chabert_numbers = imdb_sp['Lacey Chabert']
-    #print(chabert_numbers,)
-    #print(len(chabert_numbers),)
-    #imdb_separation = degree_separation(imdb_graph)
-    #print('')
+    notImplementedYet()
     return None
 
 def load_data():  # read data from tab-delimited files to data structures
     global cast_crew_info, movie_info, movie_cast_crew, leader_board, sp 
     global nm_name, name_nm, tt_title, title_tt, nm_tt, tt_nm
     
+    print('Loading data, please wait (15-20 seconds)...')
     movie_info = pd.read_csv('movie_info.csv', sep='\t', index_col=None, \
                   dtype={'startYear': str, 'runtimeMinutes': str}, \
                   converters={'movieGenres': lambda x: re.split(',+', x)})  
@@ -196,7 +209,7 @@ def load_data():  # read data from tab-delimited files to data structures
     tt_nm = dict(zip(df.tconst, df.actorList))  # lookup actor IDs by movie ID 
 
     leader_board = pd.read_csv('leader_board.csv', sep='\t', index_col=None)
-    sp = pickle.load(open("shortest_path.pkl", "rb"))  # shortest path for all, from NX graph
+    sp = pickle.load(open("shortest_path.pkl", "rb"))  # shortest path data, pickle 1/4 size of json
     return None
 
 def tab_print(df, header_name):  # "pretty" print for a dataframe slice
