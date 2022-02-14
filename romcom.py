@@ -13,16 +13,6 @@ import matplotlib.pyplot as plt #needs install
 import networkx as nx #needs install
 from tabulate import tabulate 
 
-# Define global variables
-contender = 'nm0000327'  # Lacy Chabert ID for testing, probably won't keep
-#movie_list, actor_list, role_list, rating_list = [], [], [], [] 
-nm_name, name_nm = {}, {} # actor ID and name lookup (1:1)
-tt_title, title_tt = {}, {} # movie ID and name lookup (1:1)
-tt_nm, nm_tt = {}, {}  # lookups for movie cast (1:M) and filmography (1:M)
-cast_crew_info, movie_info = pd.DataFrame(), pd.DataFrame()
-df, movie_cast_crew = pd.DataFrame(), pd.DataFrame()
-imdb_sp = {}
-
 # Define main function to print menu and get user choice
 def main():
     """ Command-line menu of functions Hallmark original movies """
@@ -220,8 +210,18 @@ def tab_print(df, header_name):  # "pretty" print for a dataframe slice
 if __name__=='__main__':
     main()
 
-# everything below call to main() is stash and scratch working space
+# everything below the call to main() is stash and scratch working space
 
+'''
+# Define global variables
+#contender = 'nm0000327'  # Lacy Chabert ID for testing, probably won't keep
+#movie_list, actor_list, role_list, rating_list = [], [], [], [] 
+#nm_name, name_nm = {}, {} # actor ID and name lookup (1:1)
+#tt_title, title_tt = {}, {} # movie ID and name lookup (1:1)
+#tt_nm, nm_tt = {}, {}  # lookups for movie cast (1:M) and filmography (1:M)
+#cast_crew_info, movie_info = pd.DataFrame(), pd.DataFrame()
+#df, movie_cast_crew = pd.DataFrame(), pd.DataFrame()
+#imdb_sp = {}'''
 '''
 def shortest_path(): # add portions of this to menu item
     global G
