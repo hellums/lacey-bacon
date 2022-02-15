@@ -143,7 +143,7 @@ def option4(option):  # leaderboard
 
 def option5(option):  # about section
     option = option
-    about_header = 'SIX DEGREES OF LACEY CHABERT\n' + '--------------------------------------------------------------------------------------'
+    about_header = 'SIX DEGREES OF LACEY CHABERT\n' + '--------------------------------------------------------------------------------'
     about = ['This initiative includes a GitHub repository, which includes more information',
             'as well as a Wiki page and Kanban project schedule.',
             '\nLacey Chabert is widely regarded as the "queen" of Hallmark movies, having', 
