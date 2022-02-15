@@ -1,4 +1,4 @@
-# romcom_prep.py 2/13/22 7:36 PM
+# romcom_prep.py 2/15/22 12:29 PM
 """ Downloads imdb-related files and watchlist, uncompresses and cleans/prunes them as necessary"""
 
 import re
@@ -14,11 +14,11 @@ import sqlite3  # to export records to flatfile database
 from pathlib import Path
 
 def main():
-    #download_uncompress_imdb_files()  #shipit
+    download_uncompress_imdb_files()  #shipit
     load_dataframes()  # load local files into data structures
     graph_database()  # create a netwokx graph for analysis of centrality
-    #graph_all_as_nodes()
-    #export_dataframes()  # write datasets to local json and csv files
+    graph_all_as_nodes()
+    export_dataframes()  # write datasets to local json and csv files
     export_sqlite()
     
 def download_uncompress_imdb_files():
@@ -215,11 +215,8 @@ def export_sqlite():
     print('Exporting database records...')
     con=sqlite3.connect('romcom.db')
     movie_info.to_sql('movie_info', con, if_exists = 'append', index = False)
-    #con=sqlite3.connect('romcom.db')
     movie_cast_crew.to_sql('movie_cast_crew', con, if_exists = 'append', index = False)
-    #con=sqlite3.connect('romcom.db')
     cast_crew_info.to_sql('cast_crew_info', con, if_exists = 'append', index = False)
-    #con=sqlite3.connect('romcom.db')
     leader_board.to_sql('leader_board', con, if_exists = 'append', index = False)
 
 # Allow file to be used as function or program
