@@ -1,4 +1,4 @@
-# romcom_prep.py 2/15/22 12:29 PM
+# romcom_prep.py 2/15/22 12:38 PM
 """ Downloads imdb-related files and watchlist, uncompresses and cleans/prunes them as necessary"""
 
 import re
@@ -162,7 +162,7 @@ def graph_database():
     imdb_separation = [[nm_name[x], format(between_ity[x]*1000+40, ".2f")] for x in sorted(between_ity,
                      key=between_ity.get, reverse=True)]  # normalized this as an "out of 100" model, can change
 
-    leader_board = pd.DataFrame(imdb_separation, columns=('Hall of Famer', 'Hallmark-o-Meter'))
+    leader_board = pd.DataFrame(imdb_separation, columns=('Hall of Fame', 'Fame-O-Meter'))
     return None
 
 def graph_all_as_nodes():  # useful for text-based presentation of actor degrees of separation
@@ -184,11 +184,11 @@ def graph_all_as_nodes():  # useful for text-based presentation of actor degrees
         movie = movie_cast_crew['tconst'][row]
         m_name = names[movie]
         G1.add_edge(s_name, m_name)
-    sp = nx.all_pairs_shortest_path(G1)  # store the sp dictionary for use in main module
-    sp1 = dict(sp)
+    sp = nx.all_pairs_shortest_path(G1)  # create list of shortest paths
+    sp1 = dict(sp)  # convert to dictionary for export and import
     return None
 
-def export_dataframes():
+def export_dataframes():  # save all four tables in json and csv format
     print('Exporting movies...')
     movie_info.to_json('./movie_info.json', orient='table', index=False)
     movie_info.to_csv('./movie_info.csv', sep='\t', index=False)
@@ -205,13 +205,13 @@ def export_dataframes():
     leader_board.to_json('./leader_board.json', orient='table', index=False)
     leader_board.to_csv('./leader_board.csv', sep='\t', index=False)
 
-    print('Exporting shortest path graph...')
+    print('Exporting shortest path graph...')  # export shortest path in multiple formats for import in main
     with open('./shortest_path.json', 'w') as fp:
         fp.write(json.dumps(sp1))
     with open('./shortest_path.pkl', 'wb') as fp:
         pickle.dump(sp1, fp)
 
-def export_sqlite():
+def export_sqlite():  # add all four main dataframes to database as tables
     print('Exporting database records...')
     con=sqlite3.connect('romcom.db')
     movie_info.to_sql('movie_info', con, if_exists = 'append', index = False)
