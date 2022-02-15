@@ -97,17 +97,31 @@ tt5329524       6.5     2108
 tt5340362       6.5     2139
 tt5458812       6.3     2072
 
-Classes
-Actor.self
-Role.self
-Movie.self
-Rating.self
-
-Lists
-actor_list[]
-role_list[]
-movie_list[]
-rating_list[]
+Sample transformation results. Only csv and pkl files needed in main module.
+user% ls -al *.tsv
+-rw-r--r--  1 user   group   683095456 Feb 11 21:05 cast_crew_info.tsv
+-rw-r--r--  1 user   group  2150384992 Feb 11 21:06 movie_cast_crew.tsv
+-rw-r--r--  1 user   group   281627529 Feb 11 21:06 movie_crew.tsv
+-rw-r--r--  1 user   group   742648335 Feb 11 21:04 movie_info.tsv
+-rw-r--r--  1 user   group    20904840 Feb 11 21:04 movie_ratings.tsv
+user% ls -al *.csv
+-rw-r--r--  1 user   group   78541 Feb 15 10:53 cast_crew_info.csv
+-rw-r--r--  1 user   group   50482 Feb 15 10:53 leader_board.csv
+-rw-r--r--  1 user   group  129067 Feb 15 10:53 movie_cast_crew.csv
+-rw-r--r--  1 user   group   80805 Feb 15 10:53 movie_info.csv
+user% ls -al *.db 
+-rw-r--r--  1 user   group  196608 Feb 15 10:53 cast_crew_info.db
+-rw-r--r--  1 user   group  139264 Feb 15 10:53 leader_board.db
+-rw-r--r--  1 user   group   24576 Jan 24 14:37 movie.db
+-rw-r--r--  1 user   group  327680 Feb 15 10:53 movie_cast_crew.db
+-rw-r--r--  1 user   group  192512 Feb 15 10:53 movie_info.db
+user% ls -al *.json
+-rw-r--r--  1 user   group  222426 Feb 15 10:53 cast_crew_info.json
+-rw-r--r--  1 user   group  151664 Feb 15 10:53 leader_board.json
+-rw-r--r--  1 user   group  303179 Feb 15 10:53 movie_cast_crew.json
+-rw-r--r--@ 1 user   group  210036 Feb 15 10:53 movie_info.json
+user% ls -al *.pkl 
+-rw-r--r--  1 user   group  548021966 Feb 15 10:54 shortest_path.pkl
 
 Data Location
 
@@ -162,9 +176,9 @@ actor(s)
   knownForTitles []
 
 DICTIONARIES
-  nconst-primaryName
-  primaryName-nconst
-  nconst-knownForTitles
+  nm_name
+  name_nm
+  nm_tt
 
 movie(s)
   tconst (titleID)
@@ -177,10 +191,22 @@ movie(s)
   numVotes
 
 DICTIONARIES:
-  tconst-primaryTitle
-  primaryTitle-tconst
+  tt_title
+  title_tt
 
 principal(s)
   tconst
   nconst []
   category
+
+Classes (not used in this initiative)
+Actor.self
+Role.self
+Movie.self
+Rating.self
+
+Lists
+actor_list[]
+role_list[]
+movie_list[]
+rating_list[]
