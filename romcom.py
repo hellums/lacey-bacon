@@ -1,4 +1,4 @@
-# romcom.py 2/13/22 1:51 PM
+# romcom.py 2/15/22 2:25 PM
 """ Provides a menu screen where user can select various IMDB movie functions"""
 
 # Import os module for system calls to cls and clear (screen)
@@ -357,3 +357,54 @@ def degree_separation():  # calculate all three for now
     #print(result_b)
     return(result_b)  # but only return most accurate for this dataset    
 """
+"""
+    L1 = list(tt_Dict.values())
+    for i in L1:
+        print (i)
+    print(df1['primaryName'].where(df1['nconst'] == lacey).dropna())
+    df1.loc[df1['nconst'] == lacey]
+    df1.loc[df1['nconst'].isin(['nm0000327', 'nm0000001'])]
+    df1.loc[(df1['birthYear'] == '1982') & (df1['deathYear'] > '2015')]
+    max_c = max(centrality.values())
+
+    get_ipython().magic('matplotlib inline')
+    df.averageRating.plot(kind='hist',
+                        title='Historgram of Ratings',
+                        color='c',
+                        bins=20);
+    df.titleType.value_counts().plot(kind='bar',
+                                    rot=0,
+                                    title='Bar Graph of Titles',
+                                    color='m');
+    df.averageRating.plot(kind='box', title='Boxplot, duh!', color='b');
+    df.runtimeMinutes.plot(kind='box', title='Boxplot, duh!', color='b');
+    df.numVotes.plot(kind='box', title='Boxplot, duh!', color='b');
+    null_counts = df.isnull().sum()
+    null_counts[null_counts > 0].sort_values(ascending=False)
+    pd.crosstab(df.startYear, df.titleType)
+    df.groupby('titleType').averageRating.mean()
+    df.groupby('titleType').runtimeMinutes.median()
+    df.groupby(['titleType'])['runtimeMinutes'].median() # same as above
+    df.groupby(['titleType']).agg({ 'numVotes': 'mean', 'runtimeMinutes': 'median' })
+    df.to_json('./df.json', orient='records')
+    df.to_csv('./df.csv', sep='\t', orient='records')
+    'nm0000327' in actorlist
+    tt_nm['tt13831504']
+    nm_tt['nm0000327']
+    nm_name['nm4003706']
+    tt_title['tt13831504']
+    between_ity["Autumn Reeser"]
+    between_ity["Autumn Reeser"]
+    degree_ity = nx.degree(G1)
+    degree_ity['Tyler Hynes']
+    G1.edges()
+    nx.is_connected(G1)
+    G1.neighbors('Lacey Chabert')
+    int(nx.shortest_path_length(G1, 'Lacey Chabert', 'Tyler Hynes')/2)
+    nx.shortest_path(G1, 'Lacey Chabert', 'Cindy Busby')
+    lacey1 = nx.single_source_shortest_path(G1, 'Lacey Chabert', cutoff=1)
+    lacey2 = nx.single_source_shortest_path(G1, 'Lacey Chabert', cutoff=2)
+    lacey3 = nx.single_source_shortest_path(G1, 'Lacey Chabert', cutoff=3)
+    path = nx.single_source_shortest_path(G1, 'Lacey Chabert')
+    path['Autumn Reeser']
+    """
