@@ -3,11 +3,12 @@
 import sqlite3
       
 # Create sqlite3 database for Hallmark imdb movie database tables
-conn=sqlite3.connect('movie.db')
+conn=sqlite3.connect('movie_info.db')
 
 # create movie table
 cur=conn.cursor()
-cur.execute('''CREATE TABLE IF NOT EXISTS movie
+""" don't need to create these anymore, done during romcom_prep
+  cur.execute('''CREATE TABLE IF NOT EXISTS movie
   (movieId TEXT PRIMARY KEY,
   title TEXT,
   rating REAL,
@@ -41,13 +42,13 @@ cur.execute('''CREATE TABLE IF NOT EXISTS rating
   votes INT);''')
   
 # Close database connection
-conn.close()
+conn.close()"""
 
 # Validate that all tables were created in the movie database
 try:
   # Method 1 - Query sqlite_master
-  sqliteConnection = sqlite3.connect('movie.db')
-  print('Connected to SQLite movie.db')
+  sqliteConnection = sqlite3.connect('movie_info.db')
+  print('Connected to SQLite movie_info.db')
   sql_query = ('''SELECT name FROM sqlite_master  
 WHERE type='table';''')
   cursor=sqliteConnection.cursor()
@@ -68,12 +69,21 @@ WHERE type='table';''')
   sqliteConnection.close()
 
 except sqlite3.Error as error:
-  print('Filed to execute the above query', error)        
+  print('Failed to execute the above query', error)        
 
 finally:
   if sqliteConnection:
     sqliteConnection.close()
     print('the SQLite3 connection is closed')
+
+sqliteConnection = sqlite3.connect('movie_info.db')
+print('Connected to SQLite movie_info.db')
+sql_query = ('''SELECT * FROM movie_info  
+  WHERE tconst='tt13831504';''')
+cursor=sqliteConnection.cursor()
+cursor.execute(sql_query)
+print(cursor.fetchall())
+sqliteConnection.close()
 
 # Validation output:
   # Connected to SQLite movie.db
