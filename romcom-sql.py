@@ -1,4 +1,4 @@
-# romcom-sql.py
+# romcom-sql.py dbh 2/15/22 12:40 PM
 # Import flat file ORM database module
 import sqlite3
       
@@ -11,7 +11,7 @@ try:
   conn = sqlite3.connect('romcom.db')
   print('Connected to SQLite romcom.db')
   sql_query = ('''SELECT name FROM sqlite_master  
-WHERE type='table';''')
+            WHERE type='table';''')
   cursor=conn.cursor()
   cursor.execute(sql_query)
   print(cursor.fetchall())
