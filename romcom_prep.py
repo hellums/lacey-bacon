@@ -1,4 +1,4 @@
-# romcom_prep.py dbh 2/15/22 12:38 PM
+# romcom_prep.py dbh 2/15/22 1:32 PM
 """ Downloads imdb-related files and watchlist, uncompresses and cleans/prunes them as necessary"""
 
 import re
@@ -66,7 +66,9 @@ def uncompress_file(compressed, uncompressed):  #shipit
 def load_dataframes():
     print('Loading dataframes...')
     global watchlist
-    watchlist = load_watchlist()
+    # Create a dictionary or list, populate it with several values, retrieve at least one value, 
+    # and use it in your program. Code Louisville requirement.
+    watchlist = load_watchlist()  
     assert len(watchlist) > 1100
     assert 'tt15943556' in watchlist
     movie_list = load_movie_list()  # also performs load_rating_list, prior to merge
@@ -94,6 +96,9 @@ def load_movie_list():  # load movies and ratings, merge and clean resulting dat
     movie_info['runtimeMinutes'] = movie_info['runtimeMinutes'].replace(to_replace=r"\N", value='80')  # fix imdb format error
     local_file = 'movie_ratings.tsv'  # only need this temporarily to add ratings and voters to movie_info df
     print('Loading ratings...')
+    # Use pandas, matplotlib, and/or numpy to perform a data analysis project. Ingest 2 or more pieces of data, 
+    # analyze that data in some manner, and display a new result to a graph, chart, or other display. 
+    # Code Louisville requirement (pandas, ingest multiple data sets)
     movie_ratings = pd.read_csv(local_file, sep='\t')
     movie_ratings = movie_ratings[movie_ratings['tconst'].isin(watchlist) == True]
     print('Merging movies and ratings...')
@@ -140,7 +145,9 @@ def graph_database():
     G = nx.Graph()
     print('Graphing movies and cast...')
     edge_attribute_dict = {}  # store weight of movie edges between costaring actors
-
+    # Use pandas, matplotlib, and/or numpy to perform a data analysis project. Ingest 2 or more pieces of data, 
+    # analyze that data in some manner, and display a new result to a graph, chart, or other display. 
+    # Code Louisville requirement (use NX graph, analyze that data, display a new reult to graph/table).
     for name_ID, titles in nm_tt.items():
         G.add_node(name_ID)  # create a node for each movie title in the database
         for title in titles:  # for every one of those movies...
@@ -308,9 +315,12 @@ def load_roles(role_list):
 """
 
 """ stashing the classes for now, proceeding with py primitives and pandas 
-# Create classes, movie data courtesy of imdb.com (interface download)
+
+# Create a class, then create at least one object of that class and populate it with data. 
+# The value of at least one object must be used somewhere in your code. Code Louisville requirement.
 class Movie:  
-  def __init__(self, movieId, movieTitle="", movieRating=None, movieGenres="", movieRuntime=None, movieType="", movieYear=None, movieDirector="", movieActors=""):      
+  def __init__(self, movieId, movieTitle="", movieRating=None, movieGenres="", movieRuntime=None, \
+    movieType="", movieYear=None, movieDirector="", movieActors=""):      
     self.Id = movieId
     self.Title = movieTitle
     self.Rating = movieRating

@@ -1,4 +1,4 @@
-# romcom.py 2/13/22 12:37 PM
+# romcom.py 2/13/22 1:33 PM
 """ Provides a menu screen where user can select various IMDB movie functions"""
 
 # Import os module for system calls to cls and clear (screen)
@@ -9,9 +9,10 @@ import re
 import pandas as pd #needs install
 import pickle
 import json
+import sqlite3
 import matplotlib.pyplot as plt #needs install
 import networkx as nx #needs install
-from tabulate import tabulate 
+from tabulate import tabulate
 
 # Define main function to print menu and get user choice
 def main():
@@ -23,7 +24,9 @@ def main():
     # Load the data structures
     load_data()
 
-    # Loop through main menu until user opts to exit
+    # Implement a “master loop” console application where the user can repeatedly enter commands,
+    # perform actions, including choosing to exit the program. Code Louisville requirement.
+
     while(True):
 
         # Print instructions and menu
@@ -71,12 +74,14 @@ def clrscr():  # clears screen in Mac, Linux, or Windows
     else:
           # Else Operating System is Windows (os.name = nt)
         _ = os.system('cls')
+    return None
 
 def notImplementedYet(option):  # stub for drivers and testing
     separator = '\n******************************************************\n'
     print(separator)
     print("'Option", str(option) + "' selected. Section not implemented yet.")
     print(separator)
+    return None
 
 def print_menu():  # basic menu screen for user to select program feature sets
     menu_options = {  # dictionary of menu options
@@ -90,14 +95,19 @@ def print_menu():  # basic menu screen for user to select program feature sets
     # Loop for main menu until user selects to exit program
     for key in menu_options.keys():
         print (str(key) + '. ', menu_options[key] )
+    return None
 
 # Define functions launched when chosen from main menu by user
 
 def option1(option):  # filmography for a person
     option = option
-    actor_name = nm_name['nm0000327']
+    actor = input()
+    nm = name_nm[actor]
+    # Create and call at least 3 functions or methods, at least one of which must return a value
+    # that is used somewhere else in your code. Code Louisville requirement.
+    actor_name = actor_lookup(nm)
     filmography_headers = actor_name + ' Movies'
-    actor_movies = nm_tt['nm0000327']
+    actor_movies = nm_tt[nm]
     actor_titles = []
     for k, v in enumerate(actor_movies):
         actor_titles.append(tt_title[v])
@@ -105,8 +115,13 @@ def option1(option):  # filmography for a person
     total_titles = len(actor_titles)
     print('Lacey Chabert: ', total_titles, 'Hallmark movies')
     tab_print(df, '')
-    #notImplementedYet(option)  # driver, eventually replaced by feature
-  
+    return None
+
+def actor_lookup(nm):
+    name = nm_name[nm]
+    return name
+
+
 def option2(option):  # a movie's top actors and actresses
     option = option
     #movie_info_headers=["IMDB #","Category ","Title  ","Year","Runtime","Genres   ","Rating","Votes"]  # note: bug in tab api
@@ -121,6 +136,7 @@ def option2(option):  # a movie's top actors and actresses
     print(tt_title[movie], 'had', total_actors, 'main actors and actresses in it:')
     #cast_headers = ""
     tab_print(df, '')
+    return None
 
 def option3(option):  # movies where two specific people acted in
     option = option
@@ -178,6 +194,8 @@ def load_data():  # read data from tab-delimited files to data structures
     global cast_crew_info, movie_info, movie_cast_crew, leader_board, sp 
     global nm_name, name_nm, tt_title, title_tt, nm_tt, tt_nm
     
+    # Read data from an external file, such as text, JSON, CSV, etc, and use that data in your
+    # application. Code Louisville requirement.
     print('Loading data, please wait (15-20 seconds)...')
     movie_info = pd.read_csv('movie_info.csv', sep='\t', index_col=None, \
                   dtype={'startYear': str, 'runtimeMinutes': str}, \

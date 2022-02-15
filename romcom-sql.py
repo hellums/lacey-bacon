@@ -1,4 +1,4 @@
-# romcom-sql.py dbh 2/15/22 12:40 PM
+# romcom-sql.py dbh 2/15/22 1:32 PM
 # Import flat file ORM database module
 import sqlite3
       
@@ -37,6 +37,7 @@ finally:
     conn.close()
     print('the SQLite3 connection is closed')
 
+# Connect to a database and read data using SQL - Code Louisville requirement
 conn = sqlite3.connect('romcom.db')
 print('Connected to SQLite romcom.db')
 sql_query = ('''SELECT * FROM movie_info
