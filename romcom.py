@@ -1,4 +1,4 @@
-# romcom.py 2/13/22 1:33 PM
+# romcom.py 2/13/22 1:51 PM
 """ Provides a menu screen where user can select various IMDB movie functions"""
 
 # Import os module for system calls to cls and clear (screen)
@@ -113,14 +113,13 @@ def option1(option):  # filmography for a person
         actor_titles.append(tt_title[v])
     df = pd.DataFrame(actor_titles)
     total_titles = len(actor_titles)
-    print('Lacey Chabert: ', total_titles, 'Hallmark movies')
+    print(actor_name, ': ', total_titles, 'Hallmark movies')
     tab_print(df, '')
     return None
 
 def actor_lookup(nm):
     name = nm_name[nm]
     return name
-
 
 def option2(option):  # a movie's top actors and actresses
     option = option
