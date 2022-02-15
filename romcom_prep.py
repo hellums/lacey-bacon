@@ -10,9 +10,11 @@ import pandas as pd #needs install
 import networkx as nx #needs install
 import pickle
 import json
+import sqlite3
+from pathlib import Path
 
 def main():
-    download_uncompress_imdb_files()  #shipit
+    #download_uncompress_imdb_files()  #shipit
     load_dataframes()  # load local files into data structures
     graph_database()  # create a netwokx graph for analysis of centrality
     graph_all_as_nodes()
@@ -46,14 +48,14 @@ def download_uncompress_imdb_files():
     return None  # results of download_uncompress_imdb_files
 
 def download_file(remote, local):  #shipit
-    print('\nDownloading', local)
+    print('Downloading', local)
     data = requests.get(remote)
     with open(local, 'wb') as file:
         file.write(data.content)
     return None
 
 def uncompress_file(compressed, uncompressed):  #shipit
-    print('\nUncompressing', uncompressed)
+    print('Uncompressing', uncompressed)
     with gzip.open(compressed, 'rb') as f:
         data = f.read()
     with open(uncompressed, 'wb') as f:
@@ -61,6 +63,7 @@ def uncompress_file(compressed, uncompressed):  #shipit
     return None
 
 def load_dataframes():
+    print('Loading dataframes...')
     global watchlist
     watchlist = load_watchlist()
     assert len(watchlist) > 1100
@@ -73,6 +76,7 @@ def load_dataframes():
     return None
 
 def load_watchlist():  # shipit
+    print('Loading watchlist...')
     local_file = 'watchlist.txt'
     header_field = ['tconst']
     watchlist_info = pd.read_csv(local_file, names=header_field)
@@ -80,6 +84,7 @@ def load_watchlist():  # shipit
 
 def load_movie_list():  # load movies and ratings, merge and clean resulting dataset
     global watchlist, movie_info, tt_title, title_tt
+    print('Loading movies...')
     local_file = 'movie_info.tsv'
     movie_info = pd.read_csv(local_file, sep='\t', usecols=[0, 1, 2, 5, 7, 8], 
                         dtype={'startYear': str, 'runtimeMinutes': str}, \
@@ -87,8 +92,10 @@ def load_movie_list():  # load movies and ratings, merge and clean resulting dat
     movie_info = movie_info[movie_info['tconst'].isin(watchlist) == True]  # drop movies not on/by Hallmark    
     movie_info['runtimeMinutes'] = movie_info['runtimeMinutes'].replace(to_replace=r"\N", value='80')  # fix imdb format error
     local_file = 'movie_ratings.tsv'  # only need this temporarily to add ratings and voters to movie_info df
+    print('Loading ratings...')
     movie_ratings = pd.read_csv(local_file, sep='\t')
     movie_ratings = movie_ratings[movie_ratings['tconst'].isin(watchlist) == True]
+    print('Merging movies and ratings...')
     movie_info = pd.merge(movie_info,
                         movie_ratings[['tconst', 'averageRating', 'numVotes']],
                         on='tconst', how='outer')  # adds the ratings and votes columns to the movie_info df
@@ -102,6 +109,7 @@ def load_movie_list():  # load movies and ratings, merge and clean resulting dat
 
 def load_role_list():
     global actorlist, movie_cast_crew, nm_tt, tt_nm
+    print('Loading cast and crew...')
     local_file = 'movie_cast_crew.tsv'
     movie_cast_crew = pd.read_csv(local_file, sep='\t', usecols=[0, 2, 3])
     movie_cast_crew = movie_cast_crew[movie_cast_crew['tconst'].isin(watchlist) == True]  # drop movies not on/by Hallmark
@@ -118,6 +126,7 @@ def load_role_list():
 
 def load_actor_list():
     global cast_crew_info, actorlist, nm_name, name_nm
+    print('Loading actors and actresses...')
     local_file = 'cast_crew_info.tsv'
     cast_crew_info = pd.read_csv(local_file, sep='\t', usecols=[0, 1, 2, 3]) # refactor to pare based on actor list
     cast_crew_info = cast_crew_info[cast_crew_info['nconst'].isin(actorlist) == True]  # drop people not in Hallmark movies
@@ -128,6 +137,7 @@ def load_actor_list():
 def graph_database():
     global G, sp, leader_board, imdb_separation
     G = nx.Graph()
+    print('Graphing movies and cast...')
     edge_attribute_dict = {}  # store weight of movie edges between costaring actors
 
     for name_ID, titles in nm_tt.items():
@@ -145,6 +155,8 @@ def graph_database():
     for k,v in edge_attribute_dict.items():  # load and format the costar weights
         edge_attribute_dict[k] = {'weight':v}
     nx.set_edge_attributes(G, edge_attribute_dict)  # add the weighting factor to the graph edges
+    
+    print('Creating connectivity graphs...')
     between_ity = nx.betweenness_centrality(G)  # calculate the candidates for "center of the Hallmark universe"
     imdb_separation = [[nm_name[x], format(between_ity[x]*1000+40, ".2f")] for x in sorted(between_ity,
                      key=between_ity.get, reverse=True)]  # normalized this as an "out of 100" model, can change
@@ -153,8 +165,9 @@ def graph_database():
     return None
 
 def graph_all_as_nodes():  # useful for text-based presentation of actor degrees of separation
-    global sp1
+    global sp1, sp
     G1 = nx.Graph()
+    print('Creating degree separation graph...')
     names = {}
     for n, star in enumerate(movie_cast_crew.nconst.unique()):
         name = nm_name[star]
@@ -175,14 +188,31 @@ def graph_all_as_nodes():  # useful for text-based presentation of actor degrees
     return None
 
 def export_dataframes():
+    print('Exporting movies...')
     movie_info.to_json('./movie_info.json', orient='table', index=False)
     movie_info.to_csv('./movie_info.csv', sep='\t', index=False)
+    con=sqlite3.connect('movie_info.db')
+    movie_info.to_sql('movie_info', con, if_exists = 'append', index = False)
+
+    print('Exporting cast...')
     movie_cast_crew.to_json('./movie_cast_crew.json', orient='table', index=False)
     movie_cast_crew.to_csv('./movie_cast_crew.csv', sep='\t', index=False)
+    con=sqlite3.connect('movie_cast_crew.db')
+    movie_cast_crew.to_sql('movie_cast_crew', con, if_exists = 'append', index = False)
+
+    print('Exporting actors and actresses...')
     cast_crew_info.to_json('./cast_crew_info.json', orient='table', index=False)
     cast_crew_info.to_csv('./cast_crew_info.csv', sep='\t', index=False)
+    con=sqlite3.connect('cast_crew_info.db')
+    cast_crew_info.to_sql('cast_crew_info', con, if_exists = 'append', index = False)
+
+    print('Exporting leaderboard...')
     leader_board.to_json('./leader_board.json', orient='table', index=False)
     leader_board.to_csv('./leader_board.csv', sep='\t', index=False)
+    con=sqlite3.connect('leader_board.db')
+    leader_board.to_sql('leader_board', con, if_exists = 'append', index = False)
+
+    print('Exporting shortest path graph...')
     with open('./shortest_path.json', 'w') as fp:
         fp.write(json.dumps(sp1))
     with open('./shortest_path.pkl', 'wb') as fp:
