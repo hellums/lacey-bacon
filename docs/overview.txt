@@ -110,11 +110,7 @@ user% ls -al *.csv
 -rw-r--r--  1 user   group  129067 Feb 15 10:53 movie_cast_crew.csv
 -rw-r--r--  1 user   group   80805 Feb 15 10:53 movie_info.csv
 user% ls -al *.db 
--rw-r--r--  1 user   group  196608 Feb 15 10:53 cast_crew_info.db
--rw-r--r--  1 user   group  139264 Feb 15 10:53 leader_board.db
--rw-r--r--  1 user   group   24576 Jan 24 14:37 movie.db
--rw-r--r--  1 user   group  327680 Feb 15 10:53 movie_cast_crew.db
--rw-r--r--  1 user   group  192512 Feb 15 10:53 movie_info.db
+-rw-r--r--  1 user   group   24576 Jan 24 14:37 romcom.db
 user% ls -al *.json
 -rw-r--r--  1 user   group  222426 Feb 15 10:53 cast_crew_info.json
 -rw-r--r--  1 user   group  151664 Feb 15 10:53 leader_board.json

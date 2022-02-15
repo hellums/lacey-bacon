@@ -10,15 +10,16 @@ import pandas as pd #needs install
 import networkx as nx #needs install
 import pickle
 import json
-import sqlite3
+import sqlite3  # to export records to flatfile database
 from pathlib import Path
 
 def main():
     #download_uncompress_imdb_files()  #shipit
     load_dataframes()  # load local files into data structures
     graph_database()  # create a netwokx graph for analysis of centrality
-    graph_all_as_nodes()
-    export_dataframes()  # write datasets to local json and csv files
+    #graph_all_as_nodes()
+    #export_dataframes()  # write datasets to local json and csv files
+    export_sqlite()
     
 def download_uncompress_imdb_files():
     print('\nThis process could take a few minutes, depending on Internet speed...')
@@ -191,26 +192,18 @@ def export_dataframes():
     print('Exporting movies...')
     movie_info.to_json('./movie_info.json', orient='table', index=False)
     movie_info.to_csv('./movie_info.csv', sep='\t', index=False)
-    con=sqlite3.connect('movie_info.db')
-    movie_info.to_sql('movie_info', con, if_exists = 'append', index = False)
 
     print('Exporting cast...')
     movie_cast_crew.to_json('./movie_cast_crew.json', orient='table', index=False)
     movie_cast_crew.to_csv('./movie_cast_crew.csv', sep='\t', index=False)
-    con=sqlite3.connect('movie_cast_crew.db')
-    movie_cast_crew.to_sql('movie_cast_crew', con, if_exists = 'append', index = False)
-
+    
     print('Exporting actors and actresses...')
     cast_crew_info.to_json('./cast_crew_info.json', orient='table', index=False)
     cast_crew_info.to_csv('./cast_crew_info.csv', sep='\t', index=False)
-    con=sqlite3.connect('cast_crew_info.db')
-    cast_crew_info.to_sql('cast_crew_info', con, if_exists = 'append', index = False)
 
     print('Exporting leaderboard...')
     leader_board.to_json('./leader_board.json', orient='table', index=False)
     leader_board.to_csv('./leader_board.csv', sep='\t', index=False)
-    con=sqlite3.connect('leader_board.db')
-    leader_board.to_sql('leader_board', con, if_exists = 'append', index = False)
 
     print('Exporting shortest path graph...')
     with open('./shortest_path.json', 'w') as fp:
@@ -218,11 +211,45 @@ def export_dataframes():
     with open('./shortest_path.pkl', 'wb') as fp:
         pickle.dump(sp1, fp)
 
+def export_sqlite():
+    print('Exporting database records...')
+    con=sqlite3.connect('romcom.db')
+    movie_info.to_sql('movie_info', con, if_exists = 'append', index = False)
+    #con=sqlite3.connect('romcom.db')
+    movie_cast_crew.to_sql('movie_cast_crew', con, if_exists = 'append', index = False)
+    #con=sqlite3.connect('romcom.db')
+    cast_crew_info.to_sql('cast_crew_info', con, if_exists = 'append', index = False)
+    #con=sqlite3.connect('romcom.db')
+    leader_board.to_sql('leader_board', con, if_exists = 'append', index = False)
+
 # Allow file to be used as function or program
 if __name__=='__main__':
     main()
 
 # Everything below call to main() above is stash area and scratch work space
+
+""" Sample transformation results. Only csv and pkl files needed in main module.
+user% ls -al *.tsv
+-rw-r--r--  1 user   group   683095456 Feb 11 21:05 cast_crew_info.tsv
+-rw-r--r--  1 user   group  2150384992 Feb 11 21:06 movie_cast_crew.tsv
+-rw-r--r--  1 user   group   281627529 Feb 11 21:06 movie_crew.tsv
+-rw-r--r--  1 user   group   742648335 Feb 11 21:04 movie_info.tsv
+-rw-r--r--  1 user   group    20904840 Feb 11 21:04 movie_ratings.tsv
+user% ls -al *.csv
+-rw-r--r--  1 user   group   78541 Feb 15 10:53 cast_crew_info.csv
+-rw-r--r--  1 user   group   50482 Feb 15 10:53 leader_board.csv
+-rw-r--r--  1 user   group  129067 Feb 15 10:53 movie_cast_crew.csv
+-rw-r--r--  1 user   group   80805 Feb 15 10:53 movie_info.csv
+user% ls -al *.db 
+-rw-r--r--  1 user   group   24576 Jan 24 14:37 romcom.db # used romcom-sql.py for educational purposes
+user% ls -al *.json
+-rw-r--r--  1 user   group  222426 Feb 15 10:53 cast_crew_info.json
+-rw-r--r--  1 user   group  151664 Feb 15 10:53 leader_board.json
+-rw-r--r--  1 user   group  303179 Feb 15 10:53 movie_cast_crew.json
+-rw-r--r--@ 1 user   group  210036 Feb 15 10:53 movie_info.json
+user% ls -al *.pkl 
+-rw-r--r--  1 user   group  548021966 Feb 15 10:54 shortest_path.pkl
+"""
 
 """ stash
 def degree_separation():  # calculate all three for now
