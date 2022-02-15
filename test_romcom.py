@@ -1,7 +1,7 @@
 import unittest 
 import romcom
 
-class TestFileInput(unittest.TestCase):
+class TestFileInput(unittest.TestCase):  # no longer used, classes were replaced with functions
     '''Provides set of test cases for unittest to run against romcom app functions and methods'''
     
     def test_movies_loaded(self):
