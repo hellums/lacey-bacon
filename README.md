@@ -50,7 +50,7 @@ Category 3: Data Display
 - [x] Visualize data in a graph, chart, or other visual representation of data.
 
 Category 4: Best Practices
-- [ ] The program should utilize a virtual environment and document library dependencies in a requirements.txt file. (requirements file complete)
+- [x] The program should utilize a virtual environment and document library dependencies in a requirements.txt file.
 - [x] Create 3 or more unit tests for your application.
 
 "Stretch" list:
