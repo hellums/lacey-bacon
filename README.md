@@ -16,31 +16,31 @@ Is Lacey Chabert indeed the "Center of the (Hallmark) Universe," as Kevin Bacon 
 # SPECIAL INSTRUCTIONS (use your own Python 3 interpreter command, if it is different than python3 used here, such as py3 or python)
 
 TO INSTALL PROGRAM AND CREATE A VIRTUAL ENVIRONMENT:
->git clone git@github.com:hellums/lacey-bacon.git
->cd lacey-bacon
->python3 -m venv env
->echo "env/" >> .git/info/exclude (optional command)
+\>git clone git@github.com:hellums/lacey-bacon.git
+\>cd lacey-bacon
+\>python3 -m venv env
+\>echo "env/" >> .git/info/exclude (optional command)
 
 TO ACTIVATE VIRTUAL ENVIRONMENT:
 (Mac/Linux): 
->>env/bin/activate
+\>env/bin/activate
 (PC):
->env\scripts\activate.bat
+\>env\scripts\activate.bat
 
 TO INSTALL PREREQUISITES:
->python3 -m pip install -r requirements.txt
+\>python3 -m pip install -r requirements.txt
 
 TO DOWNLOAD AND PREPARE DATA/DATABASE:
->python3 romcom_prep.py
+\>python3 romcom_prep.py
 
 TO TEST AND VALIDATE INTEGRITY OF DATA STRUCTURES:
->python3 -m unittest test_romcom -v
+\>python3 -m unittest test_romcom -v
 
 TO TEST SQLITE3 DATABASE:
->python3 romcom_sql.py
+\>python3 romcom_sql.py
 
 TO RUN PROGRAM:
->python3 romcom.py
+\>python3 romcom.py
 
 # PACKAGES INVOLVED
 See requirements.txt file in project folder. 
