@@ -13,46 +13,46 @@ This repo and project will have several purposes:
 ### INITIATIVE SCOPE
 Is Lacey Chabert indeed the "Center of the (Hallmark) Universe," as Kevin Bacon reputably is to Hollywood? Given the time and resource limitations, this project is not meant to be an all-inclusive or full programming approach to the _"6 Degrees of Kevin Bacon"_ topic itself (using BFS or Breadth-First Search algorithms, for example). It merely provides a working environment to support the programming and data science portions of the course, using a subset of movies and actors specific to Hallmark original movies, romantic comedies, mysteries, and dramas.
 
-# SPECIAL INSTRUCTIONS (use your own Python 3 interpreter command, if it is different than python3 used here, such as py3 or python)
+# SPECIAL INSTRUCTIONS (use your own Python 3 interpreter command, such as py3 or python, if it is different than 'python3' used here) 
 
 TO INSTALL PROGRAM AND CREATE A VIRTUAL ENVIRONMENT:
-\>git clone git@github.com:hellums/lacey-bacon.git
-\>cd lacey-bacon
-\>python3 -m venv env
-\>echo "env/" >> .git/info/exclude (optional command)
+- >git clone git@github.com:hellums/lacey-bacon.git
+- >cd lacey-bacon
+- >python3 -m venv env
+- >echo "env/" >> .git/info/exclude (optional command)
 
 TO ACTIVATE VIRTUAL ENVIRONMENT:
-(Mac/Linux): 
-\>env/bin/activate
-(PC):
-\>env\scripts\activate.bat
+- (Mac/Linux): 
+>env/bin/activate
+- (PC):
+>env\scripts\activate.bat
 
 TO INSTALL PREREQUISITES:
-\>python3 -m pip install -r requirements.txt
+>python3 -m pip install -r requirements.txt
 
 TO DOWNLOAD AND PREPARE DATA/DATABASE:
-\>python3 romcom_prep.py
+>python3 romcom_prep.py
 
 TO TEST AND VALIDATE INTEGRITY OF DATA STRUCTURES:
-\>python3 -m unittest test_romcom -v
+>python3 -m unittest test_romcom -v
 
 TO TEST SQLITE3 DATABASE:
-\>python3 romcom_sql.py
+>python3 romcom_sql.py
 
 TO RUN PROGRAM:
-\>python3 romcom.py
+>python3 romcom.py
 
 # PACKAGES INVOLVED
 See requirements.txt file in project folder. 
 
 Primarily:
-matplotlib==3.5.1
-networkx==2.6.3
-numpy==1.22.2
-pandas==1.4.1
-requests==2.27.1
-tabulate==0.8.9
-urllib3==1.26.8
+- matplotlib==3.5.1
+- networkx==2.6.3
+- numpy==1.22.2
+- pandas==1.4.1
+- requests==2.27.1
+- tabulate==0.8.9
+- urllib3==1.26.8
 
 # FEATURES PLANNED AT INITIATIVE OUTSET (CHECK = SUBSTANTIAL COMPLETION)
 
