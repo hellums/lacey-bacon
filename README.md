@@ -23,6 +23,14 @@ py3 romcom.py (PC, or the command you normally use to launch the python 3 interp
 TO PREP:
 This program will run standalone as described above. However, you may need to refresh the data based on changes to the underlying custom watchlist, or updates to source files on IMDB. The prep module below will take a few minutes to run, as it has to download, uncompress, clean, and reshape the tsv files to tab-delimited csv files used by the main program. Once it is complete, you can get rid of the original tgz files (and even the tsv files), which occupy several GB of space. Normally there should be no need to run prep.
 
+TO UNIT TEST (ON MAC):
+#python3 -m unittest test_romcom -v
+#(or python3 -m unittest discover -v)
+
+TO UNIT TEST (ON WINDOWS):
+#use whichever command launches python 3 (for example, py3 romcom.py, py3 -m unittest test_romcom)
+
+
 python3 romcom_prep.py (downloads and cleans data, repackages as tab-delimited CSV for import to the main program)
 
 # PACKAGES INVOLVED
@@ -71,12 +79,3 @@ Category 4: Best Practices
 - HTML, Javascript, CSS (high level, "big picture" courses on Pluralsight)
 - 2 African swallows, 1 coconut (sling-loaded), twine
 - "Balanced" scale, 1 witch, 1 duck, very small rocks (floating type)
-
-TO UNIT TEST (ON MAC): (this section is out of date and will need to be refactored, as it was based on original class/OOP design.
-
-#python3 -m unittest test_romcom -v
-#(or python3 -m unittest discover -v)
-
-ON WINDOWS:
-
-#use whichever command launches python 3 (for example, py3 romcom.py, py3 -m unittest test_romcom)
