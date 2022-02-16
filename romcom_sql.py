@@ -82,35 +82,3 @@ def count_records(table_name):
 # Allow file to be used as function or program
 if __name__=='__main__':
     main()
-
-#[('tt13831504', 'tvMovie', 'It Was Always You', '2021', 86, 'Comedy,Drama,Romance', 7.1, 1452), 
-# ('tt13831504', 'tvMovie', 'It Was Always You', '2021', 86, 'Comedy,Drama,Romance', 7.1, 1452)] 
-
-
-'''
-CREATE TABLE IF NOT EXISTS "movie_info" (
-"tconst" TEXT,
-  "titleType" TEXT,
-  "primaryTitle" TEXT,
-  "startYear" TEXT,
-  "runtimeMinutes" INTEGER,
-  "genres" TEXT,
-  "averageRating" REAL,
-  "numVotes" INTEGER
-);
-CREATE TABLE IF NOT EXISTS "movie_cast_crew" (
-"tconst" TEXT,
-  "nconst" TEXT,
-  "category" TEXT
-);
-CREATE TABLE IF NOT EXISTS "cast_crew_info" (
-"nconst" TEXT,
-  "primaryName" TEXT,
-  "birthYear" TEXT,
-  "deathYear" TEXT
-);
-CREATE TABLE IF NOT EXISTS "leader_board" (
-"Hall of Famer" TEXT,
-  "Hallmark-o-Meter" TEXT
-);
-'''
