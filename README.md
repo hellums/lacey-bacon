@@ -13,27 +13,46 @@ This repo and project will have several purposes:
 ### INITIATIVE SCOPE
 Is Lacey Chabert indeed the "Center of the (Hallmark) Universe," as Kevin Bacon reputably is to Hollywood? Given the time and resource limitations, this project is not meant to be an all-inclusive or full programming approach to the _"6 Degrees of Kevin Bacon"_ topic itself (using BFS or Breadth-First Search algorithms, for example). It merely provides a working environment to support the programming and data science portions of the course, using a subset of movies and actors specific to Hallmark original movies, romantic comedies, mysteries, and dramas.
 
-# SPECIAL INSTRUCTIONS
-TO RUN:
+# SPECIAL INSTRUCTIONS (use your own Python 3 interpreter command, if it is different than python3 used here, such as py3 or python)
 
-python3 romcom.py (Mac)
+TO INSTALL PROGRAM AND CREATE A VIRTUAL ENVIRONMENT:
+>git clone git@github.com:hellums/lacey-bacon.git
+>cd lacey-bacon
+>python3 -m venv env
+>echo "env/" >> .git/info/exclude (optional command)
 
-py3 romcom.py (PC, or the command you normally use to launch the python 3 interpreter)
+TO ACTIVATE VIRTUAL ENVIRONMENT:
+(Mac/Linux): 
+>>env/bin/activate
+(PC):
+>env\scripts\activate.bat
 
-TO PREP:
-This program will run standalone as described above. However, you may need to refresh the data based on changes to the underlying custom watchlist, or updates to source files on IMDB. The prep module below will take a few minutes to run, as it has to download, uncompress, clean, and reshape the tsv files to tab-delimited csv files used by the main program. Once it is complete, you can get rid of the original tgz files (and even the tsv files), which occupy several GB of space. Normally there should be no need to run prep.
+TO INSTALL PREREQUISITES:
+>python3 -m pip install -r requirements.txt
 
-python3 romcom_prep.py (downloads and cleans data, repackages as tab-delimited CSV for import to the main program)
+TO DOWNLOAD AND PREPARE DATA/DATABASE:
+>python3 romcom_prep.py
 
-TO UNIT TEST (ON MAC):
-#python3 -m unittest test_romcom -v
-#(or python3 -m unittest discover -v)
+TO TEST AND VALIDATE INTEGRITY OF DATA STRUCTURES:
+>python3 -m unittest test_romcom -v
 
-TO UNIT TEST (ON WINDOWS):
-#use whichever command launches python 3 (for example, py3 romcom.py, py3 -m unittest test_romcom)
+TO TEST SQLITE3 DATABASE:
+>python3 romcom_sql.py
+
+TO RUN PROGRAM:
+>python3 romcom.py
 
 # PACKAGES INVOLVED
-See requirements.txt file in project folder.
+See requirements.txt file in project folder. 
+
+Primarily:
+matplotlib==3.5.1
+networkx==2.6.3
+numpy==1.22.2
+pandas==1.4.1
+requests==2.27.1
+tabulate==0.8.9
+urllib3==1.26.8
 
 # FEATURES PLANNED AT INITIATIVE OUTSET (CHECK = SUBSTANTIAL COMPLETION)
 
