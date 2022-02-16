@@ -1,4 +1,4 @@
-# romcom_prep.py dbh 2/15/22 11:15 PM
+# romcom_prep.py dbh 2/16/22 12:53 PM
 """ Downloads imdb-related files and watchlist, uncompresses and cleans/prunes them as necessary"""
 
 import re
@@ -220,11 +220,63 @@ def export_dataframes():  # shipit - save all four tables in json and csv format
 
 def export_sqlite():  # shipit - add all four main dataframes to database as tables
     print('Exporting database records...')
-    con=sqlite3.connect('romcom.db')
-    movie_info.to_sql('movie_info', con, if_exists = 'append', index = False)
-    movie_cast_crew.to_sql('movie_cast_crew', con, if_exists = 'append', index = False)
-    cast_crew_info.to_sql('cast_crew_info', con, if_exists = 'append', index = False)
-    leader_board.to_sql('leader_board', con, if_exists = 'append', index = False)
+    
+    create_tables()  # comment out as necessary, adds primary key missing from to_sql in pd
+
+    conn=sqlite3.connect('movies.db')
+    
+    movie_info.to_sql('movie_info', conn, if_exists = 'append', index = False)
+    movie_cast_crew.to_sql('movie_cast_crew', conn, if_exists = 'append', index = False)
+    cast_crew_info.to_sql('cast_crew_info', conn, if_exists = 'append', index = False)
+    leader_board.to_sql('leader_board', conn, if_exists = 'append', index = False)
+
+    conn.close()
+    return None
+
+def create_tables():
+
+    conn=sqlite3.connect('movies.db')
+
+    sql_query = ('''CREATE TABLE movie_info (
+    "tconst" TEXT PRIMARY KEY, 
+    "titleType" TEXT,
+    "primaryTitle" TEXT,
+    "startYear" TEXT, 
+    "runtimeMinutes" INTEGER,
+    "genres" TEXT,
+    "averageRating" REAL,
+    "numVotes" INTEGER
+    );''')
+    cursor=conn.cursor()
+    cursor.execute(sql_query)
+
+    sql_query = ('''CREATE TABLE "movie_cast_crew" (
+    "tconst" TEXT,
+    "nconst" TEXT,
+    "category" TEXT,
+    PRIMARY KEY("tconst","nconst")
+    );''')
+    cursor=conn.cursor()
+    cursor.execute(sql_query)
+
+    sql_query = ('''CREATE TABLE "leader_board" (
+    "Hall of Fame" TEXT PRIMARY KEY,
+    "Fame-O-Meter" TEXT
+    );''')
+    cursor=conn.cursor()
+    cursor.execute(sql_query)
+
+    sql_query = ('''CREATE TABLE "cast_crew_info" (
+    "nconst" TEXT PRIMARY KEY,
+    "primaryName" TEXT,
+    "birthYear" TEXT,
+    "deathYear" TEXT
+    );''')
+    cursor=conn.cursor()
+    cursor.execute(sql_query)
+
+    conn.close()
+    return None
 
 # Allow file to be used as function or program
 if __name__=='__main__':
