@@ -38,7 +38,7 @@ See requirements.txt file in project folder.
 # FEATURES PLANNED AT INITIATIVE OUTSET (CHECK = SUBSTANTIAL COMPLETION)
 
 - [x] Implement a “master loop” console application where the user can repeatedly enter commands/perform actions, including choosing to exit the program.
-- [ ] Create a class, then create at least one object of that class and populate it with data. The value of at least one object must be used somewhere in your code.
+- [x] Create a class, then create at least one object of that class and populate it with data. The value of at least one object must be used somewhere in your code. (implemented, but not used in main module, in preference of functions for now)
 - [x] Create a dictionary or list, populate it with several values, retrieve at least one value, and use it in your program.
 - [x] Create and call at least 3 functions or methods, at least one of which must return a value that is used somewhere else in your code.
 
@@ -50,7 +50,7 @@ Category 3: Data Display
 - [x] Visualize data in a graph, chart, or other visual representation of data.
 
 Category 4: Best Practices
-- [ ] The program should utilize a virtual environment and document library dependencies in a requirements.txt file.
+- [ ] The program should utilize a virtual environment and document library dependencies in a requirements.txt file. (requirements file complete)
 - [x] Create 3 or more unit tests for your application.
 
 "Stretch" list:
