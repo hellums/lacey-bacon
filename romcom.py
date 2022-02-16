@@ -1,4 +1,4 @@
-# romcom.py 2/15/22 2:25 PM
+# romcom.py 2/15/22 11:13 PM
 """ Provides a menu screen where user can select various IMDB movie functions"""
 
 # Import os module for system calls to cls and clear (screen)
@@ -190,9 +190,8 @@ def option0(option):  # for debug only, to be replaced later with 'easter egg'
     return None
 
 def load_data():  # read data from tab-delimited files to data structures
+    global tt_title, title_tt, tt_nm, nm_name, name_nm, nm_tt
     global cast_crew_info, movie_info, movie_cast_crew, leader_board, sp 
-    global nm_name, name_nm, tt_title, title_tt, nm_tt, tt_nm
-    
     # Read data from an external file, such as text, JSON, CSV, etc, and use that data in your
     # application. Code Louisville requirement.
     print('Loading data, please wait (15-20 seconds)...')

@@ -1,4 +1,4 @@
-# romcom_prep.py dbh 2/15/22 1:32 PM
+# romcom_prep.py dbh 2/15/22 11:15 PM
 """ Downloads imdb-related files and watchlist, uncompresses and cleans/prunes them as necessary"""
 
 import re
@@ -17,11 +17,11 @@ def main():
     #download_uncompress_imdb_files()  #shipit
     load_dataframes()  # load local files into data structures
     graph_database()  # create a netwokx graph for analysis of centrality
-    #graph_all_as_nodes()
-    #export_dataframes()  # write datasets to local json and csv files
+    graph_all_as_nodes()
+    export_dataframes()  # write datasets to local json and csv files
     export_sqlite()
     
-def download_uncompress_imdb_files():
+def download_uncompress_imdb_files():  # shipit
     print('\nThis process could take a few minutes, depending on Internet speed...')
     remote_url ='https://raw.githubusercontent.com/hellums/lacey-bacon/root/watchlist.txt'  
     local_file = 'watchlist.txt'  # export of imdb watchlist
@@ -63,9 +63,9 @@ def uncompress_file(compressed, uncompressed):  #shipit
         f.write(data)
     return None
 
-def load_dataframes():
-    print('Loading dataframes...')
+def load_dataframes():  # shipit
     global watchlist
+    print('Loading dataframes...')
     # Create a dictionary or list, populate it with several values, retrieve at least one value, 
     # and use it in your program. Code Louisville requirement.
     watchlist = load_watchlist()  
@@ -77,7 +77,7 @@ def load_dataframes():
     role_list = load_role_list()
     actor_list = load_actor_list()
     return None
-
+    
 def load_watchlist():  # shipit
     print('Loading watchlist...')
     local_file = 'watchlist.txt'
@@ -85,7 +85,7 @@ def load_watchlist():  # shipit
     watchlist_info = pd.read_csv(local_file, names=header_field)
     return watchlist_info['tconst'].tolist() # refactor this to load direct to list, don't need a df?
 
-def load_movie_list():  # load movies and ratings, merge and clean resulting dataset
+def load_movie_list():  # shipit - load movies and ratings, merge and clean resulting dataset
     global watchlist, movie_info, tt_title, title_tt
     print('Loading movies...')
     local_file = 'movie_info.tsv'
@@ -113,7 +113,7 @@ def load_movie_list():  # load movies and ratings, merge and clean resulting dat
     title_tt = dict(zip(movie_info.primaryTitle, movie_info.tconst))  # lookup ID by movie title
     return movie_info.values.tolist()
 
-def load_role_list():
+def load_role_list():  # shipit
     global actorlist, movie_cast_crew, nm_tt, tt_nm
     print('Loading cast and crew...')
     local_file = 'movie_cast_crew.tsv'
@@ -130,7 +130,7 @@ def load_role_list():
     movielist = movie_cast_crew['tconst'].tolist()
     return list(set(movielist))
 
-def load_actor_list():
+def load_actor_list():  # shipit
     global cast_crew_info, actorlist, nm_name, name_nm
     print('Loading actors and actresses...')
     local_file = 'cast_crew_info.tsv'
@@ -140,7 +140,7 @@ def load_actor_list():
     name_nm = dict(zip(cast_crew_info.primaryName, cast_crew_info.nconst))  # lookup ID by cast name
     return cast_crew_info.values.tolist()
 
-def graph_database():
+def graph_database():  # shipit
     global G, sp, leader_board, imdb_separation
     G = nx.Graph()
     print('Graphing movies and cast...')
@@ -172,7 +172,7 @@ def graph_database():
     leader_board = pd.DataFrame(imdb_separation, columns=('Hall of Fame', 'Fame-O-Meter'))
     return None
 
-def graph_all_as_nodes():  # useful for text-based presentation of actor degrees of separation
+def graph_all_as_nodes():  # shipit - for text-based presentation of actor degrees of separation
     global sp1, sp
     G1 = nx.Graph()
     print('Creating degree separation graph...')
@@ -195,7 +195,7 @@ def graph_all_as_nodes():  # useful for text-based presentation of actor degrees
     sp1 = dict(sp)  # convert to dictionary for export and import
     return None
 
-def export_dataframes():  # save all four tables in json and csv format
+def export_dataframes():  # shipit - save all four tables in json and csv format
     print('Exporting movies...')
     movie_info.to_json('./movie_info.json', orient='table', index=False)
     movie_info.to_csv('./movie_info.csv', sep='\t', index=False)
@@ -218,7 +218,7 @@ def export_dataframes():  # save all four tables in json and csv format
     with open('./shortest_path.pkl', 'wb') as fp:
         pickle.dump(sp1, fp)
 
-def export_sqlite():  # add all four main dataframes to database as tables
+def export_sqlite():  # shipit - add all four main dataframes to database as tables
     print('Exporting database records...')
     con=sqlite3.connect('romcom.db')
     movie_info.to_sql('movie_info', con, if_exists = 'append', index = False)
