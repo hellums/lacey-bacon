@@ -1,9 +1,28 @@
 import unittest 
 import romcom
+import romcom-sql
 
-class TestFileInput(unittest.TestCase):  # no longer used, classes were replaced with functions
-    '''Provides set of test cases for unittest to run against romcom app functions and methods'''
+'''class TestFileInput(unittest.TestCase): 
+    Provides set of test cases for unittest to run against romcom app functions and methods
+    actor_name = actor_lookup(nm)
     
+    def test_actor_lookup(nm):
+        test_nm = 'nm0000327'
+        actual = romcom.actor_lookup(test_nm)
+        expected = 'Lacey Chabert'
+        self.assertEqual(actual, expected)'''
+
+class TestRecordCount(unittest.TestCase): 
+    table_name = 'leader_board'
+    actual = romcom-py.count_records(table_name)
+    expected = 2463
+    assertEqual(actual, expected)
+
+# use testrunner for unittest
+if __name__=='__main__':
+    unittest.main()
+
+''' stash class testing
     def test_movies_loaded(self):
         testlist=[]
         actual = romcom.load_movies(testlist)
@@ -75,10 +94,7 @@ class TestFileInput(unittest.TestCase):  # no longer used, classes were replaced
         actual = romcom.load_actors(testlist)
         expected = 3463  # number of actor records currently in database
         self.assertEqual(len(actual), expected)
-
-# use testrunner for unittest
-if __name__=='__main__':
-    unittest.main()
+'''
 
 # wc -l *imdb.tsv for record count
 # actors   3463 src/data/name-basics-imdb.tsv

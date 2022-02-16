@@ -14,11 +14,11 @@ import sqlite3  # to export records to flatfile database
 from pathlib import Path
 
 def main():
-    download_uncompress_imdb_files()  #shipit
+    #download_uncompress_imdb_files()  #shipit
     load_dataframes()  # load local files into data structures
     graph_database()  # create a netwokx graph for analysis of centrality
-    graph_all_as_nodes()
-    export_dataframes()  # write datasets to local json and csv files
+    #graph_all_as_nodes()
+    #export_dataframes()  # write datasets to local json and csv files
     export_sqlite()
     
 def download_uncompress_imdb_files():
