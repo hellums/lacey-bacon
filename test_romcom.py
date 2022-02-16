@@ -1,82 +1,56 @@
 import unittest 
 import romcom
-import romcom-sql
+import romcom_sql  
 
-'''class TestFileInput(unittest.TestCase): 
-    Provides set of test cases for unittest to run against romcom app functions and methods
-    actor_name = actor_lookup(nm)
-    
-    def test_actor_lookup(nm):
-        test_nm = 'nm0000327'
-        actual = romcom.actor_lookup(test_nm)
-        expected = 'Lacey Chabert'
-        self.assertEqual(actual, expected)'''
+class TestSqlRecords(unittest.TestCase):  
 
-class TestRecordCount(unittest.TestCase): 
-    table_name = 'leader_board'
-    actual = romcom-py.count_records(table_name)
-    expected = 2463
-    assertEqual(actual, expected)
+    # Create 3 or more unit tests for your application. Code Louisville requirement.
+
+    def test_table1_loaded(self):
+        table_name = 'movie_info'
+        results = romcom_sql.count_records(table_name)
+        for var in results:
+            actual = var[0]
+        expected = 1000
+        self.assertLess(expected, actual, "movie_info < 1000 records")
+
+    def test_table2_loaded(self):
+        table_name = 'movie_cast_crew'
+        results = romcom_sql.count_records(table_name)
+        for var in results:
+            actual = var[0]
+        expected = 4500  # should be 4702 or so
+        self.assertLess(expected, actual, "movie_cast_crew < 4500 records")
+
+    def test_table3_loaded(self):
+        table_name = 'cast_crew_info'
+        results = romcom_sql.count_records(table_name)
+        for var in results:
+            actual = var[0]
+        expected = 2300  # should be 2463 or so
+        self.assertLess(expected, actual, "cast_crew_info < 2300 records")
+
+    def test_table4_loaded(self):
+        table_name = 'leader_board'
+        results = romcom_sql.count_records(table_name)
+        for var in results:
+            actual = var[0]
+        expected = 2300  # should be 2463 or so
+        self.assertLess(expected, actual, "leader_board < 2300 records")
+
+class TestAnotherSet(unittest.TestCase): 
+
+    def test_something(self):
+        actual = 'something'
+        expected = 'something'
+        self.assertEqual(actual, expected, "something is borken")
 
 # use testrunner for unittest
 if __name__=='__main__':
     unittest.main()
 
-''' stash class testing
-    def test_movies_loaded(self):
-        testlist=[]
-        actual = romcom.load_movies(testlist)
-        expected = romcom.Movie  # of class type Movie
-        self.assertIsInstance(actual[0], expected)
+''' stash a few class-related tests, although superceded by functions in refactoring process    
 
-    def test_movies_first(self):
-        testlist=[]
-        actual = romcom.load_movies(testlist)
-        expected = 'tt2256703'  # imdb ID number of first movie stored in database
-        self.assertEqual(actual[0].Id, expected)
-
-    def test_movies_total(self):
-        testlist=[]
-        actual = romcom.load_movies(testlist)
-        expected = 2566  # number of movie records currently in database
-        self.assertEqual(len(actual), expected)
-
-    def test_ratings_loaded(self):
-        testlist=[]
-        actual = romcom.load_ratings(testlist)
-        expected = romcom.Rating # of class type Rating
-        self.assertIsInstance(actual[0], expected)
-
-    def test_ratings_first(self):
-        testlist=[]
-        actual = romcom.load_ratings(testlist)
-        expected = '1996' # number of votes in first rating record currently in database
-        self.assertEqual(actual[0].movieVotes, expected)
-
-    def test_ratings_total(self):
-        testlist=[]
-        actual = romcom.load_ratings(testlist)
-        expected = 1126  # number of rating records currently in database
-        self.assertEqual(len(actual), expected)
-
-    def test_roles_loaded(self):
-        testlist=[]
-        actual = romcom.load_roles(testlist)
-        expected = romcom.Role  # of class type Role
-        self.assertIsInstance(actual[0], expected)
-
-    def test_roles_first(self):
-        testlist=[]
-        actual = romcom.load_roles(testlist)
-        expected = 'tt2256703'  # imdb ID number of first movie stored in database
-        self.assertEqual(actual[0].movieId, expected)
-
-    def test_roles_total(self):
-        testlist=[]
-        actual = romcom.load_roles(testlist)
-        expected = 4707  # number of role records currently in database
-        self.assertEqual(len(actual), expected)
-    
     def test_actors_loaded(self):
         testlist=[]
         actual = romcom.load_actors(testlist)
