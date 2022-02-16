@@ -23,9 +23,9 @@ TO INSTALL PROGRAM AND CREATE A VIRTUAL ENVIRONMENT:
 
 TO ACTIVATE VIRTUAL ENVIRONMENT:
 - (Mac/Linux): 
->env/bin/activate
+  >env/bin/activate
 - (PC):
->env\scripts\activate.bat
+  >env\scripts\activate.bat
 
 TO INSTALL PREREQUISITES:
 >python3 -m pip install -r requirements.txt
