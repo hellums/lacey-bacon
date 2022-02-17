@@ -106,6 +106,8 @@ def print_menu():  # basic menu screen for user to select program feature sets
 def option1(option):  # filmography for a person
     option = option  # premature optimization
     actor_name = input('Please enter an actor\'s name (Alison Sweeney, for example) and press enter: ')
+    actor_name = actor_name.lower()
+    actor_name = actor_name.title()
     try:
         actor_nm = nm_lookup(actor_name)
     except:
@@ -148,29 +150,43 @@ def nm_lookup(name):
     return nm
 
 def name_lookup(nm):
-    name = nm_name(nm)
+    name = nm_name[nm]
     return name
 
 def tt_lookup(title):
-    tt = title_tt(title)
+    tt = title_tt[title]
     return tt
 
 def title_lookup(tt):
-    title = tt_title(tt)
+    title = tt_title[tt]
     return title
+
+def cast_lookup(tt):
+    cast = tt_nm[tt]
+    return cast
 
 def option2(option):  # a movie's top actors and actresses
     option = option  # premature optimization
     #movie_info_headers=["IMDB #","Category ","Title  ","Year","Runtime","Genres   ","Rating","Votes"]  # note: bug in tab api
     #tab_print(movie_info.head(10), movie_info_headers)  # "pretty" print result
-    movie='tt13831504'
-    movie_cast_codes = tt_nm[movie]  # create a list of movies from the dictionary lookup
+    movie_name = input('Please enter a movie title (Date With Love, for example) and press enter: ')
+    #movie='tt13831504'
+    #movie_name = movie_name.lower()
+    #movie_name = movie_name.title()
+    try:
+        movie_tt = tt_lookup(movie_name)
+    except:
+        print("\nThat movie title is not in the database.") 
+        input('\nPress ENTER/RETURN to return to main menu: ')
+        return None
+    movie_cast_codes = cast_lookup(movie_tt)  # create a list of movies from the dictionary lookup
     movie_cast_names = []
-    for person in movie_cast_codes:
-        movie_cast_names.append(nm_name[person])
+    for nm in movie_cast_codes:
+        name = name_lookup(nm)
+        movie_cast_names.append(name)
     df = pd.DataFrame(movie_cast_names)
     total_actors = len(movie_cast_names)
-    print(tt_title[movie], 'had', total_actors, 'main actors and actresses in it:')
+    print(movie_name, 'had', total_actors, 'main actors and actresses in it:')
     #cast_headers = ""
     tab_print(df, '')
     return None
