@@ -180,8 +180,6 @@ def leaderboard():  # leaderboard
     leader_board_headers=['"Hall of Fame"', "Fame-O-Meter\u2081"]
     tab_print(leader_board[:10], leader_board_headers)
     print('\nNote 1. Calculated using graph analysis and centrality.\n')
-    # Calculate and print Top 10 Movies
-    # top_movies =
     df = sorted(title_rating.items(), key = lambda kv: kv[1], reverse=True)
     top_movie_headers=['"Top 10 Moview"', "Average Rating"]
     tab_print(df[:10], top_movie_headers)
