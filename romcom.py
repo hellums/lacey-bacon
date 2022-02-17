@@ -253,10 +253,6 @@ def graphs():  # show BA plots on ratings, production, etc.
     plt.title('Production Increase\n')    
     plt.show()
 
-    #df = movie_info
-    #plt.show()
-
-    #notImplementedYet()
     clrscr()
     return None
 
