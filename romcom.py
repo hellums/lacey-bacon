@@ -186,6 +186,14 @@ def option5(option):  # about section
 
 def option6(option):  # show BA plots on ratings, production, etc.
     option = option  # premature optimization 
+    clrscr()
+    print('INSTRUCTIONS:')
+    print('This page allows you to see several popup graphs, one at a time. You')
+    print('will need to close each one out after viewing it, to see the next.')
+    print('Once you have closed the last graph, you can continue with this')
+    print('program. Press ENTER/RETURN to see the charts now...')
+    _ = input()
+
     df = movie_info
     df = df.groupby(['startYear']).agg({'averageRating': 'median'})[-14:-1]
     df.index.names = ['Year']
@@ -211,7 +219,7 @@ def option6(option):  # show BA plots on ratings, production, etc.
 def option7(option):  
     option = option  # premature optimization
     return None
-    
+
 def option0(option):  # for debug only, to be replaced later with 'easter egg'
     option = option  # premature optimization
     notImplementedYet()
