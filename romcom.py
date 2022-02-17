@@ -136,15 +136,7 @@ def option1(option):  # filmography for a person
     tab_print(df, '')
     return None
 
-def actor_fuzzy_search(name):  # find anyone with unexpected initials, St., full middle name, etc. 
-    conn = sqlite3.connect('movies.db')
-    sql_query = "SELECT primaryName FROM cast_crew_info WHERE primaryName LIKE '%"+name+"'"
-    cursor=conn.cursor()
-    cursor.execute(sql_query)
-    results = cursor.fetchall()
-    conn.close()
-    return results
-
+###  Lookup utilities  ###
 def nm_lookup(name):
     nm = name_nm[name]
     return nm
@@ -165,18 +157,48 @@ def cast_lookup(tt):
     cast = tt_nm[tt]
     return cast
 
+###  Fuzzy search utilities  ###
+def actor_fuzzy_search(name):  # find anyone with unexpected initials, St., full middle name, etc. 
+    conn = sqlite3.connect('movies.db')
+    sql_query = "SELECT primaryName FROM cast_crew_info WHERE primaryName LIKE '%"+name+"'"
+    cursor=conn.cursor()
+    cursor.execute(sql_query)
+    results = cursor.fetchall()
+    conn.close()
+    return results
+
+def movie_fuzzy_search(title):  # find any movie with prominent word in title
+    conn = sqlite3.connect('movies.db')
+    sql_query = "SELECT primaryTitle FROM movie_info WHERE primaryTitle LIKE '%"+title+"%'"
+    cursor=conn.cursor()
+    cursor.execute(sql_query)
+    results = cursor.fetchall()
+    conn.close()
+    return results
+
 def option2(option):  # a movie's top actors and actresses
     option = option  # premature optimization
-    #movie_info_headers=["IMDB #","Category ","Title  ","Year","Runtime","Genres   ","Rating","Votes"]  # note: bug in tab api
-    #tab_print(movie_info.head(10), movie_info_headers)  # "pretty" print result
     movie_name = input('Please enter a movie title (Date With Love, for example) and press enter: ')
-    #movie='tt13831504'
-    #movie_name = movie_name.lower()
-    #movie_name = movie_name.title()
     try:
         movie_tt = tt_lookup(movie_name)
     except:
         print("\nThat movie title is not in the database.") 
+        #input('\nPress ENTER/RETURN to return to main menu: ')
+        #return None
+        try:
+            movie_name = movie_name.rsplit(' ', 1)  # split up the title
+            stripped  = [word for word in movie_name if word.lower() not in ['christmas']]
+            movie_name = [' '.join(stripped)]  # exlude the word Christmas
+            movie_name = max(movie_name, key=len)  # to find a suitable keyword for search
+            movie_name = movie_name.lower()  # normalize it somewhat, in case of bad input
+            movie_name = movie_name.title()
+        except:  # bail if input was single word, or numbers
+            return None
+        possible_match = movie_fuzzy_search(movie_name)  # see if there's any movie with keyword
+        if possible_match:
+            print('\nPossible title match:')
+            for item in possible_match:  # print out the list of possible alternative titles
+                print(item[0])  
         input('\nPress ENTER/RETURN to return to main menu: ')
         return None
     movie_cast_codes = cast_lookup(movie_tt)  # create a list of movies from the dictionary lookup
@@ -186,8 +208,9 @@ def option2(option):  # a movie's top actors and actresses
         movie_cast_names.append(name)
     df = pd.DataFrame(movie_cast_names)
     total_actors = len(movie_cast_names)
+    #movie_info_headers=["IMDB #","Category ","Title  ","Year","Runtime","Genres   ","Rating","Votes"]  # note: bug in tab api
+    #tab_print(movie_info.head(10), movie_info_headers)  # "pretty" print result
     print(movie_name, 'had', total_actors, 'main actors and actresses in it:')
-    #cast_headers = ""
     tab_print(df, '')
     return None
 
