@@ -182,7 +182,7 @@ def option2(option):  # a movie's top actors and actresses
     try:
         movie_tt = tt_lookup(movie_name)
     except:
-        print("\nThat movie title is not in the database.") 
+        print("\nA movie with that exact title is not in the database.") 
         #input('\nPress ENTER/RETURN to return to main menu: ')
         #return None
         try:
