@@ -125,11 +125,11 @@ def cast():  # a movie's top actors and actresses
     clrscr()
     try:
         movie_tt = tt_lookup(movie_name)
-        if not movie_name:
+        if not movie_name:  # handle case of an empty string from ENTER/RETURN input
             print("A movie with that exact title is not in the database.") 
             return None
     except:
-        if not movie_name:
+        if not movie_name:  # handle case of an empty string from ENTER/RETURN input
             print("A movie with that exact title is not in the database.") 
             return None
         print("A movie with that exact title is not in the database.") 
