@@ -70,22 +70,6 @@ def main():
         else:
             pass
 
-def clrscr():  # clears screen in Mac, Linux, or Windows
-    # Check if Operating System is Mac and Linux or Windows
-    if os.name == 'posix':
-        _ = os.system('clear')
-    else:
-          # Else Operating System is Windows (os.name = nt)
-        _ = os.system('cls')
-    return None
-
-def notImplementedYet(option):  # stub for drivers and testing
-    separator = '\n******************************************************\n'
-    print(separator)
-    print("'Option", str(option) + "' selected. Section not implemented yet.")
-    print(separator)
-    return None
-
 def print_menu():  # basic menu screen for user to select program feature sets
     menu_options = {  # dictionary of menu options
         1: 'Filmography - See what movies a select person starred in',
@@ -135,46 +119,6 @@ def option1(option):  # filmography for a person
     print(actor_name, ': ', total_titles, 'Hallmark movies')
     tab_print(df, '')
     return None
-
-###  Lookup utilities  ###
-def nm_lookup(name):
-    nm = name_nm[name]
-    return nm
-
-def name_lookup(nm):
-    name = nm_name[nm]
-    return name
-
-def tt_lookup(title):
-    tt = title_tt[title]
-    return tt
-
-def title_lookup(tt):
-    title = tt_title[tt]
-    return title
-
-def cast_lookup(tt):
-    cast = tt_nm[tt]
-    return cast
-
-###  Fuzzy search utilities  ###
-def actor_fuzzy_search(name):  # find anyone with unexpected initials, St., full middle name, etc. 
-    conn = sqlite3.connect('movies.db')
-    sql_query = "SELECT primaryName FROM cast_crew_info WHERE primaryName LIKE '%"+name+"'"
-    cursor=conn.cursor()
-    cursor.execute(sql_query)
-    results = cursor.fetchall()
-    conn.close()
-    return results
-
-def movie_fuzzy_search(title):  # find any movie with prominent word in title
-    conn = sqlite3.connect('movies.db')
-    sql_query = "SELECT primaryTitle FROM movie_info WHERE primaryTitle LIKE '%"+title+"%'"
-    cursor=conn.cursor()
-    cursor.execute(sql_query)
-    results = cursor.fetchall()
-    conn.close()
-    return results
 
 def option2(option):  # a movie's top actors and actresses
     option = option  # premature optimization
@@ -327,9 +271,66 @@ def load_data():  # read data from tab-delimited files to data structures
     sp = pickle.load(open("shortest_path.pkl", "rb"))  # shortest path data, pickle 1/4 size of json
     return None
 
+###  General purpose utilities  ###
+def clrscr():  # clears screen in Mac, Linux, or Windows
+    # Check if Operating System is Mac and Linux or Windows
+    if os.name == 'posix':
+        _ = os.system('clear')
+    else:
+          # Else Operating System is Windows (os.name = nt)
+        _ = os.system('cls')
+    return None
+
+def notImplementedYet(option):  # stub for drivers and testing
+    separator = '\n******************************************************\n'
+    print(separator)
+    print("'Option", str(option) + "' selected. Section not implemented yet.")
+    print(separator)
+    return None
+
 def tab_print(df, header_name):  # "pretty" print for a dataframe slice
     print(tabulate(df, headers=header_name, showindex=False, numalign='center'))
     return None
+
+###  Lookup utilities  ###
+def nm_lookup(name):
+    nm = name_nm[name]
+    return nm
+
+def name_lookup(nm):
+    name = nm_name[nm]
+    return name
+
+def tt_lookup(title):
+    tt = title_tt[title]
+    return tt
+
+def title_lookup(tt):
+    title = tt_title[tt]
+    return title
+
+def cast_lookup(tt):
+    cast = tt_nm[tt]
+    return cast
+
+###  Fuzzy search utilities  ###
+def actor_fuzzy_search(name):  # find anyone with unexpected initials, St., full middle name, etc. 
+    conn = sqlite3.connect('movies.db')
+    sql_query = "SELECT primaryName FROM cast_crew_info WHERE primaryName LIKE '%"+name+"'"
+    cursor=conn.cursor()
+    cursor.execute(sql_query)
+    results = cursor.fetchall()
+    conn.close()
+    return results
+
+def movie_fuzzy_search(title):  # find any movie with prominent word in title
+    conn = sqlite3.connect('movies.db')
+    sql_query = "SELECT primaryTitle FROM movie_info WHERE primaryTitle LIKE '%"+title+"%'"
+    cursor=conn.cursor()
+    cursor.execute(sql_query)
+    results = cursor.fetchall()
+    conn.close()
+    return results
 
 # Allow file to be used as function or program
 if __name__=='__main__':
