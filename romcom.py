@@ -6,13 +6,13 @@ import os  # for system calls to clear screen
 import csv  # to import TSV files for movie and actor lists
 import unittest 
 import re
-import pandas as pd #needs install
+import pandas as pd  # needs install
 import pickle
 import json
 import sqlite3
-import matplotlib.pyplot as plt #needs install
+import matplotlib.pyplot as plt  # needs install
 import networkx as nx #needs install
-from tabulate import tabulate
+from tabulate import tabulate  # needs install
 
 # Define main function to print menu and get user choice
 def main():
@@ -250,35 +250,6 @@ def option0(option):  # for debug only, to be replaced later with 'easter egg'
     notImplementedYet()
     return None
 
-def load_data():  # read data from tab-delimited files to data structures
-    global tt_title, title_tt, tt_nm, nm_name, name_nm, nm_tt, title_rating
-    global cast_crew_info, movie_info, movie_cast_crew, leader_board, sp 
-    # Read data from an external file, such as text, JSON, CSV, etc, and use that data in your
-    # application. Code Louisville requirement.
-    print('Loading data, please wait (15-20 seconds)...')
-    movie_info = pd.read_csv('movie_info.csv', sep='\t', index_col=None, \
-                  dtype={'startYear': str, 'runtimeMinutes': str}, \
-                  converters={'movieGenres': lambda x: re.split(',+', x)})  
-    df = movie_info
-    tt_title = dict(zip(df.tconst, df.primaryTitle))  # lookup title by movie ID
-    title_tt = dict(zip(df.primaryTitle, df.tconst))  # lookup ID by movie title
-    title_rating = dict(zip(df.primaryTitle, df.averageRating))  # lookup rating by movie title
-    cast_crew_info = pd.read_csv('cast_crew_info.csv', sep='\t', index_col=None)
-    df = cast_crew_info 
-    nm_name = dict(zip(df.nconst, df.primaryName))  # lookup name by cast ID
-    name_nm = dict(zip(df.primaryName, df.nconst))  # lookup ID by cast name
-
-    movie_cast_crew = pd.read_csv('movie_cast_crew.csv', sep='\t', \
-      index_col=None)
-    df = movie_cast_crew.groupby('nconst')['tconst'].apply(list).reset_index(name="movieList")
-    nm_tt = dict(zip(df.nconst, df.movieList))  # lookup movie IDs by actor ID
-    df = movie_cast_crew.groupby('tconst')['nconst'].apply(list).reset_index(name="actorList")
-    tt_nm = dict(zip(df.tconst, df.actorList))  # lookup actor IDs by movie ID 
-
-    leader_board = pd.read_csv('leader_board.csv', sep='\t', index_col=None)
-    sp = pickle.load(open("shortest_path.pkl", "rb"))  # shortest path data, pickle 1/4 size of json
-    return None
-
 ###  General purpose utilities  ###
 def clrscr():  # clears screen in Mac, Linux, or Windows
     # Check if Operating System is Mac and Linux or Windows
@@ -339,6 +310,35 @@ def movie_fuzzy_search(title):  # find any movie with prominent word in title
     results = cursor.fetchall()
     conn.close()
     return results
+
+def load_data():  # read data from tab-delimited files to data structures
+    global tt_title, title_tt, tt_nm, nm_name, name_nm, nm_tt, title_rating
+    global cast_crew_info, movie_info, movie_cast_crew, leader_board, sp 
+    # Read data from an external file, such as text, JSON, CSV, etc, and use that data in your
+    # application. Code Louisville requirement.
+    print('Loading data, please wait (15-20 seconds)...')
+    movie_info = pd.read_csv('movie_info.csv', sep='\t', index_col=None, \
+                  dtype={'startYear': str, 'runtimeMinutes': str}, \
+                  converters={'movieGenres': lambda x: re.split(',+', x)})  
+    df = movie_info
+    tt_title = dict(zip(df.tconst, df.primaryTitle))  # lookup title by movie ID
+    title_tt = dict(zip(df.primaryTitle, df.tconst))  # lookup ID by movie title
+    title_rating = dict(zip(df.primaryTitle, df.averageRating))  # lookup rating by movie title
+    cast_crew_info = pd.read_csv('cast_crew_info.csv', sep='\t', index_col=None)
+    df = cast_crew_info 
+    nm_name = dict(zip(df.nconst, df.primaryName))  # lookup name by cast ID
+    name_nm = dict(zip(df.primaryName, df.nconst))  # lookup ID by cast name
+
+    movie_cast_crew = pd.read_csv('movie_cast_crew.csv', sep='\t', \
+      index_col=None)
+    df = movie_cast_crew.groupby('nconst')['tconst'].apply(list).reset_index(name="movieList")
+    nm_tt = dict(zip(df.nconst, df.movieList))  # lookup movie IDs by actor ID
+    df = movie_cast_crew.groupby('tconst')['nconst'].apply(list).reset_index(name="actorList")
+    tt_nm = dict(zip(df.tconst, df.actorList))  # lookup actor IDs by movie ID 
+
+    leader_board = pd.read_csv('leader_board.csv', sep='\t', index_col=None)
+    sp = pickle.load(open("shortest_path.pkl", "rb"))  # shortest path data, pickle 1/4 size of json
+    return None
 
 # Allow file to be used as function or program
 if __name__=='__main__':
