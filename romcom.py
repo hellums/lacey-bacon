@@ -30,13 +30,13 @@ def main():
     while(True):
 
         # Print instructions and menu
-        print('\nPlease enter a number between 1 and 6.\n')
+        print('\nPlease enter a number between 1 and 7.\n')
         print_menu()
 
         # Get user's menu choice and verify entry data type
         option = ''
         try:
-            option = int(input('\nEnter your choice (1-6) and ENTER/RETURN: '))
+            option = int(input('\nEnter your choice (1-7) and ENTER/RETURN: '))
         except:
             print('\nNumbers only, please...')
 
@@ -60,8 +60,11 @@ def main():
             clrscr()
             option5(option)
         elif option == 6:
+            clrscr()
+            option6(option)
+        elif option == 7:
             #clrscr()
-            print('\n\'Option 6\' selected, our work is done here.')
+            print('\n\'Option 7\' selected, our work is done here.')
             print("\nDon\'t have a good day... Have a great day!\n")
             exit()
         else:
@@ -90,7 +93,8 @@ def print_menu():  # basic menu screen for user to select program feature sets
         3: 'Costars - See any movie(s) two select people starred in',
         4: 'Leaderboard - ("Hallmark" TV RomComDram Hall of Fame)',
         5: 'About - See more about this project',
-        6: 'Exit',
+        6: 'Graphs - See data analysis charts of ratings, production, etc.',
+        7: 'Exit',
     }
     # Loop for main menu until user selects to exit program
     for key in menu_options.keys():
@@ -100,7 +104,7 @@ def print_menu():  # basic menu screen for user to select program feature sets
 # Define functions launched when chosen from main menu by user
 
 def option1(option):  # filmography for a person
-    option = option
+    option = option  # premature optimization
     actor = input()
     nm = name_nm[actor]
     # Create and call at least 3 functions or methods, at least one of which must return a value
@@ -122,7 +126,7 @@ def actor_lookup(nm):
     return name
 
 def option2(option):  # a movie's top actors and actresses
-    option = option
+    option = option  # premature optimization
     #movie_info_headers=["IMDB #","Category ","Title  ","Year","Runtime","Genres   ","Rating","Votes"]  # note: bug in tab api
     #tab_print(movie_info.head(10), movie_info_headers)  # "pretty" print result
     movie='tt13831504'
@@ -138,7 +142,7 @@ def option2(option):  # a movie's top actors and actresses
     return None
 
 def option3(option):  # movies where two specific people acted in
-    option = option
+    option = option  # premature optimization
     actor1 = 'Lacey Chabert'
     actor2 = 'Luke Macfarlane'
     separation = (sp[actor1][actor2])
@@ -150,14 +154,14 @@ def option3(option):  # movies where two specific people acted in
     return None
 
 def option4(option):  # leaderboard
-    option = option
+    option = option  # premature optimization
     leader_board_headers=['"Hall of Fame"', "Fame-O-Meter\u2081"]
     tab_print(leader_board[:10], leader_board_headers)
     print('\nNote 1. Calculated using graph analysis and centrality.')
     return None
 
 def option5(option):  # about section
-    option = option
+    option = option  # premature optimization
     about_header = 'SIX DEGREES OF LACEY CHABERT\n' + '--------------------------------------------------------------------------------'
     about = ['This initiative includes a GitHub repository, which includes more information',
             'as well as a Wiki page and Kanban project schedule.',
@@ -180,12 +184,36 @@ def option5(option):  # about section
         print(lines)
     return None
 
-def option6(option):  # exit the program
-    option = option
-    notImplementedYet(option)  # driver, eventually replaced by feature
+def option6(option):  # show BA plots on ratings, production, etc.
+    option = option  # premature optimization 
+    df = movie_info
+    df = df.groupby(['startYear']).agg({'averageRating': 'median'})[-14:-1]
+    df.index.names = ['Year']
+    df.plot(kind='line')
+    plt.legend(['Average Rating'])
+    plt.title('Ratings Increase\n')
+    plt.show()
 
+    df = movie_info
+    df = pd.crosstab(df.startYear, df.titleType)[-14:-2]
+    df.index.names = ['Year']
+    df.plot(kind='line')
+    plt.legend(['Movie', 'TV Episode', 'TV Mini-Series', 'TV Movie', 'TV Series'])
+    plt.title('Production Increase\n')    
+    plt.show()
+
+    #df = movie_info
+    #plt.show()
+
+    #notImplementedYet()
+    return None
+
+def option7(option):  
+    option = option  # premature optimization
+    return None
+    
 def option0(option):  # for debug only, to be replaced later with 'easter egg'
-    option = option  # space holder
+    option = option  # premature optimization
     notImplementedYet()
     return None
 
