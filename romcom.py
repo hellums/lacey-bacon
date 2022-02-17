@@ -46,22 +46,22 @@ def main():
             option0(option)
         elif option == 1:
             clrscr()
-            option1(option)
+            filmography()
         elif option == 2:
             clrscr()
-            option2(option)
+            cast()
         elif option == 3:
             clrscr()
-            option3(option)
+            costars()
         elif option == 4:
             clrscr()
-            option4(option)
+            leaderboard()
         elif option == 5:
             clrscr()
-            option5(option)
+            about()
         elif option == 6:
             clrscr()
-            option6(option)
+            graphs()
         elif option == 7:
             #clrscr()
             print('\n\'Option 7\' selected, our work is done here.')
@@ -87,8 +87,7 @@ def print_menu():  # basic menu screen for user to select program feature sets
 
 # Define functions launched when chosen from main menu by user
 
-def option1(option):  # filmography for a person
-    option = option  # premature optimization
+def filmography():  # filmography for a person
     actor_name = input('Please enter an actor\'s name (Alison Sweeney, for example) and press enter: ')
     clrscr()
     actor_name = actor_name.lower()  # normalize it somewhat, in case of poor input formatting
@@ -121,8 +120,7 @@ def option1(option):  # filmography for a person
     tab_print(df, '')
     return None
 
-def option2(option):  # a movie's top actors and actresses
-    option = option  # premature optimization
+def cast():  # a movie's top actors and actresses
     movie_name = input('Please enter a movie title (Date with Love, for example) and press enter: ')
     clrscr()
     try:
@@ -161,8 +159,7 @@ def option2(option):  # a movie's top actors and actresses
     tab_print(df, '')
     return None
 
-def option3(option):  # movies where two specific people acted in
-    option = option  # premature optimization
+def costars():  # movies where two specific people acted in
     clrscr()
     actor1 = 'Lacey Chabert'
     actor2 = 'Luke Macfarlane'
@@ -174,16 +171,14 @@ def option3(option):  # movies where two specific people acted in
     tab_print(df, separation_headers)
     return None
 
-def option4(option):  # leaderboard
-    option = option  # premature optimization
+def leaderboard():  # leaderboard
     clrscr()
     leader_board_headers=['"Hall of Fame"', "Fame-O-Meter\u2081"]
     tab_print(leader_board[:10], leader_board_headers)
     print('\nNote 1. Calculated using graph analysis and centrality.')
     return None
 
-def option5(option):  # about section
-    option = option  # premature optimization
+def about():  # about section
     clrscr()
     about_header = 'SIX DEGREES OF LACEY CHABERT\n' + '--------------------------------------------------------------------------------'
     about = ['This initiative includes a GitHub repository, which includes more information',
@@ -207,8 +202,7 @@ def option5(option):  # about section
         print(lines)
     return None
 
-def option6(option):  # show BA plots on ratings, production, etc.
-    option = option  # premature optimization 
+def graphs():  # show BA plots on ratings, production, etc.
     clrscr()
     print('INSTRUCTIONS:')
     print('This page allows you to see several popup graphs, one at a time. You')
