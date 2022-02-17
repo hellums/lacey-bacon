@@ -1,5 +1,5 @@
 # romcom.py 2/17/22 4:17 PM
-""" Provides a menu screen where user can select various IMDB movie functions"""
+""" Project for Code Louisvillle python class, provides a menu of IMDB movie functions"""
 
 # Import os module for system calls to cls and clear (screen)
 import os  # for system calls to clear screen
