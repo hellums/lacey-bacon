@@ -90,12 +90,13 @@ def print_menu():  # basic menu screen for user to select program feature sets
 def option1(option):  # filmography for a person
     option = option  # premature optimization
     actor_name = input('Please enter an actor\'s name (Alison Sweeney, for example) and press enter: ')
+    clrscr()
     actor_name = actor_name.lower()  # normalize it somewhat, in case of poor input formatting
     actor_name = actor_name.title()
     try:
         actor_nm = nm_lookup(actor_name)
     except:
-        print("\nThat actor is not in the database.")
+        print("That actor is not in the database.")
         try:
             last_name = actor_name.rsplit(' ', 1)[1]  # grab the last name
         except:  # bail if input was single word, or numbers
@@ -122,11 +123,12 @@ def option1(option):  # filmography for a person
 
 def option2(option):  # a movie's top actors and actresses
     option = option  # premature optimization
-    movie_name = input('Please enter a movie title (Date With Love, for example) and press enter: ')
+    movie_name = input('Please enter a movie title (Date with Love, for example) and press enter: ')
+    clrscr()
     try:
         movie_tt = tt_lookup(movie_name)
     except:
-        print("\nA movie with that exact title is not in the database.") 
+        print("A movie with that exact title is not in the database.") 
         #input('\nPress ENTER/RETURN to return to main menu: ')
         #return None
         try:
@@ -143,6 +145,7 @@ def option2(option):  # a movie's top actors and actresses
             print('\nPossible title match:')
             for item in possible_match:  # print out the list of possible alternative titles
                 print(item[0])  
+            print('\nNOTE: titles are case sensitive.')
         input('\nPress ENTER/RETURN to return to main menu: ')
         return None
     movie_cast_codes = cast_lookup(movie_tt)  # create a list of movies from the dictionary lookup
@@ -160,6 +163,7 @@ def option2(option):  # a movie's top actors and actresses
 
 def option3(option):  # movies where two specific people acted in
     option = option  # premature optimization
+    clrscr()
     actor1 = 'Lacey Chabert'
     actor2 = 'Luke Macfarlane'
     separation = (sp[actor1][actor2])
@@ -172,6 +176,7 @@ def option3(option):  # movies where two specific people acted in
 
 def option4(option):  # leaderboard
     option = option  # premature optimization
+    clrscr()
     leader_board_headers=['"Hall of Fame"', "Fame-O-Meter\u2081"]
     tab_print(leader_board[:10], leader_board_headers)
     print('\nNote 1. Calculated using graph analysis and centrality.')
@@ -179,6 +184,7 @@ def option4(option):  # leaderboard
 
 def option5(option):  # about section
     option = option  # premature optimization
+    clrscr()
     about_header = 'SIX DEGREES OF LACEY CHABERT\n' + '--------------------------------------------------------------------------------'
     about = ['This initiative includes a GitHub repository, which includes more information',
             'as well as a Wiki page and Kanban project schedule.',
@@ -231,6 +237,7 @@ def option6(option):  # show BA plots on ratings, production, etc.
     #plt.show()
 
     #notImplementedYet()
+    clrscr()
     return None
 
 def option7(option):  
