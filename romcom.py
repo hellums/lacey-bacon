@@ -74,7 +74,7 @@ def print_menu():  # basic menu screen for user to select program feature sets
     menu_options = {  # dictionary of menu options
         1: 'Filmography - See what movies a select person starred in',
         2: 'Cast - See who starred in a select movie',
-        3: 'Degree Separation - See how far removed two people are within the "Hallmark Universe',
+        3: 'Degree Separation - Distance between people in the "Hallmark Universe"',
         4: 'Leaderboard - "Hallmark" TV RomComDram Hall of Fame',
         5: 'Graphs - See data analysis charts of ratings, production, etc.',
         6: 'About - See more about this project',
@@ -195,8 +195,10 @@ def leaderboard():  # leaderboard
     tab_print(leader_board[:10], leader_board_headers)
     print('\nNote 1. Calculated using graph analysis and centrality.\n')
     df = sorted(title_rating.items(), key = lambda kv: kv[1], reverse=True)
-    top_movie_headers=['"Top 20 Movies"', "Average Rating"]
+    top_movie_headers=['Top 20 Movies', "Average Rating"]
     tab_print(df[:20], top_movie_headers)
+    input('\nPress ENTER/RETURN to return to main menu: ')
+    clrscr()
     return None
 
 def about():  # about section
