@@ -125,10 +125,14 @@ def cast():  # a movie's top actors and actresses
     clrscr()
     try:
         movie_tt = tt_lookup(movie_name)
+        if not movie_name:
+            print("A movie with that exact title is not in the database.") 
+            return None
     except:
+        if not movie_name:
+            print("A movie with that exact title is not in the database.") 
+            return None
         print("A movie with that exact title is not in the database.") 
-        #input('\nPress ENTER/RETURN to return to main menu: ')
-        #return None
         try:
             movie_name = movie_name.rsplit(' ', 1)  # split up the title
             stripped  = [word for word in movie_name if word.lower() not in ['christmas']]
