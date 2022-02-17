@@ -90,7 +90,7 @@ def print_menu():  # basic menu screen for user to select program feature sets
 def option1(option):  # filmography for a person
     option = option  # premature optimization
     actor_name = input('Please enter an actor\'s name (Alison Sweeney, for example) and press enter: ')
-    actor_name = actor_name.lower()
+    actor_name = actor_name.lower()  # normalize it somewhat, in case of poor input formatting
     actor_name = actor_name.title()
     try:
         actor_nm = nm_lookup(actor_name)

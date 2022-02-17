@@ -167,7 +167,7 @@ def graph_database():  # shipit
     print('Creating connectivity graphs...')
     between_ity = nx.betweenness_centrality(G)  # calculate the candidates for "center of the Hallmark universe"
     imdb_separation = [[nm_name[x], format(between_ity[x]*1000+40, ".2f")] for x in sorted(between_ity,
-                     key=between_ity.get, reverse=True)]  # normalized this as an "out of 100" model, can change
+                     key=between_ity.get, reverse=True)]  # magic number shapes scores to "out of 100" range
 
     leader_board = pd.DataFrame(imdb_separation, columns=('Hall of Fame', 'Fame-O-Meter'))
     return None
