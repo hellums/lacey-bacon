@@ -179,7 +179,12 @@ def leaderboard():  # leaderboard
     clrscr()
     leader_board_headers=['"Hall of Fame"', "Fame-O-Meter\u2081"]
     tab_print(leader_board[:10], leader_board_headers)
-    print('\nNote 1. Calculated using graph analysis and centrality.')
+    print('\nNote 1. Calculated using graph analysis and centrality.\n')
+    # Calculate and print Top 10 Movies
+    # top_movies =
+    df = sorted(title_rating.items(), key = lambda kv: kv[1], reverse=True)
+    top_movie_headers=['"Top 10 Moview"', "Average Rating"]
+    tab_print(df[:10], top_movie_headers)
     return None
 
 def about():  # about section
@@ -248,7 +253,7 @@ def option0(option):  # for debug only, to be replaced later with 'easter egg'
     return None
 
 def load_data():  # read data from tab-delimited files to data structures
-    global tt_title, title_tt, tt_nm, nm_name, name_nm, nm_tt
+    global tt_title, title_tt, tt_nm, nm_name, name_nm, nm_tt, title_rating
     global cast_crew_info, movie_info, movie_cast_crew, leader_board, sp 
     # Read data from an external file, such as text, JSON, CSV, etc, and use that data in your
     # application. Code Louisville requirement.
@@ -257,9 +262,9 @@ def load_data():  # read data from tab-delimited files to data structures
                   dtype={'startYear': str, 'runtimeMinutes': str}, \
                   converters={'movieGenres': lambda x: re.split(',+', x)})  
     df = movie_info
-    tt_title = dict(zip(df.tconst, df.primaryTitle))  # match title by movie ID
-    title_tt = dict(zip(df.primaryTitle, df.tconst))  # match ID by movie title
-
+    tt_title = dict(zip(df.tconst, df.primaryTitle))  # lookup title by movie ID
+    title_tt = dict(zip(df.primaryTitle, df.tconst))  # lookup ID by movie title
+    title_rating = dict(zip(df.primaryTitle, df.averageRating))  # lookup rating by movie title
     cast_crew_info = pd.read_csv('cast_crew_info.csv', sep='\t', index_col=None)
     df = cast_crew_info 
     nm_name = dict(zip(df.nconst, df.primaryName))  # lookup name by cast ID

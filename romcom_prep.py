@@ -1,4 +1,4 @@
-# romcom_prep.py dbh 2/16/22 12:53 PM
+# romcom_prep.py dbh 2/17/22 2:45 PM
 """ Downloads imdb-related files and watchlist, uncompresses and cleans/prunes them as necessary"""
 
 import re
@@ -86,7 +86,7 @@ def load_watchlist():  # shipit
     return watchlist_info['tconst'].tolist() # refactor this to load direct to list, don't need a df?
 
 def load_movie_list():  # shipit - load movies and ratings, merge and clean resulting dataset
-    global watchlist, movie_info, tt_title, title_tt
+    global watchlist, movie_info, tt_title, title_tt, title_rating
     print('Loading movies...')
     local_file = 'movie_info.tsv'
     movie_info = pd.read_csv(local_file, sep='\t', usecols=[0, 1, 2, 5, 7, 8], 
@@ -111,6 +111,7 @@ def load_movie_list():  # shipit - load movies and ratings, merge and clean resu
     movie_info['numVotes'] = movie_info['numVotes'].astype(int)  # convert column to an int for proper processing
     tt_title = dict(zip(movie_info.tconst, movie_info.primaryTitle))  # lookup title by movie ID
     title_tt = dict(zip(movie_info.primaryTitle, movie_info.tconst))  # lookup ID by movie title
+    title_rating = dict(zip(movie_info.primaryTitle, movie_info.averageRating))  # lookup rating by movie title
     return movie_info.values.tolist()
 
 def load_role_list():  # shipit
