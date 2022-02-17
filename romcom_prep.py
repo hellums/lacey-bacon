@@ -1,13 +1,13 @@
-# romcom_prep.py dbh 2/17/22 2:45 PM
+# romcom_prep.py dbh 2/17/22 4:17 PM
 """ Downloads imdb-related files and watchlist, uncompresses and cleans/prunes them as necessary"""
 
 import re
-import requests #needs install
+import requests  # needs install
 import gzip
 import re
 import csv  # to import TSV files for movie and actor lists
-import pandas as pd #needs install
-import networkx as nx #needs install
+import pandas as pd  #needs install
+import networkx as nx  #needs install
 import pickle
 import json
 import sqlite3  # to export records to flatfile database

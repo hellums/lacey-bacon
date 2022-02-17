@@ -1,4 +1,4 @@
-# romcom.py 2/16/22 3:11 PM
+# romcom.py 2/17/22 4:17 PM
 """ Provides a menu screen where user can select various IMDB movie functions"""
 
 # Import os module for system calls to cls and clear (screen)
@@ -52,16 +52,16 @@ def main():
             cast()
         elif option == 3:
             clrscr()
-            costars()
+            deg_separation()
         elif option == 4:
             clrscr()
             leaderboard()
         elif option == 5:
             clrscr()
-            about()
+            graphs()
         elif option == 6:
             clrscr()
-            graphs()
+            about()
         elif option == 7:
             #clrscr()
             print('\n\'Option 7\' selected, our work is done here.')
@@ -74,10 +74,10 @@ def print_menu():  # basic menu screen for user to select program feature sets
     menu_options = {  # dictionary of menu options
         1: 'Filmography - See what movies a select person starred in',
         2: 'Cast - See who starred in a select movie',
-        3: 'Costars - See any movie(s) two select people starred in',
-        4: 'Leaderboard - ("Hallmark" TV RomComDram Hall of Fame)',
-        5: 'About - See more about this project',
-        6: 'Graphs - See data analysis charts of ratings, production, etc.',
+        3: 'Degree Separation - See how far removed two people are within the "Hallmark Universe',
+        4: 'Leaderboard - "Hallmark" TV RomComDram Hall of Fame',
+        5: 'Graphs - See data analysis charts of ratings, production, etc.',
+        6: 'About - See more about this project',
         7: 'Exit',
     }
     # Loop for main menu until user selects to exit program
@@ -163,16 +163,30 @@ def cast():  # a movie's top actors and actresses
     tab_print(df, '')
     return None
 
-def costars():  # movies where two specific people acted in
+def deg_separation():  # connectivity between two actors based on who they starred with in other movies
     clrscr()
-    actor1 = 'Lacey Chabert'
-    actor2 = 'Luke Macfarlane'
-    separation = (sp[actor1][actor2])
-    df = pd.DataFrame(separation)
-    distance = int(len(separation)/2)
-    header_string = (str(distance) + " Degrees Separation - " + str(actor1) + " and " + str(actor2))
-    separation_headers = [header_string]
-    tab_print(df, separation_headers)
+    print('Please enter two actor or actress first and last names.')
+    actor1 = input('First person? ')
+    actor2 = input('Second person? ')
+    actor1 = actor1.lower()  # normalize it somewhat, in case of poor input formatting
+    actor1 = actor1.title()
+    actor2 = actor2.lower()
+    actor2 = actor2.title()
+    clrscr()
+    try:
+        separation = (sp[actor1][actor2])  # lookup any movie connection shortest path between actors
+    except:
+        print('One or more of those two names were not in the database. Try looking them up in menu item 1.')
+        input('\nPress ENTER/RETURN to return to main menu: ')
+        return None
+    try:
+        df = pd.DataFrame(separation)  # prepare for pretty print
+        distance = int(len(separation)/2)  # count of movies between actors
+        header_string = (str(distance) + " Degree(s) Separation - " + str(actor1) + " and " + str(actor2))
+        separation_headers = [header_string]
+        tab_print(df, separation_headers)
+    except:
+        print('There are no connections between the two peopl, or something else went wrong.')
     return None
 
 def leaderboard():  # leaderboard
@@ -181,8 +195,8 @@ def leaderboard():  # leaderboard
     tab_print(leader_board[:10], leader_board_headers)
     print('\nNote 1. Calculated using graph analysis and centrality.\n')
     df = sorted(title_rating.items(), key = lambda kv: kv[1], reverse=True)
-    top_movie_headers=['"Top 10 Moview"', "Average Rating"]
-    tab_print(df[:10], top_movie_headers)
+    top_movie_headers=['"Top 20 Movies"', "Average Rating"]
+    tab_print(df[:20], top_movie_headers)
     return None
 
 def about():  # about section
