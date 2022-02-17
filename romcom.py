@@ -105,25 +105,59 @@ def print_menu():  # basic menu screen for user to select program feature sets
 
 def option1(option):  # filmography for a person
     option = option  # premature optimization
-    actor = input()
-    nm = name_nm[actor]
+    actor_name = input('Please enter an actor\'s name (Alison Sweeney, for example) and press enter: ')
+    try:
+        actor_nm = nm_lookup(actor_name)
+    except:
+        print("\nThat actor is not in the database.")
+        try:
+            last_name = actor_name.rsplit(' ', 1)[1]  # grab the last name
+        except:  # bail if input was single word, or numbers
+            return None
+        possible_match = actor_fuzzy_search(last_name)  # see if there's anyone with that last name
+        if possible_match:
+            print('\nPossible last name match:')
+            for item in possible_match:
+                print(item[0])
+        input('\nPress ENTER/RETURN to return to main menu: ')
+        return None
     # Create and call at least 3 functions or methods, at least one of which must return a value
     # that is used somewhere else in your code. Code Louisville requirement.
-    actor_name = actor_lookup(nm)
-    filmography_headers = actor_name + ' Movies'
-    actor_movies = nm_tt[nm]
+    actor_movies = nm_tt[actor_nm]  # pull a list of this actor's movie title codes
     actor_titles = []
     for k, v in enumerate(actor_movies):
-        actor_titles.append(tt_title[v])
-    df = pd.DataFrame(actor_titles)
+        actor_titles.append(tt_title[v])  # lookup the code to get titles
+    df = pd.DataFrame(actor_titles)  # prep for pretty print
     total_titles = len(actor_titles)
+    #filmography_headers = actor_name + ' Movies'
     print(actor_name, ': ', total_titles, 'Hallmark movies')
     tab_print(df, '')
     return None
 
-def actor_lookup(nm):
-    name = nm_name[nm]
+def actor_fuzzy_search(name):  # find anyone with unexpected initials, St., full middle name, etc. 
+    conn = sqlite3.connect('movies.db')
+    sql_query = "SELECT primaryName FROM cast_crew_info WHERE primaryName LIKE '%"+name+"'"
+    cursor=conn.cursor()
+    cursor.execute(sql_query)
+    results = cursor.fetchall()
+    conn.close()
+    return results
+
+def nm_lookup(name):
+    nm = name_nm[name]
+    return nm
+
+def name_lookup(nm):
+    name = nm_name(nm)
     return name
+
+def tt_lookup(title):
+    tt = title_tt(title)
+    return tt
+
+def title_lookup(tt):
+    title = tt_title(tt)
+    return title
 
 def option2(option):  # a movie's top actors and actresses
     option = option  # premature optimization
