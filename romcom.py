@@ -170,10 +170,6 @@ def deg_separation():  # connectivity between two actors based on who they starr
     print('Please enter two actor or actress first and last names.')
     actor1 = input('First person? ')
     actor2 = input('Second person? ')
-    actor1 = actor1.lower()  # normalize it somewhat, in case of poor input formatting
-    actor1 = actor1.title()
-    actor2 = actor2.lower()
-    actor2 = actor2.title()
     clrscr()
     try:
         separation = (sp[actor1][actor2])  # lookup any movie connection shortest path between actors
