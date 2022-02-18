@@ -23,7 +23,7 @@ TO INSTALL PROGRAM AND CREATE A VIRTUAL ENVIRONMENT:
 
 TO ACTIVATE VIRTUAL ENVIRONMENT:
 - (Mac/Linux): 
-  >env/bin/activate
+  >source env/bin/activate
 - (PC):
   >env\scripts\activate.bat
 
