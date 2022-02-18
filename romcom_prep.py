@@ -222,14 +222,14 @@ def export_dataframes():  # shipit - save all four tables in json and csv format
 def export_sqlite():  # shipit - add all four main dataframes to database as tables
     print('Exporting database records...')
     
-    create_tables()  # comment out as necessary, adds primary key missing from to_sql in pd
+    #create_tables()  # comment out as necessary, adds primary key missing from to_sql in pd
 
     conn=sqlite3.connect('movies.db')
     
-    movie_info.to_sql('movie_info', conn, if_exists = 'append', index = False)
-    movie_cast_crew.to_sql('movie_cast_crew', conn, if_exists = 'append', index = False)
-    cast_crew_info.to_sql('cast_crew_info', conn, if_exists = 'append', index = False)
-    leader_board.to_sql('leader_board', conn, if_exists = 'append', index = False)
+    movie_info.to_sql('movie_info', conn, if_exists = 'replace', index = False)
+    movie_cast_crew.to_sql('movie_cast_crew', conn, if_exists = 'replace', index = False)
+    cast_crew_info.to_sql('cast_crew_info', conn, if_exists = 'replace', index = False)
+    leader_board.to_sql('leader_board', conn, if_exists = 'replace', index = False)
 
     conn.close()
     return None
@@ -238,7 +238,7 @@ def create_tables():
 
     conn=sqlite3.connect('movies.db')
 
-    sql_query = ('''CREATE TABLE movie_info (
+    sql_query = ('''CREATE TABLE IF NOT EXISTS movie_info (
     "tconst" TEXT PRIMARY KEY, 
     "titleType" TEXT,
     "primaryTitle" TEXT,
@@ -251,7 +251,7 @@ def create_tables():
     cursor=conn.cursor()
     cursor.execute(sql_query)
 
-    sql_query = ('''CREATE TABLE "movie_cast_crew" (
+    sql_query = ('''CREATE TABLE IF NOT EXISTS "movie_cast_crew" (
     "tconst" TEXT,
     "nconst" TEXT,
     "category" TEXT,
@@ -260,14 +260,14 @@ def create_tables():
     cursor=conn.cursor()
     cursor.execute(sql_query)
 
-    sql_query = ('''CREATE TABLE "leader_board" (
+    sql_query = ('''CREATE TABLE IF NOT EXISTS "leader_board" (
     "Hall of Fame" TEXT PRIMARY KEY,
     "Fame-O-Meter" TEXT
     );''')
     cursor=conn.cursor()
     cursor.execute(sql_query)
 
-    sql_query = ('''CREATE TABLE "cast_crew_info" (
+    sql_query = ('''CREATE TABLE IF NOT EXISTS "cast_crew_info" (
     "nconst" TEXT PRIMARY KEY,
     "primaryName" TEXT,
     "birthYear" TEXT,
