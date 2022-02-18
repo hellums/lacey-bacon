@@ -94,6 +94,5 @@ Category 4: Best Practices
 - Anaconda (introductory)
 - Cookiecutter (introductory)
 - IMDB (data source)
-- HTML, Javascript, CSS (high level, "big picture" courses on Pluralsight)
 - 2 African swallows, 1 coconut (sling-loaded), twine
 - "Balanced" scale, 1 witch, 1 duck, very small rocks (floating type)
