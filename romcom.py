@@ -90,8 +90,8 @@ def print_menu():  # basic menu screen for user to select program feature sets
 def filmography():  # filmography for a person
     actor_name = input('Please enter an actor\'s name (Alison Sweeney, for example) and press enter: ')
     clrscr()
-    actor_name = actor_name.lower()  # normalize it somewhat, in case of poor input formatting
-    actor_name = actor_name.title()
+    #actor_name = actor_name.lower()  # normalize it somewhat, in case of poor input formatting
+    #actor_name = actor_name.title()  # caused problem with McKellar. Clean up later.
     try:
         actor_nm = nm_lookup(actor_name)
     except:
@@ -105,6 +105,7 @@ def filmography():  # filmography for a person
             print('\nPossible last name match:')
             for item in possible_match:
                 print(item[0])
+            print('\nNOTE: names are case sensitive.')
         input('\nPress ENTER/RETURN to return to main menu: ')
         return None
     # Create and call at least 3 functions or methods, at least one of which must return a value
@@ -138,8 +139,8 @@ def cast():  # a movie's top actors and actresses
             stripped  = [word for word in movie_name if word.lower() not in ['christmas']]
             movie_name = [' '.join(stripped)]  # exlude the word Christmas
             movie_name = max(movie_name, key=len)  # to find a suitable keyword for search
-            movie_name = movie_name.lower()  # normalize it somewhat, in case of bad input
-            movie_name = movie_name.title()
+            #movie_name = movie_name.lower()  # normalize it somewhat, in case of bad input
+            #movie_name = movie_name.title() # caused problem with McKellar. Clean up later.
         except:  # bail if input was single word, or numbers
             return None
         possible_match = movie_fuzzy_search(movie_name)  # see if there's any movie with keyword
