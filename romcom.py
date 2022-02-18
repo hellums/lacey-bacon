@@ -148,7 +148,8 @@ def cast():  # a movie's top actors and actresses
             print('\nPossible title match:')
             for item in possible_match:  # print out the list of possible alternative titles
                 print(item[0])  
-            print('\nNOTE: titles are case sensitive.')
+            print('\nNOTE: titles are punctuation and case sensitive. For example,')
+            print('"Good Morning Christmas!" and "Date with Love"')
         input('\nPress ENTER/RETURN to return to main menu: ')
         return None
     movie_cast_codes = cast_lookup(movie_tt)  # create a list of movies from the dictionary lookup
