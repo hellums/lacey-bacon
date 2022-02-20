@@ -90,6 +90,7 @@ Category 4: Best Practices
 - Pandas
 - Matplotlib 
 - Networkx (node/vector, centrality)
+- BeautifulSoup
 - Pluralsight (LMS for bootcamp courses)
 - Anaconda (introductory)
 - Cookiecutter (introductory)
