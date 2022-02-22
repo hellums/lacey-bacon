@@ -1,4 +1,4 @@
-# romcom_prep.py dbh 2/17/22 4:17 PM
+# romcom_prep.py dbh 2/22/22 3:08 PM
 """ Downloads imdb-related files and watchlist, uncompresses and cleans/prunes them as necessary"""
 
 import re
@@ -9,12 +9,12 @@ import csv  # to import TSV files for movie and actor lists
 import pandas as pd  #needs install
 import networkx as nx  #needs install
 import pickle
-import json
+#import json  # used for training purposes, pickle files were smaller
 import sqlite3  # to export records to flatfile database
 from pathlib import Path
 
 def main():
-    #download_uncompress_imdb_files()  #shipit
+    download_uncompress_imdb_files()  #shipit
     load_dataframes()  # load local files into data structures
     graph_database()  # create a netwokx graph for analysis of centrality
     graph_all_as_nodes()
@@ -196,28 +196,28 @@ def graph_all_as_nodes():  # shipit - for text-based presentation of actor degre
     sp1 = dict(sp)  # convert to dictionary for export and import
     return None
 
-def export_dataframes():  # shipit - save all four tables in json and csv format
+def export_dataframes():  # shipit - save all four tables in csv format
     print('Exporting movies...')
-    movie_info.to_json('./movie_info.json', orient='table', index=False)
+    #movie_info.to_json('./movie_info.json', orient='table', index=False)
     movie_info.to_csv('./movie_info.csv', sep='\t', index=False)
 
     print('Exporting cast...')
-    movie_cast_crew.to_json('./movie_cast_crew.json', orient='table', index=False)
+    #movie_cast_crew.to_json('./movie_cast_crew.json', orient='table', index=False)
     movie_cast_crew.to_csv('./movie_cast_crew.csv', sep='\t', index=False)
     
     print('Exporting actors and actresses...')
-    cast_crew_info.to_json('./cast_crew_info.json', orient='table', index=False)
+    #cast_crew_info.to_json('./cast_crew_info.json', orient='table', index=False)
     cast_crew_info.to_csv('./cast_crew_info.csv', sep='\t', index=False)
 
     print('Exporting leaderboard...')
-    leader_board.to_json('./leader_board.json', orient='table', index=False)
+    #leader_board.to_json('./leader_board.json', orient='table', index=False)
     leader_board.to_csv('./leader_board.csv', sep='\t', index=False)
 
     print('Exporting shortest path graph...')  # export shortest path in multiple formats for import in main
-    with open('./shortest_path.json', 'w') as fp:
-        fp.write(json.dumps(sp1))
+    #with open('./shortest_path.json', 'w') as fp:
+    #    fp.write(json.dumps(sp1))  #file is 2+ GB, don't need for now
     with open('./shortest_path.pkl', 'wb') as fp:
-        pickle.dump(sp1, fp)
+        pickle.dump(sp1, fp)  #file is .5 GB, more suitable to task
 
 def export_sqlite():  # shipit - add all four main dataframes to database as tables
     print('Exporting database records...')
