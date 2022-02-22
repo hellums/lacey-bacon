@@ -222,7 +222,7 @@ def export_dataframes():  # shipit - save all four tables in json and csv format
 def export_sqlite():  # shipit - add all four main dataframes to database as tables
     print('Exporting database records...')
     
-    #create_tables()  # comment out as necessary, adds primary key missing from to_sql in pd
+    #create_tables()  # comment out as necessary, works fine 1st time, but fails on 2nd
 
     conn=sqlite3.connect('movies.db')
     
@@ -234,7 +234,7 @@ def export_sqlite():  # shipit - add all four main dataframes to database as tab
     conn.close()
     return None
 
-def create_tables():
+def create_tables():  # pandas to_sql doesn't support PRIMARY KEY or IF EXISTS IGNORE, so...
 
     conn=sqlite3.connect('movies.db')
 
