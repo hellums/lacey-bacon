@@ -184,7 +184,7 @@ def deg_separation():  # connectivity between two actors based on who they starr
         separation_headers = [header_string]
         tab_print(df, separation_headers)
     except:
-        print('There are no connections between the two peopl, or something else went wrong.')
+        print('There are no connections between the two people, or something else went wrong.')
     return None
 
 def leaderboard():  # leaderboard
