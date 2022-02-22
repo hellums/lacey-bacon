@@ -16,7 +16,7 @@ Is Lacey Chabert indeed the "Center of the (Hallmark) Universe," as Kevin Bacon 
 # SPECIAL INSTRUCTIONS (use your own Python 3 interpreter command, such as py3 or python, if it is different than 'python3' used here) 
 
 TO INSTALL PROGRAM AND CREATE A VIRTUAL ENVIRONMENT:
-- >git clone git@github.com:hellums/lacey-bacon.git
+- >git clone <span>git@</span>github.com:hellums/lacey-bacon.git
 - >cd lacey-bacon
 - >python3 -m venv env
 - >echo "env/" >> .git/info/exclude (optional command)
