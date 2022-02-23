@@ -33,10 +33,10 @@ TO INSTALL PREREQUISITES:
 TO DOWNLOAD AND PREPARE DATA/DATABASE:
 >python3 romcom_prep.py (NOTE: compressed files total 4 GB, uncompressed another 2 GB)
 
-TO TEST AND VALIDATE INTEGRITY OF DATA STRUCTURES:
+TO TEST AND VALIDATE INTEGRITY OF DATA STRUCTURES: (optional)
 >python3 -m unittest test_romcom -v
 
-TO TEST SQLITE3 DATABASE:
+TO TEST SQLITE3 DATABASE: (optional)
 >python3 romcom_sql.py
 
 TO RUN PROGRAM: (assuming both tests above have no issues)
