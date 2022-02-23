@@ -43,7 +43,7 @@ TO RUN PROGRAM: (assuming both tests above have no issues)
 >python3 romcom.py
 
 TO VIEW JUPYTER NOTEBOOK RESULTS:
-Open romcom.pdf in your Adobe or PDF Viewer of choice.
+Open [romcom.pdf](https://github.com/hellums/lacey-bacon/blob/root/romcom.pdf) in your Adobe or PDF Viewer of choice.
 
 # PACKAGES INVOLVED
 See requirements.txt file in project folder. 
