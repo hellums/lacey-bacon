@@ -31,7 +31,7 @@ TO INSTALL PREREQUISITES:
 >python3 -m pip install -r requirements.txt
 
 TO DOWNLOAD AND PREPARE DATA/DATABASE:
->python3 romcom_prep.py
+>python3 romcom_prep.py (NOTE: compressed files total 4 GB, uncompressed another 2 GB)
 
 TO TEST AND VALIDATE INTEGRITY OF DATA STRUCTURES:
 >python3 -m unittest test_romcom -v
@@ -39,8 +39,11 @@ TO TEST AND VALIDATE INTEGRITY OF DATA STRUCTURES:
 TO TEST SQLITE3 DATABASE:
 >python3 romcom_sql.py
 
-TO RUN PROGRAM:
+TO RUN PROGRAM: (assuming both tests above have no issues)
 >python3 romcom.py
+
+TO VIEW JUPYTER NOTEBOOK RESULTS:
+Open romcom.pdf in your Adobe or PDF Viewer of choice.
 
 # PACKAGES INVOLVED
 See requirements.txt file in project folder. 
