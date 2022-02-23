@@ -1,4 +1,4 @@
-# romcom.py 2/17/22 4:17 PM
+# romcom.py 2/22/22 8:35 PM
 """ Project for Code Louisvillle python class, provides a menu of IMDB movie functions"""
 
 # Import os module for system calls to cls and clear (screen)
@@ -8,7 +8,7 @@ import unittest
 import re
 import pandas as pd  # needs install
 import pickle
-import json
+#import json  # not used at this time
 import sqlite3
 import matplotlib.pyplot as plt  # needs install
 import networkx as nx #needs install
@@ -171,10 +171,14 @@ def deg_separation():  # connectivity between two actors based on who they starr
     actor1 = input('First person? ')
     actor2 = input('Second person? ')
     clrscr()
-    try:
+    try:  # see if they ran _prep first, and allow most program functions to work without crash on load
         separation = (sp[actor1][actor2])  # lookup any movie connection shortest path between actors
-    except:
-        print('One or more of those two names were not in the database. Try looking them up in menu item 1.')
+    except:  # can't do degree separation without the SP file, so gracefully warn, instruct, and exit
+        if no_pickle_file:
+            print('One or more files were not installed using the prep program. Please run that before main program.')
+            return None
+        else:
+            print('One or more of those two names were not in the database. Try looking them up in menu item 1.')
         input('\nPress ENTER/RETURN to return to main menu: ')
         return None
     try:
@@ -326,7 +330,7 @@ def movie_fuzzy_search(title):  # find any movie with prominent word in title
 
 def load_data():  # read data from tab-delimited files to data structures
     global tt_title, title_tt, tt_nm, nm_name, name_nm, nm_tt, title_rating
-    global cast_crew_info, movie_info, movie_cast_crew, leader_board, sp 
+    global cast_crew_info, movie_info, movie_cast_crew, leader_board, sp, no_pickle_file
     # Read data from an external file, such as text, JSON, CSV, etc, and use that data in your
     # application. Code Louisville requirement.
     print('Loading data, please wait (15-20 seconds)...')
@@ -350,7 +354,10 @@ def load_data():  # read data from tab-delimited files to data structures
     tt_nm = dict(zip(df.tconst, df.actorList))  # lookup actor IDs by movie ID 
 
     leader_board = pd.read_csv('leader_board.csv', sep='\t', index_col=None)
-    sp = pickle.load(open("shortest_path.pkl", "rb"))  # shortest path data, pickle 1/4 size of json
+    try:
+        sp = pickle.load(open("shortest_path.pkl", "rb"))  # shortest path data, pickle 1/4 size of json
+    except:
+        no_pickle_file = True # allow most functions to run without romcom_prep using .csv and .db files
     return None
 
 # Allow file to be used as function or program
