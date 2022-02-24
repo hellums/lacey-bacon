@@ -1,16 +1,25 @@
 {% extends "layout.html" %}
 {% block content %}
     <div class="actor">
-        <h1>{{ actor }} has been in {{ num_films }} films:</h1>
-            <p><hr></p>
+            Leading the pack is 
+            {% for each in path %}
+                {% if loop.index % 2 %}
+                    <b>{{each}}</b>,
+                {% endif %}
+                
+                {% if (loop.index -1) % 2 %}
+                who was in "<b>{{each}}</b>" with
+                {% endif %}
+                
+            {% endfor %}
+            whose "Lacey number" is {{ distance }}. This means she is {{distance}} degrees of separation from Lacey.
+        <h1>        
+            <hr>{{ actor }} has been in {{ num_films }} films:</h1>
+            <p></p>
             {% for each in films %}
             <p>{{ each }}</p>  
             {% endfor %}
             <p></p>
-            <h1>{{ actor }}'s "Lacey number" is: {{ distance }} (degrees of separation):</h1>
-            <p><hr></p>
-            {% for each in path %}
-                <p>{{ each }}</p>
-            {% endfor %}
-        </div>
+    </div>
+
 {% endblock %}

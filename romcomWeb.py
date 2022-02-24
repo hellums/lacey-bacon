@@ -296,7 +296,7 @@ def movie_fuzzy_search(title):  # find any movie with prominent word in title
     return results
 
 def load_data():  # read data from tab-delimited files to data structures
-    global tt_title, title_tt, tt_nm, nm_name, name_nm, nm_tt, title_rating
+    global tt_title, title_tt, tt_nm, nm_name, name_nm, nm_tt, title_rating, sp
     global cast_crew_info, movie_info, movie_cast_crew, leader_board, lacey_sp, no_pickle_file
     # Read data from an external file, such as text, JSON, CSV, etc, and use that data in your
     # application. Code Louisville requirement.
