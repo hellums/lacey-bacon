@@ -45,7 +45,7 @@ TO RUN PROGRAM: (assuming both tests above have no issues)
 
 TO RUN FLASK MICROSITE:
 >python3 romweb.py
->in web brosers, go to http://localhost:5000/
+>in a web browser tab, go to http://localhost:5000/
 
 # PACKAGES INVOLVED
 See requirements.txt file in project folder. 
