@@ -4,6 +4,7 @@ This repo is a work in progress (not complete). It contains files and related pr
 ### INITIATIVE PAGES
 - [Kanban](https://github.com/hellums/hallmarkish/projects/1)
 - [Wiki](https://github.com/hellums/hallmarkish/wiki/1.-Data-Analytics-Course-Project)
+- [Notebook/EDA](https://github.com/hellums/lacey-bacon/blob/root/romcom.pdf)
 
 # INITIATIVE GOALS
 This repo and project will have several purposes:
