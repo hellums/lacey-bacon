@@ -1,5 +1,5 @@
 # INITIATIVE OVERVIEW
-This repo is a work in progress (not complete). It contains files and related project data for a 12-week introductory bootcamp course (Jan-Apr 2022) on Python programming and data analysis/science in a group learning environment. However, all programming and data analysis is individual, and shared/coordinated with instructors and mentors as necessary.
+This repo is a work in progress (not complete). It contains files and related project data for a 12-week introductory bootcamp course (Jan-Mar 2022) on Python programming and data analysis/science in a group learning environment. However, all programming and data analysis is individual, and shared/coordinated with instructors and mentors as necessary.
 
 ### INITIATIVE PAGES
 - [Kanban](https://github.com/hellums/hallmarkish/projects/1)
@@ -43,9 +43,6 @@ TO TEST SQLITE3 DATABASE: (optional)
 TO RUN PROGRAM: (assuming both tests above have no issues)
 >python3 romcom.py
 
-TO VIEW JUPYTER NOTEBOOK RESULTS:
->Open [romcom.pdf](https://github.com/hellums/lacey-bacon/blob/root/romcom.pdf) in your Adobe or PDF Viewer of choice.
-
 # PACKAGES INVOLVED
 See requirements.txt file in project folder. 
 
@@ -57,6 +54,7 @@ Primarily:
 - requests==2.27.1
 - tabulate==0.8.9
 - urllib3==1.26.8
+- Flask=2.0.3
 
 # FEATURES PLANNED AT INITIATIVE OUTSET (CHECK = SUBSTANTIAL COMPLETION)
 
