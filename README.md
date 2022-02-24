@@ -44,7 +44,7 @@ TO RUN PROGRAM: (assuming both tests above have no issues)
 >python3 romcom.py
 
 TO RUN FLASK MICROSITE:
->python3 romWeb.py
+>python3 romcomWeb.py
 >in a web browser tab, go to http://localhost:5000/
 
 # PACKAGES INVOLVED
