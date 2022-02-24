@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="actor">
+        <h1>Filmography of {{ actor }}</h1>
+
+            <p>{{ actor }} has been in {{ num_films }} films:</p>
+            {% for each in films %}
+            <br>  {{ each }}
+            {% endfor %}
+
+    </div>
+{% endblock %}
