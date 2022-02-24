@@ -1,5 +1,5 @@
 # romcom.py 2/24/22 3:10 PM
-""" Project for Code Louisvillle python class, provides a menu of IMDB movie functions"""
+""" Project for Code Louisvillle Python data analysis class, with a menu of Hallmark-limited IMDB info"""
 # Import os module for system calls to cls and clear (screen)
 import os  # for system calls to clear screen
 import csv  # to import TSV files for movie and actor lists
@@ -14,18 +14,18 @@ import networkx as nx #needs install
 from tabulate import tabulate  # needs install
 from flask import Flask, render_template
 
-app = Flask(__name__)
 
 # Define main function to print menu and get user choice
-def main():
-    """ Command-line menu of functions Hallmark original movies """
-    
-    # Clear the screen
-    clrscr()
+
+app = Flask(__name__)
+@app.route('/')
+
+def home():
 
     # Load the data structures
     load_data()
-
+    return render_template("home.html") #menu_options
+'''
     # Implement a “master loop” console application where the user can repeatedly enter commands,
     # perform actions, including choosing to exit the program. Code Louisville requirement.
 
@@ -72,10 +72,10 @@ def main():
             exit()
         else:
             pass
+'''
 
-@app.route('/')
-def home():  # basic menu screen for user to select program feature sets
-    load_data()
+def menu():  # basic menu screen for user to select program feature sets
+
     menu_options = {  # dictionary of menu options
         1: 'Filmography - See what movies a select person starred in',
         2: 'Cast - See who starred in a select movie',
@@ -89,12 +89,12 @@ def home():  # basic menu screen for user to select program feature sets
     #for key in menu_options.keys():
     #    ( str(key) + '. ' + menu_options[key] )
     #    #print (str(key) + '. ', menu_options[key] )
-    return render_template("home.html", main_menu=menu_options) #menu_options
+    return None
 
 # Define functions launched when chosen from main menu by user
 
-@app.route('/films')
-def filmography():  # filmography for a person
+@app.route('/actor')
+def actor():  # filmography for a person
     actor_name = 'Lacey Chabert'
     actor_nm = ""
     #actor_nm = nm_lookup(actor_name)
@@ -104,10 +104,10 @@ def filmography():  # filmography for a person
     for k, v in enumerate(actor_movies):
         actor_titles.append(tt_title[v])  # lookup the code to get titles
     total_titles = len(actor_titles)
-    return render_template('films.html', actor=actor_name, num_films =total_titles, films=actor_titles)
+    return render_template('actor.html', actor=actor_name, num_films =total_titles, films=actor_titles)
 
-@app.route('/cast')
-def cast():  # a movie's top actors and actresses
+@app.route('/movie')
+def movie():  # a movie's top actors and actresses
     #movie_name = input('Please enter a movie title (Date with Love, for example) and press enter: ')
     movie_name = "It Was Always You"
     movie_tt = tt_lookup(movie_name)
@@ -150,7 +150,7 @@ def cast():  # a movie's top actors and actresses
     #tab_print(movie_info.head(10), movie_info_headers)  # "pretty" print result
     #print(movie_name, 'had', total_actors, 'main actors and actresses in it:')
     #tab_print(df, '')
-    return render_template('cast.html', film=movie_name, actors=movie_cast_names)
+    return render_template('movie.html', film=movie_name, actors=movie_cast_names)
 
 def deg_separation():  # connectivity between two actors based on who they starred with in other movies
     clrscr()
