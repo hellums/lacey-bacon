@@ -1,6 +1,7 @@
 # romcom.py 2/24/22 3:10 PM
 """ Project for Code Louisvillle Python data analysis class, with a menu of Hallmark-limited IMDB info"""
 # Import os module for system calls to cls and clear (screen)
+from importlib.resources import path
 import os  # for system calls to clear screen
 import csv  # to import TSV files for movie and actor lists
 import unittest 
@@ -95,7 +96,7 @@ def menu():  # basic menu screen for user to select program feature sets
 
 @app.route('/actor')
 def actor():  # filmography for a person
-    actor_name = 'Lacey Chabert'
+    actor_name = 'Cindy Busby'
     actor_nm = ""
     #actor_nm = nm_lookup(actor_name)
     actor_nm = name_nm[actor_name]    
@@ -104,7 +105,9 @@ def actor():  # filmography for a person
     for k, v in enumerate(actor_movies):
         actor_titles.append(tt_title[v])  # lookup the code to get titles
     total_titles = len(actor_titles)
-    return render_template('actor.html', actor=actor_name, num_films =total_titles, films=actor_titles)
+    shortest_path=lacey_sp[actor_name]
+    separation=int(len(shortest_path)/2)
+    return render_template('actor.html', actor=actor_name, num_films =total_titles, films=actor_titles, path=shortest_path, distance=separation)
 
 @app.route('/movie')
 def movie():  # a movie's top actors and actresses
@@ -294,7 +297,7 @@ def movie_fuzzy_search(title):  # find any movie with prominent word in title
 
 def load_data():  # read data from tab-delimited files to data structures
     global tt_title, title_tt, tt_nm, nm_name, name_nm, nm_tt, title_rating
-    global cast_crew_info, movie_info, movie_cast_crew, leader_board, sp, no_pickle_file
+    global cast_crew_info, movie_info, movie_cast_crew, leader_board, lacey_sp, no_pickle_file
     # Read data from an external file, such as text, JSON, CSV, etc, and use that data in your
     # application. Code Louisville requirement.
     print('Loading data, please wait (15-20 seconds)...')
@@ -318,10 +321,10 @@ def load_data():  # read data from tab-delimited files to data structures
     tt_nm = dict(zip(df.tconst, df.actorList))  # lookup actor IDs by movie ID 
 
     leader_board = pd.read_csv('leader_board.csv', sep='\t', index_col=None)
-    #try:
-    #   sp = pickle.load(open("shortest_path.pkl", "rb"))  # shortest path data, pickle 1/4 size of json
-    #except:
-    #    no_pickle_file = True # allow most functions to run without romcom_prep using .csv and .db files
+    try:
+        lacey_sp = pickle.load(open("lacey_sp.pkl", "rb"))  # shortest path data, pickle 1/4 size of json
+    except:
+        no_pickle_file = True # allow most functions to run without romcom_prep using .csv and .db files
     return None
 
 # Allow file to be used as function or program

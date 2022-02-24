@@ -1,12 +1,16 @@
 {% extends "layout.html" %}
 {% block content %}
     <div class="actor">
-        <h1>Filmography of {{ actor }}</h1>
-
-            <p>{{ actor }} has been in {{ num_films }} films:</p>
+        <h1>{{ actor }} has been in {{ num_films }} films:</h1>
+            <p><hr></p>
             {% for each in films %}
-            <br>  {{ each }}
+            <p>{{ each }}</p>  
             {% endfor %}
-
-    </div>
+            <p></p>
+            <h1>{{ actor }}'s "Lacey number" is: {{ distance }} (degrees of separation):</h1>
+            <p><hr></p>
+            {% for each in path %}
+                <p>{{ each }}</p>
+            {% endfor %}
+        </div>
 {% endblock %}
