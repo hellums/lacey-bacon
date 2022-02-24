@@ -86,17 +86,18 @@ Category 4: Best Practices
 - Slack
 - Visual Studio Code
 - Python
+- Flask
+- SQLite3
 - Unittest
-- Docker
-- SQLite3 
 - Jupyter Notebook
 - Pandas
 - Matplotlib 
 - Networkx (node/vector, centrality)
 - BeautifulSoup
+- Docker
 - Pluralsight (LMS for bootcamp courses)
 - Anaconda (introductory)
 - Cookiecutter (introductory)
 - IMDB (data source)
-- 2 African swallows, 1 coconut (sling-loaded), twine
-- "Balanced" scale, 1 witch, 1 duck, very small rocks (floating type)
+- "Balanced" scale, 1 witch, 1 duck, very small rocks (that float)
+- 2 African swallows, 1 coconut, twine for sling-loading
