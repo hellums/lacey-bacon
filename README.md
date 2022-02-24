@@ -34,18 +34,18 @@ TO INSTALL PREREQUISITES:
 TO DOWNLOAD AND PREPARE DATA/DATABASE:
 >python3 romcomPrep.py (NOTE: compressed files total 4 GB, uncompressed another 2 GB)
 
-TO TEST AND VALIDATE INTEGRITY OF DATA STRUCTURES: (optional)
->python3 -m unittest test_romcom -v
-
-TO TEST SQLITE3 DATABASE: (optional)
->python3 romcomSQL.py
-
-TO RUN PROGRAM: (assuming both tests above have no issues)
+TO RUN PROGRAM: (assuming prep completed properly)
 >python3 romcom.py
 
 TO RUN FLASK MICROSITE:
 >python3 romcomWeb.py
 >in a web browser tab, go to http://localhost:5000/
+
+TO TEST AND VALIDATE INTEGRITY OF DATA STRUCTURES: (optional)
+>python3 -m unittest test_romcom -v
+
+TO TEST SQLITE3 DATABASE: (optional)
+>python3 romcomSQL.py
 
 # PACKAGES INVOLVED
 See requirements.txt file in project folder. 
