@@ -89,7 +89,7 @@ Category 4: Best Practices
 - Slack
 - Visual Studio Code
 - Python
-- Flask
+- Flask, Jinja, CSS
 - SQLite3
 - Unittest
 - Jupyter Notebook
@@ -97,8 +97,8 @@ Category 4: Best Practices
 - Matplotlib 
 - Networkx (node/vector, centrality)
 - BeautifulSoup
-- Docker
 - Pluralsight (LMS for bootcamp courses)
+- Docker (introductory)
 - Anaconda (introductory)
 - Cookiecutter (introductory)
 - IMDB (data source)
