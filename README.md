@@ -43,6 +43,10 @@ TO TEST SQLITE3 DATABASE: (optional)
 TO RUN PROGRAM: (assuming both tests above have no issues)
 >python3 romcom.py
 
+TO RUN FLASK MICROSITE:
+>python3 romweb.py
+>in web brosers, go to http://localhost:5000/
+
 # PACKAGES INVOLVED
 See requirements.txt file in project folder. 
 
