@@ -358,6 +358,11 @@ def load_data():  # read data from tab-delimited files to data structures
         sp = pickle.load(open("shortest_path.pkl", "rb"))  # shortest path data, pickle 1/4 size of json
     except:
         no_pickle_file = True # allow most functions to run without romcom_prep using .csv and .db files
+    try:
+        lacey_sp = pickle.load(open("lacey_sp.pkl", "rb"))  # shortest path data, pickle 1/4 size of json
+    except:
+        no_pickle_file = True # allow most functions to run without romcom_prep using .csv and .db files
+
     return None
 
 # Allow file to be used as function or program

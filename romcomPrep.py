@@ -1,4 +1,4 @@
-# romcom_prep.py dbh 2/22/22 3:08 PM
+# romcom_prep.py dbh 2/24/22 10:54 AM
 """ Downloads imdb-related files and watchlist, uncompresses and cleans/prunes them as necessary"""
 
 import re
@@ -14,7 +14,7 @@ import sqlite3  # to export records to flatfile database
 from pathlib import Path
 
 def main():
-    download_uncompress_imdb_files()  #shipit
+    #download_uncompress_imdb_files()  #shipit
     load_dataframes()  # load local files into data structures
     graph_database()  # create a netwokx graph for analysis of centrality
     graph_all_as_nodes()
@@ -174,7 +174,7 @@ def graph_database():  # shipit
     return None
 
 def graph_all_as_nodes():  # shipit - for text-based presentation of actor degrees of separation
-    global sp1, sp
+    global sp, sp1, sp2
     G1 = nx.Graph()
     print('Creating degree separation graph...')
     names = {}
@@ -194,6 +194,8 @@ def graph_all_as_nodes():  # shipit - for text-based presentation of actor degre
         G1.add_edge(s_name, m_name)
     sp = nx.all_pairs_shortest_path(G1)  # create list of shortest paths
     sp1 = dict(sp)  # convert to dictionary for export and import
+    sp = nx.single_source_shortest_path(G1, 'Lacey Chabert', cutoff=7)
+    sp2 = dict(sp)  # convert the Lacey only shortest path info
     return None
 
 def export_dataframes():  # shipit - save all four tables in csv format
@@ -218,6 +220,8 @@ def export_dataframes():  # shipit - save all four tables in csv format
     #    fp.write(json.dumps(sp1))  #file is 2+ GB, don't need for now
     with open('./shortest_path.pkl', 'wb') as fp:
         pickle.dump(sp1, fp)  #file is .5 GB, more suitable to task
+    with open('./lacey_sp.pkl', 'wb') as fp:
+        pickle.dump(sp2, fp)  #file is much smaller, for Lacy only analysis
 
 def export_sqlite():  # shipit - add all four main dataframes to database as tables
     print('Exporting database records...')
