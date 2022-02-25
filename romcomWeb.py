@@ -1,4 +1,4 @@
-# romcomWeb.py 2/25/22 8:59 AM
+# romcomWeb.py 2/25/22 9:29 AM
 """ Project to reuse Code Louisvillle Python data analysis class code for web delivery"""
 
 from importlib.resources import path
@@ -9,7 +9,7 @@ import pickle
 import sqlite3
 import matplotlib.pyplot as plt  # needs install
 import networkx as nx #needs install
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request  # needs install
 
 # Initiate the Flask micro web framework
 app = Flask(__name__)
@@ -125,7 +125,6 @@ def load_data():  # read data from tab-delimited files to data structures
     global cast_crew_info, movie_info, movie_cast_crew, leader_board, lacey_sp, no_pickle_file
     # Read data from an external file, such as text, JSON, CSV, etc, and use that data in your
     # application. Code Louisville requirement.
-    print('Loading data, please wait (15-20 seconds)...')
     movie_info = pd.read_csv('movie_info.csv', sep='\t', index_col=None, \
                   dtype={'startYear': str, 'runtimeMinutes': str}, \
                   converters={'movieGenres': lambda x: re.split(',+', x)})  
@@ -133,6 +132,7 @@ def load_data():  # read data from tab-delimited files to data structures
     tt_title = dict(zip(df.tconst, df.primaryTitle))  # lookup title by movie ID
     title_tt = dict(zip(df.primaryTitle, df.tconst))  # lookup ID by movie title
     title_rating = dict(zip(df.primaryTitle, df.averageRating))  # lookup rating by movie title
+
     cast_crew_info = pd.read_csv('cast_crew_info.csv', sep='\t', index_col=None)
     df = cast_crew_info 
     nm_name = dict(zip(df.nconst, df.primaryName))  # lookup name by cast ID
