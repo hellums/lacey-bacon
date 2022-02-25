@@ -1,17 +1,17 @@
 <!doctype html>
 <html>
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>RomcomWeb</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
     </head>
     <body>
         <header>
             <div class="container">
-                <h1 class="logo">IMDB Hallmark RomComs</h1>
+                <h1 class="logo">RomCom Web</h1>
                 <strong><nav>
                     <ul class="menu">
                         <li><a href="{{ url_for('home') }}">Home</a></li>
+                        <li><a href="{{ url_for('best') }}">Top 10</a></li>
                         <li><a href="{{ url_for('actor_frm') }}">Actor</a></li>
                         <li><a href="{{ url_for('movie_frm') }}">Movie</a></li>
                         <li><a href="{{ url_for('about') }}">About</a></li>

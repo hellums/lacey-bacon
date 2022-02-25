@@ -19,13 +19,16 @@ def home():
     load_data()  # load data structures
     return render_template("home.html") # display the home page
 
-@app.route('/leaders/')  # top 10 actors based on centrality graph, and top 10 movies based on ratings
-def leaderboard():  # leaderboard
-    leader_board_headers=['"Hall of Fame"', "Fame-O-Meter\u2081"]
-    df = sorted(title_rating.items(), key = lambda kv: kv[1], reverse=True)
-    top_movie_headers=['Top 20 Movies', "Average Rating"]
-    tab_print(df[:20], top_movie_headers)
-    return (tab_print(df[:20], top_movie_headers))
+@app.route('/best/')  # top 10 actors based on centrality graph, and top 10 movies based on ratings
+def best():
+    top10 = leader_board[:10]
+    top_actors=list(top10['Hall of Fame'])
+    top_movies=ranked_titles[:10]  # create a top 10 list of movie titles
+    #title_rating = dict(zip(df.primaryTitle, df.averageRating))  # lookup rating by movie title
+    #df = pd.DataFrame(list(title_rating.items()),columns = ['column1','column2']) 
+    #df = df.sort_values(["column2", "column1"], ascending=False)
+    #top_movies=list(df[:10])
+    return render_template("best.html", top_actors=top_actors, top_movies=top_movies) # display the Top 10 page
 
 @app.route('/actor_frm')  # user clicked on Actor in navbar
 def actor_frm():
@@ -121,7 +124,7 @@ def cast_lookup(tt):
     return cast
 
 def load_data():  # read data from tab-delimited files to data structures
-    global tt_title, title_tt, tt_nm, nm_name, name_nm, nm_tt, title_rating, sp
+    global tt_title, title_tt, tt_nm, nm_name, name_nm, nm_tt, title_rating, sp, ranked_titles
     global cast_crew_info, movie_info, movie_cast_crew, leader_board, lacey_sp, no_pickle_file
     # Read data from an external file, such as text, JSON, CSV, etc, and use that data in your
     # application. Code Louisville requirement.
@@ -132,6 +135,9 @@ def load_data():  # read data from tab-delimited files to data structures
     tt_title = dict(zip(df.tconst, df.primaryTitle))  # lookup title by movie ID
     title_tt = dict(zip(df.primaryTitle, df.tconst))  # lookup ID by movie title
     title_rating = dict(zip(df.primaryTitle, df.averageRating))  # lookup rating by movie title
+    df = pd.DataFrame(list(title_rating.items()),columns = ['column1','column2']) # sort ratings
+    df = df.sort_values(["column2", "column1"], ascending=False)  # get the highest ranking up top
+    ranked_titles = df['column1'].tolist()  # convert results to a list
 
     cast_crew_info = pd.read_csv('cast_crew_info.csv', sep='\t', index_col=None)
     df = cast_crew_info 
@@ -145,7 +151,7 @@ def load_data():  # read data from tab-delimited files to data structures
     df = movie_cast_crew.groupby('tconst')['nconst'].apply(list).reset_index(name="actorList")
     tt_nm = dict(zip(df.tconst, df.actorList))  # lookup actor IDs by movie ID 
 
-    leader_board = pd.read_csv('leader_board.csv', sep='\t', index_col=None)
+    leader_board = pd.read_csv('leader_board.csv', sep='\t', header=[0], index_col=None)
     try:
         lacey_sp = pickle.load(open("lacey_sp.pkl", "rb"))  # shortest path data, pickle 1/4 size of json
     except:
