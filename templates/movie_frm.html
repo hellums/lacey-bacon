@@ -1,0 +1,10 @@
+
+{% extends "layout.html" %}
+{% block content %}
+    <div class="movie_frm">
+        <form action="/movie_data/" method="POST">
+            <p>Movie name <input type="text" name = "Movie"></p>
+            <p><input type="submit" value="SUBMIT"></p>
+        </form>
+   </div>
+{% endblock %}
