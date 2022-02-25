@@ -225,7 +225,8 @@ def about():  # about section
             'the database to learn more about an actor or actress or the movies they\'ve',
             'costarred in.',
             '\nThis program also includes SQL functions using SQLite3, using the same data.',
-            'A few graphs prototyped in Jupyter Notebook will also be displayed.']
+            'A few graphs prototyped in Jupyter Notebook will also be displayed. There is',
+            'also a Flask-based web interface to a ported subset of functions.']
     print(about_header)
     for lines in about:
         print(lines)
