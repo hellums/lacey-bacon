@@ -12,9 +12,10 @@
                 {% endif %}
                 
             {% endfor %}
-            whose "Lacey number" is {{ distance }}. This means she is {{distance}} degrees of separation from Lacey.
-        <h1>        
-            <hr>{{ actor }} has been in {{ num_films }} Hallmark TV Movies:</h1>
+            whose effective "Lacey number" (degree separation from Lacey) is {{ distance }}!
+            <p>{{ actor }}'s IMDB page can be found at https://www.imdb.com/name/{{actor_nm}}.
+                {{ actor }} has been in {{ num_films }} Hallmark TV Movies:</p>
+            <hr>
             <p></p>
             {% for each in films %}
             <p>{{ each }}</p>  

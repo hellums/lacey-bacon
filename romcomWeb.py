@@ -27,7 +27,10 @@ def home():
 @app.route('/leaders/')
 def leaderboard():  # leaderboard
     leader_board_headers=['"Hall of Fame"', "Fame-O-Meter\u2081"]
-    return tab_print(str(leader_board[:10]), leader_board_headers)
+    df = sorted(title_rating.items(), key = lambda kv: kv[1], reverse=True)
+    top_movie_headers=['Top 20 Movies', "Average Rating"]
+    tab_print(df[:20], top_movie_headers)
+    return (tab_print(df[:20], top_movie_headers))
 
 @app.route('/actor_frm')
 def actor_frm():
@@ -49,7 +52,7 @@ def actor_data():
         total_titles = len(actor_titles)
         shortest_path=lacey_sp[actor_name]
         separation=int(len(shortest_path)/2)
-    return render_template('actor.html', actor=actor_name, num_films =total_titles, films=actor_titles, path=shortest_path, distance=separation)
+    return render_template('actor.html', actor=actor_name, actor_nm=actor_nm, num_films =total_titles, films=actor_titles, path=shortest_path, distance=separation)
     #return render_template('actor_data.html', form_data = form_data)
 
 @app.route('/movie_frm')
@@ -92,15 +95,6 @@ def graphs():  # show BA plots on ratings, production, etc.
     plt.legend(['Movie', 'TV Episode', 'TV Mini-Series', 'TV Movie', 'TV Series'])
     plt.title('Production Increase\n')    
     plt.show()
-    return None
-
-def option7(option):  
-    option = option  # premature optimization
-    return None
-
-def option0(option):  # for debug only, to be replaced later with 'easter egg'
-    option = option  # premature optimization
-    notImplementedYet()
     return None
 
 ###  Lookup utilities  ###
@@ -156,10 +150,9 @@ def load_data():  # read data from tab-delimited files to data structures
         no_pickle_file = True # allow most functions to run without romcom_prep using .csv and .db files
     return None
 
-# Allow file to be used as function or program
+# Launch as a Flask app
 if __name__=='__main__':
     app.run(debug=True)
-    #main()
 
 # stash code here in case needed later
 '''

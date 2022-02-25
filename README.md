@@ -89,7 +89,8 @@ Category 4: Best Practices
 - Slack
 - Visual Studio Code
 - Python
-- Flask, Jinja, CSS
+- Flask, Jinja
+- HTML, CSS
 - SQLite3
 - Unittest
 - Jupyter Notebook
