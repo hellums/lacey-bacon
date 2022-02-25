@@ -1,10 +1,16 @@
 {% extends "layout.html" %}
 {% block content %}
     <div class="movie">
-        <h1>Cast of film {{ film }}</h1>
-
+        {% if actors %}
+            <h1>Cast of film {{ film }}</h1>
             {% for each in actors %}
-            <br>  {{ each }}
+                <br>  {{ each }}
             {% endfor %}
+
+        {% else %}
+            <h1>A movie with that exact title is not in the database. Note that title are punctuation and case sensitive, such as "Date with Love" and "Good Morning Christmas! Try looking for someone in the movie, and double check the title." </h1>
+    
+        {% endif %}
     </div>
+
 {% endblock %}

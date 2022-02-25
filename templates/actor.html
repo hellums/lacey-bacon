@@ -1,26 +1,37 @@
 {% extends "layout.html" %}
 {% block content %}
     <div class="actor">
+        {% if num_films > 0 %}
+
             <p></p>Leading the pack is 
             {% for each in path %}
+
                 {% if loop.index % 2 %}
                     <b>{{each}}</b>,
                 {% endif %}
                 
                 {% if (loop.index -1) % 2 %}
                 who was in "<b>{{each}}</b>" with
-                {% endif %}
-                
-            {% endfor %}
-            whose effective "Lacey number" (degree separation from Lacey) is {{ distance }}!
-            <p>{{ actor }}'s IMDB page can be found at https://www.imdb.com/name/{{actor_nm}}.
+                {% endif %}    
+
+                {% endfor %}
+
+                whose effective "Lacey number" (degree separation from Lacey) is {{ distance }}!
+             <p>{{ actor }}'s IMDB page can be found at https://www.imdb.com/name/{{actor_nm}}.
                 {{ actor }} has been in {{ num_films }} Hallmark TV Movies:</p>
             <hr>
             <p></p>
+
             {% for each in films %}
-            <p>{{ each }}</p>  
+                <p>{{ each }}</p>  
             {% endfor %}
             <p></p>
+
+        {% else %}
+            <h1>A person with that exact title is not in the database. Note that names are punctuation and case sensitive, such as "Date with Love" and "Good Morning Christmas!" If you know of a movie this person was in, use the Movie page to look it up, and double check the spelling of the person's name. </h1>
+    
+        {% endif %}
+
     </div>
 
 {% endblock %}
