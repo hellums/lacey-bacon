@@ -1,4 +1,4 @@
-# romcomWeb.py 2/25/22 9:29 AM
+# romcomWeb.py 2/25/22 3:21 PM
 """ Project to reuse Code Louisvillle Python data analysis class code for web delivery"""
 
 from importlib.resources import path
@@ -19,15 +19,11 @@ def home():
     load_data()  # load data structures
     return render_template("home.html") # display the home page
 
-@app.route('/best/')  # top 10 actors based on centrality graph, and top 10 movies based on ratings
+@app.route('/best/')  # top 20 actors based on centrality graph, and top 20 movies based on ratings
 def best():
-    top10 = leader_board[:10]
+    top10 = leader_board[:20]
     top_actors=list(top10['Hall of Fame'])
-    top_movies=ranked_titles[:10]  # create a top 10 list of movie titles
-    #title_rating = dict(zip(df.primaryTitle, df.averageRating))  # lookup rating by movie title
-    #df = pd.DataFrame(list(title_rating.items()),columns = ['column1','column2']) 
-    #df = df.sort_values(["column2", "column1"], ascending=False)
-    #top_movies=list(df[:10])
+    top_movies=ranked_titles[:20]  # create a top 20 list of movie titles
     return render_template("best.html", top_actors=top_actors, top_movies=top_movies) # display the Top 10 page
 
 @app.route('/actor_frm')  # user clicked on Actor in navbar
@@ -161,91 +157,3 @@ def load_data():  # read data from tab-delimited files to data structures
 # Launch as a Flask app
 if __name__=='__main__':
     app.run(debug=True)
-
-# stash code here in case needed later
-'''
-@app.errorhandler(HTTPException)
-def handle_exception(e):
-    """Return JSON instead of HTML for HTTP errors."""
-    # start with the correct headers and status code from the error
-    response = e.get_response()
-    response.data = json.dumps({
-        "code": e.code,
-        "name": e.name,
-        "description": e.description,
-    })
-    response.content_type = "application/json"
-    return response
-
-@app.route('/form')
-def form():
-    return render_template('form.html')
-
-@app.route('/data/', methods=['POST', 'GET'])
-def data():
-    if request.method == 'GET':
-        return f"The URL /data is accesed directly. Try going to '/form to submit form"
-    if request.method == 'POST':
-        form_data = request.form
-    return render_template('data.html', form_data = form_data)
-
-@app.route('/actor')
-def actor():  # filmography for a person
-    actor_name = 'Cindy Busby'
-    actor_nm = ""
-    #actor_nm = nm_lookup(actor_name)
-    actor_nm = name_nm[actor_name]    
-    actor_movies = nm_tt[actor_nm]  # pull a list of this actor's movie title codes
-    actor_titles = []
-    for k, v in enumerate(actor_movies):
-        actor_titles.append(tt_title[v])  # lookup the code to get titles
-    total_titles = len(actor_titles)
-    shortest_path=lacey_sp[actor_name]
-    separation=int(len(shortest_path)/2)
-    return render_template('actor.html', actor=actor_name, num_films =total_titles, films=actor_titles, path=shortest_path, distance=separation)
-
-@app.route('/movie')
-def movie():  # a movie's top actors and actresses
-    #movie_name = input('Please enter a movie title (Date with Love, for example) and press enter: ')
-    movie_name = "It Was Always You"
-    movie_tt = tt_lookup(movie_name)
-    try:
-        movie_tt = tt_lookup(movie_name)
-        if not movie_name:  # handle case of an empty string from ENTER/RETURN input
-            print("A movie with that exact title is not in the database.") 
-            return None
-    except:
-        if not movie_name:  # handle case of an empty string from ENTER/RETURN input
-            print("A movie with that exact title is not in the database.") 
-            return None
-        print("A movie with that exact title is not in the database.") 
-        try:
-            movie_name = movie_name.rsplit(' ', 1)  # split up the title
-            stripped  = [word for word in movie_name if word.lower() not in ['christmas']]
-            movie_name = [' '.join(stripped)]  # exlude the word Christmas
-            movie_name = max(movie_name, key=len)  # to find a suitable keyword for search
-            #movie_name = movie_name.lower()  # normalize it somewhat, in case of bad input
-            #movie_name = movie_name.title() # caused problem with McKellar. Clean up later.
-        except:  # bail if input was single word, or numbers
-            return None
-        possible_match = movie_fuzzy_search(movie_name)  # see if there's any movie with keyword
-        if possible_match:
-            print('\nPossible title match:')
-            for item in possible_match:  # print out the list of possible alternative titles
-                print(item[0])  
-            print('\nNOTE: titles are punctuation and case sensitive. For example,')
-            print('"Good Morning Christmas!" and "Date with Love"')
-        input('\nPress ENTER/RETURN to return to main menu: ')
-        return None
-
-    movie_cast_codes = cast_lookup(movie_tt)  # create a list of movies from the dictionary lookup
-    movie_cast_names = []
-    for nm in movie_cast_codes:
-        name = name_lookup(nm)
-        movie_cast_names.append(name)
-    #movie_info_headers=["IMDB #","Category ","Title  ","Year","Runtime","Genres   ","Rating","Votes"]  # note: bug in tab api
-    #tab_print(movie_info.head(10), movie_info_headers)  # "pretty" print result
-    #print(movie_name, 'had', total_actors, 'main actors and actresses in it:')
-    #tab_print(df, '')
-    return render_template('movie.html', film=movie_name, actors=movie_cast_names)
-'''
