@@ -39,6 +39,7 @@ TO RUN PROGRAM: (assuming prep completed properly)
 
 TO RUN FLASK MICROSITE:
 >python3 romcomWeb.py
+
 >in a web browser tab, go to http://localhost:5000/
 
 TO TEST AND VALIDATE INTEGRITY OF DATA STRUCTURES: (optional)
