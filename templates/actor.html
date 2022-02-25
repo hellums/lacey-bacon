@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
     <div class="actor">
-            Leading the pack is 
+            <p></p>Leading the pack is 
             {% for each in path %}
                 {% if loop.index % 2 %}
                     <b>{{each}}</b>,
@@ -14,7 +14,7 @@
             {% endfor %}
             whose "Lacey number" is {{ distance }}. This means she is {{distance}} degrees of separation from Lacey.
         <h1>        
-            <hr>{{ actor }} has been in {{ num_films }} films:</h1>
+            <hr>{{ actor }} has been in {{ num_films }} Hallmark TV Movies:</h1>
             <p></p>
             {% for each in films %}
             <p>{{ each }}</p>  

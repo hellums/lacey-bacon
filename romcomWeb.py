@@ -13,14 +13,14 @@ import sqlite3
 import matplotlib.pyplot as plt  # needs install
 import networkx as nx #needs install
 from tabulate import tabulate  # needs install
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 
 # Define main function to print menu and get user choice
 
 app = Flask(__name__)
-@app.route('/')
 
+@app.route('/')
 def home():
 
     # Load the data structures
@@ -191,6 +191,61 @@ def leaderboard():  # leaderboard
     tab_print(df[:20], top_movie_headers)
     return (tab_print(df[:20], top_movie_headers))
 '''
+
+@app.route('/form')
+def form():
+    return render_template('form.html')
+
+@app.route('/data/', methods=['POST', 'GET'])
+def data():
+    if request.method == 'GET':
+        return f"The URL /data is accesed directly. Try going to '/form to submit form"
+    if request.method == 'POST':
+        form_data = request.form
+    return render_template('data.html', form_data = form_data)
+
+@app.route('/actor_frm')
+def actor_frm():
+    return render_template('actor_frm.html')
+
+@app.route('/actor_data/', methods=['POST', 'GET'])
+def actor_data():
+    if request.method == 'GET':
+        return f"The URL /data is accesed directly. Try going to '/form to submit form"
+    if request.method == 'POST':
+        form_data = request.form
+        actor_name = form_data['Actor']
+        #actor_nm = nm_lookup(actor_name)
+        actor_nm = name_nm[actor_name]    
+        actor_movies = nm_tt[actor_nm]  # pull a list of this actor's movie title codes
+        actor_titles = []
+        for k, v in enumerate(actor_movies):
+            actor_titles.append(tt_title[v])  # lookup the code to get titles
+        total_titles = len(actor_titles)
+        shortest_path=lacey_sp[actor_name]
+        separation=int(len(shortest_path)/2)
+    return render_template('actor.html', actor=actor_name, num_films =total_titles, films=actor_titles, path=shortest_path, distance=separation)
+    #return render_template('actor_data.html', form_data = form_data)
+
+@app.route('/movie_frm')
+def movie_frm():
+    return render_template('movie_frm.html')
+
+@app.route('/movie_data/', methods=['POST', 'GET'])
+def movie_data():
+    if request.method == 'GET':
+        return f"The URL /data is accesed directly. Try going to '/form to submit form"
+    if request.method == 'POST':
+        form_data = request.form
+        movie_name = form_data['Movie']
+        movie_tt = tt_lookup(movie_name)
+        movie_cast_codes = cast_lookup(movie_tt)  # create a list of movies from the dictionary lookup
+        movie_cast_names = []
+        for nm in movie_cast_codes:
+            name = name_lookup(nm)
+            movie_cast_names.append(name)
+    return render_template('movie.html', film=movie_name, actors=movie_cast_names)
+    #return render_template('movie_data.html', form_data = form_data)
 
 @app.route('/about/')
 def about():  # about section
