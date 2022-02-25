@@ -1,37 +1,45 @@
 {% extends "layout.html" %}
 {% block content %}
-    <div class="actor">
-        {% if num_films > 0 %}
 
-            <p></p>Leading the pack is 
-            {% for each in path %}
+{% if num_films > 0 %}
 
-                {% if loop.index % 2 %}
-                    <b>{{each}}</b>,
-                {% endif %}
-                
-                {% if (loop.index -1) % 2 %}
-                who was in "<b>{{each}}</b>" with
-                {% endif %}    
+<h2><p>{{ actor }}'s IMDB page can be found <a href='https://www.imdb.com/name/{{actor_nm}}' target="_blank">here</a>.
+    {{ actor }} has been in {{ num_films }} Hallmark TV Movies:</p></h2>
 
-                {% endfor %}
+  <div class="row">
+    <div class="column" style="background-color:#aaa;">
+      <h2>Connection?</h2>
+      <p><hr></p>
+      <p>Leading the pack is 
+        {% for each in path %}
 
-                whose effective "Lacey number" (degree separation from Lacey) is {{ distance }}!
-             <p>{{ actor }}'s IMDB page can be found <a href='https://www.imdb.com/name/{{actor_nm}}' target="_blank">here</a>.
-                {{ actor }} has been in {{ num_films }} Hallmark TV Movies:</p>
-            <hr>
-            <p></p>
+            {% if loop.index % 2 %}
+                <b>{{each}}</b>,
+            {% endif %}
+            
+            {% if (loop.index -1) % 2 %}
+            who was in "<b>{{each}}</b>" with
+            {% endif %}    
 
-            {% for each in films %}
-                <p>{{ each }}</p>  
             {% endfor %}
-            <p></p>
 
-        {% else %}
-            <h1>A person with that exact name is not in the database. Note that names are punctuation and case sensitive, such as "Andrew W. Walker" and "Danica McKellar". If you know of a movie this person was in, use the Movie page to look it up, and double check the spelling of the person's name. </h1>
-    
-        {% endif %}
-
+            whose effective "Lacey number" (degree separation from Lacey) is {{ distance }}!</p>
     </div>
+    <div class="column" style="background-color:#bbb;">
+      <h2>Filmography</h2>
+      <p><hr></p>
+      <center><p>
+        {% for each in films %}
+            {{ each }}<br>  
+        {% endfor %}</p></center>
+    </div>
+  </div>
+
+{% else %}
+    <h1>A person with that exact name is not in the database. Note that names are punctuation and case sensitive, such as "Andrew W. Walker" and "Danica McKellar". If you know of a movie this person was in, use the Movie page to look it up, and double check the spelling of the person's name. </h1>
+
+{% endif %}
+
+
 
 {% endblock %}

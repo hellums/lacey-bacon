@@ -2,13 +2,14 @@
 {% block content %}
     <div class="movie">
         {% if actors %}
+            <p></p><p><strong>{{ film }}</strong>'s IMDB page can be found <a href='https://www.imdb.com/title/{{movie_tt}}' target="_blank">here</a>.
             <h1>Cast of film {{ film }}</h1>
             {% for each in actors %}
                 <br>  {{ each }}
             {% endfor %}
 
         {% else %}
-            <h1>A movie with that exact title is not in the database. Note that title are punctuation and case sensitive, such as "Date with Love" and "Good Morning Christmas! Try looking for someone in the movie, and double check the title." </h1>
+            <h1>A movie with that exact title is not in the database. Note that title are punctuation and case sensitive, such as "Date with Love" and "Good Morning Christmas! If you know someone in the movie, use the Actor page to look them up, and double check the title in their list of movies. </h1>
     
         {% endif %}
     </div>

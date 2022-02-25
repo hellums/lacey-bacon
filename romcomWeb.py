@@ -70,8 +70,8 @@ def movie_data():
                 name = name_lookup(nm)
                 movie_cast_names.append(name)
         except:
-            return render_template('movie.html', film=movie_name, actors=[])  # allow error notification
-    return render_template('movie.html', film=movie_name, actors=movie_cast_names)        
+            return render_template('movie.html', film='', movie_tt='', actors=[])  # allow error notification
+    return render_template('movie.html', film=movie_name, movie_tt=movie_tt, actors=movie_cast_names)        
 
 @app.route('/about/')  # user clicked on the About link in navbar
 def about():  # about section
