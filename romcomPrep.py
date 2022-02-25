@@ -1,4 +1,4 @@
-# romcom_prep.py dbh 2/24/22 10:54 AM
+# romcom_prep.py dbh 2/25/22 5:31 PM
 """ Downloads imdb-related files and watchlist, uncompresses and cleans/prunes them as necessary"""
 
 import re
@@ -14,7 +14,7 @@ import sqlite3  # to export records to flatfile database
 from pathlib import Path
 
 def main():
-    #download_uncompress_imdb_files()  #shipit
+    download_uncompress_imdb_files()  #shipit
     load_dataframes()  # load local files into data structures
     graph_database()  # create a netwokx graph for analysis of centrality
     graph_all_as_nodes()
