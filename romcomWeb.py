@@ -1,4 +1,4 @@
-# romcomWeb.py 2/24/22 9:30 PM
+# romcomWeb.py 2/25/22 8:59 AM
 """ Project to reuse Code Louisvillle Python data analysis class code for web delivery"""
 
 from importlib.resources import path
@@ -12,19 +12,14 @@ import networkx as nx #needs install
 from flask import Flask, render_template, request
 
 # Initiate the Flask micro web framework
-
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/')  # initialize program
 def home():
+    load_data()  # load data structures
+    return render_template("home.html") # display the home page
 
-    # Load the data structures
-    load_data()
-    return render_template("home.html") #menu_options
-
-# Define functions launched when chosen from main menu by user
-
-@app.route('/leaders/')
+@app.route('/leaders/')  # top 10 actors based on centrality graph, and top 10 movies based on ratings
 def leaderboard():  # leaderboard
     leader_board_headers=['"Hall of Fame"', "Fame-O-Meter\u2081"]
     df = sorted(title_rating.items(), key = lambda kv: kv[1], reverse=True)
@@ -32,19 +27,19 @@ def leaderboard():  # leaderboard
     tab_print(df[:20], top_movie_headers)
     return (tab_print(df[:20], top_movie_headers))
 
-@app.route('/actor_frm')
+@app.route('/actor_frm')  # user clicked on Actor in navbar
 def actor_frm():
-    return render_template('actor_frm.html')
+    return render_template('actor_frm.html')  # display the actor lookup form
 
-@app.route('/actor_data/', methods=['POST', 'GET'])
+@app.route('/actor_data/', methods=['POST', 'GET']) # user clicked on submit or typed in full path
 def actor_data():
-    if request.method == 'GET':
+    if request.method == 'GET':  # display an error if user accessing results without search
         return f"The URL /data is accesed directly. Try going to '/form to submit form"
-    if request.method == 'POST':
+    if request.method == 'POST':  # otherwise let's process the name they sent in the form
         form_data = request.form
         actor_name = form_data['Actor']
         try:
-            actor_nm = nm_lookup(actor_name)
+            actor_nm = nm_lookup(actor_name)  # if we get results, we'll return them
             actor_movies = films_lookup(actor_nm)  # pull a list of this actor's movie title codes
             actor_titles = []
             for k, v in enumerate(actor_movies):
@@ -52,15 +47,15 @@ def actor_data():
             total_titles = len(actor_titles)
             shortest_path=lacey_sp[actor_name]
             separation=int(len(shortest_path)/2)
-        except:
+        except:  # otherwise well return a bunch of nulls so the handler page can notify the user
             return render_template('actor.html', actor=actor_name, actor_nm='', num_films=0, films=[], path=[], distance=0)
     return render_template('actor.html', actor=actor_name, actor_nm=actor_nm, num_films =total_titles, films=actor_titles, path=shortest_path, distance=separation)
 
-@app.route('/movie_frm')
+@app.route('/movie_frm')  # user clicked on Movie in navbar
 def movie_frm():
-    return render_template('movie_frm.html')
+    return render_template('movie_frm.html')  # display the movie lookup form
 
-@app.route('/movie_data/', methods=['POST', 'GET'])
+@app.route('/movie_data/', methods=['POST', 'GET']) # same as actor_data process, but for movies
 def movie_data():
     if request.method == 'GET':
         return f"The URL /data is accesed directly. Try going to '/form to submit form"
@@ -69,18 +64,18 @@ def movie_data():
         movie_name = form_data['Movie']
         try:
             movie_tt = tt_lookup(movie_name)
-            movie_cast_codes = cast_lookup(movie_tt)  # create a list of movies from the dictionary lookup
+            movie_cast_codes = cast_lookup(movie_tt)  # create a list of actors from the dictionary lookup
             movie_cast_names = []
-            for nm in movie_cast_codes:
+            for nm in movie_cast_codes:  # replace their codes with actual names
                 name = name_lookup(nm)
                 movie_cast_names.append(name)
         except:
-            return render_template('movie.html', film=movie_name, actors=[])
+            return render_template('movie.html', film=movie_name, actors=[])  # allow error notification
     return render_template('movie.html', film=movie_name, actors=movie_cast_names)        
 
-@app.route('/about/')
+@app.route('/about/')  # user clicked on the About link in navbar
 def about():  # about section
-    return render_template("about.html")
+    return render_template("about.html")  # so redirect them to it, and Carry On!
 
 def graphs():  # show BA plots on ratings, production, etc.
     df = movie_info
