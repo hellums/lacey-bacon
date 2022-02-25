@@ -118,7 +118,11 @@ def filmography():  # filmography for a person
     df = pd.DataFrame(actor_titles)  # prep for pretty print
     total_titles = len(actor_titles)
     #filmography_headers = actor_name + ' Movies'
-    print(actor_name, ': ', total_titles, 'Hallmark movies')
+    separation = list(lacey_sp[actor_name])
+    print(actor_name, 'is', int((len(separation)/2)), 'Degrees of Separation from Lacey Chabert:\n')
+    print(*separation, sep = " <-> ")
+    print('\n')
+    print(total_titles, 'Hallmark movies')
     tab_print(df, '')
     return None
 
@@ -331,7 +335,7 @@ def movie_fuzzy_search(title):  # find any movie with prominent word in title
     return results
 
 def load_data():  # read data from tab-delimited files to data structures
-    global tt_title, title_tt, tt_nm, nm_name, name_nm, nm_tt, title_rating
+    global tt_title, title_tt, tt_nm, nm_name, name_nm, nm_tt, title_rating, lacey_sp
     global cast_crew_info, movie_info, movie_cast_crew, leader_board, sp, one_sp_pkl, all_sp_pkl
     # Read data from an external file, such as text, JSON, CSV, etc, and use that data in your
     # application. Code Louisville requirement.
