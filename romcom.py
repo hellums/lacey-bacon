@@ -6,6 +6,7 @@ import os  # for system calls to clear screen
 import csv  # to import TSV files for movie and actor lists
 import unittest 
 import re
+from xmlrpc.client import Boolean
 import pandas as pd  # needs install
 import pickle
 #import json  # not used at this time
@@ -174,7 +175,7 @@ def deg_separation():  # connectivity between two actors based on who they starr
     try:  # see if they ran _prep first, and allow most program functions to work without crash on load
         separation = (sp[actor1][actor2])  # lookup any movie connection shortest path between actors
     except:  # can't do degree separation without the SP file, so gracefully warn, instruct, and exit
-        if no_pickle_file:
+        if all_sp_pkl == False:
             print('One or more files were not installed using the prep program. Please run that before main program.')
             return None
         else:
@@ -330,7 +331,7 @@ def movie_fuzzy_search(title):  # find any movie with prominent word in title
 
 def load_data():  # read data from tab-delimited files to data structures
     global tt_title, title_tt, tt_nm, nm_name, name_nm, nm_tt, title_rating
-    global cast_crew_info, movie_info, movie_cast_crew, leader_board, sp, no_pickle_file
+    global cast_crew_info, movie_info, movie_cast_crew, leader_board, sp, one_sp_pkl, all_sp_pkl
     # Read data from an external file, such as text, JSON, CSV, etc, and use that data in your
     # application. Code Louisville requirement.
     print('Loading data, please wait (15-20 seconds)...')
@@ -354,14 +355,15 @@ def load_data():  # read data from tab-delimited files to data structures
     tt_nm = dict(zip(df.tconst, df.actorList))  # lookup actor IDs by movie ID 
 
     leader_board = pd.read_csv('leader_board.csv', sep='\t', index_col=None)
+    all_sp_pkl = one_sp_pkl = True
     try:
         sp = pickle.load(open("shortest_path.pkl", "rb"))  # shortest path data, pickle 1/4 size of json
     except:
-        no_pickle_file = True # allow most functions to run without romcom_prep using .csv and .db files
+        all_sp_pkl = False # allow most functions to run without romcom_prep using .csv and .db files
     try:
         lacey_sp = pickle.load(open("lacey_sp.pkl", "rb"))  # shortest path data, pickle 1/4 size of json
     except:
-        no_pickle_file = True # allow most functions to run without romcom_prep using .csv and .db files
+        one_sp_pkl = False # allow most functions to run without romcom_prep using .csv and .db files
 
     return None
 
