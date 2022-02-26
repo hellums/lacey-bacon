@@ -60,7 +60,7 @@ Primarily:
 - urllib3==1.26.8
 - Flask=2.0.3
 
-# FEATURES PLANNED AT INITIATIVE OUTSET (CHECK = SUBSTANTIAL COMPLETION)
+# STATUS OF FEATURES PLANNED AT INITIATIVE OUTSET
 
 - [x] Implement a “master loop” console application where the user can repeatedly enter commands/perform actions, including choosing to exit the program.
 - [x] Create a class, then create at least one object of that class and populate it with data. The value of at least one object must be used somewhere in your code. (implemented, but not used in main module, in preference of functions for now)
@@ -84,11 +84,10 @@ Category 4: Best Practices
 - [x] Use a Jupyter notebook to document your data analysis.
 
 ### TECHNOLOGIES LEVERAGED
-- GitHub
-- Git
-- Slack
+- GitHub, Git
+- Slack, Pluralsight
 - Visual Studio Code
-- Python
+- Python, Anaconda
 - Flask, Jinja
 - HTML, CSS
 - SQLite3
@@ -98,10 +97,8 @@ Category 4: Best Practices
 - Matplotlib 
 - Networkx (node/vector, centrality)
 - BeautifulSoup
-- Pluralsight (LMS for bootcamp courses)
 - Docker (introductory)
-- Anaconda (introductory)
 - Cookiecutter (introductory)
-- IMDB (data source)
+- IMDB (data source for movies and custom watchlist)
 - "Balanced" scale, 1 witch, 1 duck, very small rocks (that float)
 - 2 African swallows, 1 coconut, twine for sling-loading
