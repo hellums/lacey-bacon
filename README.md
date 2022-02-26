@@ -38,6 +38,17 @@ TO RUN FLASK MICROSITE (ALL WILL WORK WITHOUT FULL DOWNLOAD BELOW):
 >python3 romcomWeb.py
 >in a web browser tab, go to http://localhost:5000/ 
 
+TO TEST FLASK APIs:
+>in a web browser tab, go to http://localhost:5000/ to load the app and api functions
+
+>http://localhost:5000/actors returns the top 10 books in JSON format
+
+>http://localhost:5000/movies returns the top 10 movies in JSON format
+
+>http://localhost:5000/rating/?tt=tt13831504 returns the rating of "It Was Always You" in JSON format 
+
+>    (tt is the IMDB title code for a romcom in the database)
+
 TO TEST AND VALIDATE INTEGRITY OF DATA STRUCTURES: (optional)
 >python3 -m unittest test_romcom -v
 
@@ -89,6 +100,7 @@ Category 4: Best Practices
 - Visual Studio Code
 - Python, Anaconda
 - Flask, Jinja
+- APIs
 - HTML, CSS
 - SQLite3
 - Unittest
