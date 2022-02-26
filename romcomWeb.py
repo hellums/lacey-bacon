@@ -9,7 +9,7 @@ import pickle
 import sqlite3
 import matplotlib.pyplot as plt  # needs install
 import networkx as nx #needs install
-from flask import Flask, render_template, request  # needs install
+from flask import Flask, render_template, request, jsonify # needs install
 
 # Initiate the Flask micro web framework
 app = Flask(__name__)
@@ -21,8 +21,8 @@ def home():
 
 @app.route('/best/')  # top 20 actors based on centrality graph, and top 20 movies based on ratings
 def best():
-    top10 = leader_board[:20]
-    top_actors=list(top10['Hall of Fame'])
+    top20 = leader_board[:20]
+    top_actors=list(top20['Hall of Fame'])
     top_movies=ranked_titles[:20]  # create a top 20 list of movie titles
     return render_template("best.html", top_actors=top_actors, top_movies=top_movies) # display the Top 10 page
 
@@ -94,6 +94,37 @@ def graphs():  # show BA plots on ratings, production, etc.
     plt.show()
     return None
 
+@app.route('/actors/', methods=['GET'])  # api to return top 10 actors
+def api_actors():
+    leader_board = pd.read_csv('leader_board.csv', sep='\t', header=[0], index_col=None)
+    top10 = leader_board[:10]  # create a top 10 list of actor names
+    top_actors=list(top10['Hall of Fame'])
+    return jsonify(top_actors)
+
+@app.route('/movies/', methods=['GET'])  # api to return top 10 movies
+def api_movies():
+    top_movies=list(ranked_titles[:10])  # create a top 10 list of movie titles
+    return jsonify(top_movies)
+
+@app.route('/rating/', methods=['GET'])  # api to return a specific movie rating
+def api_tt():
+    # Check if a title code (tt) was provided as part of the URL.
+    # If tt is provided, assign it to a variable.
+    # If no tt is provided, display an error in the browser.
+    if 'tt' in request.args:
+        tt = str(request.args['tt'])
+    else:
+        return "Error: No tt field provided. Please specify a title code (tt)."
+
+    # Create an empty list for our results
+    results = []
+
+    # Lookup the rating and return it
+    results.append(rating_lookup(tt))
+
+    # Use the jsonify function from Flask to convert dictionary to JSON format
+    return jsonify(results)
+
 ###  Lookup utilities  ###
 def nm_lookup(name):
     nm = name_nm[name]
@@ -106,6 +137,10 @@ def name_lookup(nm):
 def films_lookup(nm):
     films = nm_tt[nm]
     return films 
+
+def rating_lookup(tt):  # used by API
+    rating = tt_rating[tt]
+    return rating
 
 def tt_lookup(title):
     tt = title_tt[title]
@@ -120,7 +155,7 @@ def cast_lookup(tt):
     return cast
 
 def load_data():  # read data from tab-delimited files to data structures
-    global tt_title, title_tt, tt_nm, nm_name, name_nm, nm_tt, title_rating, sp, ranked_titles
+    global tt_title, title_tt, tt_nm, tt_rating, nm_name, name_nm, nm_tt, title_rating, sp, ranked_titles
     global cast_crew_info, movie_info, movie_cast_crew, leader_board, lacey_sp, no_pickle_file
     # Read data from an external file, such as text, JSON, CSV, etc, and use that data in your
     # application. Code Louisville requirement.
@@ -131,6 +166,7 @@ def load_data():  # read data from tab-delimited files to data structures
     tt_title = dict(zip(df.tconst, df.primaryTitle))  # lookup title by movie ID
     title_tt = dict(zip(df.primaryTitle, df.tconst))  # lookup ID by movie title
     title_rating = dict(zip(df.primaryTitle, df.averageRating))  # lookup rating by movie title
+    tt_rating = dict(zip(df.tconst, df.averageRating))  # used by api
     df = pd.DataFrame(list(title_rating.items()),columns = ['column1','column2']) # sort ratings
     df = df.sort_values(["column2", "column1"], ascending=False)  # get the highest ranking up top
     ranked_titles = df['column1'].tolist()  # convert results to a list
