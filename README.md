@@ -23,9 +23,9 @@ TO INSTALL PROGRAM AND CREATE A VIRTUAL ENVIRONMENT:
 - >echo "env/" >> .git/info/exclude (optional command)
 
 TO ACTIVATE VIRTUAL ENVIRONMENT:
-- (Mac/Linux): 
+- Mac/Linux: 
   >source env/bin/activate
-- (PC):
+- PC:
   >env\scripts\activate.bat
 
 TO INSTALL PREREQUISITES:
