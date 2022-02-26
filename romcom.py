@@ -141,7 +141,7 @@ def cast():  # a movie's top actors and actresses
         print("A movie with that exact title is not in the database.") 
         try:
             movie_name = movie_name.rsplit(' ', 1)  # split up the title
-            if lower(movie_name) == 'christmas':
+            if str.lower(movie_name) == 'christmas':
                 movie_name = 'bazinga Christmas'  # workaround, "Christmas" only fails next line
             stripped  = [word for word in movie_name if word.lower() not in ['christmas']]
             movie_name = [''.join(stripped)]  # exlude the word Christmas
