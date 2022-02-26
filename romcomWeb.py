@@ -98,12 +98,20 @@ def graphs():  # show BA plots on ratings, production, etc.
 def api_actors():
     leader_board = pd.read_csv('leader_board.csv', sep='\t', header=[0], index_col=None)
     top10 = leader_board[:10]  # create a top 10 list of actor names
-    top_actors=list(top10['Hall of Fame'])
+    try:
+        top_actors=list(top10['Hall of Fame'])
+    except:
+        top_actors = list
+        return('Something went wrong, or the Hall of Fame is empty. Try returning to the main page first, and try again.')
     return jsonify(top_actors)
 
 @app.route('/movies/', methods=['GET'])  # api to return top 10 movies
 def api_movies():
-    top_movies=list(ranked_titles[:10])  # create a top 10 list of movie titles
+    try:
+        top_movies=list(ranked_titles[:10])  # create a top 10 list of movie titles
+    except:
+        top_movies = list
+        return('Something went wrong, or the Hall of Fame is empty. Try returning to the main page first, and try again.')
     return jsonify(top_movies)
 
 @app.route('/rating/', methods=['GET'])  # api to return a specific movie rating
@@ -120,7 +128,11 @@ def api_tt():
     results = []
 
     # Lookup the rating and return it
-    results.append(rating_lookup(tt))
+    try:
+        results.append(rating_lookup(tt))
+    except:
+        results = list
+        return('Something went wrong, or that movies is not in the database. Try returning to the main page first, lookup the movie to find its code (in the movie\'s IMDB link), and try again.')
 
     # Use the jsonify function from Flask to convert dictionary to JSON format
     return jsonify(results)
