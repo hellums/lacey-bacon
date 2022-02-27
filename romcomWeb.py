@@ -72,7 +72,7 @@ def best():
 def about():  # about section
     return render_template("about.html")  # so redirect them to it, and Carry On!
 
-# Embedded API endpoints, on Flask default port 5000
+###  Embedded API endpoints, on Flask default port 5000, can remove later, romcomAPI runs on port 8080 now  ### 
 
 @app.route('/actors/', methods=['GET'])  # api to return top 10 actors
 def api_actors():
