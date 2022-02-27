@@ -1,4 +1,4 @@
-# romcomWeb.py 2/27/22 10:14 AM
+# romcomWeb.py 2/27/22 10:55 AM
 """ Project to reuse Code Louisvillle Python data analysis class code for web delivery"""
 
 import csv  # to import TSV files for movie and actor lists
@@ -137,6 +137,5 @@ def load_data():  # read data from tab-delimited files to data structures
         no_pickle_file = True # allow most functions to run without romcom_prep using .csv and .db files
     return None
 
-# Launch as a Flask app
-if __name__=='__main__':
+if __name__=='__main__': # Launch as a Flask app
     app.run(debug=True)
