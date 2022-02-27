@@ -6,16 +6,16 @@ import re
 import pandas as pd  # needs install
 from flask import Flask, render_template, request, jsonify # needs install
 
-# Initiate the Flask micro web framework for API delivery, on separate port (:8080) from romcomWeb (:5000)
+# Initiate the Flask micro web framework for API delivery on port (:8080)
 api = Flask(__name__)
 
-@api.route('/')  #initialize program, load data structures
+@api.route('/')  # initialize program, load data structures
 def starting_url():
     load_data()   # load data structures
     status_code = "201"  # won't take Flask.Response(status=201) for some reason, continue to debug
     return status_code
 
-@api.route('/actors/', methods=['GET'])  # api to return top 10 actors, http://localhost:8080/actors
+@api.route('/actors/', methods=['GET'])  # endpoint to return top 10 actors, http://localhost:8080/actors
 def api_actors():
     leader_board = pd.read_csv('leader_board.csv', sep='\t', header=[0], index_col=None)
     top10 = leader_board[:10]  # create a top 10 list of actor names
@@ -26,7 +26,7 @@ def api_actors():
         return('Something went wrong, or the Hall of Fame is empty. Try returning to the main page first, and try again.')
     return jsonify(top_actors)
 
-@api.route('/movies/', methods=['GET'])  # api to return top 10 movies, http://localhost:8080/movies
+@api.route('/movies/', methods=['GET'])  # endpoint to return top 10 movies, http://localhost:8080/movies
 def api_movies():
     try:
         top_movies=list(ranked_titles[:10])  # create a top 10 list of movie titles
@@ -35,28 +35,24 @@ def api_movies():
         return('Something went wrong, or the Hall of Fame is empty. Try returning to the main page first, and try again.')
     return jsonify(top_movies)
 
-@api.route('/rating/', methods=['GET'])  # api to return a specific movie rating, e.g. /rating/?tt=tt13831504
+@api.route('/rating/', methods=['GET'])  # endpoint to return a specific movie rating, e.g. /rating/?tt=tt13831504
 def api_tt():
-    # Check if a title code (tt) was provided as part of the URL.
-    # If tt is provided, assign it to a variable.
-    # If no tt is provided, display an error in the browser.
-    if 'tt' in request.args:
-        tt = str(request.args['tt'])
-    else:
+    
+    if 'tt' in request.args: # Check if a title code (tt) was provided as part of the URL.
+        tt = str(request.args['tt']) # If tt is provided, assign it to a variable.
+    else:   # Display an error in the browser.
         return "Error: No tt field provided. Please specify a title code (tt)."
 
-    # Create an empty list for our results
-    results = []
+    
+    results = [] # Create an empty list for our results
 
-    # Lookup the rating and return it
     try:
-        results.append(rating_lookup(tt))
+        results.append(rating_lookup(tt)) # Lookup the rating and return it
     except:
         results = list
-        return('Something went wrong, or that movies is not in the database. Try returning to the main page first, lookup the movie to find its code (in the movie\'s IMDB link), and try again.')
+        return('Something went wrong, or that movies is not in the database. Try returning to the main page first, lookup the movie to find its code (in the movie\'s IMDB link), and try again.')    
 
-    # Use the jsonify function from Flask to convert dictionary to JSON format
-    return jsonify(results)
+    return jsonify(results) # Use the jsonify function from Flask to convert dictionary to JSON format
 
 def rating_lookup(tt):  # used by API
     rating = tt_rating[tt]
@@ -80,6 +76,5 @@ def load_data():  # read data from tab-delimited files to data structures
     leader_board = pd.read_csv('leader_board.csv', sep='\t', header=[0], index_col=None)
     return None
 
-# Launch as a Flask app
-if __name__=='__main__':
+if __name__=='__main__': # Launch as a Flask app
     api.run(host="127.0.0.1", port=8080, debug=True)
