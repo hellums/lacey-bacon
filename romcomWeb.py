@@ -4,6 +4,7 @@
 import csv  # to import TSV files for movie and actor lists
 import re
 import pandas as pd  # needs install
+from natsort import natsorted
 import pickle
 from flask import Flask, render_template, request, jsonify # needs install
 
@@ -30,7 +31,7 @@ def actor_data():
             actor_nm = nm_lookup(actor_name)  # if we get results, we'll return them
             actor_movies = films_lookup(actor_nm)  # pull a list of this actor's movie title codes
             actor_titles = []
-            for each in actor_movies:
+            for each in natsorted(actor_movies, reverse=True): 
                 actor_titles.append(tt_title[each])  # lookup the code to get titles
             total_titles = len(actor_titles)
             shortest_path=lacey_sp[actor_name]
