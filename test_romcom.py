@@ -46,10 +46,9 @@ class TestSqlRecords(unittest.TestCase):
     
     def test_watch_list(self):
         results = list(romcomPrep.load_watchlist())
-        actual = len(results)  # should be 1141
+        actual = len(results)  # should be 1141-ish
         expected = 1000 
         self.assertLess(expected, actual, "Less than 1000 movies in list?")
 
-# use testrunner for unittest
-if __name__=='__main__':
+if __name__=='__main__': # use testrunner for unittest
     unittest.main()
