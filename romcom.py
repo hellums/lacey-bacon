@@ -1,4 +1,4 @@
-# romcom.py 2/27/22 2:01 PM
+# romcom.py 2/27/22 2:04 PM
 """ Project for Code Louisvillle python class, provides a menu of IMDB movie functions"""
 
 import os  # for system calls to clear screen
@@ -16,11 +16,8 @@ from tabulate import tabulate  # needs install
 def main():
     """ Command-line menu of functions Hallmark original movies """
     
-    # Clear the screen
-    clrscr()
-
-    # Load the data structures
-    print('Loading data, please wait (15-20 seconds)...')
+    clrscr() # Clear the screen
+    print('Loading data, please wait (15-20 seconds)...')  # Load the data structures
     load_data()
 
     # Implement a “master loop” console application where the user can repeatedly enter commands,
@@ -28,12 +25,12 @@ def main():
 
     while(True):
 
-        # Print instructions and menu
-        print('\nPlease enter a number between 1 and 7.\n')
-        print_menu()
+        
+        print('\nPlease enter a number between 1 and 7.\n')  # warn user of short delay
+        print_menu()  # Print instructions and menu
 
-        # Get user's menu choice and verify entry data type
-        option = ''
+        
+        option = ''  # Get user's menu choice and verify entry data type
         try:
             option = int(input('\nEnter your choice (1-7) and ENTER/RETURN: '))
         except:
@@ -342,6 +339,6 @@ def movie_fuzzy_search(title):  # find any movie with prominent word in title
     conn.close()
     return results
 
-# Allow file to be used as function or program
-if __name__=='__main__':
+
+if __name__=='__main__':  # Allow file to be used as function or program
     main()
