@@ -43,7 +43,6 @@ def api_tt():
     else:   # Display an error in the browser.
         return "Error: No tt field provided. Please specify a title code (tt)."
 
-    
     results = [] # Create an empty list for our results
 
     try:
