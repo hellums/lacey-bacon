@@ -1,4 +1,4 @@
-# romcom.py 2/26/22 5:54 PM
+# romcom.py 2/27/22 10:45 AM
 """ Project for Code Louisvillle python class, provides a menu of IMDB movie functions"""
 
 # Import os module for system calls to cls and clear (screen)
@@ -9,13 +9,12 @@ import re
 from xmlrpc.client import Boolean
 import pandas as pd  # needs install
 import pickle
-#import json  # not used at this time
 import sqlite3
 import matplotlib.pyplot as plt  # needs install
 import networkx as nx #needs install
 from tabulate import tabulate  # needs install
 
-# Define main function to print menu and get user choice
+###  Main Menu  ###
 def main():
     """ Command-line menu of functions Hallmark original movies """
     
@@ -42,10 +41,7 @@ def main():
             print('\nNumbers only, please...')
 
         # Launch whichever function the user selected from the main menu
-        if option == 0:  # for debug only, to be removed later
-            clrscr()
-            option0(option)
-        elif option == 1:
+        if option == 1:
             clrscr()
             filmography()
         elif option == 2:
@@ -81,18 +77,16 @@ def print_menu():  # basic menu screen for user to select program feature sets
         6: 'About - See more about this project',
         7: 'Exit',
     }
-    # Loop for main menu until user selects to exit program
-    for key in menu_options.keys():
+
+    for key in menu_options.keys():  # loop main menu until user selects quit
         print (str(key) + '. ', menu_options[key] )
     return None
 
-# Define functions launched when chosen from main menu by user
+###  Menu Functions  ###
 
 def filmography():  # filmography for a person
     actor_name = input('Please enter an actor\'s name (Alison Sweeney, for example) and press enter: ')
     clrscr()
-    #actor_name = actor_name.lower()  # normalize it somewhat, in case of poor input formatting
-    #actor_name = actor_name.title()  # caused problem with McKellar. Clean up later.
     try:
         actor_nm = nm_lookup(actor_name)
     except:
@@ -117,7 +111,6 @@ def filmography():  # filmography for a person
         actor_titles.append(tt_title[v])  # lookup the code to get titles
     df = pd.DataFrame(actor_titles)  # prep for pretty print
     total_titles = len(actor_titles)
-    #filmography_headers = actor_name + ' Movies'
     separation = list(lacey_sp[actor_name])
     print(actor_name, 'is', int((len(separation)/2)), 'Degrees of Separation from Lacey Chabert:\n')
     print(*separation, sep = " <-> ")
@@ -147,8 +140,6 @@ def cast():  # a movie's top actors and actresses
             movie_name = [''.join(stripped)]  # exlude the word Christmas
             movie_name = max(movie_name, key=len)  # to find a suitable keyword for search
             print("\n\n\n", movie_name, "is the movie name\n\n\n")
-            #movie_name = movie_name.lower()  # normalize it somewhat, in case of bad input
-            #movie_name = movie_name.title() # caused problem with McKellar. Clean up later.
         except:  # bail if input was single word, or numbers
             return None
         possible_match = movie_fuzzy_search(movie_name)  # see if there's any movie with keyword
@@ -167,8 +158,6 @@ def cast():  # a movie's top actors and actresses
         movie_cast_names.append(name)
     df = pd.DataFrame(movie_cast_names)
     total_actors = len(movie_cast_names)
-    #movie_info_headers=["IMDB #","Category ","Title  ","Year","Runtime","Genres   ","Rating","Votes"]  # note: bug in tab api
-    #tab_print(movie_info.head(10), movie_info_headers)  # "pretty" print result
     print(movie_name, 'had', total_actors, 'main actors and actresses in it:')
     tab_print(df, '')
     return None
@@ -277,13 +266,13 @@ def option0(option):  # for debug only, to be replaced later with 'easter egg'
     return None
 
 ###  General purpose utilities  ###
+
 def clrscr():  # clears screen in Mac, Linux, or Windows
-    # Check if Operating System is Mac and Linux or Windows
-    if os.name == 'posix':
+    
+    if os.name == 'posix':  # Operating System is Mac and Linux ?
         _ = os.system('clear')
-    else:
-          # Else Operating System is Windows (os.name = nt)
-        _ = os.system('cls')
+    else:          
+        _ = os.system('cls')  # Operating System is Windows (os.name = nt)
     return None
 
 def notImplementedYet(option):  # stub for drivers and testing
@@ -298,6 +287,7 @@ def tab_print(df, header_name):  # "pretty" print for a dataframe slice
     return None
 
 ###  Lookup utilities  ###
+
 def nm_lookup(name):
     nm = name_nm[name]
     return nm
@@ -319,6 +309,7 @@ def cast_lookup(tt):
     return cast
 
 ###  Fuzzy search utilities  ###
+
 def actor_fuzzy_search(name):  # find anyone with unexpected initials, St., full middle name, etc. 
     conn = sqlite3.connect('movies.db')
     sql_query = "SELECT primaryName FROM cast_crew_info WHERE primaryName LIKE '%"+name+"'"
