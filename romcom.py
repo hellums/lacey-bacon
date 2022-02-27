@@ -1,11 +1,10 @@
-# romcom.py 2/27/22 1:11 PM
+# romcom.py 2/27/22 2:01 PM
 """ Project for Code Louisvillle python class, provides a menu of IMDB movie functions"""
 
 import os  # for system calls to clear screen
 import csv  # to import TSV files for movie and actor lists
 import unittest 
 import re
-from xmlrpc.client import Boolean
 import pandas as pd  # needs install
 import pickle
 import sqlite3
