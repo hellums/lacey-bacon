@@ -1,4 +1,4 @@
-# romcomWeb.py 2/26/22 10:38 PM
+# romcomWeb.py 2/27/22 10:14 AM
 """ Project to reuse Code Louisvillle Python data analysis class code for web delivery"""
 
 import csv  # to import TSV files for movie and actor lists
@@ -71,47 +71,6 @@ def best():
 @app.route('/about/')  # user clicked on the About link in navbar
 def about():  # about section
     return render_template("about.html")  # so redirect them to it, and Carry On!
-
-###  Embedded API endpoints, on Flask default port 5000, can remove later, romcomAPI runs on port 8080 now  ### 
-
-@app.route('/actors/', methods=['GET'])  # api to return top 10 actors
-def api_actors():
-    
-    leader_board = pd.read_csv('leader_board.csv', sep='\t', header=[0], index_col=None)
-    top10 = leader_board[:10]  # create a top 10 list of actor names
-    try:
-        top_actors=list(top10['Hall of Fame'])
-    except:
-        top_actors = list
-        return('Something went wrong, or the Hall of Fame is empty. Try returning to the main page first, and try again.')
-    return jsonify(top_actors)
-
-@app.route('/movies/', methods=['GET'])  # api to return top 10 movies
-def api_movies():
-
-    try:
-        top_movies=list(ranked_titles[:10])  # create a top 10 list of movie titles
-    except:
-        top_movies = list
-        return('Something went wrong, or the Hall of Fame is empty. Try returning to the main page first, and try again.')
-    return jsonify(top_movies)
-
-@app.route('/rating/', methods=['GET'])  # api to return a specific movie rating
-def api_tt():
-    
-    if 'tt' in request.args:  # Check if a title code (tt) was provided as part of the URL.
-        tt = str(request.args['tt'])  # If tt is provided, assign it to a variable.
-    else:
-        return "Error: No tt field provided. Please specify a title code (tt)."    
-    results = [] # Create an empty list for our results
-    
-    try:
-        results.append(rating_lookup(tt)) # Lookup the rating and return it
-    except:  # return an error message
-        results = list
-        return('Something went wrong, or that movies is not in the database. Try returning to the main page first, lookup the movie to find its code (in the movie\'s IMDB link), and try again.')
-
-    return jsonify(results) # Use the jsonify function from Flask to convert list to JSON format
 
 ###  Lookup utilities  ###
 def nm_lookup(name):
