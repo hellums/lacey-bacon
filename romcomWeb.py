@@ -1,14 +1,10 @@
-# romcomWeb.py 2/25/22 4:53 PM
+# romcomWeb.py 2/26/22 10:38 PM
 """ Project to reuse Code Louisvillle Python data analysis class code for web delivery"""
 
-from importlib.resources import path
 import csv  # to import TSV files for movie and actor lists
 import re
 import pandas as pd  # needs install
 import pickle
-import sqlite3
-import matplotlib.pyplot as plt  # needs install
-import networkx as nx #needs install
 from flask import Flask, render_template, request, jsonify # needs install
 
 # Initiate the Flask micro web framework
@@ -18,13 +14,6 @@ app = Flask(__name__)
 def home():
     load_data()  # load data structures
     return render_template("home.html") # display the home page
-
-@app.route('/best/')  # top 20 actors based on centrality graph, and top 20 movies based on ratings
-def best():
-    top20 = leader_board[:20]
-    top_actors=list(top20['Hall of Fame'])
-    top_movies=ranked_titles[:20]  # create a top 20 list of movie titles
-    return render_template("best.html", top_actors=top_actors, top_movies=top_movies) # display the Top 10 page
 
 @app.route('/actor_frm')  # user clicked on Actor in navbar
 def actor_frm():
@@ -72,30 +61,22 @@ def movie_data():
             return render_template('movie.html', film='', movie_tt='', actors=[])  # allow error notification
     return render_template('movie.html', film=movie_name, movie_tt=movie_tt, actors=movie_cast_names)        
 
+@app.route('/best/')  # top 20 actors based on centrality graph, and top 20 movies based on ratings
+def best():
+    top20 = leader_board[:20]
+    top_actors=list(top20['Hall of Fame'])
+    top_movies=ranked_titles[:20]  # create a top 20 list of movie titles
+    return render_template("best.html", top_actors=top_actors, top_movies=top_movies) # display the Top 10 page
+
 @app.route('/about/')  # user clicked on the About link in navbar
 def about():  # about section
     return render_template("about.html")  # so redirect them to it, and Carry On!
 
-def graphs():  # show BA plots on ratings, production, etc.
-    df = movie_info
-    df = df.groupby(['startYear']).agg({'averageRating': 'median'})[-14:-1]
-    df.index.names = ['Year']
-    df.plot(kind='line')
-    plt.legend(['Average Rating'])
-    plt.title('Ratings Increase\n')
-    plt.show()
-
-    df = movie_info
-    df = pd.crosstab(df.startYear, df.titleType)[-14:-2]
-    df.index.names = ['Year']
-    df.plot(kind='line')
-    plt.legend(['Movie', 'TV Episode', 'TV Mini-Series', 'TV Movie', 'TV Series'])
-    plt.title('Production Increase\n')    
-    plt.show()
-    return None
+# Embedded API endpoints, on Flask default port 5000
 
 @app.route('/actors/', methods=['GET'])  # api to return top 10 actors
 def api_actors():
+    
     leader_board = pd.read_csv('leader_board.csv', sep='\t', header=[0], index_col=None)
     top10 = leader_board[:10]  # create a top 10 list of actor names
     try:
@@ -107,6 +88,7 @@ def api_actors():
 
 @app.route('/movies/', methods=['GET'])  # api to return top 10 movies
 def api_movies():
+
     try:
         top_movies=list(ranked_titles[:10])  # create a top 10 list of movie titles
     except:
@@ -116,26 +98,20 @@ def api_movies():
 
 @app.route('/rating/', methods=['GET'])  # api to return a specific movie rating
 def api_tt():
-    # Check if a title code (tt) was provided as part of the URL.
-    # If tt is provided, assign it to a variable.
-    # If no tt is provided, display an error in the browser.
-    if 'tt' in request.args:
-        tt = str(request.args['tt'])
+    
+    if 'tt' in request.args:  # Check if a title code (tt) was provided as part of the URL.
+        tt = str(request.args['tt'])  # If tt is provided, assign it to a variable.
     else:
-        return "Error: No tt field provided. Please specify a title code (tt)."
-
-    # Create an empty list for our results
-    results = []
-
-    # Lookup the rating and return it
+        return "Error: No tt field provided. Please specify a title code (tt)."    
+    results = [] # Create an empty list for our results
+    
     try:
-        results.append(rating_lookup(tt))
-    except:
+        results.append(rating_lookup(tt)) # Lookup the rating and return it
+    except:  # return an error message
         results = list
         return('Something went wrong, or that movies is not in the database. Try returning to the main page first, lookup the movie to find its code (in the movie\'s IMDB link), and try again.')
 
-    # Use the jsonify function from Flask to convert dictionary to JSON format
-    return jsonify(results)
+    return jsonify(results) # Use the jsonify function from Flask to convert list to JSON format
 
 ###  Lookup utilities  ###
 def nm_lookup(name):
@@ -167,8 +143,10 @@ def cast_lookup(tt):
     return cast
 
 def load_data():  # read data from tab-delimited files to data structures
+
     global tt_title, title_tt, tt_nm, tt_rating, nm_name, name_nm, nm_tt, title_rating, sp, ranked_titles
     global cast_crew_info, movie_info, movie_cast_crew, leader_board, lacey_sp, no_pickle_file
+
     # Read data from an external file, such as text, JSON, CSV, etc, and use that data in your
     # application. Code Louisville requirement.
     movie_info = pd.read_csv('movie_info.csv', sep='\t', index_col=None, \
