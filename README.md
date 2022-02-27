@@ -114,7 +114,7 @@ Category 4: Best Practices
 - Jupyter Notebook
 - Pandas
 - Matplotlib 
-- Networkx (node/vector, centrality)
+- Networkx (node/ege, centrality)
 - BeautifulSoup
 - Docker (introductory)
 - Cookiecutter (introductory)
