@@ -136,6 +136,7 @@ def cast():  # a movie's top actors and actresses
             stripped  = [word for word in movie_name if word.lower() not in ['christmas']]
             movie_name = [' '.join(stripped)]  # exlude the word Christmas
             movie_name = max(movie_name, key=len)  # to find a suitable keyword for search
+            print('here is the search term:', movie_name)
         except:  # bail if input was single word, or numbers
             return None
         possible_match = movie_fuzzy_search(movie_name)  # see if there's any movie with keyword
