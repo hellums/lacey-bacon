@@ -339,6 +339,5 @@ def movie_fuzzy_search(title):  # find any movie with prominent word in title
     conn.close()
     return results
 
-
 if __name__=='__main__':  # Allow file to be used as function or program
     main()
