@@ -52,12 +52,16 @@ TO TEST 3 FLASK API ENDPOINTS (WITH romcomWeb):
 
   - >    (tt is the IMDB title code for a romcom in the database)
 
-TO RUN AND TEST 3 FLASK API ENDPOINTS (standalone):
-  - >python3 romcomAPI.py to load just the api functions (on port 8080)
+TO RUN AND TEST 3 FLASK API ENDPOINTS:
+  - >python3 romcomAPI.py
 
-  - >in a web browser tab, go to http://localhost:8080/ (other API calls same as above)
+  - >in a web browser tab, http://localhost:8080/actors will return top 10 books in JSON simple list format
 
-  - >http://localhost:8080/actors, etc.
+  - >http://localhost:8080/movies will return the top 10 movies in JSON simple list format
+
+  - >http://localhost:8080/rating/?tt=tt13831504 will return the rating of "It Was Always You" as JSON list 
+
+  - >    (tt is the IMDB title code for a romcom in the database)
 
 TO TEST AND VALIDATE INTEGRITY OF DATA STRUCTURES: (optional)
   - >python3 -m unittest test_romcom -v
