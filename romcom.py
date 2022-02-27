@@ -1,4 +1,4 @@
-# romcom.py 2/27/22 11:15 AM
+# romcom.py 2/27/22 11:21 AM
 """ Project for Code Louisvillle python class, provides a menu of IMDB movie functions"""
 
 # Import os module for system calls to cls and clear (screen)
@@ -130,7 +130,7 @@ def cast():  # a movie's top actors and actresses
     except:
         print("A movie with that exact title is not in the database.") 
         try:
-            if movie_name.lower() == 'christmas':
+            if movie_name.lower() == 'christmas' or movie_name.lower() == ' christmas':
                 movie_name = 'bazinga Christmas'  # workaround, "Christmas" only fails next line
             movie_name = movie_name.rsplit(' ', 1)  # split up the title
             stripped  = [word for word in movie_name if word.lower() not in ['christmas']]
