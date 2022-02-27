@@ -1,4 +1,4 @@
-# romcom.py 2/27/22 10:45 AM
+# romcom.py 2/27/22 11:15 AM
 """ Project for Code Louisvillle python class, provides a menu of IMDB movie functions"""
 
 # Import os module for system calls to cls and clear (screen)
@@ -128,18 +128,14 @@ def cast():  # a movie's top actors and actresses
             print("A movie with that exact title is not in the database.") 
             return None
     except:
-        if not movie_name:  # handle case of an empty string from ENTER/RETURN input
-            print("A movie with that exact title is not in the database.") 
-            return None
         print("A movie with that exact title is not in the database.") 
         try:
-            movie_name = movie_name.rsplit(' ', 1)  # split up the title
             if movie_name.lower() == 'christmas':
                 movie_name = 'bazinga Christmas'  # workaround, "Christmas" only fails next line
+            movie_name = movie_name.rsplit(' ', 1)  # split up the title
             stripped  = [word for word in movie_name if word.lower() not in ['christmas']]
-            movie_name = [''.join(stripped)]  # exlude the word Christmas
+            movie_name = [' '.join(stripped)]  # exlude the word Christmas
             movie_name = max(movie_name, key=len)  # to find a suitable keyword for search
-            print("\n\n\n", movie_name, "is the movie name\n\n\n")
         except:  # bail if input was single word, or numbers
             return None
         possible_match = movie_fuzzy_search(movie_name)  # see if there's any movie with keyword
