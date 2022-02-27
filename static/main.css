@@ -5,7 +5,7 @@ header {background-color: #865befcf; height: 35px; width: auto; opacity: .9; mar
 header h1.logo {margin: 0; margin-left: 10px; font-size: 1.7em; color: #fff; float: left;}
 header h1.logo:hover {color: #fff; text-decoration: none;}
 
-.container {width: 800px; margin-top: 10px; padding-left: 80px;}
+.container {width: 800px; margin-top: 10px; padding-left: 80px;} 
 
 div.container {width: auto; margin-top: 10px; padding-left: 80px; padding-right: 80px;}
 div.form {padding: 10px 5px 30px 5px; background-color: #E6E6FA; -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px;}
