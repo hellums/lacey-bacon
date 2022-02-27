@@ -41,18 +41,18 @@ TO RUN FLASK MICROSITE (ALL WILL WORK WITHOUT FULL REBUILD BELOW):
 TO PERFORM FULL DOWNLOAD AND REBUILD DATA/DATABASE: (optional)
   - >python3 romcomPrep.py (NOTE: compressed files total 4 GB, uncompressed another 2 GB)
 
-TO TEST FLASK APIs (WITH romcomWeb):
+TO TEST 3 FLASK API ENDPOINTS (WITH romcomWeb):
   - >in a web browser tab, go to http://localhost:5000/ to load the app and api functions
 
-  - >http://localhost:5000/actors returns the top 10 books in JSON format
+  - >http://localhost:5000/actors returns the top 10 books in JSON simple list format
 
-  - >http://localhost:5000/movies returns the top 10 movies in JSON format
+  - >http://localhost:5000/movies returns the top 10 movies in JSON simple list format
 
-  - >http://localhost:5000/rating/?tt=tt13831504 returns the rating of "It Was Always You" in JSON format 
+  - >http://localhost:5000/rating/?tt=tt13831504 returns the rating of "It Was Always You" as JSON list 
 
   - >    (tt is the IMDB title code for a romcom in the database)
 
-TO RUN AND TEST FLASK APIs (standalone):
+TO RUN AND TEST 3 FLASK API ENDPOINTS (standalone):
   - >python3 romcomApi.py to load just the api functions (on port 8080)
 
   - >in a web browser tab, go to http://localhost:8080/ (other API calls same as above)
