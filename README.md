@@ -53,7 +53,7 @@ TO TEST 3 FLASK API ENDPOINTS (WITH romcomWeb):
   - >    (tt is the IMDB title code for a romcom in the database)
 
 TO RUN AND TEST 3 FLASK API ENDPOINTS (standalone):
-  - >python3 romcomApi.py to load just the api functions (on port 8080)
+  - >python3 romcomAPI.py to load just the api functions (on port 8080)
 
   - >in a web browser tab, go to http://localhost:8080/ (other API calls same as above)
 
