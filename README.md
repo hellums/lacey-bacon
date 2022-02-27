@@ -29,34 +29,41 @@ TO ACTIVATE VIRTUAL ENVIRONMENT:
   >env\scripts\activate.bat
 
 TO INSTALL PREREQUISITES:
->python3 -m pip install -r requirements.txt
+  - >python3 -m pip install -r requirements.txt
 
 TO RUN PROGRAM (ALL BUT MENU ITEM 3 WILL WORK "OUT OF THE BOX," WITHOUT FULL REBUILD BELOW):
->python3 romcom.py
+  - >python3 romcom.py
 
 TO RUN FLASK MICROSITE (ALL WILL WORK WITHOUT FULL REBUILD BELOW):
->python3 romcomWeb.py
->in a web browser tab, go to http://localhost:5000/ 
-
-TO TEST FLASK APIs:
->in a web browser tab, go to http://localhost:5000/ to load the app and api functions
-
->http://localhost:5000/actors returns the top 10 books in JSON format
-
->http://localhost:5000/movies returns the top 10 movies in JSON format
-
->http://localhost:5000/rating/?tt=tt13831504 returns the rating of "It Was Always You" in JSON format 
-
->    (tt is the IMDB title code for a romcom in the database)
-
-TO TEST AND VALIDATE INTEGRITY OF DATA STRUCTURES: (optional)
->python3 -m unittest test_romcom -v
-
-TO TEST SQLITE3 DATABASE: (optional)
->python3 romcomSQL.py
+  - >python3 romcomWeb.py
+  - >in a web browser tab, go to http://localhost:5000/ 
 
 TO PERFORM FULL DOWNLOAD AND REBUILD DATA/DATABASE: (optional)
->python3 romcomPrep.py (NOTE: compressed files total 4 GB, uncompressed another 2 GB)
+  - >python3 romcomPrep.py (NOTE: compressed files total 4 GB, uncompressed another 2 GB)
+
+TO TEST FLASK APIs (WITH romcomWeb):
+  - >in a web browser tab, go to http://localhost:5000/ to load the app and api functions
+
+  - >http://localhost:5000/actors returns the top 10 books in JSON format
+
+  - >http://localhost:5000/movies returns the top 10 movies in JSON format
+
+  - >http://localhost:5000/rating/?tt=tt13831504 returns the rating of "It Was Always You" in JSON format 
+
+  - >    (tt is the IMDB title code for a romcom in the database)
+
+TO RUN AND TEST FLASK APIs (standalone):
+  - >python3 romcomApi.py to load just the api functions (on port 8080)
+
+  - >in a web browser tab, go to http://localhost:8080/ (other API calls same as above)
+
+  - >http://localhost:8080/actors, etc.
+
+TO TEST AND VALIDATE INTEGRITY OF DATA STRUCTURES: (optional)
+  - >python3 -m unittest test_romcom -v
+
+TO TEST SQLITE3 DATABASE: (optional)
+  - >python3 romcomSQL.py
 
 # PACKAGES INVOLVED
 See requirements.txt file in project folder. 
