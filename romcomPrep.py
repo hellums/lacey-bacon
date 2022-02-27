@@ -1,4 +1,4 @@
-# romcom_prep.py dbh 2/25/22 5:31 PM
+# romcom_prep.py dbh 2/27/22 10:55 AM
 """ Downloads imdb-related files and watchlist, uncompresses and cleans/prunes them as necessary"""
 
 import re
@@ -9,7 +9,6 @@ import csv  # to import TSV files for movie and actor lists
 import pandas as pd  #needs install
 import networkx as nx  #needs install
 import pickle
-#import json  # used for training purposes, pickle files were smaller
 import sqlite3  # to export records to flatfile database
 from pathlib import Path
 
@@ -200,28 +199,22 @@ def graph_all_as_nodes():  # shipit - for text-based presentation of actor degre
 
 def export_dataframes():  # shipit - save all four tables in csv format
     print('Exporting movies...')
-    #movie_info.to_json('./movie_info.json', orient='table', index=False)
     movie_info.to_csv('./movie_info.csv', sep='\t', index=False)
 
     print('Exporting cast...')
-    #movie_cast_crew.to_json('./movie_cast_crew.json', orient='table', index=False)
     movie_cast_crew.to_csv('./movie_cast_crew.csv', sep='\t', index=False)
     
     print('Exporting actors and actresses...')
-    #cast_crew_info.to_json('./cast_crew_info.json', orient='table', index=False)
     cast_crew_info.to_csv('./cast_crew_info.csv', sep='\t', index=False)
 
     print('Exporting leaderboard...')
-    #leader_board.to_json('./leader_board.json', orient='table', index=False)
     leader_board.to_csv('./leader_board.csv', sep='\t', index=False)
 
-    print('Exporting shortest path graph...')  # export shortest path in multiple formats for import in main
-    #with open('./shortest_path.json', 'w') as fp:
-    #    fp.write(json.dumps(sp1))  #file is 2+ GB, don't need for now
+    print('Exporting shortest path graph...')  # export shortest path for import in main and web
     with open('./shortest_path.pkl', 'wb') as fp:
-        pickle.dump(sp1, fp)  #file is .5 GB, more suitable to task
+        pickle.dump(sp1, fp)  #file is .5 GB, more suitable to task than JSON
     with open('./lacey_sp.pkl', 'wb') as fp:
-        pickle.dump(sp2, fp)  #file is much smaller, for Lacy only analysis
+        pickle.dump(sp2, fp)  #file is much smaller, for Lacey-only analysis and lookups
 
 def export_sqlite():  # shipit - add all four main dataframes to database as tables
     print('Exporting database records...')
