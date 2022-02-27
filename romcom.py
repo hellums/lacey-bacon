@@ -1,7 +1,6 @@
-# romcom.py 2/27/22 11:21 AM
+# romcom.py 2/27/22 1:11 PM
 """ Project for Code Louisvillle python class, provides a menu of IMDB movie functions"""
 
-# Import os module for system calls to cls and clear (screen)
 import os  # for system calls to clear screen
 import csv  # to import TSV files for movie and actor lists
 import unittest 
@@ -22,6 +21,7 @@ def main():
     clrscr()
 
     # Load the data structures
+    print('Loading data, please wait (15-20 seconds)...')
     load_data()
 
     # Implement a “master loop” console application where the user can repeatedly enter commands,
@@ -136,7 +136,6 @@ def cast():  # a movie's top actors and actresses
             stripped  = [word for word in movie_name if word.lower() not in ['christmas']]
             movie_name = [' '.join(stripped)]  # exlude the word Christmas
             movie_name = max(movie_name, key=len)  # to find a suitable keyword for search
-            print('here is the search term:', movie_name)
         except:  # bail if input was single word, or numbers
             return None
         possible_match = movie_fuzzy_search(movie_name)  # see if there's any movie with keyword
@@ -253,15 +252,6 @@ def graphs():  # show BA plots on ratings, production, etc.
     clrscr()
     return None
 
-def option7(option):  
-    option = option  # premature optimization
-    return None
-
-def option0(option):  # for debug only, to be replaced later with 'easter egg'
-    option = option  # premature optimization
-    notImplementedYet()
-    return None
-
 ###  General purpose utilities  ###
 
 def clrscr():  # clears screen in Mac, Linux, or Windows
@@ -272,65 +262,15 @@ def clrscr():  # clears screen in Mac, Linux, or Windows
         _ = os.system('cls')  # Operating System is Windows (os.name = nt)
     return None
 
-def notImplementedYet(option):  # stub for drivers and testing
-    separator = '\n******************************************************\n'
-    print(separator)
-    print("'Option", str(option) + "' selected. Section not implemented yet.")
-    print(separator)
-    return None
-
 def tab_print(df, header_name):  # "pretty" print for a dataframe slice
     print(tabulate(df, headers=header_name, showindex=False, numalign='center'))
     return None
-
-###  Lookup utilities  ###
-
-def nm_lookup(name):
-    nm = name_nm[name]
-    return nm
-
-def name_lookup(nm):
-    name = nm_name[nm]
-    return name
-
-def tt_lookup(title):
-    tt = title_tt[title]
-    return tt
-
-def title_lookup(tt):
-    title = tt_title[tt]
-    return title
-
-def cast_lookup(tt):
-    cast = tt_nm[tt]
-    return cast
-
-###  Fuzzy search utilities  ###
-
-def actor_fuzzy_search(name):  # find anyone with unexpected initials, St., full middle name, etc. 
-    conn = sqlite3.connect('movies.db')
-    sql_query = "SELECT primaryName FROM cast_crew_info WHERE primaryName LIKE '%"+name+"'"
-    cursor=conn.cursor()
-    cursor.execute(sql_query)
-    results = cursor.fetchall()
-    conn.close()
-    return results
-
-def movie_fuzzy_search(title):  # find any movie with prominent word in title
-    conn = sqlite3.connect('movies.db')
-    sql_query = "SELECT primaryTitle FROM movie_info WHERE primaryTitle LIKE '%"+title+"%'"
-    cursor=conn.cursor()
-    cursor.execute(sql_query)
-    results = cursor.fetchall()
-    conn.close()
-    return results
 
 def load_data():  # read data from tab-delimited files to data structures
     global tt_title, title_tt, tt_nm, nm_name, name_nm, nm_tt, title_rating, lacey_sp
     global cast_crew_info, movie_info, movie_cast_crew, leader_board, sp, one_sp_pkl, all_sp_pkl
     # Read data from an external file, such as text, JSON, CSV, etc, and use that data in your
     # application. Code Louisville requirement.
-    print('Loading data, please wait (15-20 seconds)...')
     movie_info = pd.read_csv('movie_info.csv', sep='\t', index_col=None, \
                   dtype={'startYear': str, 'runtimeMinutes': str}, \
                   converters={'movieGenres': lambda x: re.split(',+', x)})  
@@ -362,6 +302,46 @@ def load_data():  # read data from tab-delimited files to data structures
         one_sp_pkl = False # allow most functions to run without romcom_prep using .csv and .db files
 
     return None
+
+###  Lookup utilities  ###
+
+def nm_lookup(name):
+    nm = name_nm[name]
+    return nm
+
+def name_lookup(nm):
+    name = nm_name[nm]
+    return name
+
+def tt_lookup(title):
+    tt = title_tt[title]
+    return tt
+
+def title_lookup(tt):
+    title = tt_title[tt]
+    return title
+
+def cast_lookup(tt):
+    cast = tt_nm[tt]
+    return cast
+
+def actor_fuzzy_search(name):  # find anyone with unexpected initials, St., full middle name, etc. 
+    conn = sqlite3.connect('movies.db')
+    sql_query = "SELECT primaryName FROM cast_crew_info WHERE primaryName LIKE '%"+name+"'"
+    cursor=conn.cursor()
+    cursor.execute(sql_query)
+    results = cursor.fetchall()
+    conn.close()
+    return results
+
+def movie_fuzzy_search(title):  # find any movie with prominent word in title
+    conn = sqlite3.connect('movies.db')
+    sql_query = "SELECT primaryTitle FROM movie_info WHERE primaryTitle LIKE '%"+title+"%'"
+    cursor=conn.cursor()
+    cursor.execute(sql_query)
+    results = cursor.fetchall()
+    conn.close()
+    return results
 
 # Allow file to be used as function or program
 if __name__=='__main__':
