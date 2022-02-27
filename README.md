@@ -31,26 +31,18 @@ TO ACTIVATE VIRTUAL ENVIRONMENT:
 TO INSTALL PREREQUISITES:
   - >python3 -m pip install -r requirements.txt
 
-TO RUN PROGRAM (ALL BUT MENU ITEM 3 WILL WORK "OUT OF THE BOX," WITHOUT FULL REBUILD BELOW):
+TO RUN PROGRAM:
   - >python3 romcom.py
 
-TO RUN FLASK MICROSITE (ALL WILL WORK WITHOUT FULL REBUILD BELOW):
+  - >NOTE: All but menu item 3 will work "out of the box," without full rebuild below
+
+TO RUN FLASK MICROSITE:
   - >python3 romcomWeb.py
   - >in a web browser tab, go to http://localhost:5000/ 
+  - >NOTE: All menu options will work, without full rebuild below
 
 TO PERFORM FULL DOWNLOAD AND REBUILD DATA/DATABASE: (optional)
   - >python3 romcomPrep.py (NOTE: compressed files total 4 GB, uncompressed another 2 GB)
-
-TO TEST 3 FLASK API ENDPOINTS (WITH romcomWeb):
-  - >in a web browser tab, go to http://localhost:5000/ to load the app and api functions
-
-  - >http://localhost:5000/actors returns the top 10 books in JSON simple list format
-
-  - >http://localhost:5000/movies returns the top 10 movies in JSON simple list format
-
-  - >http://localhost:5000/rating/?tt=tt13831504 returns the rating of "It Was Always You" as JSON list 
-
-  - >    (tt is the IMDB title code for a romcom in the database)
 
 TO RUN AND TEST 3 FLASK API ENDPOINTS:
   - >python3 romcomAPI.py
