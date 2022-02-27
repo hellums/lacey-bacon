@@ -11,6 +11,7 @@ import sqlite3
 import matplotlib.pyplot as plt  # needs install
 import networkx as nx #needs install
 from tabulate import tabulate  # needs install
+from natsort import natsorted
 
 ###  Main Menu  ###
 def main():
@@ -103,8 +104,8 @@ def filmography():  # filmography for a person
     # that is used somewhere else in your code. Code Louisville requirement.
     actor_movies = nm_tt[actor_nm]  # pull a list of this actor's movie title codes
     actor_titles = []
-    for k, v in enumerate(actor_movies):
-        actor_titles.append(tt_title[v])  # lookup the code to get titles
+    for each in natsorted(actor_movies, reverse=True): # sort by one-up assigned tt numbers
+        actor_titles.append(tt_title[each])  # lookup the code to get titles
     df = pd.DataFrame(actor_titles)  # prep for pretty print
     total_titles = len(actor_titles)
     separation = list(lacey_sp[actor_name])

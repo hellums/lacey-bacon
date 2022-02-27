@@ -31,7 +31,7 @@ def actor_data():
             actor_nm = nm_lookup(actor_name)  # if we get results, we'll return them
             actor_movies = films_lookup(actor_nm)  # pull a list of this actor's movie title codes
             actor_titles = []
-            for each in natsorted(actor_movies, reverse=True): 
+            for each in natsorted(actor_movies, reverse=True): # sort by one-up assigned tt numbers
                 actor_titles.append(tt_title[each])  # lookup the code to get titles
             total_titles = len(actor_titles)
             shortest_path=lacey_sp[actor_name]
