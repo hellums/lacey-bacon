@@ -1,6 +1,9 @@
 # romcom-sql.py dbh 2/16/22 12:45 PM
 # Import flat file ORM database module
+
+
 import sqlite3
+
 
 def main():
 
@@ -45,6 +48,7 @@ def main():
   conn.close()
   return None
 
+
 def count_records(table_name):
   conn = sqlite3.connect('movies.db')
   #conn = sqlite3.connect('movies.db')
@@ -53,6 +57,7 @@ def count_records(table_name):
   cursor.execute(sql_query)
   results = cursor.fetchall()
   return results
+
   
 # Allow file to be used as function or program
 if __name__=='__main__':
