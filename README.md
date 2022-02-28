@@ -2,9 +2,9 @@
 This repo is a work in progress (not complete). It contains files and related project data for a 12-week introductory bootcamp course (Jan-Mar 2022) on Python programming and data analysis/science in a group learning environment. However, all programming and data analysis is individual, and shared/coordinated with instructors and mentors as necessary. Primary coding was completed in 7 weeks, through Feb 25.
 
 ### INITIATIVE PAGES
-- [Kanban](https://github.com/hellums/hallmarkish/projects/1)
-- [Wiki](https://github.com/hellums/hallmarkish/wiki/1.-Data-Analytics-Course-Project)
-- [Notebook/EDA](https://github.com/hellums/lacey-bacon/blob/root/romcom.pdf)
+- [Kanban](https://github.com/hellums/lacey-bacon/projects/1)
+- [Wiki](https://github.com/hellums/lacey-bacon/wiki/1.-Data-Analytics-Course-Project)
+- [Notebook/EDA](https://github.com/hellums/lacey-bacon/blob/root/romcomEDA.pdf)
 
 # INITIATIVE GOALS
 This repo and project will have several purposes:
