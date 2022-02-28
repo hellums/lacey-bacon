@@ -58,7 +58,7 @@ TO PERFORM FULL DOWNLOAD AND REBUILD DATA/DATABASE: (optional)
 TO RUN AND TEST 3 FLASK API ENDPOINTS:
   - >python3 romcomAPI.py
 
-  - >in a web browser tab, http://localhost:8080/actors will return top 10 books in JSON simple list format
+  - >in a web browser tab, http://localhost:8080/actors will return top 10 actors in JSON simple list format
 
   - >http://localhost:8080/movies will return the top 10 movies in JSON simple list format
 
