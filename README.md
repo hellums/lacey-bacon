@@ -17,12 +17,12 @@ Is Lacey Chabert indeed the "Center of the (Hallmark) Universe," as Kevin Bacon 
 # SPECIAL INSTRUCTIONS (use your own Python 3 interpreter command, such as py3 or python, if it is different than 'python3' used here) 
 
   |  Module  |  Description  |  Category  |
-  |  -------------  |  -------------  |  -------------  |
+  |  :---  |  :---  |  :---:  |
   |  romcom.py   |  command-line version  |  old-school |
   |  romcomWeb.py  |  web-based version   |  new-school  |
   |  romcomAPI.py  |  web-based API  |  inter-school  |
-  |  romcomPrep.py  |  rebuilds the default data files  |  optional  |
-  |  romcomSQL.py  |  verifies SQL functionality  |  optional  |
+  |  romcomPrep.py  |  rebuilds the data files  |  optional  |
+  |  romcomSQL.py  |  verifies SQL functions  |  optional  |
   |  test_romcom.py  |  unittest collection  |  optional  |
   |  |  |
 
