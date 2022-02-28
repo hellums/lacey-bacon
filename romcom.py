@@ -235,7 +235,7 @@ def about():  # about section
             'costarred in.',
             '\nThis program also includes SQL functions using SQLite3, using the same data.',
             'A few graphs prototyped in Jupyter Notebook will also be displayed. There is',
-            'also a Flask-based web interface to a ported subset of functions.']
+            'also a Flask-based web interface (and API) to a ported subset of functions.']
     print(about_header)
     for lines in about:
         print(lines)
