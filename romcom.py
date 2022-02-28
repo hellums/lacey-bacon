@@ -1,17 +1,23 @@
-# romcom.py 2/27/22 2:04 PM
+# romcom.py 2/28/22 10:07 PM
 """ Project for Code Louisvillle python class, provides a menu of IMDB movie functions"""
+
 
 import os  # for system calls to clear screen
 import csv  # to import TSV files for movie and actor lists
 import unittest 
-import re
-import pandas as pd  # needs install
 import pickle
 import sqlite3
+
+import pandas as pd  # needs install
 import matplotlib.pyplot as plt  # needs install
 import networkx as nx #needs install
+import re
 from tabulate import tabulate  # needs install
 from natsort import natsorted
+
+global tt_title, title_tt, tt_nm, nm_name, name_nm, nm_tt, title_rating, lacey_sp
+global cast_crew_info, movie_info, movie_cast_crew, leader_board, sp, one_sp_pkl, all_sp_pkl
+
 
 ###  Main Menu  ###
 def main():
@@ -25,11 +31,9 @@ def main():
     # perform actions, including choosing to exit the program. Code Louisville requirement.
 
     while(True):
-
         
         print('\nPlease enter a number between 1 and 7.\n')  # warn user of short delay
         print_menu()  # Print instructions and menu
-
         
         option = ''  # Get user's menu choice and verify entry data type
         try:
@@ -64,6 +68,7 @@ def main():
         else:
             pass
 
+
 def print_menu():  # basic menu screen for user to select program feature sets
     menu_options = {  # dictionary of menu options
         1: 'Filmography - See what movies a select person starred in',
@@ -81,25 +86,30 @@ def print_menu():  # basic menu screen for user to select program feature sets
 
 ###  Menu Functions  ###
 
+
 def filmography():  # filmography for a person
     actor_name = input('Please enter an actor\'s name (Alison Sweeney, for example) and press enter: ')
     clrscr()
+
     try:
         actor_nm = nm_lookup(actor_name)
     except:
         print("That actor is not in the database.")
+
         try:
             last_name = actor_name.rsplit(' ', 1)[1]  # grab the last name
         except:  # bail if input was single word, or numbers
             return None
+
         possible_match = actor_fuzzy_search(last_name)  # see if there's anyone with that last name
         if possible_match:
             print('\nPossible last name match:')
             for item in possible_match:
                 print(item[0])
-            print('\nNOTE: names are case sensitive.')
+            print('\nNOTE: names are case sensitive.') 
         input('\nPress ENTER/RETURN to return to main menu: ')
         return None
+
     # Create and call at least 3 functions or methods, at least one of which must return a value
     # that is used somewhere else in your code. Code Louisville requirement.
     actor_movies = nm_tt[actor_nm]  # pull a list of this actor's movie title codes
@@ -116,9 +126,11 @@ def filmography():  # filmography for a person
     tab_print(df, '')
     return None
 
+
 def cast():  # a movie's top actors and actresses
     movie_name = input('Please enter a movie title (Date with Love, for example) and press enter: ')
     clrscr()
+
     try:
         movie_tt = tt_lookup(movie_name)
         if not movie_name:  # handle case of an empty string from ENTER/RETURN input
@@ -126,6 +138,7 @@ def cast():  # a movie's top actors and actresses
             return None
     except:
         print("A movie with that exact title is not in the database.") 
+
         try:
             if movie_name.lower() == 'christmas' or movie_name.lower() == ' christmas':
                 movie_name = 'bazinga Christmas'  # workaround, "Christmas" only fails next line
@@ -135,6 +148,7 @@ def cast():  # a movie's top actors and actresses
             movie_name = max(movie_name, key=len)  # to find a suitable keyword for search
         except:  # bail if input was single word, or numbers
             return None
+
         possible_match = movie_fuzzy_search(movie_name)  # see if there's any movie with keyword
         if possible_match:
             print('\nPossible title match:')
@@ -144,6 +158,7 @@ def cast():  # a movie's top actors and actresses
             print('"Good Morning Christmas!" and "Date with Love"')
         input('\nPress ENTER/RETURN to return to main menu: ')
         return None
+
     movie_cast_codes = cast_lookup(movie_tt)  # create a list of movies from the dictionary lookup
     movie_cast_names = []
     for nm in movie_cast_codes:
@@ -155,12 +170,14 @@ def cast():  # a movie's top actors and actresses
     tab_print(df, '')
     return None
 
+
 def deg_separation():  # connectivity between two actors based on who they starred with in other movies
     clrscr()
     print('Please enter two actor or actress first and last names.')
     actor1 = input('First person? ')
     actor2 = input('Second person? ')
     clrscr()
+
     try:  # see if they ran _prep first, and allow most program functions to work without crash on load
         separation = (sp[actor1][actor2])  # lookup any movie connection shortest path between actors
     except:  # can't do degree separation without the SP file, so gracefully warn, instruct, and exit
@@ -171,6 +188,7 @@ def deg_separation():  # connectivity between two actors based on who they starr
             print('One or more of those two names were not in the database. Try looking them up in menu item 1.')
         input('\nPress ENTER/RETURN to return to main menu: ')
         return None
+
     try:
         df = pd.DataFrame(separation)  # prepare for pretty print
         distance = int(len(separation)/2)  # count of movies between actors
@@ -180,6 +198,7 @@ def deg_separation():  # connectivity between two actors based on who they starr
     except:
         print('There are no connections between the two people, or something else went wrong.')
     return None
+
 
 def leaderboard():  # leaderboard
     clrscr()
@@ -192,6 +211,7 @@ def leaderboard():  # leaderboard
     input('\nPress ENTER/RETURN to return to main menu: ')
     clrscr()
     return None
+
 
 def about():  # about section
     clrscr()
@@ -220,6 +240,7 @@ def about():  # about section
     for lines in about:
         print(lines)
     return None
+
 
 def graphs():  # show BA plots on ratings, production, etc.
     clrscr()
@@ -251,6 +272,7 @@ def graphs():  # show BA plots on ratings, production, etc.
 
 ###  General purpose utilities  ###
 
+
 def clrscr():  # clears screen in Mac, Linux, or Windows
     
     if os.name == 'posix':  # Operating System is Mac and Linux ?
@@ -259,9 +281,11 @@ def clrscr():  # clears screen in Mac, Linux, or Windows
         _ = os.system('cls')  # Operating System is Windows (os.name = nt)
     return None
 
+
 def tab_print(df, header_name):  # "pretty" print for a dataframe slice
     print(tabulate(df, headers=header_name, showindex=False, numalign='center'))
     return None
+
 
 def load_data():  # read data from tab-delimited files to data structures
     global tt_title, title_tt, tt_nm, nm_name, name_nm, nm_tt, title_rating, lacey_sp
@@ -302,25 +326,31 @@ def load_data():  # read data from tab-delimited files to data structures
 
 ###  Lookup utilities  ###
 
+
 def nm_lookup(name):
     nm = name_nm[name]
     return nm
+
 
 def name_lookup(nm):
     name = nm_name[nm]
     return name
 
+
 def tt_lookup(title):
     tt = title_tt[title]
     return tt
+
 
 def title_lookup(tt):
     title = tt_title[tt]
     return title
 
+
 def cast_lookup(tt):
     cast = tt_nm[tt]
     return cast
+
 
 def actor_fuzzy_search(name):  # find anyone with unexpected initials, St., full middle name, etc. 
     conn = sqlite3.connect('movies.db')
@@ -331,6 +361,7 @@ def actor_fuzzy_search(name):  # find anyone with unexpected initials, St., full
     conn.close()
     return results
 
+
 def movie_fuzzy_search(title):  # find any movie with prominent word in title
     conn = sqlite3.connect('movies.db')
     sql_query = "SELECT primaryTitle FROM movie_info WHERE primaryTitle LIKE '%"+title+"%'"
@@ -339,6 +370,7 @@ def movie_fuzzy_search(title):  # find any movie with prominent word in title
     results = cursor.fetchall()
     conn.close()
     return results
+
 
 if __name__=='__main__':  # Allow file to be used as function or program
     main()
