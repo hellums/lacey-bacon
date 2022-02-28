@@ -67,7 +67,7 @@ def main():
             exit()
         else:
             pass
-
+    return None
 
 def print_menu():  # basic menu screen for user to select program feature sets
     menu_options = {  # dictionary of menu options
