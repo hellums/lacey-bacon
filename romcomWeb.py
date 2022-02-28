@@ -2,23 +2,32 @@
 """ Project to reuse Code Louisvillle Python data analysis class code for web delivery"""
 
 import csv  # to import TSV files for movie and actor lists
-import re
-import pandas as pd  # needs install
-from natsort import natsorted
 import pickle
-from flask import Flask, render_template, request, jsonify # needs install
+
+import re
+import pandas as pd
+from natsort import natsorted
+from flask import Flask, render_template, request, jsonify
+
+
+global tt_title, title_tt, tt_nm, tt_rating, nm_name, name_nm, nm_tt, title_rating, sp, ranked_titles
+global cast_crew_info, movie_info, movie_cast_crew, leader_board, lacey_sp, no_pickle_file
+
 
 # Initiate the Flask micro web framework
 app = Flask(__name__)
+
 
 @app.route('/')  # initialize program
 def home():
     load_data()  # load data structures
     return render_template("home.html") # display the home page
 
+
 @app.route('/actor_frm')  # user clicked on Actor in navbar
 def actor_frm():
     return render_template('actor_frm.html')  # display the actor lookup form
+
 
 @app.route('/actor_data/', methods=['POST', 'GET']) # user clicked on submit or typed in full path
 def actor_data():
@@ -27,6 +36,7 @@ def actor_data():
     if request.method == 'POST':  # otherwise let's process the name they sent in the form
         form_data = request.form
         actor_name = form_data['Actor']
+
         try:
             actor_nm = nm_lookup(actor_name)  # if we get results, we'll return them
             actor_movies = films_lookup(actor_nm)  # pull a list of this actor's movie title codes
@@ -38,11 +48,14 @@ def actor_data():
             separation=int(len(shortest_path)/2)
         except:  # otherwise well return a bunch of nulls so the handler page can notify the user
             return render_template('actor.html', actor=actor_name, actor_nm='', num_films=0, films=[], path=[], distance=0)
+
     return render_template('actor.html', actor=actor_name, actor_nm=actor_nm, num_films =total_titles, films=actor_titles, path=shortest_path, distance=separation)
+
 
 @app.route('/movie_frm')  # user clicked on Movie in navbar
 def movie_frm():
     return render_template('movie_frm.html')  # display the movie lookup form
+
 
 @app.route('/movie_data/', methods=['POST', 'GET']) # same as actor_data process, but for movies
 def movie_data():
@@ -51,6 +64,7 @@ def movie_data():
     if request.method == 'POST':
         form_data = request.form
         movie_name = form_data['Movie']
+
         try:
             movie_tt = tt_lookup(movie_name)
             movie_cast_codes = cast_lookup(movie_tt)  # create a list of actors from the dictionary lookup
@@ -60,7 +74,9 @@ def movie_data():
                 movie_cast_names.append(name)
         except:
             return render_template('movie.html', film='', movie_tt='', actors=[])  # allow error notification
+
     return render_template('movie.html', film=movie_name, movie_tt=movie_tt, actors=movie_cast_names)        
+
 
 @app.route('/best/')  # top 20 actors based on centrality graph, and top 20 movies based on ratings
 def best():
@@ -69,9 +85,11 @@ def best():
     top_movies=ranked_titles[:20]  # create a top 20 list of movie titles
     return render_template("best.html", top_actors=top_actors, top_movies=top_movies) # display the Top 10 page
 
+
 @app.route('/about/')  # user clicked on the About link in navbar
 def about():  # about section
     return render_template("about.html")  # so redirect them to it, and Carry On!
+
 
 ###  Lookup utilities  ###
 def nm_lookup(name):
@@ -101,6 +119,7 @@ def title_lookup(tt):
 def cast_lookup(tt):
     cast = tt_nm[tt]
     return cast
+
 
 def load_data():  # read data from tab-delimited files to data structures
 
@@ -137,6 +156,7 @@ def load_data():  # read data from tab-delimited files to data structures
     except:
         no_pickle_file = True # allow most functions to run without romcom_prep using .csv and .db files
     return None
+
 
 if __name__=='__main__': # Launch as a Flask app
     app.run(debug=True)
