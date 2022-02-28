@@ -1,16 +1,22 @@
 # romcom_prep.py dbh 2/27/22 10:55 AM
 """ Downloads imdb-related files and watchlist, uncompresses and cleans/prunes them as necessary"""
 
-import re
-import requests  # needs install
-import gzip
-import re
+
 import csv  # to import TSV files for movie and actor lists
-import pandas as pd  #needs install
-import networkx as nx  #needs install
+import gzip
 import pickle
 import sqlite3  # to export records to flatfile database
 from pathlib import Path
+
+import requests  # needs install
+import re
+import pandas as pd  #needs install
+import networkx as nx  #needs install
+
+
+global watchlist, sp, sp1, sp2, G, leader_board, imdb_separation, cast_crew_info, actorlist
+global nm_name, name_nm, movie_cast_crew, nm_tt, tt_nm, movie_info, tt_title, title_tt, title_rating
+
 
 def main():
     download_uncompress_imdb_files()  #shipit
@@ -20,6 +26,7 @@ def main():
     export_dataframes()  # write datasets to local json and csv files
     export_sqlite()
     
+
 def download_uncompress_imdb_files():  # shipit
     print('\nThis process could take a few minutes, depending on Internet speed...')
     remote_url ='https://raw.githubusercontent.com/hellums/lacey-bacon/root/watchlist.txt'  
@@ -47,12 +54,14 @@ def download_uncompress_imdb_files():  # shipit
     uncompress_file(local_file, 'movie_crew.tsv')
     return None  # results of download_uncompress_imdb_files
 
+
 def download_file(remote, local):  #shipit
     print('Downloading', local)
     data = requests.get(remote)
     with open(local, 'wb') as file:
         file.write(data.content)
     return None
+
 
 def uncompress_file(compressed, uncompressed):  #shipit
     print('Uncompressing', uncompressed)
@@ -61,6 +70,7 @@ def uncompress_file(compressed, uncompressed):  #shipit
     with open(uncompressed, 'wb') as f:
         f.write(data)
     return None
+
 
 def load_dataframes():  # shipit
     global watchlist
@@ -76,13 +86,15 @@ def load_dataframes():  # shipit
     role_list = load_role_list()
     actor_list = load_actor_list()
     return None
-    
+
+
 def load_watchlist():  # shipit
     print('Loading watchlist...')
     local_file = 'watchlist.txt'
     header_field = ['tconst']
     watchlist_info = pd.read_csv(local_file, names=header_field)
     return watchlist_info['tconst'].tolist() # refactor this to load direct to list, don't need a df?
+
 
 def load_movie_list():  # shipit - load movies and ratings, merge and clean resulting dataset
     global watchlist, movie_info, tt_title, title_tt, title_rating
@@ -113,6 +125,7 @@ def load_movie_list():  # shipit - load movies and ratings, merge and clean resu
     title_rating = dict(zip(movie_info.primaryTitle, movie_info.averageRating))  # lookup rating by movie title
     return movie_info.values.tolist()
 
+
 def load_role_list():  # shipit
     global actorlist, movie_cast_crew, nm_tt, tt_nm
     print('Loading cast and crew...')
@@ -130,6 +143,7 @@ def load_role_list():  # shipit
     movielist = movie_cast_crew['tconst'].tolist()
     return list(set(movielist))
 
+
 def load_actor_list():  # shipit
     global cast_crew_info, actorlist, nm_name, name_nm
     print('Loading actors and actresses...')
@@ -140,9 +154,11 @@ def load_actor_list():  # shipit
     name_nm = dict(zip(cast_crew_info.primaryName, cast_crew_info.nconst))  # lookup ID by cast name
     return cast_crew_info.values.tolist()
 
+
 def graph_database():  # shipit
     global G, sp, leader_board, imdb_separation
     G = nx.Graph()
+
     print('Graphing movies and cast...')
     edge_attribute_dict = {}  # store weight of movie edges between costaring actors
     # Use pandas, matplotlib, and/or numpy to perform a data analysis project. Ingest 2 or more pieces of data, 
@@ -172,6 +188,7 @@ def graph_database():  # shipit
     leader_board = pd.DataFrame(imdb_separation, columns=('Hall of Fame', 'Fame-O-Meter'))
     return None
 
+
 def graph_all_as_nodes():  # shipit - for text-based presentation of actor degrees of separation
     global sp, sp1, sp2
     G1 = nx.Graph()
@@ -197,6 +214,7 @@ def graph_all_as_nodes():  # shipit - for text-based presentation of actor degre
     sp2 = dict(sp)  # convert the Lacey only shortest path info
     return None
 
+
 def export_dataframes():  # shipit - save all four tables in csv format
     print('Exporting movies...')
     movie_info.to_csv('./movie_info.csv', sep='\t', index=False)
@@ -216,11 +234,10 @@ def export_dataframes():  # shipit - save all four tables in csv format
     with open('./lacey_sp.pkl', 'wb') as fp:
         pickle.dump(sp2, fp)  #file is much smaller, for Lacey-only analysis and lookups
 
+
 def export_sqlite():  # shipit - add all four main dataframes to database as tables
     print('Exporting database records...')
     
-    #create_tables()  # comment out as necessary, works fine 1st time, but fails on 2nd
-
     conn=sqlite3.connect('movies.db')
     
     movie_info.to_sql('movie_info', conn, if_exists = 'replace', index = False)
@@ -230,6 +247,7 @@ def export_sqlite():  # shipit - add all four main dataframes to database as tab
 
     conn.close()
     return None
+
 
 def create_tables():  # pandas to_sql doesn't support PRIMARY KEY or IF EXISTS IGNORE, so...
 
