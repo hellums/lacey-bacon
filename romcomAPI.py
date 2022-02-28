@@ -7,6 +7,8 @@ import re
 import pandas as pd  # needs install
 from flask import Flask, render_template, request, jsonify # needs install
 
+global tt_rating, title_rating, ranked_titles, movie_info, leader_board
+
 
 # Initiate the Flask micro web framework for API delivery on port (:8080)
 api = Flask(__name__)
