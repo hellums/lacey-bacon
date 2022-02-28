@@ -14,7 +14,8 @@ This repo and project will have several purposes:
 ### INITIATIVE SCOPE
 Is Lacey Chabert indeed the "Center of the (Hallmark) Universe," as Kevin Bacon reputably is to Hollywood? Given the time and resource limitations, this project is not meant to be an all-inclusive or full programming approach to the _"6 Degrees of Kevin Bacon"_ topic itself (using BFS or Breadth-First Search algorithms, for example). It merely provides a working environment to support the programming and data science portions of the course, using a subset of movies and actors specific to Hallmark original movies, romantic comedies, mysteries, and dramas.
 
-# SPECIAL INSTRUCTIONS (use your own Python 3 interpreter command, such as py3 or python, if it is different than 'python3' used here) 
+# SPECIAL INSTRUCTIONS 
+(use your own Python 3 interpreter command, such as py3 or python, if it is different than 'python3' used here) 
 
   |  Module  |  Purpose  |  Category  |
   |  :---  |  :---  |  :---:  |
