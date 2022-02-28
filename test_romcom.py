@@ -1,13 +1,15 @@
 # test_romcom.py 2/25/22 3:38 PM
+
 import unittest 
+
 import romcom
 import romcomSQL  
 import romcomPrep
 
+
 class TestSqlRecords(unittest.TestCase):  
 
     # Create 3 or more unit tests for your application. Code Louisville requirement.
-
     def test_table1_loaded(self):
         print('Checking movie table...')
         table_name = 'movie_info'
@@ -49,6 +51,7 @@ class TestSqlRecords(unittest.TestCase):
         actual = len(results)  # should be 1141-ish
         expected = 1000 
         self.assertLess(expected, actual, "Less than 1000 movies in list?")
+
 
 if __name__=='__main__': # use testrunner for unittest
     unittest.main()
