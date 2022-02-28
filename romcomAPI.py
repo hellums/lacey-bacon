@@ -2,12 +2,15 @@
 """ Project to reuse Code Louisvillle Python data analysis class code for API delivery"""
 
 import csv  # to import TSV files for movie and actor lists
+
 import re
 import pandas as pd  # needs install
 from flask import Flask, render_template, request, jsonify # needs install
 
+
 # Initiate the Flask micro web framework for API delivery on port (:8080)
 api = Flask(__name__)
+
 
 @api.route('/')  # initialize program, load data structures
 def starting_url():
@@ -15,25 +18,32 @@ def starting_url():
     status_code = "201"  # won't take Flask.Response(status=201) for some reason, continue to debug
     return status_code
 
+
 @api.route('/actors/', methods=['GET'])  # endpoint to return top 10 actors, http://localhost:8080/actors
 def api_actors():
     leader_board = pd.read_csv('leader_board.csv', sep='\t', header=[0], index_col=None)
     top10 = leader_board[:10]  # create a top 10 list of actor names
+
     try:
         top_actors=list(top10['Hall of Fame'])
     except:
         top_actors = list
         return('Something went wrong, or the Hall of Fame is empty. Try returning to the main page first, and try again.')
+
     return jsonify(top_actors)
+
 
 @api.route('/movies/', methods=['GET'])  # endpoint to return top 10 movies, http://localhost:8080/movies
 def api_movies():
+
     try:
         top_movies=list(ranked_titles[:10])  # create a top 10 list of movie titles
     except:
         top_movies = list
         return('Something went wrong, or the Hall of Fame is empty. Try returning to the main page first, and try again.')
+
     return jsonify(top_movies)
+
 
 @api.route('/rating/', methods=['GET'])  # endpoint to return a specific movie rating, e.g. /rating/?tt=tt13831504
 def api_tt():
@@ -53,9 +63,11 @@ def api_tt():
 
     return jsonify(results) # Use the jsonify function from Flask to convert dictionary to JSON format
 
+
 def rating_lookup(tt):  # used by API
     rating = tt_rating[tt]
     return rating
+
 
 def load_data():  # read data from tab-delimited files to data structures
     global tt_rating, title_rating, ranked_titles, movie_info, leader_board
@@ -74,6 +86,7 @@ def load_data():  # read data from tab-delimited files to data structures
 
     leader_board = pd.read_csv('leader_board.csv', sep='\t', header=[0], index_col=None)
     return None
+
 
 if __name__=='__main__': # Launch as a Flask app
     api.run(host="127.0.0.1", port=8080, debug=True)
