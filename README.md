@@ -7,7 +7,7 @@ This repo and project has several purposes:
 - Satisfy as many optional requirements as possible
 
 # SCOPE
-Is Lacey Chabert indeed the "Center of the (Hallmark) Universe," as Kevin Bacon reputably is to Hollywood? Given the time and resource limitations, this project is not meant to be an all-inclusive or full programming approach to the _"6 Degrees of Kevin Bacon"_ topic itself (using BFS or Breadth-First Search algorithms, for example). It merely provides a working environment to support the programming and data science portions of the course, using a subset of movies and actors specific to Hallmark original movies, romantic comedies, mysteries, and dramas.
+Is Lacey Chabert indeed the "Center of the (Hallmark) Universe," as Kevin Bacon reputably is to Hollywood? This project seeks to find out, using a subset of IMDB listed movies and actors from Hallmark original movies, romantic comedies, mysteries, and dramas.
 
 # Basic Functionality (Code Louisville Project)
 ## This program was built and tested using:
