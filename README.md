@@ -32,7 +32,7 @@ Substitute your own Python 3 interpreter command below, be it py, py3, python, o
 ## To install prerequisites and run command-line version:
   - >git clone <span>git@</span>github.com:hellums/lacey-bacon.git
   - >cd lacey-bacon
-  - >python -m pip install -r requirements.txt
+  - >pip install -r requirements.txt
   - >python romcom.py
 
 ## To view Jupyter Notebook output and data analysis
