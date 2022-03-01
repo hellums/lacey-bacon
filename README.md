@@ -39,14 +39,6 @@ Substitute your own Python 3 interpreter command below, be it py, py3, python, o
 - [Notebook/EDA](https://github.com/hellums/lacey-bacon/blob/root/romcomEDA.pdf)
 (or open recomcomEDA.pdf in the project folder using Adobe or other PDF viewer)
 
-## (OPTIONAL) To create and activate a virtual environment (if desired)
-### Mac/Linux: 
-  - >python -m venv env
-  - >source env/bin/activate
-### PC:
-  - >python -m venv env
-  - >env\Scripts\activate.bat
-
 # Code Louisville requirements
 Satisfaction of requirements are called out in code, just search for "Code Louisville"
 
