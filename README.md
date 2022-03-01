@@ -1,5 +1,5 @@
 # INITIATIVE OVERVIEW
-This repo is a work in progress (not complete). It contains files and related project data for a 12-week introductory bootcamp course (Jan-Mar 2022) on Python programming and data analysis/science in a group learning environment. However, all programming and data analysis is individual, and shared/coordinated with instructors and mentors as necessary. Primary coding was completed in 7 weeks, through Feb 25.
+This repo is product from a 12-week introductory bootcamp course (Jan-Mar 2022) on Python programming and data analysis.
 
 ### INITIATIVE PAGES
 - [Kanban](https://github.com/hellums/lacey-bacon/projects/1)
@@ -7,7 +7,7 @@ This repo is a work in progress (not complete). It contains files and related pr
 - [Notebook/EDA](https://github.com/hellums/lacey-bacon/blob/root/romcomEDA.pdf)
 
 # INITIATIVE GOALS
-This repo and project will have several purposes:
+This repo and project has several purposes:
 - Satisfy the 4+ minimum requirements of the bootcamp assignment in the syllabus
 - Satisfy as many optional requirements as possible
 
@@ -15,7 +15,15 @@ This repo and project will have several purposes:
 Is Lacey Chabert indeed the "Center of the (Hallmark) Universe," as Kevin Bacon reputably is to Hollywood? Given the time and resource limitations, this project is not meant to be an all-inclusive or full programming approach to the _"6 Degrees of Kevin Bacon"_ topic itself (using BFS or Breadth-First Search algorithms, for example). It merely provides a working environment to support the programming and data science portions of the course, using a subset of movies and actors specific to Hallmark original movies, romantic comedies, mysteries, and dramas.
 
 # SPECIAL INSTRUCTIONS 
-(use your own Python 3 interpreter command, such as py3 or python, if it is different than 'python3' used here) 
+This program was built and tested using:
+
+- > Python version 3.10.1
+
+- > pip version 21.3.1
+
+Use your own Python 3 interpreter command, such as py3 or python, if it is different than 'python3' used here. Python's recommended best practice is to upgrade to and use the latest version of pip, if you are behind.
+
+All of the features of the command-line program will work "out-of-the-box" except for menu option 3, finding movies two people both starred in. This is a result of the size limitation of raw data files in Github, as well as the considerable amount of space required for the original build and downloaded IMDB source files. All features of the optional Web-based and API versions of the program run using the files supplied, and also do not require a full download and rebuild. The optional unittest and SQL tests are only included as part of the original Code Louisville project requirements.
 
   |  Module  |  Purpose  |  Category  |
   |  :---  |  :---  |  :---:  |
@@ -27,35 +35,33 @@ Is Lacey Chabert indeed the "Center of the (Hallmark) Universe," as Kevin Bacon 
   |  test_romcom.py  |  unittest collection  |  optional  |
   |  |  |
 
-TO INSTALL PROGRAM AND CREATE A VIRTUAL ENVIRONMENT:
+TO INSTALL THE REPO AND CREATE A VIRTUAL ENVIRONMENT:
 - >git clone <span>git@</span>github.com:hellums/lacey-bacon.git
 - >cd lacey-bacon
 - >python3 -m venv env
-- >echo "env/" >> .git/info/exclude (optional command)
 
-TO ACTIVATE VIRTUAL ENVIRONMENT:
+TO ACTIVATE THE VIRTUAL ENVIRONMENT:
 - Mac/Linux: 
   >source env/bin/activate
 - PC:
-  >env\scripts\activate.bat
+  >env\Scripts\activate.bat
 
 TO INSTALL PREREQUISITES:
   - >python3 -m pip install -r requirements.txt
 
-TO RUN PROGRAM:
+TO RUN THE COMMAND-LINE VERSION:
   - >python3 romcom.py
-
   - >NOTE: All but menu item 3 will work "out of the box," without full rebuild below
 
-TO RUN FLASK MICROSITE:
+(OPTIONAL) TO RUN THE BROWSER VERSION:
   - >python3 romcomWeb.py
   - >in a web browser tab, go to http://localhost:5000/ 
   - >NOTE: All menu options will work, without full rebuild below
 
-TO PERFORM FULL DOWNLOAD AND REBUILD DATA/DATABASE: (optional)
+(OPTIONAL) TO PERFORM FULL DOWNLOAD AND REBUILD DATA/DATABASE:
   - >python3 romcomPrep.py (NOTE: compressed files total 4 GB, uncompressed another 2 GB)
 
-TO RUN AND TEST 3 FLASK API ENDPOINTS:
+(OPTIONAL) TO RUN THE API VERSION:
   - >python3 romcomAPI.py
 
   - >in a web browser tab, http://localhost:8080/actors will return top 10 actors in JSON simple list format
@@ -66,25 +72,11 @@ TO RUN AND TEST 3 FLASK API ENDPOINTS:
 
   - >    (tt is the IMDB title code for a romcom in the database)
 
-TO TEST AND VALIDATE INTEGRITY OF DATA STRUCTURES: (optional)
+(OPTIONAL) TO TEST AND VALIDATE INTEGRITY OF DATA STRUCTURES:
   - >python3 -m unittest test_romcom -v
 
-TO TEST SQLITE3 DATABASE: (optional)
+(OPTIONAL) TO TEST SQLITE3 DATABASE:
   - >python3 romcomSQL.py
-
-### SCREEN SHOTS
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/83464025/156023028-09a53cc7-01e8-49f8-bc2a-37ae3f663e9d.png" />
-</p>
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/83464025/156022771-72977fa3-bfa9-4812-922e-d605bcd3e682.png" />
-</p>
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/83464025/156023338-7bfa39cc-7c42-45a4-96d9-faeca56a3374.png" />
-</p>
 
 # PACKAGES INVOLVED
 See requirements.txt file in project folder. 
@@ -98,6 +90,7 @@ Primarily:
 - tabulate==0.8.9
 - urllib3==1.26.8
 - Flask=2.0.3
+- natsort=8.1.0
 
 # STATUS OF FEATURES PLANNED AT INITIATIVE OUTSET
 
@@ -142,3 +135,18 @@ Category 4: Best Practices
 - IMDB (data source for movies and custom watchlist)
 - "Balanced" scale, 1 witch, 1 duck, very small rocks (that float)
 - 2 African swallows, 1 coconut, twine for sling-loading
+
+### SCREEN SHOTS
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/83464025/156023028-09a53cc7-01e8-49f8-bc2a-37ae3f663e9d.png" />
+</p>
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/83464025/156022771-72977fa3-bfa9-4812-922e-d605bcd3e682.png" />
+</p>
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/83464025/156023338-7bfa39cc-7c42-45a4-96d9-faeca56a3374.png" />
+</p>
+
