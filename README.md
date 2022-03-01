@@ -47,7 +47,7 @@ Substitute your own Python 3 interpreter command below, be it py, py3, python, o
   - >python -m venv env
   - >env\Scripts\activate.bat
 
-# Code Louisville requirements met
+# Code Louisville requirements
 Satisfaction of requirements are called out in code, just search for "Code Louisville"
 
 Category 1 - Python Programming Basics
@@ -72,7 +72,7 @@ Category 4 - Best Practices
 - [x] Use pandas, matplotlib, and/or numpy to perform a data analysis project. Ingest 2 or more pieces of data, analyze that data in some manner, and display a new result to a graph, chart, or other display.
 - [x] Use a Jupyter notebook to document your data analysis.
 
-# Technologies Leveraged
+# Technologies Used in Class and Project
 - GitHub, Git
 - Slack, Pluralsight
 - Visual Studio Code
@@ -95,11 +95,11 @@ Category 4 - Best Practices
 
 # Extended Functionality (Not Part of Code Louisville submission)
 
-(OPTIONAL) TO RUN THE BROWSER VERSION:
+(OPTIONAL) To Launch the Flask Web Server and RomCom Web Client:
   - >python romcomWeb.py
   - >in a web browser tab, go to http://localhost:5000/ 
 
-(OPTIONAL) TO RUN THE API VERSION:
+(OPTIONAL) To Launch the Flask API Server and RomCom API Client:
   - >python romcomAPI.py
 
   - >in a web browser tab, http://localhost:8080/actors will return top 10 actors in JSON simple list format
@@ -110,13 +110,13 @@ Category 4 - Best Practices
 
   - >    (tt is the IMDB title code for a romcom in the database)
 
-(OPTIONAL) TO TEST AND VALIDATE INTEGRITY OF DATA STRUCTURES:
+(OPTIONAL) To test functions and data:
   - >python -m unittest test_romcom -v
 
-(OPTIONAL) TO TEST SQLITE3 DATABASE:
+(OPTIONAL) To test SQLite3 database:
   - >python romcomSQL.py
 
-(OPTIONAL) TO PERFORM FULL DOWNLOAD AND REBUILD DATA/DATABASE:
+(OPTIONAL) To perform full download of all IMDB data, and rebuild data structures:
   - >python romcomPrep.py 
   
   - (NOTE: compressed files total 4 GB, uncompressed another 2 GB)
