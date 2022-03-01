@@ -93,7 +93,7 @@ Category 4 - Best Practices
 - "Balanced" scale, 1 witch, 1 duck, very small rocks (that float)
 - 2 African swallows, 1 coconut, twine for sling-loading
 
-# Extended Functionality 
+# Extended Functionality (Not Part of Code Louisville submission)
 
 (OPTIONAL) TO RUN THE BROWSER VERSION:
   - >python romcomWeb.py
@@ -119,11 +119,11 @@ Category 4 - Best Practices
 (OPTIONAL) TO PERFORM FULL DOWNLOAD AND REBUILD DATA/DATABASE:
   - >python romcomPrep.py (NOTE: compressed files total 4 GB, uncompressed another 2 GB)
 
-### Related Pages
+# Related Pages
 - [Kanban](https://github.com/hellums/lacey-bacon/projects/1)
 - [Wiki](https://github.com/hellums/lacey-bacon/wiki/1.-Data-Analytics-Course-Project)
 
-### SCREEN SHOTS
+# Screen Shots
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/83464025/156023028-09a53cc7-01e8-49f8-bc2a-37ae3f663e9d.png" />
