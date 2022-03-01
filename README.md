@@ -39,7 +39,7 @@ Substitute your own Python 3 interpreter command below, be it py, py3, python, o
 - [Notebook/EDA](https://github.com/hellums/lacey-bacon/blob/root/romcomEDA.pdf)
 (or open romcomEDA.pdf in the project folder using Adobe or other PDF viewer)
 
-# Code Louisville requirements
+# Code Louisville Requirements
 Satisfaction of requirements are called out in code, just search for "Code Louisville"
 
 Category 1 - Python Programming Basics
