@@ -30,7 +30,6 @@ Substitute your own Python 3 interpreter command below, be it py, py3, python, o
 - natsort=8.1.0
 
 ## To install prerequisites and run command-line version:
- version:
   - >git clone https://github.com/hellums/lacey-bacon.git
   - >cd lacey-bacon
   - >pip install -r requirements.txt
