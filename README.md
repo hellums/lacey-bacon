@@ -46,7 +46,7 @@ To view Jupyter Notebook output and data analysis
 - PC:
   >env\Scripts\activate.bat
 
-# Code Louisville Requireements met
+# Code Louisville requirements met
 Satisfaction of requirements are called out in code, just search for "Code Louisville"
 
 Category 1 - Python Programming Basics
