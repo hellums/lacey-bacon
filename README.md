@@ -10,7 +10,7 @@ This repo and project has several purposes:
 Is Lacey Chabert indeed the "Center of the (Hallmark) Universe," as Kevin Bacon reputably is to Hollywood? Given the time and resource limitations, this project is not meant to be an all-inclusive or full programming approach to the _"6 Degrees of Kevin Bacon"_ topic itself (using BFS or Breadth-First Search algorithms, for example). It merely provides a working environment to support the programming and data science portions of the course, using a subset of movies and actors specific to Hallmark original movies, romantic comedies, mysteries, and dramas.
 
 # Basic Functionality (Code Louisville Project)
-This program was built and tested using:
+## This program was built and tested using:
 
 - Python version 3.10.1
 - pip version 21.3.1
@@ -18,7 +18,7 @@ This program was built and tested using:
 Substitute your own Python 3 interpreter command below, be it py, py3, python, or python3, if it is different than
 'python' used below. Best practice is to also upgrade pip first (python -m pip install --upgrade pip).
 
-Prerequisites include:
+## Prerequisites include:
 - matplotlib==3.5.1
 - networkx==2.6.3
 - numpy==1.22.2
@@ -29,21 +29,21 @@ Prerequisites include:
 - Flask=2.0.3
 - natsort=8.1.0
 
-To install prerequisites and run command-line version:
+## To install prerequisites and run command-line version:
   - >git clone <span>git@</span>github.com:hellums/lacey-bacon.git
   - >cd lacey-bacon
   - >python -m pip install -r requirements.txt
   - >python romcom.py
 
-To view Jupyter Notebook output and data analysis
+## To view Jupyter Notebook output and data analysis
 - [Notebook/EDA](https://github.com/hellums/lacey-bacon/blob/root/romcomEDA.pdf)
 (or open recomcomEDA.pdf in the project folder using Adobe or other PDF viewer)
 
-(OPTIONAL) To create and activate a virtual environment (if desired)
-Mac/Linux: 
+## (OPTIONAL) To create and activate a virtual environment (if desired)
+### Mac/Linux: 
   - >python -m venv env
   - >source env/bin/activate
-PC:
+### PC:
   - >python -m venv env
   - >env\Scripts\activate.bat
 
@@ -72,7 +72,7 @@ Category 4 - Best Practices
 - [x] Use pandas, matplotlib, and/or numpy to perform a data analysis project. Ingest 2 or more pieces of data, analyze that data in some manner, and display a new result to a graph, chart, or other display.
 - [x] Use a Jupyter notebook to document your data analysis.
 
-### Technologies Leveraged
+# Technologies Leveraged
 - GitHub, Git
 - Slack, Pluralsight
 - Visual Studio Code
@@ -117,7 +117,9 @@ Category 4 - Best Practices
   - >python romcomSQL.py
 
 (OPTIONAL) TO PERFORM FULL DOWNLOAD AND REBUILD DATA/DATABASE:
-  - >python romcomPrep.py (NOTE: compressed files total 4 GB, uncompressed another 2 GB)
+  - >python romcomPrep.py 
+  
+  - (NOTE: compressed files total 4 GB, uncompressed another 2 GB)
 
 # Related Pages
 - [Kanban](https://github.com/hellums/lacey-bacon/projects/1)
