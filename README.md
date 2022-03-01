@@ -16,9 +16,8 @@ This program was built and tested using:
 
 - > pip version 21.3.1
 
-Use your own Python 3 interpreter command, such as py3 or python, if it is different than 'python3' used here. Python's recommended best practice is to upgrade to and use the latest version of pip, if you are behind.
-
-All of the features of the command-line program will work "out-of-the-box" except for menu option 3, finding movies two people both starred in. This is a result of the size limitation of raw data files in Github, as well as the considerable amount of space required for the original build and downloaded IMDB source files. All features of the optional Web-based and API versions of the program run using the files supplied, and also do not require a full download and rebuild. The optional unittest and SQL tests are only included as part of the original Code Louisville project requirements.
+Substitute your own Python 3 interpreter command below, be it py, py3, python, or python3, if it is different than
+'python' used below. It is recommended that you also upgrade pip (python -m pip install --upgrade pip) first.
 
 Prerequisites include:
 - matplotlib==3.5.1
