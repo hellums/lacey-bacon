@@ -3,8 +3,8 @@ This repo is product from a 12-week introductory bootcamp course (Jan-Mar 2022) 
 
 # GOALS
 This repo and project has several purposes:
-- Satisfy the 4+ minimum requirements of the bootcamp assignment in the syllabus
-- Satisfy as many optional requirements as possible
+- Satisfy the 4+ minimum requirements of the bootcamp assignment in the syllabus (one from each category)
+- Satisfy as many optional and "stretch" requirements as possible
 
 # SCOPE
 Is Lacey Chabert indeed the "Center of the (Hallmark) Universe," as Kevin Bacon reputably is to Hollywood? This project seeks to find out, using a subset of IMDB listed movies and actors from Hallmark original movies, romantic comedies, mysteries, and dramas.
