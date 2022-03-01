@@ -6,6 +6,7 @@ import os  # for system calls to clear screen
 import csv  # to import TSV files for movie and actor lists
 import unittest 
 import pickle
+import gzip
 import sqlite3
 
 import pandas as pd  # needs install
@@ -312,11 +313,17 @@ def load_data():  # read data from tab-delimited files to data structures
     tt_nm = dict(zip(df.tconst, df.actorList))  # lookup actor IDs by movie ID 
 
     leader_board = pd.read_csv('leader_board.csv', sep='\t', index_col=None)
+
     all_sp_pkl = one_sp_pkl = True
     try:
+        with gzip.open('shortest_path.pkl.gz', 'rb') as f:  # unpack the actor shortest path routes
+            data = f.read()
+        with open('shortest_path.pkl', 'wb') as f:
+            f.write(data)
         sp = pickle.load(open("shortest_path.pkl", "rb"))  # shortest path data, pickle 1/4 size of json
     except:
         all_sp_pkl = False # allow most functions to run without romcom_prep using .csv and .db files
+
     try:
         lacey_sp = pickle.load(open("lacey_sp.pkl", "rb"))  # shortest path data, pickle 1/4 size of json
     except:
