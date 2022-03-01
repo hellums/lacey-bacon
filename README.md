@@ -40,11 +40,12 @@ To view Jupyter Notebook output and data analysis
 (or open recomcomEDA.pdf in the project folder using Adobe or other PDF viewer)
 
 (OPTIONAL) To create and activate a virtual environment (if desired)
-- >python -m venv env
-- Mac/Linux: 
-  >source env/bin/activate
-- PC:
-  >env\Scripts\activate.bat
+Mac/Linux: 
+  - >python -m venv env
+  - >source env/bin/activate
+PC:
+  - >python -m venv env
+  - >env\Scripts\activate.bat
 
 # Code Louisville requirements met
 Satisfaction of requirements are called out in code, just search for "Code Louisville"
