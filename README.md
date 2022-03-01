@@ -16,7 +16,7 @@ Is Lacey Chabert indeed the "Center of the (Hallmark) Universe," as Kevin Bacon 
 - pip version 21.3.1
 
 Substitute your own Python 3 interpreter command below, be it py, py3, python, or python3, if it is different than
-'python' used below. Best practice is to also upgrade pip first (python -m pip install --upgrade pip).
+'python' used below. Best practice is to also upgrade pip first (pip install --upgrade pip).
 
 ## Prerequisites include:
 - matplotlib==3.5.1
