@@ -12,12 +12,11 @@ Is Lacey Chabert indeed the "Center of the (Hallmark) Universe," as Kevin Bacon 
 # Basic Functionality (Code Louisville Project)
 This program was built and tested using:
 
-- > Python version 3.10.1
-
-- > pip version 21.3.1
+- Python version 3.10.1
+- pip version 21.3.1
 
 Substitute your own Python 3 interpreter command below, be it py, py3, python, or python3, if it is different than
-'python' used below. It is recommended that you also upgrade pip (python -m pip install --upgrade pip) first.
+'python' used below. Best practice is to also upgrade pip first (python -m pip install --upgrade pip).
 
 Prerequisites include:
 - matplotlib==3.5.1
@@ -30,13 +29,17 @@ Prerequisites include:
 - Flask=2.0.3
 - natsort=8.1.0
 
-TO INSTALL PREREQUISITES AND RUN COMMAND-LINE VERSION:
+To install prerequisites and run command-line version:
   - >git clone <span>git@</span>github.com:hellums/lacey-bacon.git
   - >cd lacey-bacon
   - >python -m pip install -r requirements.txt
   - >python romcom.py
 
-(OPTIONAL) TO CREATE AND ACTIVATE A VIRTUAL ENVIRONMENT (IF DESIRED)
+To view Jupyter Notebook output and data analysis
+- [Notebook/EDA](https://github.com/hellums/lacey-bacon/blob/root/romcomEDA.pdf)
+(or open recomcomEDA.pdf in the project folder using Adobe or other PDF viewer)
+
+(OPTIONAL) To create and activate a virtual environment (if desired)
 - >python -m venv env
 - Mac/Linux: 
   >source env/bin/activate
@@ -115,11 +118,9 @@ Category 4 - Best Practices
 (OPTIONAL) TO PERFORM FULL DOWNLOAD AND REBUILD DATA/DATABASE:
   - >python romcomPrep.py (NOTE: compressed files total 4 GB, uncompressed another 2 GB)
 
-### INITIATIVE PAGES
+### Related Pages
 - [Kanban](https://github.com/hellums/lacey-bacon/projects/1)
 - [Wiki](https://github.com/hellums/lacey-bacon/wiki/1.-Data-Analytics-Course-Project)
-- [Notebook/EDA](https://github.com/hellums/lacey-bacon/blob/root/romcomEDA.pdf)
-
 
 ### SCREEN SHOTS
 
