@@ -217,26 +217,14 @@ def leaderboard():  # leaderboard
 def about():  # about section
     clrscr()
     about_header = 'SIX DEGREES OF LACEY CHABERT\n' + '--------------------------------------------------------------------------------'
-    about = ['This initiative includes a GitHub repository, which includes more information',
+    about = ['This initiative includes a GitHub repository, which contains more information',
             'as well as a Wiki page and Kanban project schedule.',
-            '\nLacey Chabert is widely regarded as the "queen" of Hallmark movies, having', 
-            'starred in over 30 Hallmark original romantic comedies, dramas, and mysteries.', 
-            'Six Degrees of Kevin Bacon is a meme that cast him as "center of the universe"',
-            'in Hollywood.',
-            '\nBased on how many movies he\'s starred and costarred in with top actors',
-            'and actresses in Hollywood, analysts joked that nobody in Hollywood was',
-            'more than six degrees of separation from Kevin. And they backed it up with',
-            'research and analyis. Other studies have proven several people are more likely',
-            'candidates as the center of the Hollywood metaverse.',
-            '\nThis neophyte Python program performs similar analysis on Lacey Chabert within',
-            'Hallmark movies. This initiative is associated with a Code Louisville bootcamp',
-            'on Python programming and data analysis. It uses a public dataset provided by',
-            'IMDB, and provides a command-line program that provides the capability to query',
-            'the database to learn more about an actor or actress or the movies they\'ve',
-            'costarred in.',
-            '\nThis program also includes SQL functions using SQLite3, using the same data.',
-            'A few graphs prototyped in Jupyter Notebook will also be displayed. There is',
-            'also a Flask-based web interface (and API) to a ported subset of functions.']
+            '\nThis Python program performs a "Kevin Bacon"-esque analysis of Lacey Chabert and',
+            'Hallmark movies. This effort is associated with a Code Louisville bootcamp',
+            'on Python programming and data analysis.',
+            '\nIt uses a public dataset provided by IMDB, and includes a command-line program',
+            'with general-purpose search utilities, Jupyter Notebook analysis, a Flask-based',
+            'web interface, and a basic Flask API module.']
     print(about_header)
     for lines in about:
         print(lines)
