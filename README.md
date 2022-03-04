@@ -78,7 +78,7 @@ Category 4 - Best Practices
 - Pandas
 - Matplotlib 
 - Networkx (node/edge, centrality)
-- BeautifulSoup (supplemental work, not in romcom)
+- Selenium, BeautifulSoup (supplemental work, not in submission)
 - Docker (introductory)
 - Cookiecutter (introductory)
 - IMDB (data source for movies and custom watchlist)
