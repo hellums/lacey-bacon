@@ -7,8 +7,8 @@ assignees: ''
 
 ---
 
-**Is your feature request related to a problem? Please describe \-**
-Please provide a clear and concise description of what the problem is. For example, "I'm always frustrated when [...]"
+**Is your feature request related to a problem?**
+Please provide a clear and concise description of what the problem is. For example, "I'm always frustrated when..."
 
 **Describe the solution you'd like to see \-**
 Please provide a clear and concise description of what you want to happen.
