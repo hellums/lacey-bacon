@@ -58,7 +58,7 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
+  color: #6828a1;
   text-align: left;
   background-color: #fff;
 }
@@ -4072,6 +4072,7 @@ input[type="button"].btn-block {
 .nav-link {
   display: block;
   padding: 0.5rem 1rem;
+  color: #6828a1;
 }
 
 .nav-link:hover, .nav-link:focus {
@@ -6577,7 +6578,7 @@ button.bg-danger:focus {
 }
 
 .bg-light {
-  background-color: #f8f9fa !important;
+  background-color: #eecaf3  !important;
 }
 
 a.bg-light:hover, a.bg-light:focus,
