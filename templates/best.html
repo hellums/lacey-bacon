@@ -1,16 +1,15 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<p>The "Top 20 Actors" listed here are based on a centrality graph of all primary actors and costars in over 1100 Hallmark TV Movies. The "Top 20 Movies" are based on the average IMDB ratings of the same 1100+ movies.
-</p>
-
   <div class="container">
-      <p><hr></p>
+    <p>The "Top 20 Actors" listed here are based on a centrality graph of all primary actors and costars in over 1100 Hallmark TV Movies. The "Top 20 Movies" are based on the average IMDB ratings of the same 1100+ movies.
+    </p>    
+        <p><h1>Top 20 Hallmark Actor/Actresses</h1></p>
         <p>
             {% for each in top_actors %}
                 {{ each }}<br> 
             {% endfor %}</p>
-      <p><hr></p>
+      <p><h1>Top 20 Hallmark Movies</h1></p>
       <p>
         {% for each in top_movies %}
             {{ each }}<br> 

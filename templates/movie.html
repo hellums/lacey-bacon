@@ -4,13 +4,11 @@
         {% if actors %}
 
           <div class="container">
+              <h1>Movie's IMDB Page</h1>
               <p>{{ film }}'s IMDB page can be found <a href='https://www.imdb.com/title/{{movie_tt}}' target="_blank">here</a>.</p>
-              <p></p>
-              Cast
-              <p><hr></p>
-              <p>
+              <h1>Movie's Cast</h1>
                 {% for each in actors %}
-                   <br>{{ each }}  
+                   {{ each }}  <br>
                 {% endfor %}</p>
           </div>
 
