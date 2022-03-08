@@ -58,7 +58,7 @@ def api_tt():
     results = [] # Create an empty list for our results
 
     try:
-        results.append(rating_lookup(tt)) # Lookup the rating and return it
+        results.append({"tconst": tt, "rating":rating_lookup(tt)}) # Lookup the rating and return it
     except:
         results = list
         return('Something went wrong, or that movies is not in the database. Try returning to the main page first, lookup the movie to find its code (in the movie\'s IMDB link), and try again.')    
