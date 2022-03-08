@@ -1,27 +1,56 @@
 <!doctype html>
 <html>
     <head>
-        <title>RomcomWeb</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+        <title>RomcomWeb</title>        
+        <meta charset=""utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     </head>
     <body>
         <header>
             <div class="container">
-                <h1 class="logo">RomCom Web</h1>
-                <strong><nav>
-                    <ul class="menu">
-                        <li><a href="{{ url_for('home') }}">Home</a></li>
-                        <li><a href="{{ url_for('actor_frm') }}">Actor</a></li>
-                        <li><a href="{{ url_for('movie_frm') }}">Movie</a></li>
-                        <li><a href="{{ url_for('best') }}">Top 20</a></li>
-                        <li><a href="{{ url_for('about') }}">About</a></li>
-                    </ul>
-                </nav></strong>
-            </div> 
+                <nav class="navbar navbar-expand-sm navbar-light bg-light">
+                    <a class="navbar-brand" href="#">
+                     <img src="https://soaps.sheknows.com/wp-content/uploads/2022/02/the-wedding-veil-tracy-emma-avery-hallmark.jpg" alt="Logo" style="width:80px; border-radius:5%">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                     <span class="navbar-toggler-icon"></span>
+                    </button>
+        
+                    <div class="collapse navbar-collapse" id="navbarText">                
+                        <ul class="navbar-nav mr-auto">
+                            <li {% if request.endpoint == 'home' %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
+                                <a class="nav-link" href="{{ url_for('home') }}"> Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li {% if request.endpoint == 'actor_frm' %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
+                                <a class="nav-link" href="{{ url_for('actor_frm') }}"> Actor <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li {% if request.endpoint == 'movie_frm' %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
+                                <a class="nav-link" href="{{ url_for('movie_frm') }}"> Movie <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li {% if request.endpoint == 'best' %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
+                                <a class="nav-link" href="{{ url_for('best') }}"> Top 20 <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li {% if request.endpoint == 'about' %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
+                                <a class="nav-link" href="{{ url_for('about') }}"> About <span class="sr-only">(current)</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            <!-- styles -->
+            <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
         </header>
+
         <div class="container">
             {% block content %}
-            {% endblock %}
+            {% endblock %}  
         </div>
+
+        <!-- scripts -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
     </body>
 </html>
