@@ -4165,7 +4165,6 @@ input[type="button"].btn-block {
   -ms-flex-pack: justify;
   justify-content: space-between;
   padding: .5rem 5rem;
-  border-radius:40%;
 }
 
 .navbar > .container,
