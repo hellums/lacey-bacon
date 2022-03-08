@@ -3,19 +3,15 @@
     <div class="movie">
         {% if actors %}
 
-
-          <div class="row">
-            <div class="column60" style="background-color:#decdf8; text-align: center";>
-                <h2><p>{{ film }}'s IMDB page can be found <a href='https://www.imdb.com/title/{{movie_tt}}' target="_blank">here</a>.</p></h2>
-                </div>
-            <div class="column" style="background-color:#e6e6fa;">
-              <h2><center>Cast</center></h2>
+          <div class="container">
+              <h2><p>{{ film }}'s IMDB page can be found <a href='https://www.imdb.com/title/{{movie_tt}}' target="_blank">here</a>.</p></h2>
+              <p></p>
+              <h2>Cast</h2>
               <p><hr></p>
-              <center><p>
+              <p>
                 {% for each in actors %}
                    <br>{{ each }}  
-                {% endfor %}</p></center>
-            </div>
+                {% endfor %}</p>
           </div>
 
         {% else %}

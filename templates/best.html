@@ -4,19 +4,17 @@
 <p>The "Top 20 Actors" listed here are based on a centrality graph of all primary actors and costars in over 1100 Hallmark TV Movies. The "Top 20 Movies" are based on the average IMDB ratings of the same 1100+ movies.
 </p>
 
-  <div class="row">
-      <p>Actors</p>
+  <div class="container">
       <p><hr></p>
-        <center><p>
+        <p>
             {% for each in top_actors %}
                 {{ each }}<br> 
-            {% endfor %}</p></center>
-      <p>Movies</p>
+            {% endfor %}</p>
       <p><hr></p>
-      <center><p>
+      <p>
         {% for each in top_movies %}
             {{ each }}<br> 
-        {% endfor %}</p></center>
+        {% endfor %}</p>
   </div>
 
 {% endblock %}

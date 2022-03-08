@@ -6,8 +6,7 @@
 <h2><p>{{ actor }}'s IMDB page can be found <a href='https://www.imdb.com/name/{{actor_nm}}' target="_blank">here</a>.
     {{ actor }} has been in {{ num_films }} Hallmark TV Movies:</p></h2>
 
-  <div class="row">
-      <h2>Connection?</h2>
+  <div class="container">
       <p><hr></p>
       <p>Leading the pack is 
         {% for each in path %}
@@ -23,12 +22,11 @@
             {% endfor %}
 
             whose effective "Lacey number" (degree separation from Lacey) is {{ distance }}!</p>
-      <h2>Filmography</h2>
       <p><hr></p>
-      <center><p>
+      <p>
         {% for each in films %}
             {{ each }}<br>  
-        {% endfor %}</p></center>
+        {% endfor %}</p>
   </div>
 
 {% else %}
