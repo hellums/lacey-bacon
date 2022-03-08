@@ -71,7 +71,7 @@ Category 4 - Best Practices
 - Python, Anaconda
 - Flask, Jinja
 - APIs
-- HTML, CSS
+- HTML, CSS, Bootstrap
 - SQLite3
 - Unittest
 - Jupyter Notebook
