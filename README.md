@@ -124,10 +124,9 @@ Category 4 - Best Practices
 </p>
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/83464025/156022771-72977fa3-bfa9-4812-922e-d605bcd3e682.png" />
+  <img src="https://user-images.githubusercontent.com/83464025/157280420-8e86c900-60eb-4b0f-a4c9-f332698ba291.png" />
 </p>
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/83464025/156023338-7bfa39cc-7c42-45a4-96d9-faeca56a3374.png" />
+  <img src="https://user-images.githubusercontent.com/83464025/157280816-da3468ad-3ffe-482f-8161-ed3696d6c61c.png" />
 </p>
-
