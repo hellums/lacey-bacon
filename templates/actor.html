@@ -4,7 +4,8 @@
 {% if num_films > 0 %}
 
   <div class="container">
-    <h1>Degrees of Separation</h1>
+    <div class="row">
+      <div class="col-md-5"><p><h1>Degrees of Separation</h1></p>
       <p>Leading the pack is 
         {% for each in path %}
 
@@ -19,12 +20,16 @@
             {% endfor %}
 
             whose effective "Lacey number" (degree separation from Lacey) is {{ distance }}!</p>
-      <p><h1>IMDB Page and Filmography</h1>{{ actor }}'s IMDB page can be found <a href='https://www.imdb.com/name/{{actor_nm}}' target="_blank">here</a>.
-                {{ actor }} has been in {{ num_films }} Hallmark TV Movies:</p>            
-      <p>
+      </div>
+      <div class="col-md-7">
+        <p><p><h1>IMDB Page and Filmography</h1></p>{{ actor }}'s IMDB page can be found <a href='https://www.imdb.com/name/{{actor_nm}}' target="_blank">here</a>.</p> 
+                <p>{{ actor }} has been in {{ num_films }} Hallmark TV Movies:</p>           
+        <p>
         {% for each in films %}
-            {{ each }}<br>  
+                {{ each }}<br>
         {% endfor %}</p>
+      </div>
+    </div>
   </div>
 
 {% else %}
