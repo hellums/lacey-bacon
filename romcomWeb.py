@@ -159,4 +159,4 @@ def load_data():  # read data from tab-delimited files to data structures
 
 
 if __name__=='__main__': # Launch as a Flask app
-    app.run(debug=True)
+    app.run(host="0.0.0.0", debug=True)
