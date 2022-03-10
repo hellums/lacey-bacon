@@ -1,18 +1,18 @@
 # OVERVIEW
+Is Lacey Chabert indeed the "Center of the (Hallmark) Universe," as Kevin Bacon reputably is to Hollywood? This project seeks to find out, using a subset of IMDB listed movies and actors from Hallmark original movies, romantic comedies, mysteries, and dramas.  
+
+  <img src="https://user-images.githubusercontent.com/83464025/156023028-09a53cc7-01e8-49f8-bc2a-37ae3f663e9d.png" />
+
 This repo is product from a 12-week introductory bootcamp course (Jan-Mar 2022) on Python programming and data analysis.
 
 # GOALS
-This repo and project have several purposes:
 - Satisfy the 4+ minimum requirements of the bootcamp assignment in the syllabus (one from each category)
 - Satisfy as many optional and "stretch" requirements as possible
 
-# SCOPE
-Is Lacey Chabert indeed the "Center of the (Hallmark) Universe," as Kevin Bacon reputably is to Hollywood? This project seeks to find out, using a subset of IMDB listed movies and actors from Hallmark original movies, romantic comedies, mysteries, and dramas.
-
-# Basic Functionality (Code Louisville Project)
+# BASIC FUNCTIONALITY (Code Louisville Project)
 ## This program was built and tested using:
 
-- Python version 3.10.1
+- python version 3.10.1
 - pip version 21.3.1
 
 Substitute your own Python 3 interpreter command below, be it py, py3, python, or python3, if it is different than
@@ -29,18 +29,33 @@ Substitute your own Python 3 interpreter command below, be it py, py3, python, o
 - Flask=2.0.3
 - natsort=8.1.0
 
-## To install prerequisites and run command-line version:
+## Mac/Linux instructions for command-line version:
   - >git clone https://github.com/hellums/lacey-bacon.git
   - >cd lacey-bacon
+  - >python -m venv env
+  - >source env/bin/activate  
   - >pip install -r requirements.txt
   - >python romcom.py
+
+## Windows instructions for command-line version:
+Same as above, except replace the "source env/bin/activate" command in step 4 with 
+  - >env\Scripts\activate (or activate.bat)
 
 ## To view Jupyter Notebook output and data analysis
 - [Notebook/EDA](https://github.com/hellums/lacey-bacon/blob/root/romcomEDA.pdf)
 (or open romcomEDA.pdf in the project folder using Adobe or other PDF viewer)
 
-# Code Louisville Requirements
-Satisfaction of requirements are called out in code, just search for "Code Louisville"
+(OPTIONAL) To test functions and data:
+  - >python -m unittest test_romcom -v
+
+(OPTIONAL) To test SQLite3 database:
+  - >python romcomSQL.py
+
+## Clean Up
+- To get everything back to normal and remove files, type deactivate, then remove the lacey-bacon directory. Your system will be back to normal, as before the test.
+
+# Satisfaction of Code Louisville Requirements
+Requirements are called out in code, just search for "Code Louisville" in the python files
 
 Category 1 - Python Programming Basics
 - [x] Implement a “master loop” console application where the user can repeatedly enter commands/perform actions, including choosing to exit the program.
@@ -85,48 +100,32 @@ Category 4 - Best Practices
 - "Balanced" scale, 1 witch, 1 duck, very small rocks (that float)
 - 2 African swallows, 1 coconut, twine for sling-loading
 
-# Extended Functionality (Not Part of Code Louisville submission)
+# EXTENDED FUNCTIONALITY (Not Part of Code Louisville submission)
+# Related Pages
+- [Kanban board](https://github.com/hellums/lacey-bacon/projects/1) for managing project schedule
+- [Issues](https://github.com/hellums/lacey-bacon/issues) for incident management
+- [Wiki](https://github.com/hellums/lacey-bacon/wiki/1.-Data-Analytics-Course-Project) for related project links and information
 
 (OPTIONAL) To Launch the Flask Web Server and RomCom Web Client:
   - >python romcomWeb.py
   - >in a web browser tab, go to http://localhost:5000/ 
+  - ><img src="https://user-images.githubusercontent.com/83464025/157280420-8e86c900-60eb-4b0f-a4c9-f332698ba291.png" />
 
 (OPTIONAL) To Launch the Flask API Server and RomCom API Client:
   - >python romcomAPI.py
-
-  - >in a web browser tab, http://localhost:8080/actors will return top 10 actors in JSON simple list format
-
+  - >in a web browser tab, http://localhost:8080/actors will return top 10 actors in JSON simple list format  
+  - ><img src="https://user-images.githubusercontent.com/83464025/157280816-da3468ad-3ffe-482f-8161-ed3696d6c61c.png" />
   - >http://localhost:8080/movies will return the top 10 movies in JSON simple list format
-
   - >http://localhost:8080/rating/?tt=tt13831504 will return the rating of "It Was Always You" as JSON list 
 
   - >    (tt is the IMDB title code for a romcom in the database)
-
-(OPTIONAL) To test functions and data:
-  - >python -m unittest test_romcom -v
-
-(OPTIONAL) To test SQLite3 database:
-  - >python romcomSQL.py
 
 (OPTIONAL) To perform full download of all IMDB data, and rebuild data structures:
   - >python romcomPrep.py 
   
   - (NOTE: compressed files total 4 GB, uncompressed another 2 GB)
 
-# Related Pages
-- [Kanban](https://github.com/hellums/lacey-bacon/projects/1)
-- [Wiki](https://github.com/hellums/lacey-bacon/wiki/1.-Data-Analytics-Course-Project)
 
-# Screen Shots
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/83464025/156023028-09a53cc7-01e8-49f8-bc2a-37ae3f663e9d.png" />
-</p>
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/83464025/157280420-8e86c900-60eb-4b0f-a4c9-f332698ba291.png" />
-</p>
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/83464025/157280816-da3468ad-3ffe-482f-8161-ed3696d6c61c.png" />
-</p>
