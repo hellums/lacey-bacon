@@ -49,6 +49,7 @@ Same as above, except replace the "source env/bin/activate" command in step 4 wi
 - [Notebook/EDA](https://github.com/hellums/lacey-bacon/blob/root/romcomEDA.pdf)
 (or open romcomEDA.pdf in the project folder using Adobe or other PDF viewer)
 
+## To run a few unit tests for data integrity
 (OPTIONAL) To test functions and data:
   - >python -m unittest test_romcom -v
 
