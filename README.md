@@ -36,10 +36,10 @@ Same as above, except replace the "source env/bin/activate" command in step 4 wi
 (or open romcomEDA.pdf in the project folder using Adobe or other PDF viewer)
 
 ## To run a few unit tests for data integrity
-(OPTIONAL) To test functions and data:
+To test functions and data:
   - >python -m unittest test_romcom -v
 
-(OPTIONAL) To test SQLite3 database:
+To test SQLite3 database:
   - >python romcomSQL.py
 
 ## Clean Up
