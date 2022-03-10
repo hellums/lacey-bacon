@@ -117,8 +117,7 @@ Category 4 - Best Practices
     <p><img src="https://user-images.githubusercontent.com/83464025/157280816-da3468ad-3ffe-482f-8161-ed3696d6c61c.png" ></p>
   
   - >http://localhost:8080/movies will return the top 10 movies in JSON simple list format
-  - >http://localhost:8080/rating/?tt=tt13831504 will return the rating of "It Was Always You" as JSON list 
-  - >(tt is the IMDB title code for a romcom in the database)
+  - >http://localhost:8080/rating/?tt=tt13831504 will return the rating of "It Was Always You" (IMDB title code tt13831504) as JSON list 
 
 (OPTIONAL) To perform full download of all IMDB data, and rebuild data structures:
   - >python romcomPrep.py 
