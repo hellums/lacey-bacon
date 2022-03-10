@@ -19,17 +19,6 @@ This repo is the product of a Code Louisville course on Python programming and d
 Substitute your own Python 3 interpreter command below, be it py, py3, python, or python3, if it is different than
 'python' used below. Best practice is to also upgrade pip first (pip install --upgrade pip).
 
-## Prerequisites include:
-- matplotlib==3.5.1
-- networkx==2.6.3
-- numpy==1.22.2
-- pandas==1.4.1
-- requests==2.27.1
-- tabulate==0.8.9
-- urllib3==1.26.8
-- Flask=2.0.3
-- natsort=8.1.0
-
 ## Mac/Linux instructions for command-line version:
   - >git clone https://github.com/hellums/lacey-bacon.git
   - >cd lacey-bacon
