@@ -5,6 +5,10 @@ Is Lacey Chabert indeed the "Center of the (Hallmark) Universe," as Kevin Bacon 
 
 This repo is the product of a 12-week introductory bootcamp course (Jan-Mar 2022) on Python programming and data analysis.
 
+
+# WALKTHROUGH VIDEO
+[Walkthrough Video](https://user-images.githubusercontent.com/83464025/157714425-978554df-bca1-479d-b223-48d0da9a87af.mp4)
+
 # GOALS
 - Satisfy the 4+ minimum requirements of the bootcamp assignment in the syllabus (one from each category)
 - Satisfy as many optional and "stretch" requirements and enhancements as possible
@@ -123,7 +127,6 @@ Category 4 - Best Practices
   - >python romcomPrep.py 
   
   - (NOTE: compressed files total 4 GB, uncompressed another 2 GB)
-
 
 
 
