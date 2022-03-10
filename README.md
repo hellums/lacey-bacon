@@ -1,13 +1,10 @@
 # OVERVIEW
 Is Lacey Chabert indeed the "Center of the (Hallmark) Universe," as Kevin Bacon reputably is to Hollywood? This project seeks to find out, using a subset of IMDB listed movies and actors from Hallmark original movies, romantic comedies, mysteries, and dramas.  
 
-  <img src="https://user-images.githubusercontent.com/83464025/156023028-09a53cc7-01e8-49f8-bc2a-37ae3f663e9d.png" />
-
 This repo is the product of a Code Louisville course on Python programming and data analysis. All images and websites shown here belong to the original copyright holder and are used for academic and demonstration purposes only. Data is publicly available and courtesy of IMDB.
 
-
 # COMMAND-LINE WALKTHROUGH VIDEO
-[Walkthrough Video](https://user-images.githubusercontent.com/83464025/157714425-978554df-bca1-479d-b223-48d0da9a87af.mp4)
+[<img alt="romcom video walkthrough" width="600px" src="images/romcom.jpg" />](https://screencast-o-matic.com/watch/c3e6FLVFY4U)
 
 # GOALS
 - Satisfy the 4+ minimum requirements of the bootcamp assignment in the syllabus (one from each category)
@@ -84,40 +81,19 @@ Category 4 - Best Practices
 - [x] Use pandas, matplotlib, and/or numpy to perform a data analysis project. Ingest 2 or more pieces of data, analyze that data in some manner, and display a new result to a graph, chart, or other display.
 - [x] Use a Jupyter notebook to document your data analysis.
 
-# Technologies Used in Class and Project
-- GitHub, Git
-- Slack, Pluralsight
-- Visual Studio Code
-- Python, Anaconda
-- Flask, Jinja
-- APIs
-- HTML, CSS, Bootstrap
-- SQLite3
-- Unittest
-- Jupyter Notebook
-- Pandas
-- Matplotlib 
-- Networkx (node/edge, centrality)
-- Selenium, BeautifulSoup (supplemental work, not in submission)
-- Docker (introductory)
-- Cookiecutter (introductory)
-- IMDB (data source for movies and custom watchlist)
-- "Balanced" scale, 1 witch, 1 duck, very small rocks (that float)
-- 2 African swallows, 1 coconut, twine for sling-loading
-
 # EXTENDED FUNCTIONALITY (Not Part of Code Louisville submission)
-# Related Pages
+
+# Project-Related Github Pages
 - [Kanban board](https://github.com/hellums/lacey-bacon/projects/1) for managing project schedule
 - [Issues](https://github.com/hellums/lacey-bacon/issues) for incident management
 - [Wiki](https://github.com/hellums/lacey-bacon/wiki/1.-Data-Analytics-Course-Project) for related project links and information
 
+## FLASK WEB WALKTHROUGH VIDEO
+[<img alt="romcomWeb video walkthrough" width="600px" src="images/romcomWeb.jpg" />](https://screencast-o-matic.com/watch/c3e6FLVFY4v)
+
 ## (OPTIONAL) To Launch the Flask Web Server and RomCom Web Client:
   - >python romcomWeb.py
   - >in a web browser tab, go to http://localhost:5000/ 
-    <p><img src="https://user-images.githubusercontent.com/83464025/157280420-8e86c900-60eb-4b0f-a4c9-f332698ba291.png" ></p>
-
-## FLASK WEB WALKTHROUGH VIDEO
-[Flask Web Walkthrough Video](https://user-images.githubusercontent.com/83464025/157722143-59b2b50c-9399-4b60-a6ee-a2a66c1059aa.mp4)
 
 ## (OPTIONAL) To Launch the Flask API Server and RomCom API Client:
   - >python romcomAPI.py
@@ -126,11 +102,5 @@ Category 4 - Best Practices
   - >http://localhost:8080/rating/?tt=tt13831504 will return the rating of "It Was Always You" (IMDB title code tt13831504) as JSON list 
     <p><img src="https://user-images.githubusercontent.com/83464025/157280816-da3468ad-3ffe-482f-8161-ed3696d6c61c.png" ></p>
 
-## (OPTIONAL) To perform full download of all IMDB data, and rebuild data structures:
+## (OPTIONAL) To perform full download of all IMDB data, and rebuild data structures (NOTE: requires 6 GB space, 2-3 minute compile time):
   - >python romcomPrep.py 
-  
-  - (NOTE: compressed files total 4 GB, uncompressed another 2 GB)
-
-
-
-
