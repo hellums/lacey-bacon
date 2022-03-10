@@ -3,11 +3,11 @@ Is Lacey Chabert indeed the "Center of the (Hallmark) Universe," as Kevin Bacon 
 
   <img src="https://user-images.githubusercontent.com/83464025/156023028-09a53cc7-01e8-49f8-bc2a-37ae3f663e9d.png" />
 
-This repo is product from a 12-week introductory bootcamp course (Jan-Mar 2022) on Python programming and data analysis.
+This repo is the product of a 12-week introductory bootcamp course (Jan-Mar 2022) on Python programming and data analysis.
 
 # GOALS
 - Satisfy the 4+ minimum requirements of the bootcamp assignment in the syllabus (one from each category)
-- Satisfy as many optional and "stretch" requirements as possible
+- Satisfy as many optional and "stretch" requirements and enhancements as possible
 
 # BASIC FUNCTIONALITY (Code Louisville Project)
 ## This program was built and tested using:
@@ -109,12 +109,12 @@ Category 4 - Best Practices
 (OPTIONAL) To Launch the Flask Web Server and RomCom Web Client:
   - >python romcomWeb.py
   - >in a web browser tab, go to http://localhost:5000/ 
-  - ><img src="https://user-images.githubusercontent.com/83464025/157280420-8e86c900-60eb-4b0f-a4c9-f332698ba291.png" />
+  <p align='center'><img src="https://user-images.githubusercontent.com/83464025/157280420-8e86c900-60eb-4b0f-a4c9-f332698ba291.png" /></p>
 
 (OPTIONAL) To Launch the Flask API Server and RomCom API Client:
   - >python romcomAPI.py
   - >in a web browser tab, http://localhost:8080/actors will return top 10 actors in JSON simple list format  
-  - ><img src="https://user-images.githubusercontent.com/83464025/157280816-da3468ad-3ffe-482f-8161-ed3696d6c61c.png" />
+  <p align='center'><img src="https://user-images.githubusercontent.com/83464025/157280816-da3468ad-3ffe-482f-8161-ed3696d6c61c.png" /></p>
   - >http://localhost:8080/movies will return the top 10 movies in JSON simple list format
   - >http://localhost:8080/rating/?tt=tt13831504 will return the rating of "It Was Always You" as JSON list 
 
