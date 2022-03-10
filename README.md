@@ -3,7 +3,7 @@ Is Lacey Chabert indeed the "Center of the (Hallmark) Universe," as Kevin Bacon 
 
   <img src="https://user-images.githubusercontent.com/83464025/156023028-09a53cc7-01e8-49f8-bc2a-37ae3f663e9d.png" />
 
-This repo is the product of a 12-week introductory bootcamp course (Jan-Mar 2022) on Python programming and data analysis.
+This repo is the product of a Code Louisville course on Python programming and data analysis.
 
 
 # WALKTHROUGH VIDEO
