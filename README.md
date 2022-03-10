@@ -3,10 +3,10 @@ Is Lacey Chabert indeed the "Center of the (Hallmark) Universe," as Kevin Bacon 
 
   <img src="https://user-images.githubusercontent.com/83464025/156023028-09a53cc7-01e8-49f8-bc2a-37ae3f663e9d.png" />
 
-This repo is the product of a Code Louisville course on Python programming and data analysis.
+This repo is the product of a Code Louisville course on Python programming and data analysis. All images and websites shown here belong to the original copyright holder and are used for academic and demonstration purposes only. Data is publicly available and courtesy of IMDB.
 
 
-# WALKTHROUGH VIDEO
+# COMMAND-LINE WALKTHROUGH VIDEO
 [Walkthrough Video](https://user-images.githubusercontent.com/83464025/157714425-978554df-bca1-479d-b223-48d0da9a87af.mp4)
 
 # GOALS
@@ -111,20 +111,22 @@ Category 4 - Best Practices
 - [Issues](https://github.com/hellums/lacey-bacon/issues) for incident management
 - [Wiki](https://github.com/hellums/lacey-bacon/wiki/1.-Data-Analytics-Course-Project) for related project links and information
 
-(OPTIONAL) To Launch the Flask Web Server and RomCom Web Client:
+## (OPTIONAL) To Launch the Flask Web Server and RomCom Web Client:
   - >python romcomWeb.py
   - >in a web browser tab, go to http://localhost:5000/ 
     <p><img src="https://user-images.githubusercontent.com/83464025/157280420-8e86c900-60eb-4b0f-a4c9-f332698ba291.png" ></p>
 
-(OPTIONAL) To Launch the Flask API Server and RomCom API Client:
+## FLASK WEB WALKTHROUGH VIDEO
+[Flask Web Walkthrough Video](https://user-images.githubusercontent.com/83464025/157722143-59b2b50c-9399-4b60-a6ee-a2a66c1059aa.mp4)
+
+## (OPTIONAL) To Launch the Flask API Server and RomCom API Client:
   - >python romcomAPI.py
-  - >in a web browser tab, http://localhost:8080/actors will return top 10 actors in JSON simple list format  
-    <p><img src="https://user-images.githubusercontent.com/83464025/157280816-da3468ad-3ffe-482f-8161-ed3696d6c61c.png" ></p>
-  
+  - >in a web browser tab, http://localhost:8080/actors will return top 10 actors in JSON simple list format    
   - >http://localhost:8080/movies will return the top 10 movies in JSON simple list format
   - >http://localhost:8080/rating/?tt=tt13831504 will return the rating of "It Was Always You" (IMDB title code tt13831504) as JSON list 
+    <p><img src="https://user-images.githubusercontent.com/83464025/157280816-da3468ad-3ffe-482f-8161-ed3696d6c61c.png" ></p>
 
-(OPTIONAL) To perform full download of all IMDB data, and rebuild data structures:
+## (OPTIONAL) To perform full download of all IMDB data, and rebuild data structures:
   - >python romcomPrep.py 
   
   - (NOTE: compressed files total 4 GB, uncompressed another 2 GB)
