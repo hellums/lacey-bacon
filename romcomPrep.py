@@ -19,7 +19,7 @@ global nm_name, name_nm, movie_cast_crew, nm_tt, tt_nm, movie_info, tt_title, ti
 
 
 def main():
-    download_uncompress_imdb_files()  #shipit
+    download_uncompress_imdb_files()
     load_dataframes()  # load local files into data structures
     graph_database()  # create a netwokx graph for analysis of centrality
     graph_all_as_nodes()
@@ -27,7 +27,7 @@ def main():
     export_sqlite()
     
 
-def download_uncompress_imdb_files():  # shipit
+def download_uncompress_imdb_files():
     print('\nThis process could take a few minutes, depending on Internet speed...')
     remote_url ='https://raw.githubusercontent.com/hellums/lacey-bacon/root/watchlist.txt'  
     local_file = 'watchlist.txt'  # export of imdb watchlist
@@ -55,7 +55,7 @@ def download_uncompress_imdb_files():  # shipit
     return None  # results of download_uncompress_imdb_files
 
 
-def download_file(remote, local):  #shipit
+def download_file(remote, local):
     print('Downloading', local)
     data = requests.get(remote)
     with open(local, 'wb') as file:
@@ -63,7 +63,7 @@ def download_file(remote, local):  #shipit
     return None
 
 
-def uncompress_file(compressed, uncompressed):  #shipit
+def uncompress_file(compressed, uncompressed): 
     print('Uncompressing', uncompressed)
     with gzip.open(compressed, 'rb') as f:
         data = f.read()
@@ -72,7 +72,7 @@ def uncompress_file(compressed, uncompressed):  #shipit
     return None
 
 
-def load_dataframes():  # shipit
+def load_dataframes():
     global watchlist
     print('Loading dataframes...')
     # Create a dictionary or list, populate it with several values, retrieve at least one value, 
@@ -88,7 +88,7 @@ def load_dataframes():  # shipit
     return None
 
 
-def load_watchlist():  # shipit
+def load_watchlist():  # private watchlist used to pare down 2.1M movies to 1.1K
     print('Loading watchlist...')
     local_file = 'watchlist.txt'
     header_field = ['tconst']
@@ -96,7 +96,7 @@ def load_watchlist():  # shipit
     return watchlist_info['tconst'].tolist() # refactor this to load direct to list, don't need a df?
 
 
-def load_movie_list():  # shipit - load movies and ratings, merge and clean resulting dataset
+def load_movie_list():  # load movies and ratings, merge and clean resulting dataset
     global watchlist, movie_info, tt_title, title_tt, title_rating
     print('Loading movies...')
     local_file = 'movie_info.tsv'
@@ -126,7 +126,7 @@ def load_movie_list():  # shipit - load movies and ratings, merge and clean resu
     return movie_info.values.tolist()
 
 
-def load_role_list():  # shipit
+def load_role_list():
     global actorlist, movie_cast_crew, nm_tt, tt_nm
     print('Loading cast and crew...')
     local_file = 'movie_cast_crew.tsv'
@@ -144,7 +144,7 @@ def load_role_list():  # shipit
     return list(set(movielist))
 
 
-def load_actor_list():  # shipit
+def load_actor_list():
     global cast_crew_info, actorlist, nm_name, name_nm
     print('Loading actors and actresses...')
     local_file = 'cast_crew_info.tsv'
@@ -155,7 +155,7 @@ def load_actor_list():  # shipit
     return cast_crew_info.values.tolist()
 
 
-def graph_database():  # shipit
+def graph_database():
     global G, sp, leader_board, imdb_separation
     G = nx.Graph()
 
@@ -189,7 +189,7 @@ def graph_database():  # shipit
     return None
 
 
-def graph_all_as_nodes():  # shipit - for text-based presentation of actor degrees of separation
+def graph_all_as_nodes():  # for text-based presentation of actor degrees of separation
     global sp, sp1, sp2
     G1 = nx.Graph()
     print('Creating degree separation graph...')
@@ -215,7 +215,7 @@ def graph_all_as_nodes():  # shipit - for text-based presentation of actor degre
     return None
 
 
-def export_dataframes():  # shipit - save all four tables in csv format
+def export_dataframes():  # save all four tables in csv format
     print('Exporting movies...')
     movie_info.to_csv('./movie_info.csv', sep='\t', index=False)
 
@@ -235,7 +235,7 @@ def export_dataframes():  # shipit - save all four tables in csv format
         pickle.dump(sp2, fp)  #file is much smaller, for Lacey-only analysis and lookups
 
 
-def export_sqlite():  # shipit - add all four main dataframes to database as tables
+def export_sqlite():  # add all four main dataframes to database as tables
     print('Exporting database records...')
     
     conn=sqlite3.connect('movies.db')
