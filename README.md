@@ -91,16 +91,19 @@ Category 4 - Best Practices
 ## FLASK WEB WALKTHROUGH VIDEO
 [<img alt="romcomWeb video walkthrough" width="600px" src="images/romcomWeb.jpg" />](https://screencast-o-matic.com/watch/c3e6FLVFY4v)
 
-## (OPTIONAL) To Launch the Flask Web Server and RomCom Web Client:
+## To Launch the Flask Web Server and RomCom Web Client:
   - >python romcomWeb.py
   - >in a web browser tab, go to http://localhost:5000/ 
 
-## (OPTIONAL) To Launch the Flask API Server and RomCom API Client:
-  - >python romcomAPI.py
+## FLASK API SCREENSHOT
+<p><img alt="API screenshot" width="600px" src="https://user-images.githubusercontent.com/83464025/157280816-da3468ad-3ffe-482f-8161-ed3696d6c61c.png" ></p>
+
+## To Launch the Flask API Server and RomCom API Client:
+- >python romcomAPI.py
   - >in a web browser tab, http://localhost:8080/actors will return top 10 actors in JSON simple list format    
   - >http://localhost:8080/movies will return the top 10 movies in JSON simple list format
   - >http://localhost:8080/rating/?tt=tt13831504 will return the rating of "It Was Always You" (IMDB title code tt13831504) as JSON list 
-    <p><img src="https://user-images.githubusercontent.com/83464025/157280816-da3468ad-3ffe-482f-8161-ed3696d6c61c.png" ></p>
 
-## (OPTIONAL) To perform full download of all IMDB data, and rebuild data structures (NOTE: requires 6 GB space, 2-3 minute compile time):
+## DATABASE REFRESH
+To perform a full download of all IMDB data, and initialize or rebuild data structures (NOTE: requires 6 GB space, 2-3 minute compile time):
   - >python romcomPrep.py 
