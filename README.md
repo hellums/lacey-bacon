@@ -109,12 +109,12 @@ Category 4 - Best Practices
 (OPTIONAL) To Launch the Flask Web Server and RomCom Web Client:
   - >python romcomWeb.py
   - >in a web browser tab, go to http://localhost:5000/ 
-    <p><img src="https://user-images.githubusercontent.com/83464025/157280420-8e86c900-60eb-4b0f-a4c9-f332698ba291.png"  style="width:10px solid #555; align:center"></p>
+    <p><img src="https://user-images.githubusercontent.com/83464025/157280420-8e86c900-60eb-4b0f-a4c9-f332698ba291.png"  style="width:10px"></p>
 
 (OPTIONAL) To Launch the Flask API Server and RomCom API Client:
   - >python romcomAPI.py
   - >in a web browser tab, http://localhost:8080/actors will return top 10 actors in JSON simple list format  
-    <p><img src="https://user-images.githubusercontent.com/83464025/157280816-da3468ad-3ffe-482f-8161-ed3696d6c61c.png" style="width:10px solid #555; align:center"></p>
+    <p><img src="https://user-images.githubusercontent.com/83464025/157280816-da3468ad-3ffe-482f-8161-ed3696d6c61c.png" style="width:10px"></p>
   
   - >http://localhost:8080/movies will return the top 10 movies in JSON simple list format
   - >http://localhost:8080/rating/?tt=tt13831504 will return the rating of "It Was Always You" as JSON list 
