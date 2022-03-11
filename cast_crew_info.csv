@@ -76,7 +76,7 @@ nm0000737	Jane Alexander	1939	\N
 nm0000775	Christina Applegate	1971	\N
 nm0000787	Bess Armstrong	1953	\N
 nm0000792	Tom Arnold	1959	\N
-nm0000799	Ed Asner	1929	2021
+nm0000799	Edward Asner	1929	2021
 nm0000880	Meredith Baxter	1947	\N
 nm0000884	Jennifer Beals	1963	\N
 nm0000889	Bonnie Bedelia	1948	\N
@@ -106,6 +106,7 @@ nm0001092	Mark Dacascos	1964	\N
 nm0001117	Bruce Davison	1946	\N
 nm0001126	Kim Delaney	1961	\N
 nm0001127	Dana Delany	1956	\N
+nm0001131	Patrick Dempsey	1966	\N
 nm0001136	Bruce Dern	1936	\N
 nm0001137	William Devane	1939	\N
 nm0001141	Angie Dickinson	1931	\N
@@ -141,7 +142,7 @@ nm0001349	Jennifer Love Hewitt	1979	\N
 nm0001367	C. Thomas Howell	1966	\N
 nm0001368	Ernie Hudson	1945	\N
 nm0001418	David Keith	1954	\N
-nm0001419	Sally Kellerman	1937	\N
+nm0001419	Sally Kellerman	1937	2022
 nm0001421	George Kennedy	1925	2016
 nm0001440	Cheryl Ladd	1951	\N
 nm0001458	Cloris Leachman	1926	2021
@@ -160,6 +161,7 @@ nm0001562	Kathy Najimy	1957	\N
 nm0001564	Bebe Neuwirth	1958	\N
 nm0001575	Tatum O'Neal	1963	\N
 nm0001588	Jack Palance	1919	2006
+nm0001592	Joe Pantoliano	1951	\N
 nm0001595	Michael Paré	1958	\N
 nm0001600	Adrian Paul	1959	\N
 nm0001604	Nia Peeples	1961	\N
@@ -237,6 +239,7 @@ nm0004884	Roma Downey	1960	\N
 nm0004895	David James Elliott	1960	\N
 nm0004899	Ethan Erickson	1973	\N
 nm0004900	Rob Estes	1963	\N
+nm0004917	Kim Fields	1969	\N
 nm0004920	Frances Fisher	1952	\N
 nm0004921	Joely Fisher	1967	\N
 nm0004922	Schuyler Fisk	1982	\N
@@ -360,6 +363,7 @@ nm0054111	Allison Barcott	\N	\N
 nm0059132	Dorie Barton	\N	\N
 nm0060029	Ben Bass	1968	\N
 nm0064187	Lou Beatty Jr.	\N	\N
+nm0066447	Brandon Beemer	1980	\N
 nm0067768	Jordan Belfi	1978	\N
 nm0068110	Christopher Bell	1982	\N
 nm0068338	Kristen Bell	1980	\N
@@ -367,6 +371,7 @@ nm0068411	Mike Bell	\N	\N
 nm0070237	Jordy Benattar	1993	\N
 nm0072050	Samantha Bennett	\N	\N
 nm0072419	Tyrone Benskin	1958	\N
+nm0072713	Lyriq Bent	\N	\N
 nm0075788	Julie Berman	1983	\N
 nm0078324	Laura Bertram	1978	\N
 nm0078940	James Best	1926	2015
@@ -428,6 +433,7 @@ nm0121404	Richard Burgi	1958	\N
 nm0122716	Jere Burns	1954	\N
 nm0122789	Martha Burns	\N	\N
 nm0123102	Hedy Burress	1973	\N
+nm0124079	Timothy Busfield	1957	\N
 nm0125148	Tom Butler	1951	\N
 nm0125579	George Buza	1949	\N
 nm0125847	Steve Byers	1979	\N
@@ -449,6 +455,7 @@ nm0144307	John Cassini	\N	\N
 nm0146536	Emma Caulfield Ford	1973	\N
 nm0146915	Tom Cavanagh	1963	\N
 nm0146938	Michael Cavanaugh	1942	\N
+nm0147010	Caroline Cave	1974	\N
 nm0147661	Fulvio Cecere	1960	\N
 nm0149942	Garry Chalk	1952	\N
 nm0150255	Kevin Chamberlin	1963	\N
@@ -553,10 +560,12 @@ nm0256121	Ethan Embry	1978	\N
 nm0256599	Linda Emond	1959	\N
 nm0257598	Corri English	1978	\N
 nm0258474	Jake Epstein	1987	\N
+nm0259074	Juli Erickson	1939	\N
 nm0259264	Kaj-Erik Eriksen	1979	\N
 nm0261170	Jennifer Esposito	1973	\N
 nm0261413	Paul Essiembre	\N	\N
 nm0261435	Susie Essman	1955	\N
+nm0262521	Alice Evans	\N	\N
 nm0263759	Briana Evigan	1986	\N
 nm0263760	Greg Evigan	1953	\N
 nm0263881	Kayla Ewell	1985	\N
@@ -636,6 +645,7 @@ nm0354427	Zahf Paroo	1975	\N
 nm0358922	Emily Hampshire	1981	\N
 nm0359322	Kevin Hanchard	\N	\N
 nm0359623	Taylor Handley	1984	\N
+nm0360559	Michael Hanrahan	\N	\N
 nm0361959	Matthew Harbour	1990	\N
 nm0363699	Elisabeth Harnois	1979	\N
 nm0364068	Jackée Harry	1956	\N
@@ -673,6 +683,7 @@ nm0396685	Marci T. House	1972	\N
 nm0397386	Jeremy Howard	1981	\N
 nm0397432	Ken Howard	1944	2016
 nm0398485	Tracey Hoyt	\N	\N
+nm0400352	Liza Huget	\N	\N
 nm0400949	Stuart Hughes	\N	\N
 nm0401799	Mary-Margaret Humes	1954	\N
 nm0401936	Mark Humphrey	1960	\N
@@ -740,7 +751,6 @@ nm0472595	Kelly Kruger	1982	\N
 nm0472772	Karen Kruper	\N	\N
 nm0473413	Abigail Kubeka	1941	\N
 nm0476906	Mimi Kuzyk	1952	\N
-nm0478556	Natacha La Ferriere	\N	\N
 nm0479458	Patti LaBelle	1944	\N
 nm0479527	Tyler Labine	1978	\N
 nm0480465	Jordan Ladd	1975	\N
@@ -764,9 +774,11 @@ nm0500359	Laura Leighton	1968	\N
 nm0500739	Tyron Leitso	1976	\N
 nm0501355	Anthony Lemke	\N	\N
 nm0501837	Vanessa Lengies	1985	\N
+nm0502015	Harry Lennix	1964	\N
 nm0502342	Bethany Joy Lenz	1981	\N
 nm0502442	Leon	1962	\N
 nm0506314	Adam Levy	\N	\N
+nm0506346	Barry W. Levy	\N	\N
 nm0507212	Geoffrey Lewis	1935	2015
 nm0507338	Jenifer Lewis	1957	\N
 nm0507712	Roy Lewis	\N	\N
@@ -804,6 +816,7 @@ nm0545629	Micheline Marchildon	1974	\N
 nm0546122	Jeffrey Marcus	1960	\N
 nm0547544	Ed Marinaro	1950	\N
 nm0547800	Ken Marino	1968	\N
+nm0548498	Brian Markinson	1961	\N
 nm0551908	Andrea Martin	1947	\N
 nm0552863	Pamela Sue Martin	1953	\N
 nm0553436	A Martinez	1948	\N
@@ -818,6 +831,7 @@ nm0565823	Reiley McClendon	1990	\N
 nm0565973	Kandyse McClure	1980	\N
 nm0566084	Skye McCole Bartusiak	1992	2014
 nm0566187	Heather McComb	1977	\N
+nm0566478	Patty McCormack	1945	\N
 nm0566572	Maureen McCormick	1956	\N
 nm0567506	Dean McDermott	1966	\N
 nm0568777	Rebecca McFarland	\N	\N
@@ -836,6 +850,7 @@ nm0573481	Sam McMurray	1952	\N
 nm0573585	Catherine McNally	\N	\N
 nm0573658	Brian McNamara	1960	\N
 nm0574131	Ryan McPartlin	1975	\N
+nm0575339	Julio Oscar Mechoso	1955	2017
 nm0579728	Laura Mennell	1980	\N
 nm0581365	Ryan Merriman	1983	\N
 nm0582257	Johnny Messner	1970	\N
@@ -866,6 +881,7 @@ nm0603413	Marguerite Moreau	1977	\N
 nm0604430	Diogo Morgado	1981	\N
 nm0606600	Ish Morris	\N	\N
 nm0606637	Jessica Morris	1979	\N
+nm0606690	Julian Morris	1983	\N
 nm0606700	Kathryn Morris	1969	\N
 nm0606862	Phil Morris	1959	\N
 nm0606924	Sarah Jane Morris	1977	\N
@@ -885,8 +901,10 @@ nm0624121	Tracey Needham	1967	\N
 nm0625075	Kate Nelligan	1950	\N
 nm0625334	Drew Nelson	1979	\N
 nm0626259	Franco Nero	1941	\N
+nm0626728	Lois Nettleton	1927	2008
 nm0627492	Brooke Nevin	1982	\N
 nm0627624	George Newbern	1964	\N
+nm0628542	John Newton	1965	\N
 nm0629653	Marisol Nichols	1973	\N
 nm0634409	Michelle Nolden	1973	\N
 nm0635139	Jeffrey Nordling	1962	\N
@@ -898,7 +916,6 @@ nm0640344	Glynnis O'Connor	1955	\N
 nm0640560	Hugh O'Conor	1975	\N
 nm0640744	David O'Donnell	1974	\N
 nm0641097	Gail O'Grady	1963	\N
-nm0641389	Jim O'Heir	1962	\N
 nm0642429	Cyril O'Reilly	1958	\N
 nm0642751	Frank O'Sullivan	\N	\N
 nm0645290	David Ojalvo	\N	\N
@@ -987,10 +1004,10 @@ nm0734562	Nadine Whiteman Roden	\N	\N
 nm0735859	Gladys Rodríguez	1943	\N
 nm0737533	Elisabeth Röhm	1973	\N
 nm0737963	Al Roker	1954	\N
+nm0739287	Derby Romero	1989	\N
 nm0740500	Amanda Root	1963	\N
 nm0741242	Anika Noni Rose	1972	\N
 nm0741388	Gabrielle Rose	1954	\N
-nm0741891	Romy Rosemont	1964	\N
 nm0743768	Ricco Ross	1958	\N
 nm0744776	Andrea Roth	1967	\N
 nm0745186	Teryl Rothery	1962	\N
@@ -1019,6 +1036,7 @@ nm0773884	John Schneider	1960	\N
 nm0774721	Jason Schombing	1963	\N
 nm0776040	Amanda Schull	1978	\N
 nm0776079	Felicia Shulman	\N	\N
+nm0779292	Jason-Shane Scott	1976	\N
 nm0779866	Tom Everett Scott	1970	\N
 nm0780817	Michael Seater	1987	\N
 nm0786136	Matthew Settle	1969	\N
@@ -1050,6 +1068,7 @@ nm0814807	Nancy Sorel	1964	\N
 nm0814857	Linda Sorensen	\N	\N
 nm0816669	Douglas Spain	1974	\N
 nm0817819	Sebastian Spence	1969	\N
+nm0818166	Tara Spencer-Nairn	1978	\N
 nm0820053	June Squibb	1929	\N
 nm0820696	Trevor St. John	1971	\N
 nm0820847	Rebecca Staab	1961	\N
@@ -1075,6 +1094,7 @@ nm0834947	Brenda Strong	1960	\N
 nm0835426	Bradley Stryker	1977	\N
 nm0835722	James Patrick Stuart	1968	\N
 nm0837173	Kohl Sudduth	1974	\N
+nm0837992	Camille Sullivan	1975	\N
 nm0838000	Charlotte Sullivan	1983	\N
 nm0838911	Jeremy Sumpter	1989	\N
 nm0839730	Tammin Sursok	1983	\N
@@ -1105,7 +1125,9 @@ nm0860712	Shelley Thompson	1959	\N
 nm0861184	Jim Thorburn	\N	\N
 nm0861771	Linda Thorson	1947	\N
 nm0864577	Chuti Tiu	1970	\N
+nm0866300	Lauren Tom	1961	\N
 nm0867480	Rebecca Toolan	1941	\N
+nm0869927	Constance Towers	1933	\N
 nm0870204	Stuart Townsend	1972	\N
 nm0870535	Keegan Connor Tracy	1971	\N
 nm0871993	Ken Tremblett	1965	\N
@@ -1119,6 +1141,7 @@ nm0880479	Nick Ullett	1941	\N
 nm0881875	Cory Lee	\N	\N
 nm0884259	Karen Valentine	1947	\N
 nm0885090	Mark Valley	1964	\N
+nm0885840	Emily VanCamp	1986	\N
 nm0888882	Laura Vandervoort	1984	\N
 nm0890133	Steve Varnom	\N	\N
 nm0891042	Greg Vaughan	1973	\N
@@ -1130,6 +1153,7 @@ nm0894690	Kate Vernon	1961	\N
 nm0902807	Stefanie von Pfetten	1973	\N
 nm0903985	Vlasta Vrana	1950	\N
 nm0905935	Jack Wagner	1959	\N
+nm0905984	Kristina Wagner	1962	\N
 nm0905993	Lindsay Wagner	1949	\N
 nm0906031	Natasha Gregson Wagner	1970	\N
 nm0906919	Mark L. Walberg	1962	\N
@@ -1160,6 +1184,7 @@ nm0926439	Jonathan Whittaker	\N	\N
 nm0926471	Ted Whittall	\N	\N
 nm0926558	Annie Whittle	\N	\N
 nm0927382	Christopher Wiehl	1970	\N
+nm0927865	Jennifer Wigmore	1967	\N
 nm0929609	Fred Willard	1933	2020
 nm0929794	Christine Willes	\N	\N
 nm0929814	Chad Willett	1971	\N
@@ -1191,6 +1216,7 @@ nm0962261	Will Kemp	1977	\N
 nm0970805	Ben Cotton	1975	\N
 nm0974364	Jonathan Cherry	1978	\N
 nm0993496	Kate Connor	\N	\N
+nm0999099	James Snyder	1981	\N
 nm10008789	Charlie Benger	\N	\N
 nm10012031	Claire Elizabeth Green	\N	\N
 nm1001758	Chick Reid	\N	\N
@@ -1210,7 +1236,6 @@ nm10186409	Jade Michael	\N	\N
 nm1020036	Alexandra Breckenridge	1982	\N
 nm1023097	Nicole Paggi	1977	\N
 nm10231574	Madeline Grace Popovich	\N	\N
-nm1024107	Ambyr Childers	1988	\N
 nm10244978	Taylor Bly	\N	\N
 nm1026161	Dan Payne	1972	\N
 nm1027286	Andrew W. Walker	1979	\N
@@ -1226,6 +1251,7 @@ nm1042930	Bill Marchant	1964	\N
 nm1046194	Paul Moniz de Sa	\N	\N
 nm10472416	Maya Misaljevic	\N	\N
 nm1047408	Christian Vincent	1980	\N
+nm1051364	Sheila Tyson	\N	\N
 nm10515677	Rhys Slack	\N	\N
 nm10540302	Aiden Stoxx	\N	\N
 nm10568688	Isla Cook	\N	\N
@@ -1234,6 +1260,7 @@ nm1057932	Jonathan Bennett	1981	\N
 nm1058095	Danielle C. Ryan	1993	\N
 nm1058352	Miranda Frigon	\N	\N
 nm10607333	Livi Birch	\N	\N
+nm10622034	Tiara Johnny	\N	\N
 nm10627934	Scott Harlow	\N	\N
 nm1065012	Leah Renee	1985	\N
 nm1065229	America Ferrera	1984	\N
@@ -1249,6 +1276,7 @@ nm1078382	David de Lautour	1982	\N
 nm1083137	Michael Teigen	\N	\N
 nm1083338	Amber Marshall	1988	\N
 nm10843188	Maysa Naima	\N	\N
+nm10843918	Alina Alcantara	\N	\N
 nm10855337	Gavin Borders	\N	\N
 nm10883075	Seth Friesen	\N	\N
 nm10897570	Davide Fair	\N	\N
@@ -1267,7 +1295,6 @@ nm1119340	Kristoffer Polaha	1977	\N
 nm1119462	Amanda Righetti	1983	\N
 nm1120797	Cindy Sampson	1978	\N
 nm1122026	Hilarie Burton	1982	\N
-nm11224129	Nick Burden	\N	\N
 nm1122614	Dominic Scott Kay	1996	\N
 nm1126641	Masiela Lusha	1985	\N
 nm1127289	Latarsha Rose	\N	\N
@@ -1277,9 +1304,9 @@ nm1130991	Terry Maratos	\N	\N
 nm11309965	Igor Damjanov	1984	\N
 nm1132359	Summer Glau	1981	\N
 nm1134641	David Clayton Rogers	1977	\N
-nm1138805	Keegan Allen	1989	\N
 nm11393138	Patty Lambert	\N	\N
 nm11416688	Otis Herring	\N	\N
+nm11432134	Lynn Whyte	\N	\N
 nm1146243	Teddy Sears	1977	\N
 nm1147982	Brittany Bristow	1990	\N
 nm11484106	Samantha Dawson	\N	\N
@@ -1322,6 +1349,7 @@ nm1222820	Ryan McDonald	1984	\N
 nm1223545	Cindy Busby	1983	\N
 nm1226767	Micah Alberti	1984	\N
 nm12296299	Mia Quaranta de la Rosa	\N	\N
+nm12342339	Nik Sanchez	\N	\N
 nm1234276	Melanie Scrofano	1981	\N
 nm1237948	Jesse Hutch	1981	\N
 nm12415632	Juliette Hawk	\N	\N
@@ -1337,10 +1365,12 @@ nm1259207	Tommy Savas	1984	\N
 nm12593105	Sheila Marie France	\N	\N
 nm12622285	Declan Cassidy	\N	\N
 nm1263939	Danielle Panabaker	1987	\N
+nm1268158	Dania Ramirez	1979	\N
 nm1273708	David Henrie	1989	\N
 nm1273957	Paula Brancati	1989	\N
 nm1275101	Shannon Chan-Kent	1988	\N
 nm1275869	Geri Hall	\N	\N
+nm12815603	Drew Willow Blackwell	\N	\N
 nm1281982	Jason McKinnon	1980	\N
 nm12836004	Serena Arella	\N	\N
 nm1283775	Cameron McDonald	\N	\N
@@ -1355,11 +1385,14 @@ nm1309643	Claire Coffee	1980	\N
 nm13103498	Hudson Ambrose	\N	\N
 nm1310368	Minka Kelly	1980	\N
 nm1312105	Peter Mooney	1983	\N
+nm13134743	Hilda Martin	1996	\N
 nm1319098	Chelah Horsdal	1973	\N
 nm1322469	Alexandra Chando	1986	\N
 nm1324827	Ryan Caltagirone	\N	\N
 nm1325306	Jana Kramer	1983	\N
 nm13267087	Wuta Beta	\N	\N
+nm13400223	Lyndsey Gavin	\N	\N
+nm13400238	Lyndsey Gavin	\N	\N
 nm1341364	Aaron Hill	1983	\N
 nm1342513	Shanola Hampton	1977	\N
 nm1342743	Matthew Knight	1994	\N
@@ -1463,10 +1496,12 @@ nm1599762	Louise Bangay	\N	\N
 nm1599834	Jodie Dowdall	\N	\N
 nm1614548	Roger Doche	\N	\N
 nm1617292	Jeff Teravainen	\N	\N
+nm1617355	Dru Viergever	1981	\N
 nm1617837	Julie McNiven	1980	\N
 nm1620783	Meghan Markle	1981	\N
 nm1625501	Rowen Kahn	\N	\N
 nm1625795	Greyston Holt	1985	\N
+nm1631188	Nimet Kanji	\N	\N
 nm1631435	Aimee Teegarden	1989	\N
 nm1638242	Brendan Penny	\N	\N
 nm1640279	Michael Rady	1981	\N
@@ -1484,6 +1519,7 @@ nm1675076	Callard Harris	\N	\N
 nm1675091	Tyler Hilton	1983	\N
 nm1678720	Matt Dallas	1982	\N
 nm1679802	Melise	1991	\N
+nm1682303	James Cade	\N	\N
 nm1682392	Christie Laing	1985	\N
 nm1682400	Spencer Locke	1991	\N
 nm1682420	Dustin Milligan	1985	\N
@@ -1576,6 +1612,7 @@ nm1974920	Scott Michael Foster	1985	\N
 nm1975050	Tiera Skovbye	1995	\N
 nm1976541	Heather Doerksen	1980	\N
 nm1990511	Natalie Lisinska	1982	\N
+nm1997152	Nicola Correia-Damude	\N	\N
 nm1997596	Steven R. McQueen	1988	\N
 nm1998498	Helena Mattsson	1984	\N
 nm2000904	Anna Van Hooft	\N	\N
@@ -1777,6 +1814,7 @@ nm2770964	Tajh Bellow	\N	\N
 nm2771607	Karissa Lee Staples	1987	\N
 nm2771798	Ellen Wong	1985	\N
 nm2773575	Sal Stowers	1986	\N
+nm2776154	Paolo Bernardini	\N	\N
 nm2779018	Floriana Lima	1981	\N
 nm2782162	Emily Kinney	1985	\N
 nm2782604	Michael Xavier	1985	\N
@@ -1789,9 +1827,11 @@ nm2796627	Marycarmen Lopez	1988	\N
 nm2799338	Steven A. Miller	1981	\N
 nm2804503	Matt Jones	1981	\N
 nm2805064	Kristin York	1984	\N
+nm2810749	Lisa Marie DiGiacinto	\N	\N
 nm2811073	Jacob Blair	1984	\N
 nm2814208	Julia Tomasone	1998	\N
 nm2817543	Sean Duggan	\N	\N
+nm2819413	Inbar Lavi	1986	\N
 nm2822535	Nadeen Lightbody	\N	\N
 nm2824623	Michelle Beamish	\N	\N
 nm2828435	Natasha Calis	1999	\N
@@ -1824,6 +1864,7 @@ nm2917725	Raymond Ablack	1989	\N
 nm2921091	Jeremy Jordan	1984	\N
 nm2922677	Fiona Vroom	1983	\N
 nm2938790	Hanna Lee Sakakibara	\N	\N
+nm2949014	Santino Fontana	1982	\N
 nm2952937	Amelia Burstyn	\N	\N
 nm2954288	Caitlin Thompson	1987	\N
 nm2963874	Edy Ganem	1983	\N
@@ -1840,12 +1881,12 @@ nm2999633	John Fleming	\N	\N
 nm3001458	Daniel Fleming	\N	\N
 nm3004687	Galadriel Stineman	1990	\N
 nm3004735	Via Antonio	1984	\N
+nm3004926	Alison Wandzura	\N	\N
 nm3005219	Dan Jeannotte	\N	\N
 nm3011272	Elysia Rotaru	1984	\N
 nm3012114	Tara Joshi	\N	\N
 nm3014089	Emeraude Toubia	1989	\N
 nm3014840	Emily Alyn Lind	2002	\N
-nm3034348	Brianna Barnes	\N	\N
 nm3037446	Kaitlyn Leeb	\N	\N
 nm3037818	Brandon Ludwig	\N	\N
 nm3037833	Eloise Mumford	1986	\N
@@ -1874,7 +1915,7 @@ nm3165233	Henderson Wade	\N	\N
 nm3172776	Kevin Balmore	\N	\N
 nm3173770	Joshua Sasse	1987	\N
 nm3177717	Elena Juatco	\N	\N
-nm3186064	Kate Isaac	1982	\N
+nm3186064	Kate Craven	1982	\N
 nm3188810	Brad Benedict	1985	\N
 nm3196681	Ali Cobrin	1989	\N
 nm3200065	Scott Graham	1998	\N
@@ -1884,6 +1925,7 @@ nm3214649	Jack Donnelly	\N	\N
 nm3216166	Alexander Bedria	1982	\N
 nm3217416	Natalie Knepp	1983	\N
 nm3227287	Diana Cofini	\N	\N
+nm3232025	Amber Riley	1986	\N
 nm3234693	Kate Easton	\N	\N
 nm3235681	Andrea Bordeaux	\N	\N
 nm3237775	Mackenzie Foy	2000	\N
@@ -1933,11 +1975,13 @@ nm3512614	Brendon Zub	\N	\N
 nm3521144	Myko Olivier	1987	\N
 nm3521335	James Austin Kerr	1992	\N
 nm3523076	Jarod Joseph	1985	\N
+nm3525157	Susan Phelan	\N	\N
 nm3527541	Victor Zinck Jr.	\N	\N
 nm3529987	Heather Morris	1987	\N
 nm3539046	Jocelyn Panton	\N	\N
 nm3542399	Sterling Griffith	\N	\N
 nm3556447	Merren McMahon	\N	\N
+nm3569970	Luke Marty	\N	\N
 nm3573088	Genea Charpentier	2003	\N
 nm3577098	Emily Alatalo	\N	\N
 nm3577954	Hannah Spear	\N	\N
@@ -1981,6 +2025,7 @@ nm3826573	Havana Guppy	\N	\N
 nm3826878	Brittany Beery	\N	\N
 nm3827460	Kyle Breitkopf	\N	\N
 nm3833531	Antonio Cayonne	\N	\N
+nm3835097	Priscilla Faia	1985	\N
 nm3842139	Edward Ruttle	1989	\N
 nm3846494	Carolina Bartczak	\N	\N
 nm3857539	Brittany Adams	\N	\N
@@ -2017,7 +2062,7 @@ nm4011678	Farah Merani	\N	\N
 nm4015018	Liliana Tandon	\N	\N
 nm4040878	Torri Webster	1996	\N
 nm4046465	Kara Duncan	\N	\N
-nm4051069	Griffin Kane	\N	\N
+nm4051069	Griffin Kane	2003	\N
 nm4059397	Leticia Rivera	\N	\N
 nm4068529	Tyler Courtad	\N	\N
 nm4069385	Ben Bordeau	\N	\N
@@ -2029,6 +2074,7 @@ nm4097366	Rustin Gresiuk	1995	\N
 nm4100046	Andrew Bushell	\N	\N
 nm4105669	Samora Smallwood	\N	\N
 nm4114443	Annie Thurman	\N	\N
+nm4118392	Tanta Ginting	\N	\N
 nm4119665	Brooks Darnell	\N	\N
 nm4122818	Alice St. Clair	\N	\N
 nm4134168	Azer Greco	\N	\N
@@ -2051,6 +2097,7 @@ nm4260661	Sarah Dugdale	1995	\N
 nm4264186	Wyatt Nash	1988	\N
 nm4264669	Erica Deutschman	\N	\N
 nm4268006	David Witts	1991	\N
+nm4271762	Alyson Walker	\N	\N
 nm4275908	Kelley Jakle	1989	\N
 nm4280291	Kate Moyer	2008	\N
 nm4289392	Lindsey Morgan	1990	\N
@@ -2094,7 +2141,6 @@ nm4518460	Ryan Paevey	1984	\N
 nm4523607	Zarrin Darnell-Martin	\N	\N
 nm4527172	Jacky Lai	\N	\N
 nm4542042	Colin Donnell	1982	\N
-nm4545014	Joe Kurak	1984	\N
 nm4549519	Lauren Swickard	\N	\N
 nm4568896	Aisha Duran	\N	\N
 nm4570282	Steven Love	\N	\N
@@ -2140,8 +2186,8 @@ nm4791624	Rodrigo Beilfuss	\N	\N
 nm4791710	Jack Turner	\N	\N
 nm4792676	Jennifer Vallance	\N	\N
 nm4793359	Julia Lalonde	\N	\N
-nm4799224	Demi Castro	\N	\N
 nm4825013	Kiara Glasco	2001	\N
+nm4825590	Makenzie Moss	\N	\N
 nm4835867	Honor Kneafsey	2004	\N
 nm4838234	Corey Cott	1990	\N
 nm4852825	Shang-Ho Huang	1983	\N
@@ -2185,19 +2231,20 @@ nm5137305	Joseph Almani	\N	\N
 nm5144679	Dayana Lazz	\N	\N
 nm5148120	Allison Price	\N	\N
 nm5150410	Natasha Burnett	\N	\N
+nm5153701	Christine Ko	1988	\N
 nm5160420	Ben Sullivan	\N	\N
 nm5160731	Sharjil Rasool	\N	\N
 nm5173220	Austin R. Grant	\N	\N
 nm5182593	Gabby Douglas	1995	\N
 nm5185113	Guillaume Dolmans	\N	\N
 nm5207662	Kati Salowsky	\N	\N
-nm5216234	Alana Hawley Purvis	\N	\N
 nm5220517	Mallory Jansen	1989	\N
 nm5231220	Lily Anne Harrison	\N	\N
 nm5246346	Jena Skodje	\N	\N
 nm5250260	Sebastian Sacco	\N	\N
 nm5272060	Paige Bach	\N	\N
 nm5277223	Marnie Mahannah	\N	\N
+nm5277905	Celeste Desjardins	1996	\N
 nm5278391	Winny Clarke	\N	\N
 nm5289739	Giselle Torres	\N	\N
 nm5292130	Tony Giroux	\N	\N
@@ -2221,7 +2268,6 @@ nm5397277	Bailey Skodje	\N	\N
 nm5405958	Georgia Bradner	\N	\N
 nm5426186	Cecilia Deacon	\N	\N
 nm5431622	Sarah McGuire	1990	\N
-nm5456245	Aubrey Shimek Davis	\N	\N
 nm5462803	Samantha Gracie	1990	\N
 nm5463529	Sean Poague	\N	\N
 nm5481761	Mia Topalian	\N	\N
@@ -2239,6 +2285,7 @@ nm5626530	Tim Ross	\N	\N
 nm5628646	Eric Hicks	\N	\N
 nm5629121	Mia Bagley	\N	\N
 nm5636094	Ese Atawo	\N	\N
+nm5642311	Chase Ramsey	\N	\N
 nm5656906	Lindsay Winch	\N	\N
 nm5676276	Shein Mompremier	\N	\N
 nm5679653	Braedon Cox	\N	\N
@@ -2293,12 +2340,14 @@ nm6362056	Nikki Chohan	\N	\N
 nm6370783	Rizky Nazar	\N	\N
 nm6440595	Lillian Lim	\N	\N
 nm6457405	Paniz Zade	\N	\N
+nm6471347	Aubrey Reynolds	1991	\N
 nm6475003	Samantha Cole	\N	\N
 nm6477303	Aden Schwartz	\N	\N
 nm6479418	Rachel Bles	\N	\N
 nm6490912	Madison Brydges	2004	\N
 nm6506691	Jessica Sipos	1989	\N
 nm6548221	Emmet Byrne	\N	\N
+nm6581655	Jonny Swenson	\N	\N
 nm6591206	Jake Foy	1990	\N
 nm6594916	Austin Anozie	\N	\N
 nm6615896	Erica Tremblay	2009	\N
@@ -2317,13 +2366,12 @@ nm6805740	Trezzo Mahoro	1996	\N
 nm6823229	Eva Tavares	\N	\N
 nm6836099	Anthony Bolognese	\N	\N
 nm6836195	Kasey Landoll	\N	\N
+nm6837412	Cody Calafiore	1990	\N
 nm6850865	Elise Bauman	1990	\N
 nm6871540	Jaeda Lily Miller	\N	\N
 nm6923991	Meggan Kaiser	\N	\N
 nm6934521	Andrew Cooper	\N	\N
 nm6937583	Robyn Bradley	\N	\N
-nm6943867	Lisa Miranda	\N	\N
-nm6948882	Destiny Millns	\N	\N
 nm6949008	Trent Pryor	\N	\N
 nm6951450	Jordan Claire Robbins	\N	\N
 nm6974139	Morgan Kohan	\N	\N
@@ -2360,6 +2408,7 @@ nm7619674	Nyla Alleyne	\N	\N
 nm7650817	Belissa Escobedo	\N	\N
 nm7670644	Ellie Botterill	\N	\N
 nm7718443	Derek Johns	\N	\N
+nm7726669	Keisha Haines	\N	\N
 nm7745089	Reed Favero	\N	\N
 nm7756902	Casey Elliott	\N	\N
 nm7771854	Maude Green	\N	\N
@@ -2385,7 +2434,6 @@ nm8181211	Madeline Leon	\N	\N
 nm8190391	Cassidy Nugent	\N	\N
 nm8222158	Mike Merrill	\N	\N
 nm8258578	Mark Milburn	\N	\N
-nm8261315	Princess Davis	2000	\N
 nm8263430	Paulina Chávez	\N	\N
 nm8291099	Lia Frankland	\N	\N
 nm8291809	Bo Yokely	\N	\N
@@ -2424,6 +2472,7 @@ nm8856071	Benedicte Belizaire	\N	\N
 nm8863263	Caroline Harris	\N	\N
 nm8939731	Celine Tsai	\N	\N
 nm8967308	Jaden Oehr	\N	\N
+nm8990824	Kelsie Elena	1989	\N
 nm8997185	Reagan Shumate	\N	\N
 nm9036980	Spencer Lord	\N	\N
 nm9066500	Carina Battrick	2012	\N
@@ -2458,7 +2507,9 @@ nm9703049	Zoë Noelle Baker	\N	\N
 nm9762057	Katrina Reynolds	\N	\N
 nm9777171	Daphne Hoskins	\N	\N
 nm9778960	Michaela Russell	\N	\N
+nm9785431	Max Archibald	\N	\N
 nm9868363	Kayden Boisclair	\N	\N
 nm9903089	Rachel O'Connell	\N	\N
+nm9926148	Shyinne Anastacio	\N	\N
 nm9969736	Ana Araujo	\N	\N
 nm9984616	Leah Jenea	\N	\N
