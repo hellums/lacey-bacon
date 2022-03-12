@@ -32,7 +32,7 @@ Same as above, except replace the "source env/bin/activate" command in step 4 wi
   - >env\Scripts\activate (or activate.bat)
 
 ## To view Jupyter Notebook output and data analysis
-- [Notebook/EDA](https://github.com/hellums/lacey-bacon/blob/root/romcomEDA.pdf)
+- [Notebook/EDA](https://github.com/hellums/lacey-bacon/blob/root/romcomEDA.ipynb)
 (or open romcomEDA.pdf in the project folder using Adobe or other PDF viewer)
 
 ## To run a few unit tests for data integrity
