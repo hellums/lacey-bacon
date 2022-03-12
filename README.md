@@ -93,6 +93,6 @@ Category 4 - Best Practices
   - >http://localhost:8080/movies will return the top 10 movies in JSON simple list format
   - >http://localhost:8080/rating/?tt=tt13831504 will return the rating of "It Was Always You" (IMDB title code tt13831504) as JSON list 
 
-## DATABASE REFRESH
+## Database Refresh
 To perform a full download of all IMDB data, and initialize or rebuild data structures (NOTE: requires 6 GB space, 2-3 minute compile time):
   - >python romcomPrep.py 
