@@ -1,7 +1,7 @@
 # OVERVIEW
-Is Lacey Chabert indeed the "Center of the (Hallmark) Universe," as Kevin Bacon reputably is to Hollywood? This project seeks to find out, using a subset of IMDB listed movies and actors from Hallmark original movies, romantic comedies, mysteries, and dramas.  
+Is Lacey Chabert indeed the "Center of the (Hallmark) Universe," as Kevin Bacon reputably is to Hollywood? This project seeks to find out, using a [subset of IMDB listed movies](https://github.com/hellums/lacey-bacon/blob/root/watchlist.txt) and actors from Hallmark original movies, romantic comedies, mysteries, and dramas.  
 
-This repo is the product of a Code Louisville course on Python programming and data analysis. All images and websites shown here belong to the original copyright holder and are used for academic and demonstration purposes only. Data is publicly available and courtesy of IMDB.
+This repo is the product of a [Code Louisville](https://www.codelouisville.org/) course on Python programming and data analysis. All images and websites shown here belong to the original copyright holder and are used for academic and demonstration purposes only. Data is [publicly available and courtesy of IMDB](https://www.imdb.com/interfaces/).
 
 # COMMAND-LINE WALKTHROUGH VIDEO
 [<img alt="romcom video walkthrough" width="600px" src="images/romcom.jpg" />](https://screencast-o-matic.com/watch/c3e6FLVFY4U)
