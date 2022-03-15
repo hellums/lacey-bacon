@@ -18,8 +18,8 @@ This repo is the product of a [Code Louisville](https://www.codelouisville.org/)
   - >cd lacey-bacon
   - >python -m venv env
   - >source env/bin/activate
-  - >pip install --upgrade pip
-  - >pip install -r requirements.txt
+  - >python -m pip install --upgrade pip
+  - >python -m pip install -r requirements.txt
   - >python romcom.py
 
 ## Windows instructions for command-line version:
