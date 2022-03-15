@@ -13,7 +13,7 @@ This repo is the product of a [Code Louisville](https://www.codelouisville.org/)
 # BASIC FUNCTIONALITY (Code Louisville Project)
 
 ## Mac/Linux instructions for command-line version:
-(NOTE: Tested with python version 3. The series of commands below will download the app, create a virtual environment, install python, pip, and the app's prerequisites in that virtual environment, and run the app). 
+(NOTE: Tested with python version 3. The series of commands below will download the app, create a virtual environment, install python, pip, and the app's prerequisites in that virtual environment, and run the app. 
   - >git clone https://github.com/hellums/lacey-bacon.git
   - >cd lacey-bacon
   - >python -m venv env
