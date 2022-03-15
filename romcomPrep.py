@@ -163,7 +163,7 @@ def graph_database():
     edge_attribute_dict = {}  # store weight of movie edges between costaring actors
     # Use pandas, matplotlib, and/or numpy to perform a data analysis project. Ingest 2 or more pieces of data, 
     # analyze that data in some manner, and display a new result to a graph, chart, or other display. 
-    # Code Louisville requirement (use NX graph, analyze that data, display a new reult to graph/table).
+    # Code Louisville requirement (use NX graph, analyze that data, display a new result to graph/table).
     for name_ID, titles in nm_tt.items():
         G.add_node(name_ID)  # create a node for each movie title in the database
         for title in titles:  # for every one of those movies...
