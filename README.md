@@ -12,7 +12,8 @@ This repo is the product of a [Code Louisville](https://www.codelouisville.org/)
 
 # BASIC FUNCTIONALITY (Code Louisville Project)
 
-## Mac/Linux instructions for Python 3 command-line version:
+## Mac/Linux instructions for command-line version:
+(use Python version 3)
   - >git clone https://github.com/hellums/lacey-bacon.git
   - >cd lacey-bacon
   - >python -m venv env
@@ -20,7 +21,7 @@ This repo is the product of a [Code Louisville](https://www.codelouisville.org/)
   - >pip install -r requirements.txt
   - >python romcom.py
 
-## Windows instructions for Python 3 command-line version:
+## Windows instructions for command-line version:
 Same as above, except replace the "source env/bin/activate" command in step 4 with 
   - >env\Scripts\activate (or activate.bat)
 
