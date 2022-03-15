@@ -11,15 +11,8 @@ This repo is the product of a [Code Louisville](https://www.codelouisville.org/)
 - Satisfy as many optional and "stretch" requirements and enhancements as possible
 
 # BASIC FUNCTIONALITY (Code Louisville Project)
-## This program was built and tested using:
 
-- python version 3.10.1
-- pip version 21.3.1
-
-Substitute your own Python 3 interpreter command below, be it py, py3, python, or python3, if it is different than
-'python' used below. Best practice is to also upgrade pip first (pip install --upgrade pip).
-
-## Mac/Linux instructions for command-line version:
+## Mac/Linux instructions for Python 3 command-line version:
   - >git clone https://github.com/hellums/lacey-bacon.git
   - >cd lacey-bacon
   - >python -m venv env
@@ -27,7 +20,7 @@ Substitute your own Python 3 interpreter command below, be it py, py3, python, o
   - >pip install -r requirements.txt
   - >python romcom.py
 
-## Windows instructions for command-line version:
+## Windows instructions for Python 3 command-line version:
 Same as above, except replace the "source env/bin/activate" command in step 4 with 
   - >env\Scripts\activate (or activate.bat)
 
