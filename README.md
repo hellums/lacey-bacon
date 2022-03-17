@@ -67,7 +67,7 @@ Category 4 - Best Practices
 # Project-Related Github Pages
 - [Kanban board](https://github.com/hellums/lacey-bacon/projects/1) for managing project schedule
 - [Issues](https://github.com/hellums/lacey-bacon/issues) for incident management
-- [Wiki](https://github.com/hellums/lacey-bacon/wiki/1.-Data-Analytics-Course-Project) for related project links and information
+- [Wiki](https://github.com/hellums/lacey-bacon/wiki/Data-Analytics-Course-Project) for related project links and information
 
 ## FLASK WEB WALKTHROUGH VIDEO
 [<img alt="romcomWeb video walkthrough" width="600px" src="images/romcomWeb.jpg" />](https://screencast-o-matic.com/watch/c3e6FLVFY4v)
