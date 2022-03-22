@@ -22,10 +22,11 @@ This repo is the product of a [Code Louisville](https://www.codelouisville.org/)
   - >python romcom.py
 
 ## Windows instructions for command-line version:
-Same as above, except replace the "source env/bin/activate" command in step 4 with 
+If using VSC, use a DOS command prompt terminal, NOT PowerShell.
+
+Perform same steps as above, except replace the "source env/bin/activate" command in step 4 with 
   - >env\Scripts\activate (or activate.bat)
 
-(If using VSC, use a DOS command prompt terminal, NOT PowerShell) 
 
 ## To view Jupyter Notebook output and data analysis
 - [Notebook/EDA](https://github.com/hellums/lacey-bacon/blob/root/romcomEDA.ipynb)
