@@ -13,12 +13,13 @@ This repo is the product of a [Code Louisville](https://www.codelouisville.org/)
 # BASIC FUNCTIONALITY (Code Louisville Project)
 
 ## Mac/Linux instructions for command-line version:
-(use Python version 3)
+(NOTE: Tested with python version 3. The series of commands below will download the app, create a virtual environment, install python, pip, and the app's prerequisites in that virtual environment, and run the app. 
   - >git clone https://github.com/hellums/lacey-bacon.git
   - >cd lacey-bacon
   - >python -m venv env
-  - >source env/bin/activate  
-  - >pip install -r requirements.txt
+  - >source env/bin/activate
+  - >python -m pip install --upgrade pip
+  - >python -m pip install -r requirements.txt
   - >python romcom.py
 
 ## Windows instructions for command-line version:
@@ -37,9 +38,6 @@ To test functions and data:
 
 To test SQLite3 database:
   - >python romcomSQL.py
-
-## Clean Up
-- To get everything back to normal and remove files, type deactivate, then remove the lacey-bacon directory. Your system will be back to normal, as before the test.
 
 # Satisfaction of Code Louisville Requirements
 Requirements are called out in code, just search for "Code Louisville" in the python files
@@ -71,7 +69,7 @@ Category 4 - Best Practices
 # Project-Related Github Pages
 - [Kanban board](https://github.com/hellums/lacey-bacon/projects/1) for managing project schedule
 - [Issues](https://github.com/hellums/lacey-bacon/issues) for incident management
-- [Wiki](https://github.com/hellums/lacey-bacon/wiki/1.-Data-Analytics-Course-Project) for related project links and information
+- [Wiki](https://github.com/hellums/lacey-bacon/wiki/Data-Analytics-Course-Project) for related project links and information
 
 ## FLASK WEB WALKTHROUGH VIDEO
 [<img alt="romcomWeb video walkthrough" width="600px" src="images/romcomWeb.jpg" />](https://screencast-o-matic.com/watch/c3e6FLVFY4v)
@@ -90,5 +88,9 @@ Category 4 - Best Practices
   - >http://localhost:8080/rating/?tt=tt13831504 will return the rating of "It Was Always You" (IMDB title code tt13831504) as JSON list 
 
 ## Database Refresh
-To perform a full download of all IMDB data, and initialize or rebuild data structures (NOTE: requires 6 GB space, 2-3 minute compile time):
+To perform a full download of the current IMDB source files, and initialize or rebuild data structures (NOTE: requires 6 GB space, 3-5 minute compile time):
   - >python romcomPrep.py 
+
+## Clean Up
+- To get everything back to normal and remove files, type deactivate, then remove the lacey-bacon directory. Your system will be back to normal, as before the test.
+
