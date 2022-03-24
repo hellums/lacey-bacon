@@ -18,8 +18,11 @@ api = Flask(__name__)
 def starting_url():
     load_data()   # load data structures
     status_code = "201"  # won't take Flask.Response(status=201) for some reason, continue to debug
-    return status_code
-
+    #return status_code
+    return 'This splash page would normally just return a 201 status code, or would not be available on this port. This simple API set has three endpoints: \
+    <p><a href="http://localhost:8080/actors">JSON file of Top 10 Actors</a>\
+    <p><a href="http://localhost:8080/movies">JSON file of Top 10 Movies</a>\
+    <p>and <a href="http://localhost:8080/rating/?tt=tt13831504">JSON movie rating lookup</a> (using any IMDB title code for a Hallmark Movie, in this case tt13831504)'
 
 @api.route('/actors/', methods=['GET'])  # endpoint to return top 10 actors, http://localhost:8080/actors
 def api_actors():
