@@ -2,7 +2,16 @@
 echo.   
 echo First step is to set up environment and install prerequisites. No interaction needed at this point.
 pause
+@REM let's try each of the possible commands that python version 3 may be using on Windows
+py3 -m venv env
+if %ERRORLEVEL% neq 0 goto Python3
+:Python3
+python3 -m venv env
+if %ERRORLEVEL% neq 0 goto Python
+:Python
 python -m venv env
+if %ERRORLEVEL% neq 0 exit /b 1
+@REM continue on, if one version of python installed VENV correctly
 .\env\Scripts\pip install -r requirements.txt
 echo.
 echo Next step runs a few tests of SQL database and tables. No interaction needed at this point.
