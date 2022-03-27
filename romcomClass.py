@@ -93,6 +93,7 @@ IMDB watchlist"
             print(actors[val].name)
         return None
 
+
 def createActorRecords():
     global actors
     actors = dict()
@@ -129,6 +130,7 @@ def createMovieRecords():
     data.close()
     return None
 
+
 def linkMoviesToActors():
     file = 'movie_cast_crew.csv'
     row = list()
@@ -143,6 +145,7 @@ def linkMoviesToActors():
         pass
     data.close()
     return None
+
 
 def printActorInfo(name):
     try:
@@ -164,10 +167,12 @@ def printActorInfo(name):
         print("\nThat name was not found in the database.")
     return(None)
 
+
 def lookupActorByName(name):
     k = next((row for row in movies 
         if movies[row].name == name), None)
     return(k)
+
 
 def printMovieInfo(name):
     try:
@@ -188,6 +193,7 @@ case-sensitive, including puncturation. For example: Good Morning, \
 Christmas!")
     return(None)
 
+
 def printDegreeSeparation(name):
     try:  # see if there is a link from name entered and Lacey Chabert
         connection = sp[name]
@@ -200,6 +206,7 @@ or initials in IMDB lists. For example: Andrew W. Walker')
     print("\n" + str(distance) + " Degree(s) of Separation")
     print(*connection, sep=' -> ', end='\n')
     return None
+
 
 def createNetworkGraph():  # for text-based representing Lacey distance
     global sp
@@ -215,6 +222,7 @@ def createNetworkGraph():  # for text-based representing Lacey distance
         cutoff=7))
     return None
 
+
 def printTopRatedActors():  # Top 10 avg movie ratings by actor
     print("\n--------\n TOP 10\n--------\n")
     for k, v in sorted(actors.items(), key=lambda item: item[1].rating,
@@ -222,12 +230,14 @@ def printTopRatedActors():  # Top 10 avg movie ratings by actor
         print(f'{actors[k].rating:<5}' + "| ", actors[k].name)
     return None
 
+
 def printTopRatedMovies():  # Top 10 avg movie ratings by actor
     print("\n--------\n TOP 10\n--------\n")
     for k, v in sorted(movies.items(), key=lambda item: item[1].rating,
                     reverse=True)[:10]:
         print(f'{movies[k].rating:<5}' + "| ", movies[k].name)
     return None
+
 
 def menuPrompt(option):
     prompts = list()
@@ -244,9 +254,11 @@ example, Tyler Hynes, Wes Brown): ')
 \nDon\'t have a good day... Have a great day!\n')
     return prompts[option-1]
 
+
 def addActorRating():
     for k in actors:
         actors[k].avg_rating()
+
 
 def showPlots():
 
@@ -270,6 +282,7 @@ def showPlots():
     plt.title('Production Increase\n')    
     plt.show()
 
+
 def main():
 
     createActorRecords()
@@ -285,7 +298,7 @@ def main():
         3: 'Lacey # - "Distance" from Lacey in the "Hallmark Universe"',
         4: 'Top 10 Rated Actors',
         5: 'Top 10 Rated Movies',
-        6: 'Various Data Plots',
+        6: 'Sample Data Plots',
         7: 'Exit',
     }
 
@@ -313,8 +326,6 @@ ENTER/RETURN: '))
         elif option == 5:
             printTopRatedMovies()
         elif option == 6:
-#            print(movies['tt13831504'])
-#            print(movies['tt13831504'].__dict__)
             showPlots()
         elif option == 7:
             print(menuPrompt(option))
@@ -325,4 +336,3 @@ ENTER/RETURN: '))
 
 if __name__=='__main__':  # Allow use as function or program
     main()
-
