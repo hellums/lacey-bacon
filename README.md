@@ -1,7 +1,7 @@
 # OVERVIEW
-Is Lacey Chabert indeed the "Center of the (Hallmark) Universe," as Kevin Bacon reputably is to Hollywood? This project seeks to find out, using a [subset of IMDB listed movies](https://github.com/hellums/lacey-bacon/blob/root/watchlist.txt) and actors from Hallmark original movies, romantic comedies, mysteries, and dramas.  
+Is Lacey Chabert indeed the "Center of the (Hallmark) Universe," as Kevin Bacon reputably is to Hollywood? This project addresses that proposition, using a [subset of IMDB listed movies](https://github.com/hellums/lacey-bacon/blob/root/watchlist.txt) and actors from Hallmark original movies, romantic comedies, mysteries, and dramas.  
 
-This repo is the product of a [Code Louisville](https://www.codelouisville.org/) course on Python programming and data analysis. All images and websites shown here belong to the original copyright holder and are used for academic and demonstration purposes only. Data is [publicly available and courtesy of IMDB](https://www.imdb.com/interfaces/).
+This repo is the result of a [Code Louisville](https://www.codelouisville.org/) course on Python programming and data analysis. All images and websites shown here belong to the original copyright holders and are used for academic and demonstration purposes only. Source and derived data is [publicly available and courtesy of IMDB](https://www.imdb.com/interfaces/).
 
 # COMMAND-LINE WALKTHROUGH VIDEO
 [<img alt="romcom video walkthrough" width="600px" src="images/romcom.jpg" />](https://screencast-o-matic.com/watch/c3e6FLVFY4U)
@@ -13,7 +13,7 @@ This repo is the product of a [Code Louisville](https://www.codelouisville.org/)
 # BASIC FUNCTIONALITY (Code Louisville Project)
 
 ## Mac/Linux instructions for command-line version:
-(NOTE: Requires python version 3 and pip. The series of commands below will download the app, create a virtual environment, install python, pip, and the app's prerequisites in that virtual environment, and run the app. 
+(NOTE: Requires python version 3 and pip. The series of commands below will download the app, create a virtual environment, install python, pip, and the app's prerequisites in that virtual environment, and run the app using recently compiled data. 
   - >git clone https://github.com/hellums/lacey-bacon.git
   - >cd lacey-bacon
   - >python -m venv env
@@ -22,7 +22,7 @@ This repo is the product of a [Code Louisville](https://www.codelouisville.org/)
   - >python romcom.py
 
 ## Windows instructions for command-line version:
-If using VSC, use a DOS command prompt terminal, NOT PowerShell.
+If using VSC, a DOS command prompt terminal is highly recommended, NOT PowerShell.
 
 Perform same steps as above, except replace the "source env/bin/activate" command in step 4 with 
   - >env\Scripts\activate (or activate.bat)
@@ -40,7 +40,7 @@ To test SQLite3 database:
   - >python romcomSQL.py
 
 # Satisfaction of Code Louisville Requirements
-Requirements are called out in code, just search for "Code Louisville" in the python files
+Requirements are called out in code, just search for "Code Louisville" in the python files (romcom, romcomPrep, testRomcom, romcomSQL)
 
 Category 1 - Python Programming Basics
 - [x] Implement a “master loop” console application where the user can repeatedly enter commands/perform actions, including choosing to exit the program.
@@ -71,7 +71,7 @@ Category 4 - Best Practices
 - [Issues](https://github.com/hellums/lacey-bacon/issues) for incident management
 - [Wiki](https://github.com/hellums/lacey-bacon/wiki/Data-Analytics-Course-Project) for related project links and information
 
-# To see a version of the CLI program that uses classes and methods:
+# To see a version of the CLI program that uses OOP, classes, and methods:
   - >python romcomClass.py
 
 ## FLASK WEB WALKTHROUGH VIDEO
