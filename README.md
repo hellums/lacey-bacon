@@ -44,7 +44,7 @@ Requirements are called out in code, just search for "Code Louisville" in the py
 
 Category 1 - Python Programming Basics
 - [x] Implement a “master loop” console application where the user can repeatedly enter commands/perform actions, including choosing to exit the program.
-- [x] Create a class, then create at least one object of that class and populate it with data. The value of at least one object must be used somewhere in your code. (implemented, but not used in main module, in preference of functions for now)
+- [x] Create a class, then create at least one object of that class and populate it with data. The value of at least one object must be used somewhere in your code. Implemented in optional, class-based version of CLI program (romcomClass.py).
 - [x] Create a dictionary or list, populate it with several values, retrieve at least one value, and use it in your program.
 - [x] Create and call at least 3 functions or methods, at least one of which must return a value that is used somewhere else in your code.
 
@@ -70,6 +70,9 @@ Category 4 - Best Practices
 - [Kanban board](https://github.com/hellums/lacey-bacon/projects/1) for managing project schedule
 - [Issues](https://github.com/hellums/lacey-bacon/issues) for incident management
 - [Wiki](https://github.com/hellums/lacey-bacon/wiki/Data-Analytics-Course-Project) for related project links and information
+
+# To see a version of the CLI program that uses classes and methods:
+  - >python romcomClass.py
 
 ## FLASK WEB WALKTHROUGH VIDEO
 [<img alt="romcomWeb video walkthrough" width="600px" src="images/romcomWeb.jpg" />](https://screencast-o-matic.com/watch/c3e6FLVFY4v)
