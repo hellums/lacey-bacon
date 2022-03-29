@@ -43,26 +43,26 @@ To test SQLite3 database:
 Requirements are called out in code, just search for "Code Louisville" in the python files (romcom, romcomPrep, testRomcom, romcomSQL)
 
 Category 1 - Python Programming Basics
-- [x] Implement a “master loop” console application where the user can repeatedly enter commands/perform actions, including choosing to exit the program.
-- [x] Create a class, then create at least one object of that class and populate it with data. The value of at least one object must be used somewhere in your code. Implemented in optional, class-based version of CLI program (romcomClass.py).
-- [x] Create a dictionary or list, populate it with several values, retrieve at least one value, and use it in your program.
-- [x] Create and call at least 3 functions or methods, at least one of which must return a value that is used somewhere else in your code.
+- [x] Implement a [“master loop”](https://github.com/hellums/lacey-bacon/blob/322b40ad14db8751f4f363e50f25264d0bbef806/romcom.py#L34) console application where the user can repeatedly enter commands/perform actions, including choosing to exit the program. 
+- [x] [Create a class](https://github.com/hellums/lacey-bacon/blob/322b40ad14db8751f4f363e50f25264d0bbef806/romcomClass.py#L9), then [create at least one object of that class and populate it with data](https://github.com/hellums/lacey-bacon/blob/322b40ad14db8751f4f363e50f25264d0bbef806/romcomClass.py#L97). The value of at least [one object must be used somewhere in your code](https://github.com/hellums/lacey-bacon/blob/322b40ad14db8751f4f363e50f25264d0bbef806/romcomClass.py#L158). Implemented in optional, class-based version of CLI program (romcomClass.py).
+- [x] Create a dictionary or list, populate it with several values, retrieve at least one value, and [use it in your program](https://github.com/hellums/lacey-bacon/blob/322b40ad14db8751f4f363e50f25264d0bbef806/romcom.py#L118).
+- [x] Create and call at least [3 functions or methods](https://github.com/hellums/lacey-bacon/blob/322b40ad14db8751f4f363e50f25264d0bbef806/romcom.py#L114), at least one of which must return a value that is used somewhere else in your code.
 
 Category 2 - Utilize External Data
-- [x] Read data from an external file, such as text, JSON, CSV, etc, and use that data in your application.
-- [x] Connect to a database and read data using SQL.
+- [x] [Read data from an external file](https://github.com/hellums/lacey-bacon/blob/322b40ad14db8751f4f363e50f25264d0bbef806/romcom.py#L284), such as text, JSON, CSV, etc, and use that data in your application.
+- [x] [Connect to a database](https://github.com/hellums/lacey-bacon/blob/322b40ad14db8751f4f363e50f25264d0bbef806/romcom.py#L350) and read data using SQL.
 
 Category 3 - Data Display
-- [x] Visualize data in a graph, chart, or other visual representation of data.
+- [x] Visualize data in a [graph](https://github.com/hellums/lacey-bacon/blob/322b40ad14db8751f4f363e50f25264d0bbef806/romcomPrep.py#L192), chart, or other [visual representation of data](https://github.com/hellums/lacey-bacon/blob/322b40ad14db8751f4f363e50f25264d0bbef806/romcom.py#L234).
 
 Category 4 - Best Practices
-- [x] The program should utilize a virtual environment and document library dependencies in a requirements.txt file.
-- [x] Create 3 or more unit tests for your application.
+- [x] The program should utilize a virtual environment and document library dependencies in a [requirements.txt file](https://github.com/hellums/lacey-bacon/blob/322b40ad14db8751f4f363e50f25264d0bbef806/requirements.txt#L1).
+- [x] Create 3 or more [unit tests](https://github.com/hellums/lacey-bacon/blob/322b40ad14db8751f4f363e50f25264d0bbef806/test_romcom.py#L12) for your application.
 
 "Stretch" list:
 
-- [x] Use pandas, matplotlib, and/or numpy to perform a data analysis project. Ingest 2 or more pieces of data, analyze that data in some manner, and display a new result to a graph, chart, or other display.
-- [x] Use a Jupyter notebook to document your data analysis.
+- [x] Use [pandas, matplotlib,](romcomEDA.ipynb) and/or numpy to perform a data analysis project. Ingest 2 or more pieces of data, analyze that data in some manner, and display a new result to a graph, chart, or other display.
+- [x] Use a [Jupyter notebook](romcomEDA.ipynb) to document your data analysis.
 
 # EXTENDED FUNCTIONALITY (Not Part of Code Louisville submission)
 
