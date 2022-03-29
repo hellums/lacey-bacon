@@ -61,7 +61,7 @@ Category 4 - Best Practices
 
 "Stretch" list:
 
-- [x] Use [pandas, matplotlib,](romcomEDA.ipynb) and/or numpy to perform a data analysis project. [Ingest 2 or more pieces of data](https://github.com/hellums/lacey-bacon/blob/07afe2e2fdc379da54b68740b878b2e313314354/romcomPrep.py#L30), analyze that data in some manner, and display a new result to a graph, chart, or other display.
+- [x] Use [pandas, matplotlib,](romcomEDA.ipynb) and/or numpy to perform a data analysis project. [Ingest 2 or more pieces of data](https://github.com/hellums/lacey-bacon/blob/07afe2e2fdc379da54b68740b878b2e313314354/romcomPrep.py#L30), analyze that data in some manner, and [display a new result to a graph, chart, or other display](https://github.com/hellums/lacey-bacon/wiki/Data-Analytics-Course-Project).
 - [x] Use a [Jupyter notebook](romcomEDA.ipynb) to document your data analysis.
 
 # EXTENDED FUNCTIONALITY (Not Part of Code Louisville submission)
