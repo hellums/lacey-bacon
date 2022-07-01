@@ -29,8 +29,7 @@ Perform same steps as above, except replace the "source env/bin/activate" comman
 
 
 ## To view Jupyter Notebook output and data analysis
-- [Notebook/EDA](https://github.com/hellums/lacey-bacon/blob/root/romcomEDA.ipynb)
-(or open romcomEDA.pdf in the project folder using Adobe or other PDF viewer)
+- [Notebook/EDA](https://github.com/hellums/lacey-bacon/blob/root/romcomEDA.pdf)
 
 ## To run a few unit tests for data integrity
 To test functions and data:
