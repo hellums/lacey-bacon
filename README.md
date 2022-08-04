@@ -6,10 +6,10 @@ All images and websites shown here belong to the original copyright holders and 
 # To view Jupyter Notebook output and data analysis
 - [Notebook/EDA](https://github.com/hellums/lacey-bacon/blob/root/romcomEDA.pdf)
 
-# COMMAND-LINE WALKTHROUGH VIDEO
+# Console Program walkthrough video
 [<img alt="romcom video walkthrough" width="600px" src="images/romcom.jpg" />](https://screencast-o-matic.com/watch/c3e6FLVFY4U)
 
-# FLASK API SCREENSHOT
+# Flask API Screenshot
 <p><img alt="API screenshot" width="600px" src="https://user-images.githubusercontent.com/83464025/157280816-da3468ad-3ffe-482f-8161-ed3696d6c61c.png" ></p>
 
 # Project-Related Github Pages
